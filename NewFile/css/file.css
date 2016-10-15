@@ -10,14 +10,6 @@
 .left-panel {
     width: 180px;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 200;
-    color: #7D838F;
-    background-color: #F3F3F3;
-    background-color: #F5F7FA;
-    border-right: 1px solid #CCD1D9;
-    /*-webkit-transition: width 0.15s ease-in-out 0s;*/
     /*-moz-transition: width 0.15s ease-in-out 0s;*/
     /*-ms-transition: width 0.15s ease-in-out 0s;*/
     /*-o-transition: width 0.15s ease-in-out 0s;*/
