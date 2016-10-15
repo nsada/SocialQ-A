@@ -1,29 +1,4 @@
-body {
-    font-size: 14px;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    position: relative;
-}
-
-body.read-only .node-checkbox, body.read-only .btn-contextmenu {
-    display: none;
-}
-
-.btn {
-    border-radius: 2px;
-}
-
-/** selectable */
-.ui-selectable-helper {
-    border: 1px dotted #000 !important;
-    background-color: #E6E9ED;
-    opacity: 0.45;
-    filter: alpha(opacity=45);
-    cursor: pointer;
-}
+﻿body {
 
 #file-page {
     min-width: 900px;
