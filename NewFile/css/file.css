@@ -33,32 +33,29 @@
 .left-panel .panel-tab > li > a {
     color: #1D2938;
     /* background-color: #E6E9ED; */
-    border-radius: 0 !important;
-    padding: 8px;
-}
+    border-rad
+asdfdsafads
+asdfasdfsadf
+asdfsadfsdaf
+asdfasdfsadf
 
-.left-panel .tab-content {
-    height: -moz-calc(100% - 36px);
-    height: -webkit-calc(100% - 36px);
-    height: calc(100% - 36px);
-    overflow-y: auto;
-}
+asdfa
 
-.left-panel .panel-nav > li + li {
-    margin-top: 2px;
-    margin-left: 0;
-}
 
-.left-panel .panel-nav li a {
-    color: #1D2938;
-    color: #434A54;
-    display: block;
-    padding: 8px 10px;
-    position: relative;
-    webkit-transition: background-color 0.15s ease-in-out 0s;
-    -moz-transition: background-color 0.15s ease-in-out 0s;
-    -ms-transition: background-color 0.15s ease-in-out 0s;
-    -o-transition: background-color 0.15s ease-in-out 0s;
+asdfadsfasdasd
+adsfsadf
+
+asdf
+ads
+f
+dsa
+fads
+f
+asf
+asd
+f
+as
+f
     transition: background-color 0.15s ease-in-out 0s;
 }
 
