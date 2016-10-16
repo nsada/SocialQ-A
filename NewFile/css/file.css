@@ -3,13 +3,7 @@
 #file-page {
     min-width: 900px;
     min-height: 350px;
-    background-color: #FFF;
-    /* 	border-top: 1px solid #D8DCE5; */
-}
-
-.left-panel {
-    width: 180px;
-    position: absolute;
+    backgroun
     /*-moz-transition: width 0.15s ease-in-out 0s;*/
     /*-ms-transition: width 0.15s ease-in-out 0s;*/
     /*-o-transition: width 0.15s ease-in-out 0s;*/
