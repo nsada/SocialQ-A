@@ -3,6 +3,18 @@ package action;
 import com.opensymphony.xwork2.Action;
 import java.util.Map;
 
+
+
+
+
+
+
+
+
+
+
+
+
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
 public class InsertExam implements Action {
