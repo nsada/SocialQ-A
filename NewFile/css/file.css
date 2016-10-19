@@ -146,73 +146,11 @@ as
 
 asdf
 
-asd
-fasdf
-sa
-d
-fas
-df
-as
-df
 
-
-asdfasdff
-
-
-.leftpanel-collapsed .left-panel .panel-nav a {
-    text-align: center;
-    position: relative;
-    padding: 10px 0;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-}
-
-.leftpanel-collapsed .left-panel .panel-nav a i {
-    margin-right: 0;
-}
-
-.leftpanel-collapsed .left-panel .panel-nav span {
-    display: none;
-}
-
-.leftpanel-collapsed .left-panel .panel-nav a:hover {
-    border-top: 1px solid #CCD1D9;
-    border-bottom: 1px solid #CCD1D9;
-}
-
-.leftpanel-collapsed .left-panel .panel-nav a:hover span {
-    display: block;
-    padding: 10px 10px 10px 5px;
     left: 49px;
     top: -1px;
     background-color: #E6E9ED;
-    min-width: 80px;
-    text-align: left;
-    z-index: 1000;
-    position: absolute;
-    border-radius: 0 4px 4px 0;
-    border-top: 1px solid #CCD1D9;
-    border-bottom: 1px solid #CCD1D9;
-    border-right: 1px solid #CCD1D9;
-}
-
-.leftpanel-collapsed .left-panel .panel-nav li.active a:hover span {
-    background-color: #FFF;
-}
-
-.leftpanel-collapsed .left-panel .panel-main {
-    height: -moz-calc(100% - 40px);
-    height: -webkit-calc(100% - 40px);
-    height: calc(100% - 40px);
-}
-
-.main-panel {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: -moz-calc(100% - 180px);
-    width: -webkit-calc(100% - 180px);
+    min-w
     width: calc(100% - 180px);
     webkit-transition: width 0.15s ease-in-out 0s;
     -moz-transition: width 0.15s ease-in-out 0s;
