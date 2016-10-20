@@ -155,30 +155,7 @@ public class InsertExam implements Action {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
