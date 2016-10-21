@@ -233,22 +233,7 @@ ewafewfew
     border-bottom-left-radius: 0px;
     border-top-right-radius: 2px !important;
     border-bottom-right-radius: 2px !important;
-    margin-left: -1px;
-}
-
-.main-panel .panel-top .toolbar .btn.active {
-    color: #009EE7;
-}
-
-.main-panel .panel-top .res-toolbar-wrap {
-    display: none;
-}
-
-.main-panel .panel-top .res-toolbar-wrap > div {
-    display: table-cell;
-}
-
-.main-panel .panel-top .res-toolbar-wrap > div.file-toolbar {
+    
     width: 1%;
 }
 
