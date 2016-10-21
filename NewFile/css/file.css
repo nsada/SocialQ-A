@@ -294,45 +294,6 @@ ewafewfew
     cursor: pointer;
 }
 
-.file-container .node-tree-toggle:hover span {
-    width: 6px;
-    left: -3px;
-    background: #FDA328;
-}
-
-.file-container .node-tree-toggle span {
-    display: inline-block;
-    width: 3px;
-    height: 40px;
-    background: #abc3d8;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    transition: all .15s ease-in-out;
-}
-
-.file-container .node-dir-toggle {
-    position: absolute;
-    left: 45%;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.file-container > div.file-container-left .node-tree {
-    display: none;
-}
-
-.file-container.show-node-tree > div.file-container-left .node-tree {
-    display: block;
-}
-
-.file-container.show-node-tree > div.file-container-main {
-    width: -moz-calc(100% - 220px);
-    width: -webkit-calc(100% - 220px);
-    width: calc(100% - 220px);
-}
-
-.breadcrumbs-bar {
-    display: table-row;
 }
 
 .breadcrumbs-bar > div {
@@ -342,29 +303,6 @@ ewafewfew
     border-bottom: 1px solid #CCD1D9;
     border-top: 1px solid #CCD1D9;
 }
-
-.breadcrumbs-bar .toggle-select-all {
-    margin: 0;
-    height: 100%;
-    vertical-align: middle;
-    min-width: 40px;
-    text-align: center;
-    border-right: 1px solid #CCD1D9;
-}
-
-.breadcrumbs-bar .toggle-select-all > .check-icon {
-    margin-top: 9px;
-}
-
-.breadcrumbs-bar .toggle-select-all.hide-icon > .check-icon {
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-
-.breadcrumbs-bar .breadcrumbs {
-    padding: 0 10px;
-}
-
 .breadcrumbs-bar .breadcrumbs a {
     float: left;
     /* text-shadow: 0 1px 0 #fff; */
@@ -372,7 +310,202 @@ ewafewfew
     padding: 5px 6px;
     max-width: 100px;
     overflow: hidden;
+    text-overflow: ellipsis;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;A53;
+    padding: 5px 6px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    transition-property: backgroud-color, border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.breadcrumbs-bar .breadcrumbs span {
+    float: left;
     white-space: nowrap;
     border-radius: 2px;
     font-size: 13px;
