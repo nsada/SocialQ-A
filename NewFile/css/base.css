@@ -309,6 +309,9 @@ body {
   bottom: 0;-color: #000;
     color: #fff;
 }
+-color: #000;
+    color: #fff;
+}
 
 #base_name {
     background-color: #FFF;
@@ -322,6 +325,28 @@ body {
     color: #fff;
 }
 
+#base_name {
+    background-color: #FFF;
+}
+
+
+.btn-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;-color: #000;
+    color: #fff;
+}
+
+#base_name {
+    background-color: #FFF;
+}
+
+
+.btn-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;-color: #000;
+    color:
 #base_name {
     background-color: #FFF;
 }
