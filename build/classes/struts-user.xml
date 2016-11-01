@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="user" extends="struts-default" namespace="/user">
+        <!-- 登录请求,调用LoginAction类的method方法（默认为exectute） -->
+        <action name="loginPro" class="user.action.UserAction">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="registPro" class="user.action.UserAction" method="regist">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="logout" class="user.action.UserAction" method="logout">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="viewAllUsers" class="user.action.ViewAllUsersAction">
+            <result name="success">/WEB-INF/content/user/listUsers.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+    
+    
+        <action name="*">
+            <result>/WEB-INF/content/user/{1}.jsp</result>
+        </action>
+    </package>
+
+</struts>
