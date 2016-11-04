@@ -8,24 +8,7 @@
 -- Dumping data for table `exam_question`
 --
 
-  `rrred` int(11) DEFAULT '0',
-  `score` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_clie
---
-
-DROP TABLE IF EXISTS `friend`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `friend` (
-  `A` int(10) unsigned zerofill DEFAULT NULL,
-  `B` int(10) unsigned zerofill DEFAULT NULL,
-  `type` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `friend`
+  `rrred` 
 --
 
 LOCK TABLES `friend` WRITE;
