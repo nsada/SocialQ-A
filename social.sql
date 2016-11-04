@@ -1,41 +1,16 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
---
--- Host: localhost    Database: social
--- ------------------------------------------------------
--- Server version	5.7.15-log
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `aandq`
---
-
-DROP TABLE IF EXISTS `aandq`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `aandq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `context` longtext,
-  `ans` longtext,
-  `score` int(10) DEFAULT NULL,
-  `analysis` longtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `GroupID` int(11) NOT NULL,
+  `score` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aandq`
+-- Dumping data for table `exam_question`
 --
 
+
+
+<<<<<<< HEAD
 LOCK TABLES `aandq` WRITE;
 /*!40000 ALTER TABLE `aandq` DISABLE KEYS */;
 <<<<<<< HEAD
@@ -45,11 +20,11 @@ INSERT INTO `aandq` VALUES (1,'开发过程中遇到的最坑的是什么？','�
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40000 ALTER TABLE `aandq` ENABLE KEYS */;
 UNLOCK TABLES;
+=======
+>>>>>>> lsy
 
---
--- Table structure for table `exam`
---
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `exam`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -74,11 +49,11 @@ CREATE TABLE `exam` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40101 SET character_set_client = @saved_cs_client */;
+=======
+>>>>>>> lsy
 
---
--- Dumping data for table `exam`
---
 
+<<<<<<< HEAD
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
 <<<<<<< HEAD
@@ -88,11 +63,11 @@ INSERT INTO `exam` VALUES (0,'null',NULL,0,NULL,NULL,0,0,1,0),(1,'美国兰德�
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
+=======
+>>>>>>> lsy
 
---
--- Table structure for table `exam_question`
---
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `exam_question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -113,11 +88,11 @@ CREATE TABLE `exam_question` (
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+=======
+>>>>>>> lsy
 
---
--- Dumping data for table `exam_question`
---
 
+<<<<<<< HEAD
 LOCK TABLES `exam_question` WRITE;
 /*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
 <<<<<<< HEAD
@@ -127,11 +102,11 @@ INSERT INTO `exam_question` VALUES (1,1,1,8,8,0,21),(1,2,1,8,8,0,43),(1,4,1,13,3
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
 UNLOCK TABLES;
+=======
+>>>>>>> lsy
 
---
--- Table structure for table `exam_user`
---
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `exam_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -150,11 +125,11 @@ CREATE TABLE `exam_user` (
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+=======
+>>>>>>> lsy
 
---
--- Dumping data for table `exam_user`
---
 
+<<<<<<< HEAD
 LOCK TABLES `exam_user` WRITE;
 /*!40000 ALTER TABLE `exam_user` DISABLE KEYS */;
 <<<<<<< HEAD
@@ -164,11 +139,11 @@ INSERT INTO `exam_user` VALUES (3,3,0,0),(4,2,2,1),(1,2,74,1),(1,3,3,0);
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40000 ALTER TABLE `exam_user` ENABLE KEYS */;
 UNLOCK TABLES;
+=======
+>>>>>>> lsy
 
---
--- Table structure for table `exam_user_answer`
---
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `exam_user_answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -187,11 +162,11 @@ CREATE TABLE `exam_user_answer` (
   CONSTRAINT `exam_user_answerInx_user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+=======
+>>>>>>> lsy
 
---
--- Dumping data for table `exam_user_answer`
---
 
+<<<<<<< HEAD
 LOCK TABLES `exam_user_answer` WRITE;
 /*!40000 ALTER TABLE `exam_user_answer` DISABLE KEYS */;
 <<<<<<< HEAD
@@ -201,11 +176,11 @@ INSERT INTO `exam_user_answer` VALUES (3,3,4,1,'1',0,0,0),(3,3,1,4,'110000',0,0,
 >>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 /*!40000 ALTER TABLE `exam_user_answer` ENABLE KEYS */;
 UNLOCK TABLES;
+=======
+>>>>>>> lsy
 
---
--- Table structure for table `friend`
---
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `friend`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -219,9 +194,69 @@ CREATE TABLE `friend` (
   CONSTRAINT `friendInx_B` FOREIGN KEY (`B`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+=======
+>>>>>>> lsy
 
---
--- Dumping data for table `friend`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  `rrred` 
 --
 
 LOCK TABLES `friend` WRITE;
