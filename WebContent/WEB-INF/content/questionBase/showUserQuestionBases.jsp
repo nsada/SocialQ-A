@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
+    
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>   
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <rapid:override name="head">  
     <title>我的题库</title>
@@ -26,10 +28,10 @@
         <tbody>
             <s:iterator value="questionBases" var="qBase">
                 <tr>
-                    <td><a href='<s:url action="showQuestionBase"><s:param name="id" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
+                    <td><a href='<s:url action="showQuestionBase"><s:param name="qBase.id" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
                     <td>${qBase.description}</td>                     
                     <td>
-                        <a href='<s:url action="delQuestionBase"><s:param name="id" value="#qBase.ISBN"/></s:url>'><input type="button" value="删除"/></a>
+                        <a href='<s:url action="delQuestionBase"><s:param name="qBase.id" value="#qBase.id"/></s:url>'><input type="button" value="删除"/></a>
                     </td>
                 </tr>           
             </s:iterator>

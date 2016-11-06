@@ -24,6 +24,7 @@ public class Connect {
 		try {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
+			System.out.println("查找失败");
 			result = null;
 		}
 		return result;
@@ -36,18 +37,23 @@ public class Connect {
 		try{
 			id = result.getInt(0);
 		}catch (Exception e) {
+			System.out.println("获取最新插入ID失败");
 		}
 		return id;
 	}
 	
 	public int executeUpdate(String sql) {
+		System.out.println("connect: " + sql);
 		try {
 			state.executeUpdate(sql);
+			System.out.println("更新成功");
 			state.close();
-			return 0;
 		} catch (Exception e) {
+			System.out.println("更新失败");
+			e.printStackTrace();
 			return -1;
 		}
+		return 0;
 	}
 	public int executeUpdateID(String sql) {
 		int id = -1;
@@ -60,7 +66,7 @@ public class Connect {
 			}			
 			state.close();
 		} catch (Exception e) {
-
+			System.out.println("查找并返回最新插入ID失败");
 		}
 		return id;
 	}
