@@ -1,12 +1,12 @@
-package user.action;
+package action;
 
 
 import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 
-import user.domain.User;
-import user.service.UserService;
+import domain.User;
+import service.UserService;
 
 public class ViewAllUsersAction implements Action {
 	private List<User> users;

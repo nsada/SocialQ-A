@@ -1,11 +1,11 @@
-package user.service;
+package service;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import database.Connect;
-import user.domain.User;
+import domain.User;
 
 
 public class UserService {
@@ -19,7 +19,7 @@ public class UserService {
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
 		try{
-			if (result.next()){
+			if (result.next()){				
 				user.setId(result.getInt("id"));
 				user.setName(result.getString("name"));
 				user.setPassword(result.getString("password"));

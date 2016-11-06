@@ -5,9 +5,10 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/base.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap-theme.min.css">
+
 <html>  
    <rapid:block name="head">base_head</rapid:block>  
-<body>  
+<body class="ui-selectable">  
 	<br/>  
 	<rapid:block name="content">base_content</rapid:block>  
 	<br/>
@@ -28,10 +29,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-basepage">
             <ul class="nav navbar-nav">
-                <li id=""><a href="<%=request.getContextPath()%>/index">主页</a></li>
+                <li class="active" id=""><a href="<%=request.getContextPath()%>/index">主页</a></li>
                 <li id="view_books"><a href="<%=request.getContextPath()%>/book/viewAllBooks">我要出题</a></li>
                 <li id="add_book"><a href="<%=request.getContextPath()%>/book/addBook">朋友圈</a></li>
-                <li id="view_authors"><a href="<%=request.getContextPath()%>/book/viewAllAuthors">个人中心</a></li>      
+                <li id="showPersonalCenter"><a href="<%=request.getContextPath()%>/user/showPersonalCenter">个人中心</a></li>      
             </ul>
             <ul class="nav navbar-nav navbar-right">
             	<%

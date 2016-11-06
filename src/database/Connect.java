@@ -1,7 +1,7 @@
 package database;
 import java.sql.*;
 
-import user.domain.User;
+import domain.User;
 
 public class Connect {
 	Connection con=null;

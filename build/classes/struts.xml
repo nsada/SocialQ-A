@@ -6,12 +6,68 @@
 <struts>
     
     <constant name="struts.devMode" value="true"/>
-    <include file="struts-user.xml"></include>
+    
     
     <package name="default" namespace="/" extends="struts-default">
         <action name="index">
             <result>/index.jsp</result>
+        </action>     
+        
+        
+        <action name="showPersonalCenter" class="action.UserAction" method="showPersonalInformation">
+            <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
+            <result name="error">/WEB-INF/content//user/error.jsp</result>
+        </action>   
+         
+        <action name="showPersonalInformation" class="action.UserAction" method="showPersonalInformation">
+            <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
+            <result name="error">/WEB-INF/content//user/error.jsp</result>
+        </action>    
+
+        <action name="showUserQuestionBases" class="action.ShowUserQuestionBasesAction">
+            <result name="success">/WEB-INF/content//questionBase/showUserQuestionBases.jsp</result>
+            <result name="error">/WEB-INF/content//login_PersonalCenter.jsp</result>            
+        </action>   
+        <action name="delQuestionBase" class="action.QuestionBaseAction" method="delQuestionBase">
+            <result name="success">/WEB-INF/content//questionBase/showUserQuestionBases.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>   
+
+
+        <action name="loginPro" class="action.UserAction">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+        <action name="login">
+            <result>/WEB-INF/content/user/login.jsp</result>
+        </action>
+        <action name="registPro" class="action.UserAction" method="regist">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        <action name="regist">
+            <result>/WEB-INF/content/user/regist.jsp</result>
+        </action>
+        
+        <action name="logout" class="action.UserAction" method="logout">
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="viewAllUsers" class="action.ViewAllUsersAction">
+            <result name="success">/WEB-INF/content/user/listUsers.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="addQuestionBasePro" class="action.QuestionBaseAction" method="addQuestionBase">
+            <result type="chain">showUserQuestionBases</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>
+        
+        <action name="addQuestionBase">
+            <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
+        </action>
+        
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>
         </action>

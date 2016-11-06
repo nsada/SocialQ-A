@@ -1,4 +1,4 @@
-package user.domain;
+package domain;
 
 public class User {
 	private int id;

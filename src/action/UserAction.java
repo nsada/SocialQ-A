@@ -1,13 +1,13 @@
-package user.action;
+package action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
-import questionbase.action.QuestionBaseAction;
-import questionbase.domain.QuestionBase;
-import questionbase.service.QuestionBaseService;
-import user.domain.User;
-import user.service.UserService;
+import action.QuestionBaseAction;
+import domain.QuestionBase;
+import domain.User;
+import service.QuestionBaseService;
+import service.UserService;
 
 import java.util.Map;
 
@@ -49,11 +49,11 @@ public class UserAction implements Action {
 		UserService us = new UserService();
 		int id = us.addUser(user);
 		if (id >= 0) {
-			user.setId(id);
+		/*	user.setId(id);
 			QuestionBaseAction qbAction = new QuestionBaseAction();
 			QuestionBase questionBase = qbAction.addQuestionBase(id);
 			user.setQuestionBaseID(questionBase.getId());
-			us.updateUser(user, id);
+			us.updateUser(user, id);*/
 			return SUCCESS;
 		}
 		return ERROR;		
@@ -66,5 +66,15 @@ public class UserAction implements Action {
 		sess.remove("userid");
 		return SUCCESS;
 	}
+	
+	public String showPersonalInformation() {
+		System.out.println("user: showPersonalInformation");
+		
+		return SUCCESS;
+	}
+	
+	public String showQuestionBase() {
 
+		return SUCCESS;
+	}
 }
