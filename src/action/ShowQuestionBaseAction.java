@@ -18,6 +18,7 @@ public class ShowQuestionBaseAction implements Action {
 	private List<Multy> multys;
 	private List<FillBlank> fillBlanks;
 	private List<AandQ> AandQs;	
+	private int qBaseID;
 	
 	public QuestionBase getqBase() {
 		return qBase;
@@ -51,11 +52,17 @@ public class ShowQuestionBaseAction implements Action {
 	}
 	
 	
+	public int getqBaseID() {
+		return qBaseID;
+	}
+	public void setqBaseID(int qBaseID) {
+		this.qBaseID = qBaseID;
+	}
 	@Override
 	public String execute() throws Exception {
 		System.out.println("showQuestionBase");
 		QuestionBaseService qbs = new QuestionBaseService();
-		int qBaseID = qBase.getId();
+		//int qBaseID = qBase.getId();
 		qBase = qbs.getQuestionBase(qBaseID);
 		
 		try {

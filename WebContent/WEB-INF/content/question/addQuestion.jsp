@@ -11,15 +11,16 @@
 <rapid:override name="content"> 
     <%
         String idstr = request.getParameter("qBaseID");
-        //int qBaseID = Integer.parseInt(idstr);
-        //out.println("jsp请添加到"+qBaseID+"号题库");
-        out.println("jsp请添加到"+idstr+"号题库");
+        
+        out.println("str请添加到"+idstr+"号题库");
+        int qBaseID = Integer.parseInt(idstr);
+        out.println("jsp请添加到"+qBaseID+"号题库");
     %>
 <div class="row clearfix">
         <div class="col-md-12 column">
             <form action="addQuestionPro" class="form-horizontal" role="form">
                 <input type="hidden" name="type" value="1" />
-                
+                <input type="hidden" name="qBaseID" value="<%=qBaseID%>" />
                 <div class="form-group">
                      <label for="context" class="col-sm-2 control-label">题干</label>
                     <div class="col-sm-6">

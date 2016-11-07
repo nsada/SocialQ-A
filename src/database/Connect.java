@@ -43,10 +43,10 @@ public class Connect {
 	}
 	
 	public int executeUpdate(String sql) {
-		System.out.println("connect: " + sql);
+		//System.out.println("connect: " + sql);
 		try {
 			state.executeUpdate(sql);
-			System.out.println("更新成功");
+		//	System.out.println("更新成功");
 			state.close();
 		} catch (Exception e) {
 			System.out.println("更新失败");

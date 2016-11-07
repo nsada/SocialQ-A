@@ -29,7 +29,7 @@
         <tbody>
             <s:iterator value="questionBases" var="qBase">
                 <tr>
-                    <td><a href='<s:url action="showQuestionBase"><s:param name="qBase.id" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
+                    <td><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
                     <td>${qBase.description}</td>                     
                     <td>
                         <a href='<s:url action="delQuestionBase"><s:param name="qBase.id" value="#qBase.id"/></s:url>'><input type="button" value="删除"/></a>

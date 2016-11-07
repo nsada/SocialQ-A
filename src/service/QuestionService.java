@@ -15,7 +15,7 @@ public class QuestionService {
 	
 	public List<Selection> getSelections(int qBaseID) {
 		cont = new Connect();
-		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and questionType=1";
+		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
 		System.out.println("questionbase_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();

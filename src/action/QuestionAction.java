@@ -15,6 +15,8 @@ public class QuestionAction implements Action {
 	private int qBaseID;
 	private int type;
 	
+	
+	
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -49,6 +51,7 @@ public class QuestionAction implements Action {
 			}
 			selection.setNum(num);
 			System.out.println("(qBaseID:" + qBaseID + "type:" + type + ")" + selection.getNum() + " , " + selection.getContext());
+			//i = 1;
 			i = qs.addSelection(selection, qBaseID);
 			System.out.println("插入后： " + selection.getId());
 		} catch (Exception e) {
