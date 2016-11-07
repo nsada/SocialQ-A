@@ -45,12 +45,7 @@ public class QuestionBaseAction implements Action {
 	}
 	public QuestionBase addQuestionBase(int userID){
 		QuestionBaseService qbs = new QuestionBaseService();
-		qBase = new QuestionBase();
-		qBase.setUserID(userID);
-		int i = qbs.addQuestionBase(qBase);
-		if (i >= 0) {
-			qBase.setId(i);
-		}
+		int i = qbs.addQuestionBase(qBase, userID);
 		return qBase;		
 	}
 	public String delQuestionBase(){

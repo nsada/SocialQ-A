@@ -29,10 +29,16 @@
             <result name="error">/WEB-INF/content//login_PersonalCenter.jsp</result>            
         </action>   
         <action name="delQuestionBase" class="action.QuestionBaseAction" method="delQuestionBase">
-            <result type = "chain">showUserQuestionBases</result>
+            <result type ="redirect">showUserQuestionBases</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
         </action>   
-
+        <action name="addQuestionBasePro" class="action.QuestionBaseAction" method="addQuestionBase">
+            <result type="redirect">showUserQuestionBases</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>        
+        <action name="addQuestionBase">
+            <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
+        </action>
 
         <action name="loginPro" class="action.UserAction">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
@@ -59,14 +65,7 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
-        <action name="addQuestionBasePro" class="action.QuestionBaseAction" method="addQuestionBase">
-            <result type="chain">showUserQuestionBases</result>
-            <result name="error">/WEB-INF/content/error.jsp</result>
-        </action>
-        
-        <action name="addQuestionBase">
-            <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
-        </action>
+
         
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>

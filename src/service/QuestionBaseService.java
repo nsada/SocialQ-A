@@ -45,6 +45,10 @@ public class QuestionBaseService {
 		//System.out.println("LAST_INSERT_ID: " + id);
 		return in;
 	}
+	public int addQuestionBase(QuestionBase qBase, int userID) {
+		qBase.setUserID(userID);
+		return addQuestionBase(qBase);
+	}
 
 	public List<QuestionBase> getUserQuestionBases(int userID) {
 		cont = new Connect();
@@ -57,7 +61,6 @@ public class QuestionBaseService {
 				questionBase = new QuestionBase();
 				questionBase = getQuestionBase(result.getInt("questionBaseID"));
 				questionBases.add(questionBase);
-				System.out.println("get one qBase");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
