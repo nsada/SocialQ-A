@@ -58,7 +58,7 @@ public class QuestionBaseService {
 		questionBases = new ArrayList<>();
 		try{
 			while (result.next()){
-				questionBase = new QuestionBase();
+				//questionBase = new QuestionBase();
 				questionBase = getQuestionBase(result.getInt("questionBaseID"));
 				questionBases.add(questionBase);
 			}

@@ -13,6 +13,18 @@
             <result>/index.jsp</result>
         </action>     
         
+        <action name="delQuestion" class="action.QuestionAction" method="delQuestion">
+            <result type ="redirect">showQuestionBase</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>   
+        <action name="addQuestionPro" class="action.QuestionAction" method="addQuestion">
+            <result type="redirect">showrQuestionBase</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>        
+        <action name="addQuestion">
+            <result>/WEB-INF/content/question/addQuestion.jsp</result>
+        </action>
+        
         
         <action name="showPersonalCenter" class="action.UserAction" method="showPersonalInformation">
             <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
@@ -39,6 +51,10 @@
         <action name="addQuestionBase">
             <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
         </action>
+        <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
+            <result>/WEB-INF/content//questionBase/showQuestionBase.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>       
 
         <action name="loginPro" class="action.UserAction">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
@@ -53,13 +69,12 @@
         </action>
         <action name="regist">
             <result>/WEB-INF/content/user/regist.jsp</result>
-        </action>
-        
+        </action>        
         <action name="logout" class="action.UserAction" method="logout">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        
+                
         <action name="viewAllUsers" class="action.ViewAllUsersAction">
             <result name="success">/WEB-INF/content/user/listUsers.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>

@@ -19,9 +19,9 @@ public class QuestionBaseAction implements Action {
 	}
 		
 	@Override
-	public String execute() throws Exception { //showQuestionBase
-		System.out.println("questionBase: showQuestionBase");
-		return "success";
+	public String execute() throws Exception {
+
+		return SUCCESS;
 	}
 	
 	public String addQuestionBase(){
@@ -46,6 +46,9 @@ public class QuestionBaseAction implements Action {
 	public QuestionBase addQuestionBase(int userID){
 		QuestionBaseService qbs = new QuestionBaseService();
 		int i = qbs.addQuestionBase(qBase, userID);
+		if (i < 0) {
+			qBase.setId(-1); //添加qBase失败，则将其ID设置为-1
+		}
 		return qBase;		
 	}
 	public String delQuestionBase(){
