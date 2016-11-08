@@ -68,7 +68,7 @@ public class UserAction implements Action {
 	}
 	
 	public String showPersonalInformation() {
-		System.out.println("user: showPersonalInformation");
+		//System.out.println("user: showPersonalInformation");
 		
 		return SUCCESS;
 	}

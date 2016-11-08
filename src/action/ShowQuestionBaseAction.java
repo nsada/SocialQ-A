@@ -60,7 +60,7 @@ public class ShowQuestionBaseAction implements Action {
 	}
 	@Override
 	public String execute() throws Exception {
-		System.out.println("showQuestionBase");
+		//System.out.println("showQuestionBase");
 		QuestionBaseService qbs = new QuestionBaseService();
 		//int qBaseID = qBase.getId();
 		qBase = qbs.getQuestionBase(qBaseID);

@@ -26,12 +26,12 @@
         </action>
         
         
-        <action name="showPersonalCenter" class="action.UserAction" method="showPersonalInformation">
+        <action name="showPersonalCenter">
             <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
             <result name="error">/WEB-INF/content//user/error.jsp</result>
         </action>   
          
-        <action name="showPersonalInformation" class="action.UserAction" method="showPersonalInformation">
+        <action name="showPersonalInformation">
             <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
             <result name="error">/WEB-INF/content//user/error.jsp</result>
         </action>    

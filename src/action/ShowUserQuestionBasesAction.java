@@ -26,14 +26,10 @@ public class ShowUserQuestionBasesAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		try {
 			int userID = (int) sess.get("userid");		
-			System.out.println("ShowQuestionBase userID: " + userID);
+			//System.out.println("ShowQuestionBase userID: " + userID);
 			QuestionBaseService qbs = new QuestionBaseService();
 			questionBases = qbs.getUserQuestionBases(userID);
 			int num = questionBases.size();
-		/*	System.out.println("qBases num: " + num);
-			for (int i = 0; i < num; i++) {
-				System.out.println("qBase: " + questionBases.get(i).getId() + ", " + questionBases.get(i).getTitle() + ", " + questionBases.get(i).getDescription());
-			}*/
 		} catch (Exception e) {
 			questionBases = null;
 			return ERROR;

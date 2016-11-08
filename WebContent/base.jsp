@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap-theme.min.css">
 
-<html>  
+<html>      
    <rapid:block name="head">base_head</rapid:block>  
 <body class="ui-selectable">  
 	<br/>  
