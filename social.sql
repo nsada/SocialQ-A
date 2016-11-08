@@ -29,7 +29,7 @@ CREATE TABLE `questionbase` (
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,8 +38,72 @@ CREATE TABLE `questionbase` (
 
 LOCK TABLES `questionbase` WRITE;
 /*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
-INSERT INTO `questionbase` VALUES (1,0,NULL,'null'),(2,0,NULL,'null'),(3,0,NULL,'null'),(4,0,'题库1','null'),(5,0,'题库1','null'),(6,0,'题库2','第二个题库'),(7,0,'题库3','第三个题库'),(8,0,'题库3','第三个题库'),(9,0,'题库3','第三个题库'),(10,0,'题库3','第三个题库');
+INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(8,1,'题库1','第一个题库'),(9,1,'题库5','第五个题库');
 /*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `questionbase_question`
+--
+
+DROP TABLE IF EXISTS `questionbase_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `questionbase_question` (
+  `questionBaseID` int(10) unsigned zerofill DEFAULT NULL,
+  `questionID` int(11) NOT NULL,
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `questionbase_question`
+--
+
+LOCK TABLES `questionbase_question` WRITE;
+/*!40000 ALTER TABLE `questionbase_question` DISABLE KEYS */;
+INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1);
+/*!40000 ALTER TABLE `questionbase_question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `selection`
+--
+
+DROP TABLE IF EXISTS `selection`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `selection` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` text NOT NULL,
+  `num` int(11) NOT NULL,
+  `A` varchar(60) DEFAULT NULL,
+  `B` varchar(60) DEFAULT NULL,
+  `C` varchar(60) DEFAULT NULL,
+  `D` varchar(60) DEFAULT NULL,
+  `E` varchar(60) DEFAULT NULL,
+  `F` varchar(60) DEFAULT NULL,
+  `ans` char(6) DEFAULT NULL,
+  `analysis` text,
+  `score` int(11) DEFAULT '1',
+  `scoreA` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreB` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreC` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreD` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreE` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreF` int(10) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `selection`
+--
+
+LOCK TABLES `selection` WRITE;
+/*!40000 ALTER TABLE `selection` DISABLE KEYS */;
+INSERT INTO `selection` VALUES (1,'题库2的第一个题',4,'A','B','C','D','E','F','111100','null',10,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(2,'题库2的第二个题',4,'A','B','C','D','E','F','111100','null',6,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001);
+/*!40000 ALTER TABLE `selection` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,9 +142,8 @@ DROP TABLE IF EXISTS `user_questionbase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_questionbase` (
-  `userID` int(11) NOT NULL,
-  `questionBaseID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
+  `userID` int(11) DEFAULT NULL,
+  `questionBaseID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,6 +153,7 @@ CREATE TABLE `user_questionbase` (
 
 LOCK TABLES `user_questionbase` WRITE;
 /*!40000 ALTER TABLE `user_questionbase` DISABLE KEYS */;
+INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,8),(1,9);
 /*!40000 ALTER TABLE `user_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -102,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-06 18:22:43
+-- Dump completed on 2016-11-07 22:14:34

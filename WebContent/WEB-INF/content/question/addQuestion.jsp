@@ -18,7 +18,7 @@
     %>
 <div class="row clearfix">
         <div class="col-md-12 column">
-            <form action="addQuestionPro" class="form-horizontal" role="form">
+            <form action="addQuestionPro" method="POST" class="form-horizontal" role="form">
                 <input type="hidden" name="type" value="1" />
                 <input type="hidden" name="qBaseID" value="<%=qBaseID%>" />
                 <div class="form-group">

@@ -28,11 +28,11 @@
             </tr>
         </thead>
         <tbody>
-            <s:iterator value="selections" var="selection">
+            <s:iterator value="selections" var="sel">
                 <tr>                 
-                    <td>${selection.context}</td>                     
+                    <td>${sel.context}</td>                     
                     <td>
-                        <a href='<s:url action="showSelection"><s:param name="selection.id" value="#selection.id"/></s:url>'><input type="button" value="展开"/></a>
+                        <a href='<s:url action="showSelection"><s:param name="selection.id" value="#sel.id"/></s:url>'><input type="button" value="展开"/></a>
                     </td>
                 </tr>           
             </s:iterator>
