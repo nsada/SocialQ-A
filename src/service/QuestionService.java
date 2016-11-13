@@ -16,7 +16,7 @@ public class QuestionService {
 	public List<Selection> getSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
-		//System.out.println("questionbase_question sql: " + sql);
+		System.out.println("questionbase_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();
 		try{
@@ -32,7 +32,7 @@ public class QuestionService {
 		return selections;
 	}
 
-	private Selection getSelection(int id) {
+	public Selection getSelection(int id) {
 		String sql = "select * from Selection where id=" + id;
 		cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
@@ -92,7 +92,7 @@ public class QuestionService {
 		+ sel.getScoreA() + ", " + sel.getScoreB() + ", " + sel.getScoreC() + ", " + sel.getScoreD() + ", " + sel.getScoreE() + ", " + sel.getScoreF() + ")";
 		
 		int id = cont.executeUpdateID(sql);
-		//System.out.println("addSelection sql: "+ sql + "   *id:" + id);
+		System.out.println("addSelection sql: "+ sql + "   *id:" + id);
 		int in = 0;
 		if (id > 0) {
 			sel.setId(id);

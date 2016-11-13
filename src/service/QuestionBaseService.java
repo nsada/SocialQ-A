@@ -1,8 +1,6 @@
 package service;
-
 import java.sql.ResultSet;
 import java.util.List;
-
 import java.util.ArrayList;
 import database.Connect;
 import domain.QuestionBase;
@@ -10,13 +8,11 @@ import domain.QuestionBase;
 public class QuestionBaseService {
 	private Connect cont;
 	private List<QuestionBase> questionBases;
-	private QuestionBase questionBase;
-	
+	private QuestionBase questionBase;	
 	public QuestionBase getQuestionBase(int id){
 		String sql = "select * from questionbase where id=" + id;
 		cont = new Connect();
-		ResultSet result = cont.executeQuery(sql);	
-		
+		ResultSet result = cont.executeQuery(sql);		
 		try{
 			if (result.next()){
 				questionBase = new QuestionBase();
@@ -26,7 +22,7 @@ public class QuestionBaseService {
 				questionBase.setDescription(result.getString("description"));
 			}
 		}catch (Exception e) {
-			System.out.println("按id查找QuestionBase失败");
+			System.out.println("");
 		}
 		return questionBase;
 	}
@@ -36,28 +32,27 @@ public class QuestionBaseService {
 				+ qBase.getTitle() + "', '" + qBase.getDescription() + "')";
 		
 		int id = cont.executeUpdateID(sql);
-		//System.out.println("addQuestionBase sql: "+ sql + "   *id:" + id);
+		System.out.println("addQuestionBase sql: "+ sql + "   *id:" + id);
 		int in = 0;
 		if (id > 0) {
 			qBase.setId(id);
 			in = addUser_QuestionBase(qBase.getUserID(), qBase.getId());			
 		}
+		//System.out.println("LAST_INSERT_ID: " + id);
 		return in;
 	}
 	public int addQuestionBase(QuestionBase qBase, int userID) {
 		qBase.setUserID(userID);
 		return addQuestionBase(qBase);
 	}
-
 	public List<QuestionBase> getUserQuestionBases(int userID) {
 		cont = new Connect();
 		String sql = "select questionBaseID from user_questionbase where userID=" + userID;
-		//System.out.println("user_questionbase sql: " + sql);
+		System.out.println("user_questionbase sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		questionBases = new ArrayList<>();
 		try{
 			while (result.next()){
-				//questionBase = new QuestionBase();
 				questionBase = getQuestionBase(result.getInt("questionBaseID"));
 				questionBases.add(questionBase);
 			}
@@ -78,13 +73,12 @@ public class QuestionBaseService {
 			j = cont.executeUpdate(sql);
 		}
 		return j;
-	}
-	
+	}	
 	public int addUser_QuestionBase(int userID, int qBaseID){
 		cont = new Connect();
 		String sql = "insert into user_questionbase(userID, questionBaseID) values(" + userID + ", " + qBaseID + ")"; 
 		int i = cont.executeUpdate(sql);
-		//System.out.println("insert user_questionbase sql: " + sql + " i: " + i);
+		System.out.println("insert user_questionbase sql: " + sql + " i: " + i);
 		return i;
 	}
 	public int delUser_QuestionBase(int userID, int qBaseID){

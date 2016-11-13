@@ -6,11 +6,15 @@
     <title>添加题目</title>
 </rapid:override>  
 
+<!-- 
+        <input type="hidden" name="qBaseID" value="" /> -->
 <rapid:override name="content"> 
     <%
         String idstr = request.getParameter("qBaseID");
+        
+        out.println("str请添加到"+idstr+"号题库");
         int qBaseID = Integer.parseInt(idstr);
-        out.println("添加题目到"+qBaseID+"号题库");
+        out.println("jsp请添加到"+qBaseID+"号题库");
     %>
 <div class="row clearfix">
         <div class="col-md-12 column">

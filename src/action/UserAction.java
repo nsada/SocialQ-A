@@ -49,11 +49,6 @@ public class UserAction implements Action {
 		UserService us = new UserService();
 		int id = us.addUser(user);
 		if (id >= 0) {
-		/*	user.setId(id);
-			QuestionBaseAction qbAction = new QuestionBaseAction();
-			QuestionBase questionBase = qbAction.addQuestionBase(id);
-			user.setQuestionBaseID(questionBase.getId());
-			us.updateUser(user, id);*/
 			return SUCCESS;
 		}
 		return ERROR;		
@@ -68,7 +63,7 @@ public class UserAction implements Action {
 	}
 	
 	public String showPersonalInformation() {
-		//System.out.println("user: showPersonalInformation");
+		System.out.println("user: showPersonalInformation");
 		
 		return SUCCESS;
 	}
