@@ -6,7 +6,12 @@ import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
 import domain.AandQ;
 import domain.Exam;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 import service.ExamService;
 import service.MessageService;
 import service.UserService;
@@ -14,7 +19,11 @@ import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 public class CheckExam implements Action{
 	private String title;
 	private String description;
@@ -28,7 +37,14 @@ public class CheckExam implements Action{
 	 private String scorestr="13#14#";
 	 private Queue<String> scores;
  	 private List<AandQ> UncheckedAandQs =new ArrayList<AandQ>();	
+<<<<<<< HEAD
  	private List<Exam> Exams =new ArrayList<Exam> ();
+=======
+ 	private List<Exam> Exams =new ArrayList<Exam> ();
+<<<<<<< HEAD
+ 	 public List<Exam> getExams() {
+=======
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
  	private int messageID;
  	
  	private  int people=0;
@@ -109,7 +125,11 @@ public class CheckExam implements Action{
 		this.messageID = messageID;
 	}
 	public List<Exam> getExams() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 		return Exams;
 	}
 	public void setExams(List<Exam> exams) {
@@ -307,13 +327,24 @@ public class CheckExam implements Action{
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");		       
 		     String  SQL="select * from social.exam where userID="+userID+"";
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+		     System.out.println(SQL);       
+=======
+		  //   System.out.println(SQL);       
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 		       cont =new Connect();
 		      result=  cont.executeQuery(SQL);
 		      int examid;
 		      int check;
+<<<<<<< HEAD
+=======
 		      Exams = new ArrayList<>();
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 		     ShowExamQuestion seq =new ShowExamQuestion();
 		      while (result.next())
 		      {
@@ -326,7 +357,16 @@ public class CheckExam implements Action{
 				 if(!AandQs.isEmpty())
 				 {
 						SQL="select * from social.exam_user where examID="+examid+"";
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+					     System.out.println(SQL);       
+					     
+=======
+				//	     System.out.println(SQL);       
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 					     resultcheck=  cont.executeQuery(SQL);
 					      while (resultcheck.next())
 					      { 
@@ -339,7 +379,14 @@ public class CheckExam implements Action{
 								       exam.setTitle(title);
 								       exam.setTesttakerID(TesttakerID);
 								       exam.setId(examid);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+				//				       System.out.println("exam "+ examid);
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 								       Exams.add(exam);	  
 					          }	 		    	 
 				     }  
@@ -349,7 +396,16 @@ public class CheckExam implements Action{
 		   } 
 		 }catch (Exception e) {
 			e.printStackTrace();
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+			return ERROR;
+		}				
+		return SUCCESS;
+    }
+=======
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 			  cont.Close();
 			return ERROR;
 		}		
@@ -395,6 +451,7 @@ public class CheckExam implements Action{
 		  cont.Close();
 		return SUCCESS;
    }
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 	
 	public String MyPublishedExamList(){		 
 		 try
@@ -554,5 +611,4 @@ public class CheckExam implements Action{
     }
  	
 }
-
 

@@ -174,6 +174,10 @@
        <action name="FindGroupQbase" class="action.ShowUserQuestionBasesAction" method ="InsertGroupExamtitle">
             <result name="success">/WEB-INF/content/exam/Groupdisplay.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>    
+<<<<<<< HEAD
+        </action>
+        
+=======
         </action>    
             
             
@@ -201,6 +205,7 @@
         
         
         
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
         <action name="Find" class="action.ShowUserQuestionBasesAction" method ="Inserttitle">
             <result name="success">/WEB-INF/content/exam/display.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>    

@@ -12,6 +12,7 @@
 
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
+<<<<<<< HEAD
     	</div>
         <div class="panel panel-info">
  			<div class="panel-heading">
@@ -184,6 +185,116 @@
            	 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
                   查看我的小伙伴的排名	
         </a>
+=======
+<<<<<<< HEAD
+=======
+        	<p style="text-align: center;"> 我的排名：<s:property value="rank"/><p>
+        	<p style="text-align: center;"> ExamID：<s:property value="ExamID"/><p>
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
+    </div>
+        <div class="col-md-12 column">
+        <%int i = 0; %>
+          单选题：
+        <s:iterator value="selections" >
+              <br>
+        		<s:property value="context" />
+        		<br>
+        		<s:property value="A" />
+        		<br>
+        		<s:property value="B" />
+        		<br>
+        		<s:property value="C" />
+        		<br>
+        		<s:property value="D" />
+        		<br>
+        		<s:property value="E" />
+        		<br>
+        		<s:property value="F" />
+        		<br> 题目总分
+        		<s:property value="score" />
+        		<br> 你的得分
+        		<s:property value="userscore" />
+        		<br> 你的答案
+        		<s:property value="useranswer" />
+        		<br> 参考答案
+        		<s:property value="ans" />	
+        		<br> 解析
+        		<s:property value="analysis" />
+		</s:iterator>
+	   <br> 多选题
+		<s:iterator value="multys" >	
+		       <s:property value="context" />
+        		<br>
+        		<s:property value="A" />
+        		<br>
+        		<s:property value="B" />
+        		<br>
+        		<s:property value="C" />
+        		<br>
+        		<s:property value="D" />
+        		<br>
+        		<s:property value="E" />
+        		<br>
+        		<s:property value="F" />
+        		<br> 题目总分
+        		<s:property value="score" />
+        		<br> 你的得分
+        		<s:property value="userscore" />
+        		<br> 你的答案
+        		<s:property value="useranswer" />
+        		<br> 参考答案
+        		<s:property value="ans" />		
+        		<br> 解析
+        		<s:property value="analysis" />
+		</s:iterator>
+		
+		 <br> 填空题
+		<s:iterator value="textBlanks" >	
+			 <s:property value="context" />
+        		<br><br> 参考答案	
+        		<s:property value="A" />
+        		<br>
+        		<s:property value="B" />
+        		<br>
+        		<s:property value="C" />
+        		<br>
+        		<s:property value="D" />
+        		<br>
+        		<s:property value="E" />
+        		<br>
+        		<s:property value="F" />
+        		<br> 题目总分
+        		<s:property value="score" />
+        		<br> 你的得分
+        		<s:property value="userscore" />
+        		<br> 你的答案
+        		<s:property value="useranswer" />
+        		<br> 解析
+        		<s:property value="analysis" />	               
+		</s:iterator>
+		
+	      <br> 问答题
+		<s:iterator value="AandQs" >			
+			  <br>
+		   <s:property value="context" />
+			<br> 参考答案	
+        		<s:property value="ans" />
+        		<br> 题目总分
+        		<s:property value="score" />
+        		<br> 你的得分
+        		<s:property value="userscore" />
+        		<br> 你的答案
+        		<s:property value="useranswer" />
+        		<br> 解析
+        		<s:property value="analysis" />	                  
+		</s:iterator>
+		<br>
+		<p> 查看我的小伙伴的排名 :<p>
+		<a  class="list-group-item list-group-item-success"
+           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                        			
+               								</a>
+>>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 		      
 
 
