@@ -58,7 +58,7 @@
 
         <action name="loginPro" class="action.UserAction">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
-            <result name="error">/WEB-INF/content/user/error.jsp</result>
+            <result name="error">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="login">
             <result>/WEB-INF/content/user/login.jsp</result>

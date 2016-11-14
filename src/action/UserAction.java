@@ -11,9 +11,13 @@ import service.UserService;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 public class UserAction implements Action {
 	private User user;
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -30,7 +34,9 @@ public class UserAction implements Action {
 		}catch (Exception e) {
 			new_user = null;
 		}		
-		if (new_user == null) return ERROR;
+		if (new_user == null)
+				return ERROR;
+			
 		try{
 			if (new_user.getId() > 0){
 				ActionContext actCtx = ActionContext.getContext();
@@ -42,6 +48,9 @@ public class UserAction implements Action {
 		}catch (Exception e){
 			return ERROR;
 		}
+		HttpServletRequest request =  ServletActionContext.getRequest();
+		request.setAttribute("LoginFailed","");
+		
 		return ERROR;
 	}
 	

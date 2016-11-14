@@ -38,7 +38,8 @@
             	<% 
 					if (username==null || username==""){%>
 	                	<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
-	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>                   			
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
+	                	             			
 	    			<%}else{%>
 	    				<li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span></p></li>
 	    				<li><a href="<%=request.getContextPath()%>/user/logout">注销</a></li>

@@ -24,6 +24,9 @@
             </div>
         </div>
         <button class="btn btn-default btn-primary button-center" type="submit">登录</button> 
+        <%if(request.getAttribute("LoginFailed")!=null  ){%>
+        		<p style = "color:red" >输入用户名或密码错误！</p>	
+        <%} %>
     </form>
 </div>
 </rapid:override>

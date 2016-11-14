@@ -28,7 +28,7 @@ public class Connect {
 	public Connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch");
 			state = con.createStatement();	
 		} catch (Exception e) {
 			con = null;
