@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome Here</title>
 </head>
-<body  style="background-color:orange;">
+<body >
       <p>
       操作成功啦 </p>
      

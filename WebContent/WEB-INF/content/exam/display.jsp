@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome Here</title>
 </head>
-<body  style="background-color:orange;">
+<body>
       <p>点击选择我要插入的题库 </p>
      <table border="1">  
-   当前题目的ID  <s:property  value ="ExamID"/>
+   当前试卷的ID  <s:property  value ="ExamID"/>
      <s:iterator value="questionBases">   
       <tr>
       <td>  

@@ -7,14 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome Here</title>
 </head>
-<body  style="background-color:orange;">
+<body >
       <p>点击选择我要插入的题目 </p>
      <table border="1">  
-     当前题目的ID  <s:property  value ="ExamID"/>
+     当前试卷的ID  <s:property  value ="ExamID"/>
      <s:iterator value="selections">   
       <tr>
       <td>  
-                     <s:property value="context"/>
+       <s:property value="context"/>
        <a href = '<s:url action="InsertQuestion"><s:param name="questionID" value ="id"/><s:param name="type" value ="1" /> <s:param name="ExamID" value ="ExamID"/></s:url>'><input type="button" value="添加"/> </a>
        </td>
        </tr>
