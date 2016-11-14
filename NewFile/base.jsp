@@ -281,16 +281,11 @@
             	<%
 					if (username==null || username==""){%>
 	                	<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
 	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>                   			
-	
-	<%
-		String username;
-		if (session.getAttribute("username")!=null){
-			username = session.getAttribute("username").toString();
-		}else{
-			username = "";
-		}
-	%>
+	    			<%}else{%>
+	    				<li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span></p></li>
+	    				<li><a href="<%=request.getContextPath()%>/user/logout">注销</a></li>
 	
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
 		<div class="container">
@@ -308,6 +303,53 @@
             	<%
 					if (username==null || username==""){%>
 	                	<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>  
+	
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">SocialQ-A</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse-basepage">
+            <ul class="nav navbar-nav">
+                <li class="active" id=""><a href="<%=request.getContextPath()%>/index">主页</a></li>
+                <li id="view_books"><a href="<%=request.getContextPath()%>/book/viewAllBooks">我要出题</a></li>
+                <li id="add_book"><a href="<%=request.getContextPath()%>/book/addBook">朋友圈</a></li>
+                <li id="showPersonalCenter"><a href="<%=request.getContextPath()%>/user/showPersonalCenter">个人中心</a></li>      
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            	<%
+					if (username==null || username==""){%>
+	                	<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>                   			
+	    			<%}else{%>
+	    				<li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span></p></li>
+	    				<li><a href="<%=request.getContextPath()%>/user/logout">注销</a></li>
+	
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">SocialQ-A</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse-basepage">
+            <ul class="nav navbar-nav">
+                <li class="active" id=""><a href="<%=request.getContextPath()%>/index">主页</a></li>
+                <li id="view_books"><a href="<%=request.getContextPath()%>/book/viewAllBooks">我要出题</a></li>
+                <li id="add_book"><a href="<%=request.getContextPath()%>/book/addBook">朋友圈</a></li>
+                <li id="showPersonalCenter"><a href="<%=request.getContextPath()%>/user/showPersonalCenter">个人中心</a></li>      
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            	<%
+					if (username==null || username==""){%>
+	                	<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>                   			
+	    			<%}else{%>
+	    				<li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span></p></li>
+	    				<li><a href="<%=request.getContextPath()%>/user/logout">注销</a></li>
+	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>      
 	                	<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>                   			
 	    			<%}else{%>
 	    				<li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span></p></li>
