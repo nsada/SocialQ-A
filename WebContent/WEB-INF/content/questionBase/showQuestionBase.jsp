@@ -14,6 +14,7 @@
 <div class="col-md-10 column">
     <h1>${qBase.title}</h1>
     ${qBase.description}
+    <h2>${qBase.id}</h2>
     
     <div class="text-align:right">
         <a href='<s:url action="addQuestion"><s:param name="qBaseID" value="qBase.id"/></s:url>'><input type="button" value="添加题目"/></a>
@@ -33,6 +34,16 @@
                     <td>
                         <a href='<s:url action="showSelection"><s:param name="selection.id" value="#sel.id"/></s:url>'><input type="button" value="展开"/></a>
                     </td>
+                    
+                </tr>           
+            </s:iterator>
+                        <s:iterator value="q&a" var="sel">
+                <tr>                 
+                    <td>${sel.context}</td>                     
+                    <td>
+                        <a href='<s:url action="showSelection"><s:param name="type" value="1"/></s:url>'><input type="button" value="展开"/></a>
+                    </td>
+                    
                 </tr>           
             </s:iterator>
         </tbody>

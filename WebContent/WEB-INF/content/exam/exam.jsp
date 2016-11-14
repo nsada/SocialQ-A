@@ -11,11 +11,11 @@
         
         
          <table border="1">  
-     当前题目的ID  <s:property  value ="ExamID"/>
+     当前考试的ID  <s:property  value ="ExamID"/>
      <s:iterator value="selections">   
       <tr>
       <td>  
-      <s:property value="context"/>
+       <s:property value="context"/> <a href = '<s:url action="Deletequestion"><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="1"/><s:param name="questionID" value ="id"/></s:url>'> 删除题目 </a>
        </td>
        </tr>
       </s:iterator>
@@ -26,7 +26,8 @@
        <input name="description" type="text" placeholder="描述" size="22"  required //> 
        <input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />
         <a href = '<s:url action="Find"><s:param name="ExamID" value ="ExamID"/> </s:url>'> 插入题目 </a>
-       <input type="button" onclick="updateexam()" value="提交生成我的试卷"/>
+        <input type="button" onclick="updateexam()" value="提交生成我的试卷"/>
+        <a href = '<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'> 取消编辑试题 </a>
     </form>
 </body>
 <script type="text/javascript">

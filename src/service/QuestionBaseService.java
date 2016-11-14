@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 import database.Connect;
 import domain.QuestionBase;
-
 public class QuestionBaseService {
 	private Connect cont;
 	private List<QuestionBase> questionBases;

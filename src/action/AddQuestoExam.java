@@ -13,6 +13,7 @@ import domain.QuestionBase;
 import domain.Selection;
 import service.QuestionBaseService;
 import service.QuestionService;
+import service.ExamService;
 public class AddQuestoExam implements Action {
 	private String title;
 	private String description;
@@ -22,6 +23,18 @@ public class AddQuestoExam implements Action {
 	private int type;	
 	private ShowExamQuestion seq;
 	private List<Selection> selections =new ArrayList<Selection> ();
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}	
 	public List<Selection> getSelections() {
 		return selections;
 	}
@@ -78,27 +91,44 @@ public class AddQuestoExam implements Action {
 		}	
 		 return SUCCESS;
 	}
+	public String deletequestion()
+	{
+		try{
+			 ExamService es = new ExamService();
+			System.out.println("当前的questionID："+questionID);
+			System.out.println("当前的ExamID："+ExamID);
+			System.out.println("当前的type："+type);
+			es.deleteexamquestion(questionID, type, ExamID);
+			seq =new ShowExamQuestion();
+		    seq.setExamID(ExamID);
+			seq.execute();
+			selections=seq.getSelections();
+	        }
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}	
+		 return SUCCESS;
+	}
+	public String deleteexam()
+	{
+		try{
+			 ExamService es = new ExamService();
+			System.out.println("当前的ExamID："+ExamID);
+			es.deleteexam(ExamID);
+	        }
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}	
+		 return SUCCESS;
+	}
 
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}	
+
 
 }
-
-
-
-
-
-
 
 
 

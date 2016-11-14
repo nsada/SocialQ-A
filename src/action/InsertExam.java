@@ -1,12 +1,8 @@
 package action;
 import com.opensymphony.xwork2.Action;
-import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
-
-import domain.QuestionBase;
-import service.QuestionBaseService;
 import database.Connect;
 public class InsertExam implements Action {
 	private  Connect cont=new Connect();

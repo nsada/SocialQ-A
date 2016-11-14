@@ -106,6 +106,15 @@
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+        
+         <action name="Deletequestion" class="action.AddQuestoExam" method="deletequestion">
+            <result name="success">/WEB-INF/content/exam/exam.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+         <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
+            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
 
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>

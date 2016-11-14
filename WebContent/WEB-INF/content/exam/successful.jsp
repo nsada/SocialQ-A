@@ -9,7 +9,7 @@
 </head>
 <body  style="background-color:orange;">
       <p>
-      您的试题已经生成啦，快去发布看看 </p>
+      操作成功啦 </p>
      
 </body>
 </html>
