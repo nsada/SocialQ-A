@@ -22,6 +22,8 @@
       </table>         
       <form name="myform" action="Paper" method="post">
              <br>
+       <input name="joiner" type="text" placeholder="参与人员" size="22"  required / /> 
+       <input name="rights" type="text" placeholder="查看排名权限" size="22"  required //>
        <input name="title" type="text" placeholder="这里标题" size="22"  required / /> 
        <input name="description" type="text" placeholder="描述" size="22"  required //> 
        <input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />

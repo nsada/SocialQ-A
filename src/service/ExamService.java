@@ -24,11 +24,12 @@ public class ExamService implements Action {
 	}
 	public int deleteexam(int ExamID)
 	{
-		cont =new Connect();
+		 cont =new Connect();
 		try {
          String SQL="delete from examquestion where  examID=" + ExamID ;
           cont.executeUpdate(SQL);
-          SQL="delete from exam where  examID=" + ExamID ;
+          cont =new Connect();
+          SQL="delete from exam where  ID=" + ExamID ;
           cont.executeUpdate(SQL);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

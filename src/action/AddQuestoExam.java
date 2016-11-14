@@ -21,8 +21,22 @@ public class AddQuestoExam implements Action {
 	private int ExamID;	
 	private int questionID;
 	private int type;	
+	private int joiner;
+	private int rights;
 	private ShowExamQuestion seq;
 	private List<Selection> selections =new ArrayList<Selection> ();
+	public int getJoiner() {
+		return joiner;
+	}
+	public void setJoiner(int joiner) {
+		this.joiner = joiner;
+	}	
+	public int getRights() {
+		return rights;
+	}
+	public void setRights(int rights) {
+		this.rights = rights;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -78,10 +92,10 @@ public class AddQuestoExam implements Action {
 	public String submit ()
 	{
 		try{
-			System.out.println("当前的description："+description);
-			System.out.println("当前的title："+title);
+			System.out.println("当前的joiner："+joiner);
+			System.out.println("当前的rights："+rights);
 			cont=new Connect();
-			String	SQL ="update social.exam set description = '"+description+"', title ='"+title+"' where ID= '"+ExamID+"' ";
+			String	SQL ="update social.exam set description = '"+description+"', title ='"+title+"', joiner='"+joiner+"',rights ='"+rights+"'  where ID= '"+ExamID+"' ";
 	        cont.executeUpdate(SQL);
 	        }
 		catch (Exception e)
