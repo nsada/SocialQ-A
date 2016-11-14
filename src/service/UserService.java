@@ -30,6 +30,22 @@ public class UserService {
 		}
 		return user;
 	}
+	public User loginUserByOpenID(String openid){
+		String sql = "select * from user where openid='" + openid ;
+		ResultSet result = cont.executeQuery(sql);
+		user = new User();
+		try{
+			if (result.next()){				
+				user.setId(result.getInt("id"));
+				user.setName(result.getString("name"));
+				user.setPassword(result.getString("password"));
+			}
+			result.close();
+		}catch (Exception e) {
+			user = null;
+		}
+		return user;
+	}
 	public int addUser(User user) {		
 		String sql = "insert into user(id, name, password) values(" + user.getId() + ",'" +
 				user.getName() + "','" + user.getPassword() + "')";
