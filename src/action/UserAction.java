@@ -50,7 +50,6 @@ public class UserAction implements Action {
 		}
 		HttpServletRequest request =  ServletActionContext.getRequest();
 		request.setAttribute("LoginFailed","");
-		
 		return ERROR;
 	}
 	
