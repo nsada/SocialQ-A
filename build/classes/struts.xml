@@ -52,7 +52,7 @@
             <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
         </action>
         <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
-            <result>/WEB-INF/content//questionBase/showQuestionBase.jsp</result>
+            <result name = 'success'>/WEB-INF/content/questionBase/showQuestionBase.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
         </action>       
 
