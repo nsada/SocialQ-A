@@ -3,10 +3,7 @@ package action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
-import action.QuestionBaseAction;
-import domain.QuestionBase;
 import domain.User;
-import service.QuestionBaseService;
 import service.UserService;
 
 import java.util.Map;
@@ -18,6 +15,30 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction implements Action {
 	private User user;
 
+	private String cpassword;
+	private int Age;
+	private String email;
+	
+	
+	public String getCpassword() {
+		return cpassword;
+	}
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
+	}
+	public int getAge() {
+		return Age;
+	}
+	public void setAge(int age) {
+		Age = age;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -26,7 +47,7 @@ public class UserAction implements Action {
 	}
 	
 	@Override
-	public String execute() throws Exception {	//login in
+	public String execute() throws Exception {	//login
 		UserService us = new UserService();
 		User new_user= new User();		
 		try{
@@ -54,12 +75,16 @@ public class UserAction implements Action {
 	}
 	
 	public String regist(){
-		UserService us = new UserService();
+		if (email.length() > 10) {
+			throw new IllegalArgumentException("邮箱长度过长");
+		}
+		return SUCCESS;
+		/*UserService us = new UserService();
 		int id = us.addUser(user);
 		if (id >= 0) {
 			return SUCCESS;
 		}
-		return ERROR;		
+		return ERROR;*/		
 	}
 	
 	public String logout(){
@@ -75,9 +100,5 @@ public class UserAction implements Action {
 		
 		return SUCCESS;
 	}
-	
-	public String showQuestionBase() {
 
-		return SUCCESS;
-	}
 }

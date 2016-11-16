@@ -1,3 +1,4 @@
+
 package service;
 import com.opensymphony.xwork2.Action;
 import database.Connect;
@@ -14,7 +15,7 @@ public class ExamService implements Action {
 	{
 		cont =new Connect();
 		try {
-         String SQL="delete from examquestion where questionID=" + questionID + " and examID=" + ExamID + " and type=" + type;
+         String SQL="delete from exam_question where questionID=" + questionID + " and examID=" + ExamID + " and type=" + type;
           cont.executeUpdate(SQL);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -26,7 +27,7 @@ public class ExamService implements Action {
 	{
 		 cont =new Connect();
 		try {
-         String SQL="delete from examquestion where  examID=" + ExamID ;
+         String SQL="delete from exam_question where  examID=" + ExamID ;
           cont.executeUpdate(SQL);
           cont =new Connect();
           SQL="delete from exam where  ID=" + ExamID ;
@@ -39,3 +40,4 @@ public class ExamService implements Action {
 	}
 
 }
+

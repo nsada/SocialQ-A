@@ -36,11 +36,6 @@ public class ShowUserQuestionBasesAction implements Action {
 			System.out.println("ShowQuestionBase userID: " + userID);
 			QuestionBaseService qbs = new QuestionBaseService();
 			questionBases = qbs.getUserQuestionBases(userID);
-			System.out.println("ExamID: " + ExamID);
-		/*	System.out.println("qBases num: " + num);
-			for (int i = 0; i < num; i++) {
-				System.out.println("qBase: " + questionBases.get(i).getId() + ", " + questionBases.get(i).getTitle() + ", " + questionBases.get(i).getDescription());
-			}*/
 		} catch (Exception e) {
 			questionBases = null;
 			return ERROR;

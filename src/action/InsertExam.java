@@ -1,3 +1,4 @@
+
 package action;
 import com.opensymphony.xwork2.Action;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class InsertExam implements Action {
          int userID = (int) sess.get("userid");	
          String sql="insert into exam ( userID, title, description) values('"+ userID + "', '" + null + "', '"+ null + "')";
         ExamID= cont.executeUpdateID(sql);
-         System.out.println("µ±«∞ ‘æÌµƒID «"+ExamID);
+         System.out.println("Êñ∞Âª∫ËØïÂç∑Ôºö"+ExamID);
         return SUCCESS;
     }
     public int getExamID()
@@ -27,3 +28,4 @@ public class InsertExam implements Action {
     }
     
 }
+

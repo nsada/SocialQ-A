@@ -1,3 +1,4 @@
+
 package action;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,20 +76,25 @@ public class ShowExamQuestion implements Action {
 		selections =new ArrayList<Selection> ();
 	    allselections =new ArrayList<Selection> ();
 		System.out.println("showExamQuestion");
-		String sql ="select * from social.examquestion where examID ="+ExamID;
+		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
-        allselections = cont.GetSelection();
 		result =cont.executeQuery(sql);
+		try {
 			while(result.next())
 			{
-				System.out.println("当前已经插入的题目");
+			 QuestionService qs= new QuestionService();
 			 if( result.getInt("type") ==1 )
 				{
-				 	QuestionService qs= new QuestionService();
+				 	
 				 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
 				}
 			}
+		} catch (Exception e) {
+			System.out.println("鎸夋煡鎵緀xam涓殑棰樼洰澶辫触");
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 
 }
+

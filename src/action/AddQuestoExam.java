@@ -1,3 +1,4 @@
+
 package action;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -77,7 +78,7 @@ public class AddQuestoExam implements Action {
 	public String execute() throws Exception {  	
 		cont =new Connect();
 		try {
-         String SQL="insert into examquestion values ( '"+ExamID+"', '"+questionID+"','"+type+"' )";
+         String SQL="insert into exam_question values ( '"+ExamID+"', '"+questionID+"','"+type+"' )";
           cont.executeUpdate(SQL);
            seq =new ShowExamQuestion();
 	       seq.setExamID(ExamID);
@@ -92,8 +93,8 @@ public class AddQuestoExam implements Action {
 	public String submit ()
 	{
 		try{
-			System.out.println("µ±Ç°µÄjoiner£º"+joiner);
-			System.out.println("µ±Ç°µÄrights£º"+rights);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½joinerï¿½ï¿½"+joiner);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½rightsï¿½ï¿½"+rights);
 			cont=new Connect();
 			String	SQL ="update social.exam set description = '"+description+"', title ='"+title+"', joiner='"+joiner+"',rights ='"+rights+"'  where ID= '"+ExamID+"' ";
 	        cont.executeUpdate(SQL);
@@ -109,9 +110,9 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("µ±Ç°µÄquestionID£º"+questionID);
-			System.out.println("µ±Ç°µÄExamID£º"+ExamID);
-			System.out.println("µ±Ç°µÄtype£º"+type);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½questionIDï¿½ï¿½"+questionID);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ExamIDï¿½ï¿½"+ExamID);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½typeï¿½ï¿½"+type);
 			es.deleteexamquestion(questionID, type, ExamID);
 			seq =new ShowExamQuestion();
 		    seq.setExamID(ExamID);
@@ -129,7 +130,7 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("µ±Ç°µÄExamID£º"+ExamID);
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ExamIDï¿½ï¿½"+ExamID);
 			es.deleteexam(ExamID);
 	        }
 		catch (Exception e)
@@ -143,9 +144,4 @@ public class AddQuestoExam implements Action {
 
 
 }
-
-
-
-
-
 

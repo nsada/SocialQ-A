@@ -12,7 +12,6 @@ public class UserService {
 	private Connect cont = new Connect();
 	private User user;
 	private List<User> users;
-	
 
 	public User loginUser(User user) {
 		String sql = "select * from user where name='" + user.getName() + "' and password='" + user.getPassword() + "'";
