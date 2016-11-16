@@ -1,13 +1,10 @@
 package action;
 
 import java.util.Map;
-
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
-
 import domain.QuestionBase;
 import service.QuestionBaseService;
-
 public class QuestionBaseAction implements Action {
 	private QuestionBase qBase;	
 	
@@ -31,10 +28,9 @@ public class QuestionBaseAction implements Action {
 			int userID = (int) sess.get("userid");	
 			qBase.setUserID(userID);
 			QuestionBaseService qbs = new QuestionBaseService();
-			//System.out.println("addQuestionBaseAction:");
-			//System.out.println(qBase.getTitle() + ", " + qBase.getDescription());
+			System.out.println("addQuestionBaseAction:");
+			System.out.println(qBase.getTitle() + ", " + qBase.getDescription());
 			int i = qbs.addQuestionBase(qBase);
-			//System.out.println("插入后： " + qBase.getId());
 			if (i >= 0) {
 				return SUCCESS;
 			}
@@ -47,7 +43,7 @@ public class QuestionBaseAction implements Action {
 		QuestionBaseService qbs = new QuestionBaseService();
 		int i = qbs.addQuestionBase(qBase, userID);
 		if (i < 0) {
-			qBase.setId(-1); //添加qBase失败，则将其ID设置为-1
+			qBase.setId(-1); 
 		}
 		return qBase;		
 	}

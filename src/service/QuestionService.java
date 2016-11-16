@@ -16,7 +16,7 @@ public class QuestionService {
 	public List<Selection> getSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
-		//System.out.println("questionbase_question sql: " + sql);
+		System.out.println("questionbase_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();
 		try{
@@ -64,7 +64,26 @@ public class QuestionService {
 		}
 		return selection;
 	}
-
+	/*
+	public int updateAuthor(Author author, int id) {
+		String sql = "UPDATE author SET"; 
+		if (author.getName().length() > 0){
+			sql = sql + " name='" + author.getName() + "',"; 
+		}
+		if (author.getCountry().length() > 0){
+			sql = sql + " country='" + author.getCountry() + "',";
+		}
+		if (author.getAge() != 0){
+			sql = sql + " age=" + author.getAge() + ",";
+		}
+		if (sql.length() <= 17)
+			return 1;
+		sql = sql.substring(0, sql.length()-1);
+		sql = sql + " WHERE authorID='" + id + "'";
+		int i = cont.executeUpdate(sql);
+		//System.out.println("成功更新Author "+i+ " sql:"+sql);
+		return i;	
+	}*/
 	public int addSelection(Selection sel, int qBaseID) {
 		cont = new Connect();
 		String sql = "insert into selection(id, context, num, A, B, C, D, E, F, ans, analysis, score, scoreA, scoreB, scoreC, scoreD, scoreE, scoreF) values("
@@ -73,7 +92,7 @@ public class QuestionService {
 		+ sel.getScoreA() + ", " + sel.getScoreB() + ", " + sel.getScoreC() + ", " + sel.getScoreD() + ", " + sel.getScoreE() + ", " + sel.getScoreF() + ")";
 		
 		int id = cont.executeUpdateID(sql);
-		//System.out.println("addSelection sql: "+ sql + "   *id:" + id);
+		System.out.println("addSelection sql: "+ sql + "   *id:" + id);
 		int in = 0;
 		if (id > 0) {
 			sel.setId(id);

@@ -78,20 +78,15 @@ public class ShowExamQuestion implements Action {
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
 		result =cont.executeQuery(sql);
-		try {
 			while(result.next())
 			{
-			 QuestionService qs= new QuestionService();
+				System.out.println("��ǰ�Ѿ��������Ŀ");
 			 if( result.getInt("type") ==1 )
 				{
-				 	
+				 	QuestionService qs= new QuestionService();
 				 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
 				}
 			}
-		} catch (Exception e) {
-			System.out.println("按查找exam中的题目失败");
-			return ERROR;
-		}
 		return SUCCESS;
 	}
 

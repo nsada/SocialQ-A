@@ -13,12 +13,30 @@ import service.QuestionBaseService;
 import service.QuestionService;
 
 public class ShowQuestionBaseAction implements Action {
+	private int type;
+	private int ExamID;
 	private QuestionBase qBase;
 	private List<Selection> selections;
 	private List<Multy> multys;
 	private List<FillBlank> fillBlanks;
 	private List<AandQ> AandQs;	
 	private int qBaseID;
+	public int getType()
+	{
+		return type;
+	}
+	public void setType(int type)
+	{
+		this.type=type;
+	}
+	public int getExamID()
+	{
+		return ExamID;
+	}
+	public void setExamID(int ExamID)
+	{
+		this.ExamID=ExamID;
+	}
 	
 	public QuestionBase getqBase() {
 		return qBase;
@@ -60,7 +78,7 @@ public class ShowQuestionBaseAction implements Action {
 	}
 	@Override
 	public String execute() throws Exception {
-		//System.out.println("showQuestionBase");
+		System.out.println("showQuestionBase");
 		QuestionBaseService qbs = new QuestionBaseService();
 		//int qBaseID = qBase.getId();
 		qBase = qbs.getQuestionBase(qBaseID);
@@ -76,9 +94,7 @@ public class ShowQuestionBaseAction implements Action {
 		} catch (Exception e) {
 			selections = null;
 			return ERROR;
-		}
-		
-		
+		}	
 		return SUCCESS;
 	}
 

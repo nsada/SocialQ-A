@@ -12,6 +12,7 @@ public class UserService {
 	private Connect cont = new Connect();
 	private User user;
 	private List<User> users;
+	
 
 	public User loginUser(User user) {
 		String sql = "select * from user where name='" + user.getName() + "' and password='" + user.getPassword() + "'";
@@ -27,6 +28,7 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}
+		System.out.println("login sql:" + sql);
 		return user;
 	}
 	public int addUser(User user) {		
