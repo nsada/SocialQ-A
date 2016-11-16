@@ -5,12 +5,22 @@
 
 <struts>
     
-    <constant name="struts.devMode" value="true"/>    
+    <constant name="struts.devMode" value="true"/>
+    
     
     <package name="default" namespace="/" extends="struts-default">
+        <global-results>
+            <result name="error">/WEB-INF/content//error.jsp</result>
+            <result name="null">/WEB-INF/content//error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping result="null" exception="java.lang.NullPointerExcute"></exception-mapping>
+        </global-exception-mappings>
+
         <action name="index">
             <result>/index.jsp</result>
         </action>     
+        
         
         <action name="delQuestion" class="action.QuestionAction" method="delQuestion">
             <result type ="redirect">showQuestionBase</result>
@@ -28,7 +38,8 @@
         <action name="showPersonalCenter">
             <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
             <result name="error">/WEB-INF/content//user/error.jsp</result>
-        </action>            
+        </action>   
+         
         <action name="showPersonalInformation">
             <result name="success">/WEB-INF/content//user/PersonalInformation.jsp</result>
             <result name="error">/WEB-INF/content//user/error.jsp</result>
@@ -52,9 +63,9 @@
         <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
             <result>/WEB-INF/content//questionBase/showQuestionBase.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
-        </action>      
+        </action>       
 
-       <action name="loginPro" class="action.UserAction">
+        <action name="loginPro" class="action.UserAction">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
@@ -67,45 +78,45 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="regist">
-            <result>/WEB-INF/content/user/regist.jsp</result>
+            <result>/WEB-INF/content/user/registCheck.jsp</result>
         </action>        
         <action name="logout" class="action.UserAction" method="logout">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+                
+        <action name="viewAllUsers" class="action.ViewAllUsersAction">
+            <result name="success">/WEB-INF/content/user/listUsers.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
         
         <action name="InsertExam" class="action.InsertExam">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
-        </action>
-
+        </action>        
         <action name="Find" class="action.ShowUserQuestionBasesAction">
             <result name="success">/WEB-INF/content/exam/display.jsp</result>
-            <result name="error">/WEB-INF/content/user/error.jsp</result>    
-        </action>
-        <action name="ShowBaseQues" class="action.ShowQuestionBaseAction">
+            <result name="error">/WEB-INF/content/user/error.jsp</result>            
+        </action>        
+         <action name="ShowBaseQues" class="action.ShowQuestionBaseAction">
             <result name="success">/WEB-INF/content/exam/showquesbase.jsp</result>
         </action>     
-        
-              
-        <action name="InsertQuestion" class="action.AddQuestoExam">
+         <action name="InsertQuestion" class="action.AddQuestoExam">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
-        </action>
-        
-        <action name="updateexam" class="action.AddQuestoExam" method="submit">
+        </action>        
+           <action name="updateexam" class="action.AddQuestoExam" method="submit">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
-        </action>
-        
+        </action>        
         <action name="Deletequestion" class="action.AddQuestoExam" method="deletequestion">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
+         <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-
+        
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>
         </action>

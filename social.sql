@@ -16,6 +16,58 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `exam`
+--
+
+DROP TABLE IF EXISTS `exam`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `exam` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `description` mediumtext,
+  `userID` int(11) DEFAULT NULL,
+  `joiner` int(11) DEFAULT NULL,
+  `rights` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `exam`
+--
+
+LOCK TABLES `exam` WRITE;
+/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
+INSERT INTO `exam` VALUES (1,'null','null',1,NULL,NULL),(2,'null','null',1,NULL,NULL);
+/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `exam_question`
+--
+
+DROP TABLE IF EXISTS `exam_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `exam_question` (
+  `examID` int(11) NOT NULL,
+  `questionID` int(11) NOT NULL,
+  `type` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `exam_question`
+--
+
+LOCK TABLES `exam_question` WRITE;
+/*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
+INSERT INTO `exam_question` VALUES (0,2,1),(0,1,1);
+/*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `questionbase`
 --
 
@@ -29,7 +81,7 @@ CREATE TABLE `questionbase` (
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +90,7 @@ CREATE TABLE `questionbase` (
 
 LOCK TABLES `questionbase` WRITE;
 /*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
-INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(8,1,'题库1','第一个题库'),(9,1,'题库5','第五个题库');
+INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(8,1,'题库1','第一个题库'),(9,1,'题库5','第五个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null');
 /*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-07 22:14:34
+-- Dump completed on 2016-11-16 11:49:59

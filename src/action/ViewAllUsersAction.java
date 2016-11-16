@@ -10,7 +10,7 @@ import service.UserService;
 
 public class ViewAllUsersAction implements Action {
 	private List<User> users;
-	//为需要传到页面的处理结果，也提供Field，并提供setter和getter方法。	
+	
 	public List<User> getUsers() {
 		return users;
 	}

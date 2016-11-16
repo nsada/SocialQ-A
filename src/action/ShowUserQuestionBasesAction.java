@@ -29,7 +29,7 @@ public class ShowUserQuestionBasesAction implements Action {
 			//System.out.println("ShowQuestionBase userID: " + userID);
 			QuestionBaseService qbs = new QuestionBaseService();
 			questionBases = qbs.getUserQuestionBases(userID);
-			int num = questionBases.size();
+		//	int num = questionBases.size();
 		} catch (Exception e) {
 			questionBases = null;
 			return ERROR;

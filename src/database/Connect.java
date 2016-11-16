@@ -62,10 +62,11 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
-				//System.out.println("成功获取lastid: "+id);
+				System.out.println("成功获取lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("查找并返回最新插入ID失败");
 		}
 		return id;
