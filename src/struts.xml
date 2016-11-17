@@ -76,6 +76,8 @@
         
         <action name="InsertExam" class="action.InsertExam">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
+            <result name="login needed">/WEB-INF/content/user/login.jsp</result>
+            
         </action>
 
         <action name="Find" class="action.ShowUserQuestionBasesAction">
