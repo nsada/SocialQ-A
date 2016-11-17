@@ -103,12 +103,6 @@ public class InsertExam implements Action {
 	
 	
 	
-	
-	
-	
-	
-	
-	
          {
         	 return "login needed";
          }       	
