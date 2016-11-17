@@ -41,16 +41,19 @@ public class AfterLoginAction {
 		this.code = code;
 	}
 	public String execute() throws Exception{
-		if(usercancel!=null&&usercancel.length()>0)
-			return "error";
-		String str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/token", "grant_type=authorization_code&"+
+		//if(usercancel!=null&&usercancel.length()>0)
+			//return "error";
+		String str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/token", 
+														  "grant_type=authorization_code&"+
 														  "client_id="+globalVar.AppID+"&"+
 														  "client_secret="+globalVar.AppKey+"&"+
 														  "code="+this.code+"&"+
 														  "redirect_uri="+globalVar.redirect_URI);
-		Map<String,Object> map = tencentApi.convention.ConvertStrToMap(str);
-		Object access_token = map.get("access_token");
-		str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/me", (String)access_token);
+		
+		String access_token = str.split("[&]")[0];
+		access_token = access_token.substring(13);
+		str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/me", "access_token="+access_token);
+		str = str.substring(10, str.length()-3);
 		Object openid = tencentApi.convention.ConvertStrToMap(str).get("openid");
 		
 		UserService us = new UserService();
