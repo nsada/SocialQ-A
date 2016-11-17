@@ -31,7 +31,7 @@
                 <tr>                 
                     <td>${sel.context}</td>                     
                     <td>
-                        <a href='<s:url action="showSelection"><s:param name="selection.id" value="#sel.id"/></s:url>'><input type="button" value="展开"/></a>
+                        <a href='<s:url action="showQuestion"><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input type="button" value="展开"/></a>
                     </td>
                 </tr>           
             </s:iterator>

@@ -1,0 +1,2071 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html">
+    
+    <title>百一测评</title>
+    
+
+
+
+
+<base href="http://kaoba.101test.com:80/cand/">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<meta name="keywords"
+      content="百一,百一测评,考试,在线考试,在线考试系统,测评,在线测评,测验,培训测验,题库,在线题库,题库系统,考试题库系统,电子作业,认证考试,移动考试,微信考试,组卷网,智能组卷,笔试,校招笔试,社招笔试,招聘笔试,校园招聘,在线编程,IQ测试,IT技术题,IT招聘">
+
+<meta name="description"
+      content="要考试用百一，百一测评提供最好的在线考试SAAS服务。帮企业HR、老师和机构做招聘笔试、电子作业、课堂测验和认证考试等。电脑和移动答题，智能远程监考，智能组卷，商店中交易试题库，企业版打造用户的在线考试网站，是千万家企业和机构的首选。">
+
+<link rel="bookmark" />
+<link rel="shortcut icon" />
+<link rel="stylesheet" href="lib/bootsets/css/sets.min.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/app.css" />
+<link rel="stylesheet"
+      href="assets/css/font-awesome/css/font-awesome.min.css" />
+<script>
+    Object.create = Object.create || function (o) {
+                function F() {}
+
+                F.prototype = o;
+                return new F();
+            };
+    if (window.console == undefined) {
+        window.console = {
+            log: function () {},
+            dir: function () {}
+        };
+
+    }
+    var SETS_ROOT = "http://kaoba.101test.com:80/cand/";
+    var SERVER_NAME = "kaoba.101test.com";
+
+    var global_isLtIe9 = false;
+</script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="lib/seajs/2.3.0/sea.js"
+        id="seajsnode"></script>
+<script type="text/javascript"
+        src="lib/seajs/seajs-preload/1.0.0/seajs-preload.js"></script>
+<script type="text/javascript"
+        src="lib/seajs/seajs-css/1.0.4/seajs-css-debug.js"></script>
+<script type="text/javascript" src="core/config.js?__v=161107"></script>
+<!--[if lt IE 9]>
+<script>
+global_isLtIe9 =true;
+</script>
+<script src="core/es5-shim.min.js"></script>
+<script src="core/respond.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="lib/tabIndent/tabIndent.js"></script>
+<script type="text/javascript" src="app/exam/checkGlobalCondition.js"></script>
+<script type="text/javascript">
+    seajs.use("app/exam/exam.css");
+    /*需要检查环境1.是否启用cookie；2.浏览器高于ie8*/
+    if (checkGlobal.checkGlobalCondition()) {
+        if (seajs.production) {
+            seajs.use('dist/exam', function(codemirror, exam) {
+                $(function() {
+                    var param = '{paperId=MAH1ER, redirect=0}';
+                    var sessionId = '';
+                    exam.initModule($('#exam'),{
+                        param : param,
+                        forward : param.forward,
+                        _retest : '',
+                        sessionId : sessionId
+                    });
+                });
+            });
+        } else {
+            seajs.use('app/exam/exam', function(exam) {
+                $(function() {
+                	var param = '{paperId=MAH1ER, redirect=0}';
+                    var sessionId = '';
+                    exam.initModule($('#exam'),{
+                        param : param,
+                        forward : param.forward,
+                        _retest : '',
+                        sessionId : sessionId
+                    });
+                });
+            });
+        }
+    }
+</script>
+</head>
+<body>
+	
+<header>
+	<div id="sets-header-logoarea" class="logoarea narrow">
+		<!-- <img class="self-logo" src="assets/img/logo_300_100.png"> -->
+ 	</div>
+</header>
+<script id="header-logoArea-tmpl" type="text/x-jsrender">
+    {^{if companyLogo}}
+        {^{if logoEnabled}}
+	           <img class="self-logo" src="assets/img/logo_300_100.png" data-link="visible{:showSelfLogo}">
+	           <img class="company-logo" data-link="src{:companyLogo}">
+        {{else}}
+	           <img class="self-logo" data-link="src{:companyLogo}">
+        {{/if}}
+    {{else}}
+	   <img class="self-logo" src="assets/img/logo_300_100.png" data-link="visible{:showSelfLogo}">
+    {{/if}}
+		<ul class="header-bar pull-right">
+			<li class="test"  data-link="visible{:isShowTry}">练习环节</li>
+			<li class="monitor-hint" data-link="visible{:isMonitor}"><i class="fa fa-circle fa-fw"></i>正在监控</li>
+			<li class="time" data-link="visible{:isShowTime}"></li>
+			<li id="header-partProgress" class="bars-hint" data-link="visible{:isShowPartInfo}"><a>题目面板 <i class="fa  fa-bars-hint" data-link="class{merge:toggleProgress===false toggle='fa-angle-down'}
+                                                                                                                class{merge:toggleProgress===true toggle='fa-angle-up'}
+                                                                                                                "></i></a></li>
+			<li class="header-bar-divider" data-link="visible{:userName}"></li>
+			<li class="user-info" data-link="visible{:userName}">欢迎你{^{if userName!='anonymous'}}，{^{:userName}}{{/if}}</li>
+		</ul>
+</script>
+
+	<div id="flex" class="flex-close">
+		<div id="flashContent" style="display: none">
+			<div class="pt30 tc main-content container">
+				<p>亲！本次测试需要安装Adobe Adobe Flash Player version 10.0.0
+					以上，请点击下面的链接安装后重启浏览器进行测试</p>
+				<a href="http://www.adobe.com/go/getflashplayer"><img
+					src="assets/img/get_flash_player.gif" alt="获取Adobe Flash player"></a>
+			</div>
+		</div>
+	</div>
+
+	<div id="sets-wrap">
+		<!-- 离开页面次数 -->
+		<div id="listening-leave-wrap"></div>
+		<!-- end 离开页面次数 -->
+		<div id="exam" class="main-content ">
+		    <!-- 注意事项和第三方说明 -->
+		    <div id="exam-introduction" class="container">
+            </div>
+		    <!-- end 注意事项和第三方说明 -->
+			<!-- 常规信息 -->
+			<div id="exam-info" class="container mt65"></div>
+			<!--end 常规信息 -->
+
+			<!-- 试答 -->
+			<div id="exam-try-examing"></div>
+			<div id="exam-formal-examing"></div>
+			<!-- end 试答 -->
+
+			<!-- 正式答题 -->
+			<div id="exam-examing"></div>
+			<!-- end 正式答题 -->
+
+
+			<!-- 考试须知  -->
+			<div id="exam-paperInfo" class="pt50 container"></div>
+			<!--end 考试须知 -->
+			<!-- 拍照 -->
+			<div id="flex-wrap" style="display: none">
+				<!--end 拍照 -->
+			</div>
+
+			<!-- 题目答案检查 -->
+			<div id="exam-question-check-wrap" class="none"></div>
+		</div>
+		
+<div id="sets-footer" class="footer">答题中遇到问题请拨打客服电话010-8216(6778|6791|6796|6784|6631)或发邮件到service@exam.101test.com</div>
+	</div>
+
+    <div class="fade modal" id="time-change-modal" tabindex="-1"
+         role="dialog" aria-hidden="true" style="top:100px">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="message-content"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-confirm" data-link="class{merge:!~isStateCreate(state) toggle='btn-success'}">知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script id="exam-introduction-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 pt30 pb20 f20 tc" >
+             <div >您好，欢迎参加<span style="color:#009ee7" data-link="visible{:examName}">《{^{:examName}}》</span></div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+         <div class="col-xs-1"></div>
+        <div  class="col-xs-10 custom-introduction mb30">
+            {^{if showSlefGuide}}
+                <div><img src="assets/img/baiyiGuideAd.png" style="width:100%;"></div>
+            {{else}}
+                <div data-link="visible{:paperGuide}">
+                <h4 class="mb10">试卷说明：</h4>
+                <div class="sets-question-item paper pt20 pb20 pl30 pr30">
+	                <pre id="exam-paper-guide">{^{>paperGuide}}</pre>
+                </div>
+                </div>
+            {{/if}}
+        </div>
+         <div class="col-xs-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 mb20">
+            <h4 class="mb10">注意事项：</h4>
+            <ul class="notice">
+                <li>答题过程中系统自动计时，到时自动交卷；</li>
+                <li class="red">考试前请关闭其他浏览器窗口，关闭可能弹窗的应用如QQ、屏保等，考试中不要切换到考试窗口之外的区域；</li>
+                <li>如果答题过程中因电源、网络故障等造成中断，请退出并在几分钟之内再次按照相同的步骤进入考试，从中断处继续答题；</li>
+                <li>Sogou、360浏览器请使用极速模式，不能使用兼容模式；</li>
+                
+            </ul>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 tc">
+            <button id="btn-introduction" type="button" class="btn btn-primary"   data-link="class{merge:(callServer==true) toggle='disabled'} disabled{:callServer==true}">我知道了</button>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</script>
+
+
+<script id="exam-info-label-tmpl" type="text/x-jsrender">
+    <div style="padding-top:7px">
+        <span>{^{:value}}</span>
+    </div>
+</script>
+<script id="exam-info-input-tmpl" type="text/x-jsrender">
+    <input type="input" class="infoInput form-control auto" placeholder="{{getPlaceholder:infoName}}"
+           data-link="{validate value
+		trigger=true
+		required=~isRequire(requiredType)
+		regex = verifyExp
+		msg_regex ='格式不正确'
+		msg_required=infoName+'不能为空'
+ 	 }"/>
+</script>
+<script id="exam-info-select-tmpl" type="text/x-jsrender">
+    <select name="selecter_basic" class="infoSelect form-control selecter-element auto mySelect" data-link=showLabel>
+        <option value="">请选择</option>
+        {^{for mappings}}
+        <option data-link="realValue{:key} data-search{:value+p+ps}">{^{:value}}</option>
+        {{/for}}
+    </select>
+    <div data-link="{validate value
+		trigger=true
+		required=~isRequire(requiredType)
+		regex = verifyExp
+		msg_regex ='格式不正确'
+		msg_required=infoName+'不能为空'}"></div>
+</script>
+<script id="exam-info-multiSelect-tmpl" type="text/x-jsrender">
+    {^{:~checkAddress(infoId,value)}}
+    <select name="selecter_basic" class="province form-control selecter-element auto mySelect" data-link="~root.province">
+        <option value="">请选择省份</option>
+        {^{for mappings}}
+        {{:~setCitys(key,#index,#parent.parent.data.mappings)}}
+        <option data-link="value{:key} data-search{:value+p+ps}">{^{:value}}</option>
+        {{/for}}
+    </select>
+    <select name="selecter_basic" class="city form-control selecter-element auto mySelect myCity" data-link="~root.city">
+        <option value="">请选择地市</option>
+        {^{for ~root.citys}}
+        <option data-link="value{:key} data-search{:value+p+ps}">{^{:value}}</option>
+        {{/for}}
+    </select>
+    <div data-link="{validate ~root.city
+		trigger=true
+		required=~isRequire(requiredType)
+		regex = verifyExp
+		msg_regex ='格式不正确'
+		msg_required=infoName+'不能为空'}"></div>
+</script>
+<script id="exam-info-checkbox-tmpl" type="text/x-jsrender">
+    <div class="col-sm-10">
+
+    </div>
+</script>
+<script id="exam-info-radio-tmpl" type="text/x-jsrender">
+    <div class="col-sm-10">
+
+    </div>
+</script>
+<script id="exam-info-search-tmpl" type="text/x-jsrender">
+    <div class="btn-group">
+        <input type="input" class="infoSearch form-control auto" placeholder="{{getPlaceholder:infoName}}"
+               data-toggle="dropdown" data-link="{validate value
+						trigger=true
+						required=~isRequire(requiredType)
+						regex = verifyExp
+						msg_regex ='格式不正确'
+						msg_required=infoName+'不能为空'}"/>
+        <ul class="search-result dropdown-menu" role="menu"
+            data-link="class{merge:(!searchResult || searchResult.length==0) toggle='none'}">
+            {^{for searchResult}}
+            <li><a class="searchResult">{^{:value}}</a>
+            </li>
+            {{/for}}
+        </ul>
+    </div>
+</script>
+<script id="exam-info-main-tmpl" type="text/x-jsrender">
+    {^{if isLogin==true tmpl="#exam-info-tmpl"}}
+    {{else isLogin==false tmpl="#exam-info-login-tmpl"}}
+    {{/if}}
+</script>
+<script id="exam-info-tmpl" type="text/x-jsrender">
+    <div class="mt65">
+        <div class="paperInfo row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 pt30 pb20 f20 title">
+                <div>您好，欢迎参加<span style="color:#009ee7" data-link="visible{:examName}">《{^{:examName}}》</span>，请完善个人信息
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="userInfo row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
+                <div class="photoArea pull-left" data-link="visible{:isNeedPhoto}">
+                    <div style="width:280px" data-link="visible{:requirePhoto && !userPhoto}"><label
+                            class="red control-label required">照片不能为空，请拍一张您的头像</label></div>
+                    <div id="takePhoto" class="photo">
+                        {^{if userPhoto}}
+                        <div class="userPhoto">
+                            <img data-link="src{:userPhoto}" class="w h" alt="点击拍照" title="点击拍照"/>
+                        </div>
+                        {{else}}
+                        <div class="photobegin pt30">
+                            请点击下面的拍照按钮留下您的靓照<br> <a><img alt="点击拍照" title="点击拍照" src="assets/img/photobegin.png"></a>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <ul class="photowhy">
+                        <li><a class="photowhy-tip1">为什么要拍照片？</a></li>
+                        <li><a class="photowhy-tip2">拍照遇到问题怎么办？</a></li>
+                    </ul>
+                </div>
+                <div class="infoArea pull-left">
+                    {^{validation}}
+                    <form class="form-horizontal" role="form" onsubmit="return false;">
+                        {{include tmpl="#exam-info-name-email-tmpl"/}}
+                        {^{for InfoExt}}
+                        {^{if !~info_isFilter(#data)}}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"
+                                   data-link="{:infoName:} class{merge:~isRequire(requiredType) toggle='required'}"></label>
+                            <div class="col-sm-9">
+                                {^{if ~isLabel(valueType)||~isDisplay(requiredType) tmpl="#exam-info-label-tmpl"}}
+                                {{else ~isInput(valueType) tmpl="#exam-info-input-tmpl"}}
+                                {{else ~isSelect(valueType) tmpl="#exam-info-select-tmpl"}}
+                                {{else ~isMultiSelect(valueType) tmpl="#exam-info-multiSelect-tmpl"}}
+                                {{else ~isSearch(valueType) tmpl="#exam-info-search-tmpl"}}
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{/for}}
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-10">
+                                <button id="submitInfo" type="button" class="btn btn-primary"
+                                        data-link="disabled{:isCallServer==true || isGetInfo==false}">{^{if
+                                    isCallServer==true}}保存中...{{else}}保存{{/if}}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {{/validation}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="exam-info-login-tmpl" type="text/x-jsrender">
+    <div class="paperInfo row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 pt30 pb20 f20 title">
+            <div>您好，欢迎参加<span style="color:#009ee7" data-link="visible{:examName}">《{^{:examName}}》</span>，请填写身份信息</div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="loginArea userInfo row" data-link="visible{:isCallServer==false}">
+        {^{validation}}
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label required">姓名</label>
+                <div class="col-sm-10">
+                    <input type="input" class="loginName w200 infoInput form-control" placeholder="请输入姓名"
+                           data-link="{validate candidateInfo.candidateName
+							convert='trim'
+							trigger=true
+							required=true
+							regex = name_regex
+							msg_regex ='姓名格式不正确'
+							msg_required='姓名不能为空'
+ 						 }"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label required">{^{:uidName || '身份ID'}} </label>
+                <div class="col-sm-10">
+                    {^{if checkRegex}}
+                    <input type="input" class="loginEmail w200 infoInput form-control" placeholder="请输入邮箱"
+                           data-link="{validate candidateInfo.candidateUid
+							convert='trim'
+							trigger=true
+							required=true
+							regex = email_regex
+							msg_regex ='邮箱格式不正确'
+							msg_required='邮箱不能为空'
+ 						      }"/>
+                    {{else}}
+                    <input type="input" class="loginEmail w200 infoInput form-control"
+                           data-link="placeholder{:'请输入'+(uidName || '身份ID')}
+                            {validate candidateInfo.candidateUid
+                            convert='trim'
+                            trigger=true
+                            required=true
+                            msg_required=uidName?(uidName+'不能为空'):'身份ID不能为空'
+                            }"/>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="login" type="button" class="btn btn-primary"
+                            data-link="disabled{:isCallServer==true || disabledLogin==true}">下一步
+                    </button>
+                </div>
+            </div>
+        </form>
+        {{/validation}}
+    </div>
+
+
+</script>
+<script id="exam-info-name-email-tmpl" type="text/x-jsrender">
+    <div class="form-group">
+        <label class="col-sm-3 control-label required">姓名</label>
+        <div class="col-sm-9" style="padding-top:7px">
+            <span data-link="candidateInfo^candidateName"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label required">{^{:uidName}}</label>
+        <div class="col-sm-9" style="padding-top:7px">
+            <span data-link="candidateInfo^candidateUid"></span>
+        </div>
+    </div>
+</script>
+
+
+
+<script id="exam-paperInfo-tmpl" type="text/x-jsrender">
+    {^{if model=='paperInfo' tmpl="#exam-paperInfo-paperInfo-tmpl"}}
+    {{else model=='retest' tmpl="#exam-paperInfo-retest-tmpl"}}
+    {{/if}}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 tc">
+            <button id="toExam" type="button" class="btn btn-primary"
+                    data-link="class{merge:(callServer==true) toggle='disabled'} disabled{:callServer==true  || disabledLogin==true ||countdownTime>0}">
+                {^{if callServer==true}}正在生成试卷...{{else}}我知道了，{^{if model=='retest'}}重新作答{{else}}开始答题{{/if}}{{/if}}
+                {^{if countdownTime>0}}<span>({^{:countdownTime}} s)</span>{{/if}}
+            </button>
+            <button id="toFinish" type="button" class="btn btn-default"
+                    data-link="visible{:model=='retest' && hasRedirectUrl}">跳过
+            </button>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</script>
+<script id="exam-paperInfo-paperInfo-tmpl" type="text/x-jsrender">
+    <div class="mb10 tc">
+        <h3>试卷结构</h3>
+    </div>
+    {^{if paperInfo}}
+    <div class="mb20">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 mt10">
+                <h4 class="mb10">本次考试包括以下试卷：</h4>
+            </div>
+        </div>
+        {^{for paperInfo.relations ~paperInfo = paperInfo}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div class="paperlist">
+                    {^{getRelationType:relationType}}<span class="paperName">{^{:paperName}}</span>
+                    <span class="pull-right label label-danger paper-condition"
+                          data-link="visible{:~paperIsFinish(testState)}">已交卷</span>
+                    {^{if ~paperIsFinish(testState)}}
+                    {^{if ~paperInfo.paperParam.retest}}
+                    <button class="btn btn-primary btn-group-retest"
+                            data-link="disabled{:~hasProgressingPaper(~paperInfo.relations)}">重测
+                    </button>
+                    {{/if}}
+                    <div class="divider"></div>
+                    <span class="point-text"> {^{if score||score==0}}得分:<span style="color:#fa866b">{^{:score}}分</span>(总分:{{:points}}){{/if}} {^{if remark}}评语:{^{:remark}}{{/if}}</span>
+                    {{else ~canRechoose(~paperInfo.relations,#data)}}
+                    {^{if ~paperInfo.paperParam.retest}}
+                    <button class="btn btn-primary btn-group-retest"
+                            data-link="disabled{:~hasProgressingPaper(~paperInfo.relations)}">选答该试卷
+                    </button>
+                    {{/if}}
+                    {{/if}}
+                    <span class="pull-right label label-success paper-condition"
+                          data-link="visible{:~paperIsProgressing(testState)}">答题中</span>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        {{/for}}
+    </div>
+    {{/if}}
+    <div class="mb20">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <h4 class="mb10">即将作答：{^{if currentPaper.length>1}}请从下面的选考试卷里选择一张试卷作答{{/if}}</h4>
+                {^{for currentPaper }}
+                <div class="paper mb10">
+                    {^{if ~isChoosePaper(relationType)}}
+                    <div class="choose_on pull-right" style="padding: 12px 30px;">
+                        <label class="radio-inline sets-radio"
+                               data-link="class{merge:(~root.choosePaper==paperId) toggle='active'} class{merge:(~root.callServer==true || ~root.stopChoose==true) toggle='disabled'}">
+                            <span class="question-option fa-stack radio-icon"> 
+                            <i class="fa fa-circle-thin fa-stack-2x" style="top:2px"></i>
+                            <i class="fa fa-dot-circle-o fa-stack-1x select" style="top:2px"></i>
+                            <input type="radio" name="option" class="radioOption"
+                                   data-link="{:~root.choosePaper:} value{:paperId} disabled{:~root.callServer==true || ~root.stopChoose==true}">
+                            </span>
+                            选择该试卷
+                        </label>
+                    </div>
+                    {{/if}}
+                    <div class="paperlist">
+                        {^{getRelationType:relationType}}<span class="paperName">{^{:paperName}}(共{^{:questions}}道题{^{if timeLimit}}，限时{^{:~prettyTime(timeLimit)}}{{/if}})</span>
+                    </div>
+                    <ul class="notice p0">
+                        {^{for parts}}
+                        <li>{^{:partName}}：{^{:questions.length}}道题{^{if
+                            timeLimit}}，限时{^{:~prettyTime(timeLimit)}}{{/if}}
+                        </li>
+                        {{/for}}
+                    </ul>
+                </div>
+                {{/for}}
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+</script>
+<script id="exam-paperInfo-retest-tmpl" type="text/x-jsrender">
+    <div class="mb10 tc">
+        <h3>{^{if currentPaper && currentPaper.length>1}}您已答过该试卷组{{else}}您已答过该试卷{{/if}}</h3>
+    </div>
+    {^{if currentPaper ^~paperParam=paperParam}}
+    <div class="mb20">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <h4 class="mb10">{^{if currentPaper && currentPaper.length>1}}试卷组包含以下试卷{{/if}}</h4>
+                {^{for currentPaper ~length =currentPaper.length }}
+                <div class="paper mb10">
+                    <div class="choose_on pull-right" style="padding: 12px 30px;">
+                        {^{if ~paperIsFinish(testState)}}
+                        <label data-link="visible{:~isQueryScore(~paperParam^reportThreshold)}">{^{if score ||
+                            score==0}}<span class="mr10" style="font-weight: 100;color: #656d78">上次得分：<span
+                                    style="color:#fa866b">{^{:score}}分</span></span>{{else}}<span
+                                    style="color:#37bc9b;margin-right:10px">正在计算得分...</span>{{/if}}</label>
+                        {^{if ~paperParam^retest}}
+                        <label class="radio-inline sets-radio"
+                               data-link="visible{:~length>1} class{merge:(~root.choosePaper==paperId) toggle='active'} class{merge:(~root.callServer==true || ~root.stopChoose==true) toggle='disabled'}">
+                            <span class="question-option fa-stack radio-icon"> 
+                            <i class="fa fa-circle-thin fa-stack-2x" style="top:2px"></i>
+                            <i class="fa fa-dot-circle-o fa-stack-1x select" style="top:2px"></i>
+                            <input type="radio" name="option" class="radioOption"
+                                   data-link="{:~root.choosePaper:} value{:paperId} disabled{:~root.callServer==true || ~root.stopChoose==true}">
+                            </span>
+                            重测该试卷
+                        </label>
+                        {{else}}
+                        <label style="font-weight: 100;color: #ddd;">该试卷不能重测</label>
+                        {{/if}}
+                        {{else}}
+                        <label class="radio-inline sets-radio"
+                               data-link="class{merge:(~root.choosePaper==paperId) toggle='active'} class{merge:(~root.callServer==true || ~root.stopChoose==true) toggle='disabled'}">
+                            <span class="question-option fa-stack radio-icon"> 
+                            <i class="fa fa-circle-thin fa-stack-2x" style="top:2px"></i>
+                            <i class="fa fa-dot-circle-o fa-stack-1x select" style="top:2px"></i>
+                            <input type="radio" name="option" class="radioOption"
+                                   data-link="{:~root.choosePaper:} value{:paperId} disabled{:~root.callServer==true || ~root.stopChoose==true}">
+                            </span>
+                            选择该试卷
+                        </label>
+                        {{/if}}
+                    </div>
+                    <div class="paperlist">
+                        {^{getRelationType:relationType}}<span class="paperName">{^{:paperName}}(共{^{:questions}}道题{^{if timeLimit}}，限时{^{:~prettyTime(timeLimit)}}{{/if}})</span>
+                    </div>
+                    <ul class="notice p0">
+                        {^{for parts}}
+                        <li>{^{:partName}}：{^{:questions.length}}道题{^{if
+                            timeLimit}}，限时{^{:~prettyTime(timeLimit)}}{{/if}}
+                        </li>
+                        {{/for}}
+                    </ul>
+                </div>
+                {{/for}}
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+    {{/if}}
+</script>
+
+
+<script id="exam-program-code-tmpl"  type="text/x-jsrender">
+<section class="programV2" data-link="class{merge:model=='preview' toggle='preview'}">
+	<!-- 左边的区域 -->
+	<div class="col-lg-4 col-md-4 col-sm-5 programV2-section section-west">
+			<!-- 语言选择器 -->
+			<div class="btn-group btn-group-sm language-selecter">
+				<label type="button" class="btn btn-info" disabled data-link="{:question^program^candAnswer^programLanguageStr}"></label>
+				<button type="button" class="btn btn-info dropdown-toggle"
+					data-toggle="dropdown">
+					<span class="caret"></span> <span class="sr-only">选择语言</span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-bridge" role="menu"></ul>
+				<ul class="dropdown-menu" style="" role="menu">
+					{^{for question^program.programLanguages}}
+						<li realValue="{{:key}}"><a>{{:value}}</a></li>
+					{{/for}}
+				</ul>
+			</div>	
+			
+			<!-- label：题型 -->
+			<label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+			<label class="question-point">{^{:question^point}}分</label>
+			<label class="skillName text-ellipsis" data-link="data-original-title{:question^skillName} visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+			<label class="question-index">{^{:questionIndex}}</label>
+
+			<!-- 题干 -->
+			<article class="question-title">
+				<div class="question-titie-content">{^{filterWord:question^program.title question^program.html}}</div>
+                {^{if question^program^medias}}			
+                    <div class="question_media_title">
+                    <ul class="media_box_wrap">
+                    {^{for question^program^medias}}
+                        {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                    <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                        <ul>
+                            <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                            {^{if repeats}}<li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>{{/if}}
+                            <li>  <img class="question_media_type" src="assets/img/videobegin.png" data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}"></li>
+                            <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                        </ul>
+                     </li>
+                        {{else}}
+                        <div class="media-item">
+                            <div>
+                                <span class="item-sequence">{{:#getIndex()+1}}</span>
+                            </div>
+                            <div class="media-label">
+                                <span class="text-ellipsis" data-link="title{:label}">
+                                    <i class="fa fa-file-o"></i>
+                                    {^{:label}}
+                                </span>
+                            </div>
+                            <div></div>
+                            <div>
+                                <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                            </div>
+                        </div>
+                        {{/if}}
+                    {{/for}}
+                    </ul>
+                </div>	
+               {{/if}}
+            <div class="hint">
+					<p>
+						<i class="fa fa-info-circle"></i> 温馨提示：
+					</p>
+                    {^{if question^program.runnable}}
+					<p>请从左上角的下拉列表中选择擅长的语言作答（无需添加主函数）。</p>
+                    {{/if}}
+					<p class="pt5">{^{getProgramWarnInfo:question^program^candAnswer^programLanguage question^program.runnable}}</p>
+				</div>
+			</article>
+			
+			<!-- 输入样例 -->
+			{^{if question^program && question^program.runnable==true}}
+			<ul class="samples">
+				{^{for question^program.metaInfo && question^program.metaInfo.samples ~argumentTypes=question^program.metaInfo&&question^program.metaInfo.argumentTypes ~returnType = question^program.metaInfo&&question^program.metaInfo.returnType }}
+				<li data-link="class{merge:#index>0 toggle='mt30' }">
+					<p class="sample-index">样例{{:~numberToChinese(#index+1)}}</p>
+					<p class="sample-label"><i>输入</i></p>
+					<ul>
+						{^{for arguments}}
+							<li class="argument-item">
+							{^{props #data ~argIndex=#index}}
+							<div class="argument-label text-ellipsis">
+  								{{getSampleType:~argumentTypes ~argIndex}}
+							</div> 
+							<div class="argument-data">
+							<!-- 所有的输入输出参数都需要使用 pre 包含，使用 {{> }} 展示，下同 -->
+								<pre>{{transferDotStyle:prop}}</pre>
+							</div>
+							{{/props}}
+							</li>
+						{{/for}}
+					</ul>
+						{^{props retval}}
+					<p class="sample-label"><i>输出</i>{{getReturnValType:~returnType}}</p>
+					<div class="argument-item">
+						<div class="argument-data">
+							<pre>{{transferDotStyle:prop}}</pre>
+						</div>
+					</div>
+						{{/props}}
+				</li>
+				{{/for}}
+			</ul>
+			{{/if}}
+	</div>
+	<!--end 左边的区域 -->
+
+	<!-- 右边的区域 -->
+		<div class="col-lg-8 col-md-8 col-sm-7 programV2-section section-center">
+			<!-- 根据文件个数显示多个tab页 -->
+			<div id="codeMatrix" class="section-program" role="tabpanel">
+			<!--编程帮助-->
+			<div id="codeAPI-wrap"></div>
+			<!--end 编程帮助-->
+				<!-- 文件panel -->
+				<ul class="nav nav-tabs files-panel" role="tablist">
+					{^{for question^program^candAnswer && question^program^candAnswer.programAnswer}}
+						<li role="presentation" data-link="class{merge:(#index==0) toggle='active'} visible{:filename}" >
+					<a  role="tab" data-toggle="tab" data-link="href{:'#codeMatrix-file'+#index}">{^{getCodeFileName:filename}}</a></li>
+					{{/for}}
+					<li class="li-btn-group pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-running" data-action="format" data-toggle="tooltip" data-placement="bottom" title="格式化" data-link="visible{:question^program.isFormat==true}">
+									<span class="glyphicon glyphicon-indent-left"></span>
+								</button>
+								<button type="button" class="btn btn-running" data-action="template" data-toggle="tooltip" data-placement="bottom" title="查看文件初始内容">
+									<span class="glyphicon glyphicon-eye-open"></span>
+								</button>
+								<button type="button" class="btn btn-running" data-action="fullscreen" data-toggle="tooltip" data-placement="bottom" title="全屏(Esc恢复)">
+									<span class="glyphicon glyphicon-fullscreen"></span>
+								</button>
+								<button type="button" class="btn btn-running" data-action="apisearch" data-link="visible{:question^program.hasHelp==true}" data-toggle="tooltip" data-placement="bottom" title="常用API查找">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+						</div>
+					</li>
+				</ul>
+				<!-- 编程区：使用CodeMirror动态创建-->
+				<div class="tab-content">
+					{^{for question^program^candAnswer && question^program^candAnswer.programAnswer}}
+						<div role="tabpanel" class="codeMatrix-codeArea-content tab-pane tab-pane" data-link="class{merge:#index==0 toggle='active'} id{:'codeMatrix-file-code'+#index}">
+						</div>
+					{{/for}}
+					<!-- 编程模板-->
+					{^{for question^program^templateAnswer && question^program^templateAnswer.programAnswer}}
+						<div data-link="id{:'codeMatrix-file-template'+#index}" class="codeMatrix-codeArea-template">
+ 						</div>
+					{{/for}}
+				</div>
+			</div>
+			<!-- 题目面板 -->
+			{{include tmpl="#exam-globle-questionOperate-tmpl"/}}
+			
+			<!-- 隐藏的运行面板 -->
+			<div id="code-run-pane">
+			</div>
+			<!--end 隐藏的运行面板 -->
+		</div>
+	<!--end 右边的区域 -->
+</section>
+</script>
+<!-- 运行区 -->
+<script id="exam-program-codeRun-tmpl"  type="text/x-jsrender">
+				<!-- 隐藏的运行面板 -->
+				<div class="run-pane" data-link="class{merge:toggleRunPane==true toggle='active'}">
+				<!-- 每个样例展现一个完整的tab页 -->
+				<div class="section-samples" role="tabpanel">
+					<ul class="nav nav-tabs samples-panel" role="tablist">
+						<li><label>样例：</label></li>
+						{^{for program^metaInfo && program^metaInfo.samples ~sampleLength =program^metaInfo.samples.length}}
+							<li data-link="class{merge:#index==0 toggle='active'}" ><a data-link="href{:'#sample'+#index}" role="tab" data-toggle="tab">{{:~numberToChinese(#index+1)}}</a></li>
+						{{/for}}
+						<!-- 一定存在的自定义数据 -->
+						<li><a href="#sample-customize" role="tab" data-toggle="tab">自定义数据</a></li>
+						<a class="btn-hide-run-pane pull-right"><i class="fa fa-times"></i></a>
+					</ul>
+
+					<!-- 样例测试区-->
+					<div class="tab-content">
+						<!-- 每一组样例：包含输入参数，返回值，运行窗口等都在自己的 sample-content 中，相互是独立的 -->
+						{^{for program^metaInfo && program^metaInfo.samples ~argumentTypes=program^metaInfo.argumentTypes ~returnType = program^metaInfo.returnType ~run = run}}
+						<div role="tabpanel" class="sample-content tab-pane" data-link="class{merge:#index==0 toggle='active'} id{:'sample'+#index}">
+							<!-- 样例展示区 -->
+							<ul class="argument-list">
+							<!-- 输入参数列表:模拟输入很多的情况 -->
+							{^{for arguments}}
+								{^{props #data ~argIndex=#index}}
+								<li class="argument-item">
+									<div class="argument-label text-ellipsis">
+										{{getSampleType:~argumentTypes ~argIndex}}
+									</div> <!-- 所有的输入输出参数都需要使用 pre 包含，使用 {{> }} 展示，下同 -->
+									<div class="argument-data">
+										<pre>{{transferDotStyle:prop}}</pre>
+									</div>
+								</li>
+								{{/props}}
+							{{/for}}
+							<!-- 输出 -->
+							{^{props retval}}
+								<li class="argument-item sample-return">
+									<div class="argument-label text-ellipsis">输出{{getReturnValType:~returnType}}</div>
+									<div class="argument-data">
+										<pre>{{transferDotStyle:prop}}</pre>
+									</div>
+								</li>
+							{{/props}}
+								<li class="argument-item run-result result-right" data-link="visible{:runTest && runTest^retval}">
+									<div class="argument-label text-ellipsis">
+										运行返回 {^{getReturnValType:~returnType}}
+									</div>
+									<div class="argument-data">
+										{^{props runTest && runTest^retval}}
+										<pre>{{transferDotStyle:prop}}</pre>
+										{{/props}}
+									</div>
+								</li>
+							</ul>
+							<div class="action-panel" data-link="class{merge:~run^isRun===true toggle='runActive'}">
+								<div class="alert" data-link="class{merge:runTest && runTest^exitValue==0 toggle='alert-success'}
+															  class{merge:runTest  && runTest^exitValue  toggle='alert-danger'}
+															  ">{^{:runMsg}}</div>
+								<div class="btn-run-wrapper">
+									<button class="btn btn-run btn-success" data-link="disabled{:~run^isRun===true || ~run^disabled===true}"><i class="fa fa-play-circle-o"></i> {^{:~run^info}}</button>
+								</div>
+							</div>
+							<div class="run-test-terminal" >
+								<pre>{^{>runTest && runTest^out}}{^{if runTest && runTest^out && runTest^err}}<br/>{{/if}}{^{>runTest && runTest^err}}</pre>
+							</div>
+						</div>
+						{{/for}}
+						 <!-- 自定义展示区 -->
+						<div role="tabpanel" class="sample-content tab-pane" id="sample-customize">
+							<ul class="argument-list">
+							<!-- 输入参数列表:模拟输入很多的情况 -->
+							{^{for program^metaInfo && program^metaInfo.argumentTypes}}
+								<li class="argument-item">
+									<div class="argument-label text-ellipsis">
+										{{getSampleArgType:#data}}
+									</div> <!-- 所有的输入输出参数都需要使用 pre 包含，使用 {{> }} 展示，下同 -->
+									<div class="argument-data">
+											{^{if array===true}}
+												{^{props customArg}}
+													{^{for prop}}
+													<span class="array-input-wrapper"> 
+													<input type="text" class="array-input form-control" data-link="value"/> 
+													<a class="btn btn-link btn-remove-item"><i class="fa fa-times"></i></a></span>
+													{{/for}}
+												{{/props}}
+												<span class="array-input-wrapper"> <a class="btn btn-success btn-block btn-sm btn-add-array-item"><i class="fa fa-plus"></i></a></span>
+											{{else}}
+												{^{props customArg}}
+													<input type="text" class="form-control" data-link="prop"/>
+												{{/props}}
+											{{/if}}
+									</div>
+								</li>
+							{{/for}}
+								<li class="argument-item run-result result-right" data-link="visible{:customizeRunTest.runTest && customizeRunTest^runTest.retval}">
+									<div class="argument-label text-ellipsis">
+										运行返回 {^{getReturnValType:program^metaInfo.returnType}}
+									</div>
+									<div class="argument-data">
+										{^{props customizeRunTest.runTest && customizeRunTest^runTest.retval}}
+										<pre>{^{transferDotStyle:prop}}</pre>
+										{{/props}}
+									</div>
+								</li>
+							</ul>
+							<div class="action-panel" data-link="class{merge:run^isRun===true toggle='runActive'}">
+								<div class="alert" data-link="class{merge:customizeRunTest.runTest && customizeRunTest^runTest.exitValue==0 toggle='alert-success'}
+															  class{merge:customizeRunTest.runTest && customizeRunTest^runTest.exitValue  toggle='alert-danger'}
+															 ">{^{:customizeRunTest^runMsg}}</div>
+								<div class="pl5" style="width: 6%;">
+									<a class="btn-reset-customize">清除</a>
+								</div>
+								<div class="btn-run-wrapper">
+									<button class="btn btn-customizeRun btn-success" data-link="disabled{:run^isRun===true || run^disabled===true}"><i class="fa fa-play-circle-o"></i> {^{:run^info}}</button>
+								</div>
+							</div>
+							<div class="run-test-terminal">
+								<pre>{^{>customizeRunTest.runTest && customizeRunTest^runTest.out}}{^{if customizeRunTest.runTest && customizeRunTest^runTest.out && customizeRunTest^runTest.err}}<br/>{{/if}}{^{>customizeRunTest.runTest && customizeRunTest^runTest.err}}</pre>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end 隐藏的运行面板 -->
+</script>
+<script id="codeMatrix-api-tmpl" type="text/x-jsrender">
+	<div id="codeAPI" style="display:none;border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 12px; width: 500px; margin-right: 0px; position: absolute; right: 0px; z-index: 9; height:calc(100% - 77px);top:33px;">
+	<div id="codeAPI-actionBar" style="background:#252428; border-bottom: 1px solid #000;height:46px;padding:5px">
+		<span class="title" style="color:#428BCA;line-height:36px;margin-left:20px;border: none;">常用类列表</span>
+		<button type="button" class="btn btn-link nav-btn" style="display: none;" data-original-title="" title=""><span class="glyphicon glyphicon-chevron-left"></span> 返回</button>
+		<a  href="#codematrix_api_clazz_list" data-toggle="tab"></a>
+		<a href="#codematrix_api_search_result" data-toggle="tab"></a>
+		<a href="#codematrix_api_clazz_desc"  data-toggle="tab"></a>
+		<a href="#codematrix_api_detail"  data-toggle="tab"></a>
+		<form class="pull-right" style="width:280px;height:40px;" onsubmit="return false;"><input type="text" class="form-control pull-left api-search-input" style="width:180px;background:#2E2E33;color:#fff;" placeholder="常用类的方法、属性"><button type="button" class="btn btn-default api-search-btn" style="margin-left:10px;" data-original-title="" title="">搜索</button></form>
+	</div>
+	<div id="codeAPI-content" class="tab-content p0" style="overflow: auto; background: rgb(62, 61, 69);height: 100%;top:46px;">
+		<!-- 类列表 -->
+		<div class="tab-pane active" id="codematrix_api_clazz_list">
+			<ul class="classList p0">
+				{^{for clazzsArr}}
+					<li class="item-class">{{>#data}}</li>
+				{{/for}}
+			</ul>
+		</div>
+		<!--end 类列表 -->
+		
+		<!-- 搜索结果 -->
+		<div class="tab-pane"  id="codematrix_api_search_result" >
+			<div class="class-name" data-link="visible{:searchResult^key}">{^{>searchResult^key}} 的搜索结果（ {^{:searchResult^resultCount || 0}}个 ）： </div>
+			{^{if searchResult^fields && searchResult^fields.length}}
+				<div class="block-list">
+					<p class="item-title">属性（Field）概览</p>
+					{^{for searchResult^fields}}
+						{^{:~codeAPISetType('fields',#index,'result')}}
+						<div class="item-result"><span class="belong-class" style="padding: 5px; margin-right:5px;">{^{>className}}</span> {^{codeAPIwrapHightLight:'fields' signature #parent.parent.data.searchResult.key}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+			{^{if searchResult^constructors && searchResult^constructors.length}}
+				<div class="block-list">
+					<p class="item-title">构造器（Constructor）概览</p>
+					{^{for searchResult^constructors}}
+						{^{:~codeAPISetType('constructors',#index,'result')}}
+						<div class="item-result"><span class="belong-class" style="padding: 5px; margin-right:5px;">{^{>className}}</span> {^{codeAPIwrapHightLight:'constructors' signature #parent.parent.data.searchResult.key}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+			{^{if searchResult^methods && searchResult^methods.length}}
+				<div class="block-list">
+					<p class="item-title">方法（Method）概览</p>
+					{^{for searchResult^methods}}
+						{^{:~codeAPISetType('methods',#index,'result')}}
+						<div class="item-result"><span class="belong-class" style="padding: 5px; margin-right:5px;">{^{>className}}</span> {^{codeAPIwrapHightLight:'methods' signature #parent.parent.data.searchResult.key}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+		</div>
+		<!--end 搜索结果 -->
+		
+		<!-- 类描述 -->
+		<div class="tab-pane" id="codematrix_api_clazz_desc">
+			<div class="class-name">{^{>clazz^className}}</div>
+			{^{if clazz^fields && clazz^fields.length}}
+				<div class="block-list">
+					<p class="item-title">属性（Field）概览</p>
+					{^{for clazz^fields}}
+						{^{:~codeAPISetType('fields',#index)}}
+						<div class="item-property">{^{codeAPIGetPropTmpl:'fields' signature}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+			{^{if clazz^constructors && clazz^constructors.length}}
+				<div class="block-list">
+					<p class="item-title">构造器（Constructor）概览</p>
+					{^{for clazz^constructors}}
+						{^{:~codeAPISetType('constructors',#index)}}
+					<div class="item-property" >{^{codeAPIGetPropTmpl:'constructors' signature}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+			{^{if clazz^methods && clazz^methods.length}}
+				<div class="block-list">
+					<p class="item-title">方法（Method）概览</p>
+					{^{for clazz^methods}}
+						{^{:~codeAPISetType('methods',#index)}}
+					<div class="item-property">{^{codeAPIGetPropTmpl:'methods' signature}}</div>
+					{{/for}}
+				</div>
+			{{/if}}
+		</div>
+		<!--end 类描述 -->
+		
+		<!-- 关键字相关的概述 -->
+		<div class="tab-pane codematrix_api_detail" id="codematrix_api_detail"  style="height: 311px;">
+			<div style="text-align:right;padding:10px;"><span class="belong-class">{^{>detail^className}}<t></t></span></div>
+			<div class="item-title">{^{>detail^keyWord}}</div>
+			<div class="item-desc">
+			<div>{^{>detail^signature}}</div>
+			<div class="codematrix_api_detail_content"></div>
+			</div>
+		</div>
+		<!--end 关键字相关的概述 -->
+		
+	</div>
+	<div class="btn btn-link btn-lg toggle-btn glyphicon glyphicon-chevron-right" style="text-decoration: none; position: absolute; left: -40px; top: 100px; z-index: 10;"></div>
+	
+</div>
+</script>
+
+<!--答题进度展示-->
+<script id="exam-part-progress-tmpl" type="text/x-jsrender">
+    <div class="questionModal" style="display: none;"></div>
+    <div id="exam-questionProgress-wrap" class="questionProgress" style="display: none;">
+        <!-- 试卷部分信息  -->
+        <div id="exam-questionProgress">
+            <div class="progressbegin">您正在作答的试卷是：<span>{^{:partProgress^paperName}}</span></div>
+            <div class="part_list">
+                <ul class="partList p0">
+                    {^{for partProgress^progress ~pData=#data}}
+                    <li>
+                        <button class="part part_now"
+                                data-link="class{checkPartState:partState} class{merge: (~pData.hoverPartNum==#index+1)&&(~pData.hoverPartNum!=~pData.currentPartNum)&&(~pData.partBackward&&partState!=1) toggle='hover'} disabled{:!~pData.partBackward||partState==1}">
+                            {^{:partName}}{^{if partTime}}(限时{^{:~prettyTime(partTime)}}){{/if}}&nbsp;<i
+                                class="fa fa-check" data-link="visible{isPartFinish:partState}"></i></button>
+                    </li>
+                    {{/for}}
+                </ul>
+            </div>
+        </div>
+
+        {^{for panels ~pData=#data}}
+
+        <!-- 题目面板信息  -->
+        <div class="question-panels"
+             data-link="id{:'panel'+#index} visible{:(~pData.hoverPartNum==#index+1)&&backward}">
+            {^{if backward include tmpl="#exam-questionPanel-tmpl"/}}
+        </div>
+        <!--end 题目面板 -->
+        {{/for}}
+    </div>
+</script>
+<!--end 答题进度展示 -->
+<script id="exam-questionOperate-tmpl" type="text/x-jsrender">
+    <div class="questionOperate" data-link="visible{:!showPartGuide}">
+        <div class="btn-group-vertical">
+            <button type="button" class="btn btn-warning btn-answer-doubt" data-link="visible{:backward}">{^{if
+                isDoubt}}取消标记{{else}}标记{{/if}}
+            </button>
+            {^{if model && model=='try' && !isLast}}
+            <button type="button" class="btn btn-default exam-outTry-btn first">跳过练习</button>
+            {{/if}}
+            <button id="exam-prev-btn" type="button" class="btn btn-default exam-prev-btn"
+                    data-link="disabled{:(model=='formal' && backward==false) || ((isFirst&&!partBackward)||isPageFirst) || isCallServer==true}
+			class{merge:(model=='formal' && backward==false) || ((isFirst&&!partBackward)||isPageFirst) || isCallServer==true toggle='disabled'}
+			class{merge: model=='formal' || (model=='try' && isLast) toggle='first'}
+		">上一题
+            </button>
+            <button type="button"
+                    class="btn btn-primary exam-next-btn last"
+                    data-placement="left"
+                    data-link="data-original-title{:(isLast&&isPageLast)||(!partBackward&&isLast)?'没有下一题':''}
+                    class{merge:!isLast||(isLast&&partBackward&&!isPageLast) toggle='last'}
+                    class{merge:isCallServer||(isLast&&isPageLast)||(!partBackward&&isLast) toggle='next-disabled'} ">
+                下一题
+            </button>
+            {^{if isLast}}
+            {^{if model && model=='try'}}
+            <button type="button" class="btn btn-primary exam-outTry-btn last">开始考试</button>
+            {{else}}
+            {^{if isPageLast}}
+            <button type="button" class="btn btn-primary exam-submit-paper-btn last"
+                    data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">交卷
+            </button>
+            {{else}}
+            {^{if !partBackward}}
+            <button type="button" class="btn btn-primary  exam-submit-part-btn last"
+                    data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">提交该部分
+            </button>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            <a class="mr10 btn btn-link  btn-review-answer pt30"
+               data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'} visible{:isCheckAnswer}">{^{if
+                onlyCheckRight}}查看对错{{else}}查看答案{{/if}}</a>
+
+        </div>
+    </div>
+</script>
+<script id="exam-globle-questionOperate-tmpl" type="text/x-jsrender">
+    <div class="common-pane">
+        {^{if model!='preview'}}
+        {^{if model && model=='try' && !isLast}}
+        <button type="button" class="btn btn-link  exam-outTry-btn" style="margin-right: -15px;">跳过练习</button>
+        {{/if}}
+        <button type="button" class="btn btn-link  exam-prev-btn" data-link="disabled{:(model=='formal' && backward==false) || ((isFirst&&!partBackward)||isPageFirst) || isCallServer==true}
+			class{merge:(model=='formal' && backward==false) || ((isFirst&&!partBackward)||isPageFirst) || isCallServer==true toggle='disabled'}
+		">上一题
+        </button>
+        <button type="button" class="btn btn-primary exam-next-btn"
+                data-link="data-original-title{:(isLast&&isPageLast)||(!partBackward&&isLast)?'没有下一题':''}
+                 class{merge:!isLast||(isLast&&partBackward&&!isPageLast) toggle='last'}
+                 class{merge:isCallServer||(isLast&&isPageLast)||(!partBackward&&isLast) toggle='next-disabled'}">
+            下一题
+        </button>
+        {^{if isLast}}
+        {^{if model && model=='try'}}
+        <button type="button" class="btn btn-primary exam-outTry-btn last">开始考试</button>
+        {{else}}
+        {^{if isPageLast}}
+        <button type="button" class="btn btn-primary exam-submit-paper-btn last"
+                data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">交卷
+        </button>
+        {{else}}
+        {^{if !partBackward}}
+        <button type="button" class="btn btn-primary  exam-submit-part-btn last"
+                data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">提交该部分
+        </button>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        {{else}}
+        {{/if}}
+        <a class="mr10 btn btn-link  btn-review-answer"
+           data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'} visible{:isCheckAnswer}">查看答案</a>
+        <button type="button" class="btn btn-warning btn-answer-doubt" data-link="visible{:backward}">{^{if
+            isDoubt}}取消标记{{else}}标记{{/if}}
+        </button>
+        {{/if}}
+        <button type="button" class="btn btn-success pull-right btn-open-test-run" data-toggle="tooltip"
+                data-placement="top" title="" data-link="class{merge:(!question^program || !question^program.runnable) toggle='exam-fail-disabled'}
+                                                                                               title{:(!question^program || !question^program.runnable)?'此题不可调试':''}
+                                                                                               data-toggle{:(!question^program || !question^program.runnable)? 'tooltip':''}
+                                                                                                ">调试
+        </button>
+        <button type="button" class="mr10 btn btn-success pull-right btn-answer-save" data-toggle="tooltip" title="保存答案"
+                data-placement="top" title="" data-link="class{merge:isCallServer==true toggle='exam-fail-disabled'}">保存
+        </button>
+    </div>
+</script>
+<script id="exam-questionPanel-tmpl" type="text/x-jsrender">
+    <div class="qnumb_qums">
+        <i>{^{if ~pData.hoverPartNum==~pData.currentPartNum}}
+            当前部分包含以下题目：
+            {{else}}
+            第 {{:~numberToChinese(~pData.hoverPartNum)}} 部分包含以下题目：
+            {{/if}}
+        </i>
+        <ul>
+            {^{for questions ~backward=backward}}
+            <li>
+                <button type="button"
+                        data-link="id{:subquestionId || questionId} class{checkQnumState:answered isNow isDoubt}">
+                    {^{:seqText}}
+                </button>
+            </li>
+            {{/for}}
+        </ul>
+        <div style="clear:both;"></div>
+        <div class="common-pane mt20">
+            {^{if ~pData.paperInfo.partBackward||#getIndex()+1==~pData.panels.length}}
+            <button type="button" class="btn btn-primary exam-submit-paper-btn last">交卷</button>
+            {{else}}
+            <button type="button" class="btn btn-primary  exam-submit-part-btn last">提交该部分</button>
+            {{/if}}
+        </div>
+    </div>
+</script>
+<!-- 答题主要内容 -->
+<script id="exam-question-tmpl" type="text/x-jsrender">
+    <!--答题进度展示-->
+    {^{if model && model=='formal'}}
+    <div id="exam-part-progress"></div>
+    {{/if}}
+    <!--end 答题进度展示 -->
+
+    {{!-- 题目容器--}}
+    {^{if questionError===true}}
+    {{include tmpl="#exam-question-error-tmpl"/}}
+    {{else}}
+    {{include tmpl="#exam-question-wrap-tmpl"/}}
+    {{!-- 题目操作面板--}}
+    {^{if isWideLayout==false}}
+    {{include tmpl="#exam-questionOperate-tmpl"/}}
+    {{/if}}
+    {{/if}}
+</script>
+<script id="exam-question-wrap-tmpl" type="text/x-jsrender">
+    <!--题目容器-->
+    <div class="questionContainer" data-link="class{merge:(isWideLayout==false) toggle='container'}">
+        {^{if isCallServer==true && !question^combination}}
+        <h4 class="tc mt20">
+            <i class="fa fa-spinner fa-spin"></i> {^{:loadMsg}}
+        </h4>
+        {{else}}
+        <div data-link="visible{:!showPartGuide}}">
+            {^{if question^choice tmpl="#exam-question-select-tmpl" }}
+            {{else question^program tmpl="#exam-question-program-tmpl"}}
+            {{else question^text tmpl="#exam-question-text-tmpl"}}
+            {{else question^combination tmpl="#exam-question-combination-tmpl"}}
+            {{else question^audio tmpl="#exam-question-audio-tmpl"}}
+            {{else question^video tmpl="#exam-question-video-tmpl"}}
+            {{else question^blank tmpl="#exam-question-blank-tmpl"}}
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    <!--end 题目容器-->
+</script>
+<script id="exam-question-wrap-tmpl" type="text/x-jsrender">
+</script>
+<script id="exam-question-select-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis" data-link="visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="select">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 question-title">{^{filterWord:question^choice.title question^choice.html}}</div>
+        </div>
+        {{!--多媒体题干区--}}
+        {^{if question^choice^medias}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 question_media_title">
+                <ul class="media_box_wrap">
+                    {^{for question^choice^medias}}
+                    {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                    <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                        <ul>
+                            <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                            {^{if repeats}}
+                            <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>
+                            {{/if}}
+                            <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                     data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                            </li>
+                            <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                        </ul>
+                    </li>
+                    {{else}}
+                    <div class="media-item">
+                        <div>
+                            <span class="item-sequence">{{:#getIndex()+1}}</span>
+                        </div>
+                        <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                        </div>
+                        <div></div>
+                        <div>
+                            <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/for}}
+                </ul>
+            </div>
+        </div>
+        {{/if}}
+        {^{if ~isSingleChoice(question^questionType) }}
+        {^{for question^choice^options ~model=model ~candAnswer =question^choice.candAnswer ~html=question^choice.html}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div class="option" data-link="class{merge:isRight==true && ~model=='try' toggle='option_right'}
+        class{merge:isRight==false && ~model=='try' toggle='option_wrong'}
+        class{merge:(~candAnswer.optAnswer==value && ~model!='try')  toggle='focus'}">
+                    <label class="radio-inline sets-radio"
+                           data-link="class{merge:(~candAnswer.optAnswer==value) toggle='active'} class{merge:(~root.questionDisabled) toggle='disabled'}">
+                    <span class="question-option fa-stack radio-icon">
+                    <i class="fa fa-circle-thin fa-stack-2x" style="top:2px"></i>
+                    <i class="fa fa-dot-circle-o fa-stack-1x select" style="top:2px"></i>
+                    <input type="radio" name="option" class="radioOption"
+                           data-link="{:~candAnswer.optAnswer:} value{:value} disabled{:~root.questionDisabled}">
+                    </span>
+                        <span class="option-index">{^{:~indexToCharacter(#index)}}</span>
+                        <div class="question-option-label">{^{filterWord:label ~html}}</div>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        {{/for}}
+        {{else}}
+        {^{for question^choice^options ~model=model ~candAnswer =question^choice.candAnswer ~html=question^choice.html}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div class="option" data-link="class{merge:isRight==true && ~model=='try' toggle='option_right'}
+                                        class{merge:isRight==false && ~model=='try' toggle='option_wrong'}
+                                        class{merge:(isChecked && ~model!='try') toggle='focus'}
+                                        ">
+                    <label class="check-box" data-link=" class{merge:(~root.questionDisabled) toggle='disabled'}">
+                <span class="question-option check-box inline-block"
+                      data-link="class{merge:isChecked==true toggle='active'}">
+                         <span class="fa-stack check-icon"><i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-check-square fa-stack-1x check"></i></span>
+                        <input type="checkbox" name="option" class="checkboxOption"
+                               data-link="{:isChecked:} disabled{:~root.questionDisabled}">
+                </span>
+                        <span class="option-index">{^{:~indexToCharacter(#index)}}</span>
+                        <div class="question-option-label">{^{filterWord:label ~html}}</div>
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        {{/for}}
+        {{/if}}
+
+        {^{if ~isNeedExplain(question^questionType)}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 mt10">
+            <textarea class="form-control exam-text tabIndent" placeholder="请输入答案解释" data-link="{:question^choice^candAnswer^textAnswer trigger=true:}
+                                                                                                        disabled{:~root.questionDisabled}
+                                                                                                        placeholder{:(model=='try' && question^choice^refAnswer && question^choice^refAnswer^textAnswer)? question^choice^refAnswer^textAnswer:'请输入答案解释'}"
+                      rows="5"></textarea>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        {{/if}}
+    </div>
+</script>
+<script id="exam-question-program-tmpl" type="text/x-jsrender">
+    <div id="codeProgram" class="program">
+        {{include tmpl="#exam-program-code-tmpl"/}}
+    </div>
+</script>
+
+<script id="exam-question-text-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis" data-link="visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="text">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="question-title col-xs-10">{^{filterWord:question^text.title question^text.html}}</div>
+        </div>
+        {{!--多媒体题干区--}}
+        {^{if question^text^medias}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 question_media_title">
+                <ul class="media_box_wrap">
+                    {^{for question^text^medias}}
+                    {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                    <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                        <ul>
+                            <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                            {^{if repeats}}
+                            <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>
+                            {{/if}}
+                            <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                     data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                            </li>
+                            <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                        </ul>
+                    </li>
+                    {{else}}
+                    <div class="media-item">
+                        <div>
+                            <span class="item-sequence">{{:#getIndex()+1}}</span>
+                        </div>
+                        <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                        </div>
+                        <div></div>
+                        <div>
+                            <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/for}}
+                </ul>
+            </div>
+        </div>
+        {{/if}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <textarea class="form-control exam-text tabIndent" rows="14" placeholder="请在此输入答案"
+                          data-link="{:question^text^candAnswer^textAnswer trigger=true:} disabled{:~root.questionDisabled} placeholder{:(model=='try' && question^text^refAnswer && question^text^refAnswer^textAnswer)? question^text^refAnswer^textAnswer:'请在此输入答案'}"></textarea>
+                <div class="mt10" data-link="visible{:question^text && question^text^fileAllowed===true}">
+                    <div class="alert alert-warning pulse">
+                        <i class="fa fa-lightbulb-o"></i> 如果有多个文件请打包压缩成一个文件后上传,上传文件不能超过{^{:~getUploadFileSize()}}。
+                    </div>
+                    <button type="button" class="btn btn-success uploadbtn">上传附件</button>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+</script>
+<script id="exam-question-combination-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis" data-link="visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="question-title col-xs-10 stem" style="font-size:18px;line-height:28px;">
+            {^{filterWord:question^combination.title question^combination.html}}
+        </div>
+    </div>
+    {^{if question^combination^medias}}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 question_media_title">
+            <ul class="media_box_wrap">
+                {^{for question^combination^medias}}
+                {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                <li class="media_box"
+                    data-link="class{merge:disabled toggle='disabled'} mediaid{:'comb_questionMediaPlayer'+#getIndex()} mediawrapid{:'combquestionMediaWrap'+#getIndex()}">
+                    <ul>
+                        <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                        {^{if repeats}}
+                        <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span>
+                        </li>
+                        {{/if}}
+                        <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                 data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                        </li>
+                        <li data-link="id{:'combquestionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                    </ul>
+                </li>
+                {{else}}
+                <div class="media-item">
+                    <div>
+                        <span class="item-sequence">{{:#getIndex()+1}}</span>
+                    </div>
+                    <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                    </div>
+                    <div></div>
+                    <div>
+                        <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                    </div>
+                </div>
+                {{/if}}
+                {{/for}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+    {{include tmpl="#exam-question-combination-subQuestion-tmpl"/}}
+</script>
+<script id="exam-question-combination-subQuestion-tmpl"
+        type="text/x-jsrender">
+    <div class="subQuestion">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                {^{for subQuestionQnums}}
+                <button type="button" data-link="class{checkQnumState:answered isNow isDoubt}
+            disabled{:(~root^model=='formal' && ~root^backward==false) ||  ~root^isCallServer==true}
+            class{merge:(~root^model=='formal' && ~root^backward==false) || ~root^isCallServer==true toggle='disabled'}
+            ">{^{:seqText}}
+                </button>
+                {{/for}}
+            </div>
+        </div>
+        {^{for subQuestions}}
+        {^{if ~root^isCallServer==true}}
+        <h4 class="tc mt20">
+            <i class="fa fa-spinner fa-spin"></i> 正在获取题目...
+        </h4>
+        {{else}}
+        {^{if question^choice tmpl="#exam-question-select-tmpl"}}
+        {{else question^program tmpl="#exam-question-program-tmpl"}}
+        {{else question^text tmpl="#exam-question-text-tmpl"}}
+        {{else question^audio tmpl="#exam-question-audio-tmpl"}}
+        {{else question^video tmpl="#exam-question-video-tmpl"}}
+        {{else question^blank tmpl="#exam-question-blank-tmpl"}}
+        {{/if}}
+        {{/if}}
+        {{/for}}
+    </div>
+</script>
+<script id="exam-question-audio-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis" data-link="visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="question-title col-xs-10">{^{filterWord:question^audio.title question^audio.html}}</div>
+    </div>
+    {{!--多媒体题干区--}}
+    {^{if question^audio^medias}}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 question_media_title">
+            <ul class="media_box_wrap">
+                {^{for question^audio^medias}}
+                {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                    <ul>
+                        <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                        {^{if repeats}}
+                        <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>
+                        {{/if}}
+                        <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                 data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                        </li>
+                        <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                    </ul>
+                </li>
+                {{else}}
+                <div class="media-item">
+                    <div>
+                        <span class="item-sequence">{{:#getIndex()+1}}</span>
+                    </div>
+                    <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                    </div>
+                    <div></div>
+                    <div>
+                        <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                    </div>
+                </div>
+                {{/if}}
+                {{/for}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+    <div id="exam-question-audio" class="mt30 row">
+
+    </div>
+</script>
+<script id="exam-question-video-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis" data-link="visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="question-title col-xs-10">{^{filterWord:question^video.title question^video.html}}</div>
+    </div>
+    {^{if question^video^medias}}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 question_media_title">
+            <ul class="media_box_wrap">
+                {^{for question^video^medias}}
+                {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                    <ul>
+                        <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                        {^{if repeats}}
+                        <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>
+                        {{/if}}
+                        <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                 data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                        </li>
+                        <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                    </ul>
+                </li>
+                {{else}}
+                <div class="media-item">
+                    <div>
+                        <span class="item-sequence">{{:#getIndex()+1}}</span>
+                    </div>
+                    <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                    </div>
+                    <div></div>
+                    <div>
+                        <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                    </div>
+                </div>
+                {{/if}}
+                {{/for}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+    <div id="exam-question-video" class="mt30 row">
+    </div>
+</script>
+<script id="exam-question-blank-tmpl" type="text/x-jsrender">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 questionInfo">
+            <label class="question-type">{^{getQuestionTypeDesc:question^questionType}}</label>
+            <label class="question-point">({^{:question^point}}分)</label>
+            <label class="skillName text-ellipsis"
+                   data-link="data-original-title{:question^skillName} visible{:question^skillName && skillShow}">{^{:question^skillName}}</label>
+            <label class="question-index">{^{:questionIndex}}</label>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="blankQuestion">
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 question-title">{^{filterWord:question^blank.title
+                question^blank.html}}
+            </div>
+        </div>
+        {^{if question^blank^medias}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10 question_media_title">
+                <ul class="media_box_wrap">
+                    {^{for question^blank^medias ~playTimes=question^blank^playTimes}}
+                    {^{if attachmentType == ~root.AttachmentType.AUDIO || attachmentType == ~root.AttachmentType.VIDEO}}
+                    <li class="media_box" data-link="class{merge:disabled toggle='disabled' }">
+                        <ul>
+                            <li class="text-ellipsis"><span>{^{:label}}</span></li>
+                            {^{if repeats}}
+                            <li><span style="color:#25c386;">（只能播放{^{:playTime}}次）</span></li>
+                            {{/if}}
+                            <li><img class="question_media_type" src="assets/img/videobegin.png"
+                                     data-link="src{:attachmentType == ~root.AttachmentType.VIDEO?'assets/img/videobegin.png':'assets/img/audiobegin.png'}">
+                            </li>
+                            <li data-link="id{:'questionMediaWrap'+#getIndex()}" class="questionMediaWrap"></li>
+                        </ul>
+                    </li>
+                    {{else}}
+                    <div class="media-item">
+                        <div>
+                            <span class="item-sequence">{{:#getIndex()+1}}</span>
+                        </div>
+                        <div class="media-label">
+                         <span class="text-ellipsis" data-link="title{:label}">
+                             <i class="fa fa-file-o"></i>
+                             {^{:label}}
+                         </span>
+                        </div>
+                        <div></div>
+                        <div>
+                            <a data-link="href{:url}" target="_blank" download><i class="fa fa-download"></i>下载</a>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/for}}
+                </ul>
+            </div>
+        </div>
+        {{/if}}
+        {^{for question^blank^candAnswer^blankAnswerObj ~model=model ~blankAnswer=question^blank^refAnswer &&
+        question^blank^refAnswer^blankAnswer}}
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <div class="blank">
+                    <label class="sets-radio">
+                    <span class="question-blank fa-stack">
+                            空{{:#index+1}}：
+                    </span>
+                        <div class="question-blank-label"><input type="input" class="exam-blankInput form-control auto"
+                                                                 data-link="{:val trigger=true:} placeholder{:(~model=='try' && ~blankAnswer)? ~blankAnswer[#index]:''} disabled{:~root.questionDisabled}"/>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        {{/for}}
+
+    </div>
+</script>
+<script id="exam-question-error-tmpl" type="text/x-jsrender">
+    <div class="container">
+        <div class="exam-question-error">
+            <h4 class="errorTitle">很抱歉！题目解析错误了，请先尝试<a class="btn btn-link btn-refresh fb">刷新页面</a>，如果仍然不能解决，请发送以下错误信息到service@exam.101test.com并联系管理员！
+            </h4>
+            <dl class="errorContent dl-horizontal">
+                <dt>考生姓名</dt>
+                <dd>{{:candidateName}}</dd>
+                <dt>身份ID</dt>
+                <dd>{{:candidateUid}}</dd>
+                <dt>testId</dt>
+                <dd>{{:testId}}</dd>
+                <dt>questionId</dt>
+                <dd>{{:questionId}}</dd>
+                <dt>errorCause</dt>
+                <dd>
+                    <pre>{{>cause}}</pre>
+                </dd>
+            </dl>
+
+            <div class="common-pane pt30 pull-right" data-link="visible{:noQuestion!==true}">
+                {{if model && model=='try' && !isLast}}
+                <button type="button" class="btn btn-link  exam-outTry-btn" style="margin-right: -15px;">跳过练习</button>
+                {{/if}}
+                <button type="button" class="btn btn-link  exam-prev-btn" data-link="disabled{:(model=='formal' && backward==false) || isFirst==true || isCallServer==true}
+            class{merge:(model=='formal' && backward==false) || isFirst==true || isCallServer==true toggle='disabled'}
+        ">返回上一题
+                </button>
+                {{if isLast}}
+                {{if model && model=='try'}}
+                <button type="button" class="btn btn-primary exam-outTry-btn last">开始考试</button>
+                {{else}}
+                {{if isPageLast}}
+                <button type="button" class="btn btn-primary exam-submit-paper-btn last"
+                        data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">交卷
+                </button>
+                {{else}}
+                <button type="button" class="btn btn-primary  exam-submit-part-btn last"
+                        data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">
+                    提交该部分
+                </button>
+                {{/if}}
+                {{/if}}
+                {{else}}
+                <button type="button" class="btn btn-primary exam-next-btn"
+                        data-link="disabled{:isCallServer==true} class{merge:isCallServer==true toggle='disabled'}">
+                    继续下一题
+                </button>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script id="flex-wrap-tmpl" type="text/x-jsrender">
+			{^{if ~flex_isPhoto(model) tmpl="#flex-photo-tmpl"}}
+			{{else ~flex_isAudio(model) tmpl="#flex-audio-tmpl"}}
+			{{else ~flex_isVideo(model) tmpl="#flex-video-tmpl"}}
+			{{else ~flex_isMonitor(model) tmpl="#flex-setting-tmpl"}}
+			{{/if}}
+</script>
+<script id="flex-setting-tmpl" type="text/x-jsrender">
+<div id="flex-wrap-content" class="flexModal">
+<div class="flexSetting">
+	<div id="flex-wrap-mark"></div>
+	<div class="flex-content">
+		<div class="setting flex-window">
+            <div data-link="visible{:~flex_onInit(state)}">
+            <i class="fa fa-spinner fa-spin"
+                style="font-size: 20px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)"></i>
+            正在加载Flash...
+            </div>
+		</div>
+		<div class="flex-content-footer">
+			<p class="flex-set-msg text-left">
+				本次测试须使用摄像头和麦克风，请点击【允许】并勾选记住。<br/>
+				若不小心点击了【关闭】，请点击<a class="setFlex">【设置】</a>重新设置允许。
+			</p>
+    		<div class="flex-wrap-content-btn"><a class="flex-setting-help pr5 pull-right"><i class="fa fa-question-circle"></i> 帮助</a></div>
+		</div>
+	</div>
+</div>
+</div>
+</script>
+<script id="flex-photo-tmpl" type="text/x-jsrender">
+<div id="flex-wrap-content" class="flexModal">
+<div id="flex-wrap-mark"></div>
+<div class="flex-content photoModel">
+	<div class="flex-photo flex-window">
+            <div data-link="visible{:~flex_onInit(state)}">
+			<i class="fa fa-spinner fa-spin"
+				style="font-size: 20px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)"></i>
+			正在加载Flash...
+            </div>
+	</div>
+	<div class="flex-content-footer">
+		<p class="flex-set-msg text-left" data-link="visible{:~flex_onInit(state)}">
+			如果没有影像不能正常拍照,请点击【设置】设置flash。<br /> 拍照须使用摄像头和麦克风，请设置flash【允许】并勾选记住。<br />
+		</p>
+			<div class="flex-wrap-content-btn"
+				data-link="class{merge:state>0 toggle='bg'}">
+				{^{if ~flex_isPlay(state)}}
+				<button type="button" class="takePhoto btn btn-danger">拍照</button>
+				{{else ~flex_isReview(state)}}
+				<button type="button" class="retakePhoto btn btn-info" data-link="disabled{:isCallServer==true}">重拍</button>
+				<button type="button" class="confirmPhoto btn btn-info" data-link="disabled{:isCallServer==true||isNotValid}">{^{if isCallServer==true}}上传中...{{else}}确定{{/if}}</button>
+				{{/if}}
+				<a class="pull-left closePhotoMark">关闭窗口</a>
+				<a class="pull-right setFlex"><i class="fa fa-cog"></i> 设置</a>
+			</div>
+	</div>
+</div>
+</div>
+</script> 
+<script id="flex-audio-tmpl" type="text/x-jsrender">
+<div id="flex-wrap-content">
+    <div class="alert alert-warning pulse" data-link="visible{:mediaLimit}">
+                 <i class="fa fa-lightbulb-o"></i>录制时间不能超过{^{:~prettyTime(mediaLimit)}}。
+    </div>
+    <div class="audio flex-window">
+        <div data-link="visible{:~flex_onInit(state)}" style="color:#fff;padding-top:30px">
+            <i class="fa fa-spinner fa-spin"
+                style="font-size: 20px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)"></i>
+            正在加载Flash...
+        </div>
+        <div data-link="visible{:!~flex_onInit(state)}">
+	       {^{if ~flex_isPlay(state) || urlAnswer}}
+            <div class="media-record-time">已录制 <span>{^{if mediaRecordTime}}{^{:mediaRecordTime}}{{else}}00:00:00{{/if}}</span></div>
+            <div class="audio-procedure" ><img data-link="src{:(~flex_isPlay(state) || ~flex_isReplay(state))? 'assets/img/audio1.gif':'assets/img/audio2.gif'}"></div>
+	        <div class="audio-btn"  data-link="visible{:~flex_isPlay(state) || ~flex_isUploading(state)}"><button type="button" class="audio-end btn btn-danger">录制完毕</button></div>
+	        <div class="audio-btn"  data-link="visible{:~flex_isReview(state) && urlAnswer}"><button type="button" class="audio-rerecord btn btn-danger">重录</button><button type="button" class="audio-review btn btn-danger">回放</button></div>
+	       {{else}}
+            <div class="flex-window-review" data-link="visible{:!urlAnswer && ~flex_onReady(state)}" >
+		      点击开始录制<br>
+		      <a class="audio-start"><img src="assets/img/audiobegin.png"></a>
+            </div>
+	       {{/if}}
+        </div>
+   </div>
+  	<div class="audio_set">
+      	<div class="pull-left" >
+			<a class="audio-help">不能正常录音怎么办?</a>
+		</div>
+		<div class="pull-right none"><a class="setFlex"><i class="fa fa-cog"></i> 设置</a></div>
+   </div> 
+</div> 
+</script>
+<script id="flex-video-tmpl" type="text/x-jsrender">
+<div id="flex-wrap-content">
+    <div class="alert alert-warning pulse" data-link="visible{:mediaLimit}">
+                 <i class="fa fa-lightbulb-o"></i>录制时间不能超过{^{:~prettyTime(mediaLimit)}}。
+    </div>
+    <div class="video flex-window">
+            <div data-link="visible{:~flex_onInit(state)}" style="color:#fff;padding-top:30%;">
+            <i class="fa fa-spinner fa-spin"
+                style="font-size: 20px; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)"></i>
+            正在加载Flash...
+            </div>
+        state:{^{:state}}
+		<div class="flex-window-review" data-link="visible{:!urlAnswer && ~flex_onReady(state)}">
+           <div data-link="visible{:removeFlex===false}">
+                <span>点击开始录制</span>
+            </div>
+            <a class="video-start" data-link="visible{:removeFlex===false}"><img src="assets/img/videobegin.png"></a>
+        </div>
+  	</div>
+    <div class="video-media-record-time" data-link="visible{:~flex_isPlay(state)}">已录制 <span>{^{if mediaRecordTime}}{^{:mediaRecordTime}}{{else}}00:00:00{{/if}}</span></div>
+	<div class="video-btn" data-link="visible{:~flex_isPlay(state) || ~flex_isUploading(state)}">
+		<button type="button" class="video-end btn btn-danger">录制完毕</button>
+	</div>
+    <div class="video-btn"  data-link="visible{:~flex_isReview(state) && urlAnswer}"><button type="button" class="video-rerecord btn btn-danger">重录</button><button type="button" class="video-review btn btn-danger">回放</button></div>
+	<div class="video_set">
+      	<div class="pull-left" >
+			<a class="video-help">不能正常录像怎么办?</a>
+		</div>
+       	<div class="pull-right" data-link="visible{:~flex_isPlay(state)}"><a class="setFlex"><i class="fa fa-cog"></i> 设置</a></div>
+   </div> 
+</div> 
+</script>
+<script id="flex-media-modal-tmpl" type="text/x-jsrender">
+<div class="modal" style="background:#000;opacity:0.35;filter:alpha(opacity=35);"></div>
+    <div  class="modal flex-media">
+        <div class="modal-dialog {{if !video}}audio{{else}}video{{/if}}">
+        <div class="modal-content">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+               <h4 class="modal-title" id="modal-title">{{:label}}</h4></div>
+             <div class="modal-body {{if !video}}audio{{else}}video{{/if}}">
+                {{if !video}} <div class="audio-procedure" ><img src="assets/img/audio1.gif"></div>{{/if}}
+                <div id="{{:id}}"></div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+   </div>
+</div>
+</script>
+<script id="flex-media-tmpl" type="text/x-jsrender">
+        <div class="{{if !video}}audio{{else}}video{{/if}}">
+        <div class="media-content">
+            <div class="media-content-head"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+               </div>
+             <div class="media-content-body">
+                {{if !video}} <div class="audio-procedure" ><img src="assets/img/audio1.gif"></div>{{/if}}
+                <div id="{{:id}}"></div>
+            </div>
+        </div>
+</script>
+
+<script id="exam-listeningLeave-tmpl" type="text/x-jsrender">
+<div id="exam-listeningLeave" data-link="visible{:state==1}">
+	<div class="exam-listeningLeave-model"></div>
+	<div class="exam-listeningLeave-content">
+		<div class="remind">您已离开页面<span>{^{:switchTime}}</span>次
+   
+	 	</div>
+	 	<div class="remind_text">离开页面超过<span>{^{:switchLimit}}次 </span>将不能继续考试，且离开次数将会呈现在您的测试报告中。<br>为了避免影响您的成绩，请谨慎作答！
+ 			<br>
+  			<button type="button" class="continueAnswer btn btn-primary mt20">知道了，继续答题</button>     
+ 		</div>
+	</div>
+</div>
+</script>
+
+<script id="exam-question-check-tmpl"  type="text/x-jsrender">
+{{!--检查对错和答案--}}
+    {^{if isProgram===true}}
+        {{include tmpl="#exam-question-code-check-tmpl"/}}
+    {{else}}
+        {{include tmpl="#exam-question-normal-check-tmpl"/}}
+    {{/if}}
+</script>
+<script id="exam-question-normal-check-tmpl"  type="text/x-jsrender">
+<div class="section-exam-check" >
+    <div class="container">
+        <div class="pull-right hideAnswer"><a><i class="fa fa-angle-down"></i> {^{if ~isCheckRightOrWong(reportThreshold)&&!~isCheckAnswer(reportThreshold)}}隐藏结果{{else}}隐藏答案{{/if}}</a></div>
+        <div class="row">
+            <div class="col-xs-1"></div>
+                <ul class="col-xs-10 nav nav-tabs" role="tablist">
+                     <li class="active"><span  role="tab" data-toggle="tab">{^{if ~isCheckRightOrWong(reportThreshold)&&!~isCheckAnswer(reportThreshold)}}答题结果{{else}}参考答案{{/if}}</span></li>
+                 </ul>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-1"></div>
+                <div role="tabpanel" class="tab-pane active col-xs-10 ">
+                     <ul class="checkQuestion">
+                        {^{if hasAnswer===true}}
+                        <li class="rightOrWrong" data-link="visible{:~isCheckRightOrWong(reportThreshold)}">
+                            <span class="right" data-link="visible{:right==true}"><i class="fa fa-check fa-fw"></i>您答对了</span>
+                            <span class="wrong" data-link="visible{:right==false}"><i class="fa fa-times fa-fw"></i>您答错了</span>
+                            <span class="wrong" data-link="visible{:right==null}">
+                                {^{if isBlank}}
+                                {^{if answerUncomparable}}
+                                答案仅供参考，不能判断对错
+                                {{else}}
+                                未设置答案，不能判断对错
+                                {{/if}}
+                                {{/if}}
+                            </span>
+                        </li>
+                        {{else}}
+                        <li class="noAnswer"><span style="color: #009ee7;"><i class="fa fa-exclamation-circle fa-fw"></i>您还没有答题</span></li>
+                        {{/if}}
+                        {^{if ~isCheckAnswer(reportThreshold)}}
+                        <li class="question-answer" data-link="class{merge: (!textAnswer && !answerExplain) toggle='no-border-bottom'} class{merge: (hasAnswer && right==null) toggle='no-border-top'}">
+                            答案：{^{:answer || '无参考答案'}}
+                         </li>
+                        <li class="question-answer-explain" data-link="visible{:answerExplain || textAnswer}">
+                            解析：{^{:answerExplain || textAnswer }}
+                        </li>
+                        {{/if}}
+                    </ul>
+                    <div></div>
+                    <div><button type="button" class="mt10 btn btn-success  btn-answer-error" data-link="visible{:!isShowAnswerErrContent && answer&&!answerUncomparable}">我要纠错</button></div>
+                <div class="answer-error-explain mt10"  data-link="visible{:isShowAnswerErrContent}">
+                    <div>请详细描述您发现的错误</div>
+                    <div class="error-suggestion mt10"><textarea class="w" rows="5" data-link="answerErrContent"></textarea></div>
+                    <div><button type="button" class="mt10 btn btn-success  btn-answer-explain-save" >提交</button></div>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+    </div>
+    
+  </div>                   
+</div>
+</script>
+<script id="exam-question-code-check-tmpl"  type="text/x-jsrender">
+<div class="section-exam-check codeArea">
+        <div class="pull-right hideAnswer"><a><i class="fa fa-angle-down"></i> 隐藏答案</a></div>
+         <ul class="nav nav-tabs" role="tablist">
+                     <li class="active"><a  role="tab" data-toggle="tab">参考答案</a></li>
+         </ul>
+        <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active">
+                    <pre style="background-color: transparent;border: none;color: #fff;">{^{>answer || '无参考答案'}}</pre>  
+                   <div><button type="button" class="mt10 btn btn-success  btn-answer-error" data-link="visible{:!isShowAnswerErrContent && answer}">我要纠错</button></div>
+                    <div class="answer-error-explain"  data-link="visible{:isShowAnswerErrContent}">
+                    <div>请详细描述您发现的错误</div>
+                    <div class="error-suggestion mt10"><textarea class="w" rows="5" data-link="answerExplain"></textarea></div>
+                    <div><button type="button" class="mt10 btn btn-success  btn-answer-explain-save" >提交</button></div>
+                     </div>
+                </div>
+        </div> 
+</div> 
+</script>
+
+<script>
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?82ff4e1669b774f766f0b17ec5449080";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
+</html>

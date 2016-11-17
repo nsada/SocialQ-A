@@ -28,8 +28,8 @@ public class QuestionBaseAction implements Action {
 			int userID = (int) sess.get("userid");	
 			qBase.setUserID(userID);
 			QuestionBaseService qbs = new QuestionBaseService();
-			System.out.println("addQuestionBaseAction:");
-			System.out.println(qBase.getTitle() + ", " + qBase.getDescription());
+			//System.out.println("addQuestionBaseAction:");
+			//System.out.println(qBase.getTitle() + ", " + qBase.getDescription());
 			int i = qbs.addQuestionBase(qBase);
 			if (i >= 0) {
 				return SUCCESS;

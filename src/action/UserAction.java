@@ -23,8 +23,7 @@ public class UserAction implements Action {
 	
 	@Override
 	public String execute() throws Exception {	//login in
-		System.out.println("UserAction login");
-	//	return SUCCESS;
+		//System.out.println("UserAction login");
 		UserService us = new UserService();
 		User new_user= new User();		
 		try{
@@ -65,7 +64,7 @@ public class UserAction implements Action {
 	}
 	
 	public String showPersonalInformation() {
-		System.out.println("user: showPersonalInformation");
+		//System.out.println("user: showPersonalInformation");
 		
 		return SUCCESS;
 	}

@@ -92,8 +92,8 @@ public class AddQuestoExam implements Action {
 	public String submit ()
 	{
 		try{
-			System.out.println("��ǰ��joiner��"+joiner);
-			System.out.println("��ǰ��rights��"+rights);
+			//System.out.println("��ǰ��joiner��"+joiner);
+			//System.out.println("��ǰ��rights��"+rights);
 			cont=new Connect();
 			String	SQL ="update social.exam set description = '"+description+"', title ='"+title+"', joiner='"+joiner+"',rights ='"+rights+"'  where ID= '"+ExamID+"' ";
 	        cont.executeUpdate(SQL);
@@ -109,9 +109,9 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("��ǰ��questionID��"+questionID);
-			System.out.println("��ǰ��ExamID��"+ExamID);
-			System.out.println("��ǰ��type��"+type);
+			//System.out.println("��ǰ��questionID��"+questionID);
+			//System.out.println("��ǰ��ExamID��"+ExamID);
+			//System.out.println("��ǰ��type��"+type);
 			es.deleteexamquestion(questionID, type, ExamID);
 			seq =new ShowExamQuestion();
 		    seq.setExamID(ExamID);
@@ -129,7 +129,7 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("��ǰ��ExamID��"+ExamID);
+			//System.out.println("��ǰ��ExamID��"+ExamID);
 			es.deleteexam(ExamID);
 	        }
 		catch (Exception e)

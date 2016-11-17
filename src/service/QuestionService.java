@@ -13,10 +13,28 @@ public class QuestionService {
 	private Selection selection;
 
 	
-	public List<Selection> getSelections(int qBaseID) {
+	public List<Selection> getQbaseSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
 		System.out.println("questionbase_question sql: " + sql);
+		ResultSet result = cont.executeQuery(sql);	
+		selections = new ArrayList<>();
+		try{
+			while (result.next()){
+				selection = new Selection();
+				selection = getSelection(result.getInt("questionID"));
+				selections.add(selection);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			selections = null;
+		}
+		return selections;
+	}
+	public List<Selection> getExamSelections(int examID) {
+		cont = new Connect();
+		String sql = "select questionID from exam_question where examID=" + examID + " and type=1";
+		System.out.println("exam_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();
 		try{

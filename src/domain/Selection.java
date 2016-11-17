@@ -20,10 +20,6 @@ public class Selection {
 	private int scoreE;
 	private int scoreF;
 	
-	
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -132,7 +128,5 @@ public class Selection {
 	public void setScoreF(int scoreF) {
 		this.scoreF = scoreF;
 	}
-	
-	
 	
 }

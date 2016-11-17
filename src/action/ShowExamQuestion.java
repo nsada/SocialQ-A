@@ -15,7 +15,6 @@ public class ShowExamQuestion implements Action {
 	private int type;
 	private int ExamID;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
-	private List<Selection> allselections; //=new ArrayList<Selection> ();
 	private List<Multy> multys;
 	private List<FillBlank> fillBlanks;
 	private List<AandQ> AandQs;	
@@ -73,14 +72,13 @@ public class ShowExamQuestion implements Action {
 	@Override
 	public String execute() throws Exception {
 		selections =new ArrayList<Selection> ();
-	    allselections =new ArrayList<Selection> ();
-		System.out.println("showExamQuestion");
+		//System.out.println("showExamQuestion");
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
 		result =cont.executeQuery(sql);
 			while(result.next())
 			{
-				System.out.println("��ǰ�Ѿ��������Ŀ");
+				//System.out.println("��ǰ�Ѿ��������Ŀ");
 			 if( result.getInt("type") ==1 )
 				{
 				 	QuestionService qs= new QuestionService();
