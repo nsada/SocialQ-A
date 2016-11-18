@@ -4,10 +4,10 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>  
 
 <rapid:override name="head">  
-    <title>注册</title>
+    <title>注册</title>    
 </rapid:override>  
 <rapid:override name="content">
-<div class="col-md-4 col-sm-8 vertical-center"> 
+<div class="col-md-4 col-sm-8 vertical-center" onload="load_greeting()"> 
     <h2>请注册:</h2>
     <br/>
     <s:set var="age" value="2"/>

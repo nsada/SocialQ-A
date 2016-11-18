@@ -5,8 +5,7 @@
 <head> 
 	<meta charset="utf-8"> 
 	<title>实验2</title> 
-	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.css"> 
-	</script> 
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.css"> </script> 
 </head> 
 <!--return validate()和validate()在于是否清空表单--> 
 <body onload="load_greeting()"> 

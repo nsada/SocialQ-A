@@ -44,7 +44,9 @@ public class ExamAction implements Action {
 	}
 	public String analysisExam(){
 		System.out.println("ExamAction analysisExam");
-		score = 0;		
+		score = 0;	
+		QuestionService qs = new QuestionService();
+		selections = qs.getExamSelections(examID);
 		int num1 = selections.size();
 		Selection sel;
 		for (int i = 0; i < num1; i++) {

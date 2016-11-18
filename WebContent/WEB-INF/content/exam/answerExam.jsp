@@ -12,15 +12,15 @@
 
 <div class="row clearfix">     
     <div>
-        examID: <% out.println(Integer.parseInt(request.getParameter("examID"))); %> <br/>
+        examID: <% int examID=Integer.parseInt(request.getParameter("examID")); out.println(examID); %> <br/>
         title: ${exam.title} <br/>
         description: ${exam.description} <br/>
     </div>
         <div class="col-md-12 column">
         <s:iterator value="selections" var="sel">
 	        <form action="answerExamPro" class="form-horizontal" role="form">
-	            <input type="hidden" name="examID" value="examID" />
-	            
+	            <input type="hidden" name="examID" value="<%=examID%>" />
+	            <input type="hidden" name="questionID" value=sel.id />
                     <div>
                         ${sel.context} <br/>
                         ${sel.num} <br/>
