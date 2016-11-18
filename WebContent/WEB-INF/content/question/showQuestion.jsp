@@ -58,6 +58,26 @@
                           </td>
                         </tr>  
                     </s:if>
+                    <s:if test='selection.num>3'>
+                        <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项E</label>
+                          </td>
+                          <td>                             
+                             <div class="col-sm-10"><s:property value="selection.E"/></div>                                                      
+                          </td>
+                        </tr>  
+                    </s:if>
+                    <s:if test='selection.num>3'>
+                        <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项F</label>
+                          </td>
+                          <td>                             
+                             <div class="col-sm-10"><s:property value="selection.F"/></div>                                                      
+                          </td>
+                        </tr>  
+                    </s:if>                    
 		        </tbody>
 	        </table>
         analysis: ${selection.analysis}

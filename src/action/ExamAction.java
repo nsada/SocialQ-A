@@ -19,8 +19,9 @@ public class ExamAction implements Action {
 	private List<Multy> multys;
 	private List<FillBlank> fillBlanks;
 	private List<AandQ> AandQs;	
-	private char[] answers;
 	private char[] choose;
+	private int score;
+	private char[] right;
 	
 	@Override
 	public String execute() throws Exception { //get questions of this exam
@@ -34,7 +35,7 @@ public class ExamAction implements Action {
 			selections = qs.getExamSelections(examID);
 			System.out.println("sels size: " + selections.size());
 			for (int i = 0; i < selections.size(); i++) 
-				System.out.println("sel: "+selections.get(i).getContext()+ " // "+selections.get(i).getA());
+				System.out.println("sel: "+selections.get(i).getContext()+ " // "+selections.get(i).getNum());
 		} catch (Exception e) {
 			selections = null;
 			return ERROR;
@@ -43,6 +44,16 @@ public class ExamAction implements Action {
 	}
 	public String analysisExam(){
 		System.out.println("ExamAction analysisExam");
+		score = 0;		
+		int num1 = selections.size();
+		Selection sel;
+		for (int i = 0; i < num1; i++) {
+			 sel = selections.get(i);
+			 if (sel.getAns().charAt(choose[i]) == '1'){
+				 right[i] = 1;
+				 score += sel.getScore();
+			 }
+		}
 		return SUCCESS;
 	}
 	
@@ -79,17 +90,29 @@ public class ExamAction implements Action {
 	public void setAandQs(List<AandQ> aandQs) {
 		AandQs = aandQs;
 	}
-	public char[] getAnswers() {
-		return answers;
-	}
-	public void setAnswers(char[] answers) {
-		this.answers = answers;
-	}
 	public char[] getChoose() {
 		return choose;
 	}
 	public void setChoose(char[] choose) {
 		this.choose = choose;
+	}
+	public Exam getExam() {
+		return exam;
+	}
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public char[] getRight() {
+		return right;
+	}
+	public void setRight(char[] right) {
+		this.right = right;
 	}
 	
 	

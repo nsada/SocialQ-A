@@ -9,11 +9,22 @@
     <title>答题</title>
 </head>
 <body>
-    <div class="row clearfix">     
+
+<div class="row clearfix">     
+    <div>
+        examID: <% out.println(Integer.parseInt(request.getParameter("examID"))); %> <br/>
+        title: ${exam.title} <br/>
+        description: ${exam.description} <br/>
+    </div>
         <div class="col-md-12 column">
+        <s:iterator value="selections" var="sel">
 	        <form action="answerExamPro" class="form-horizontal" role="form">
 	            <input type="hidden" name="examID" value="examID" />
-	            <s:iterator value="selections" var="sel">
+	            
+                    <div>
+                        ${sel.context} <br/>
+                        ${sel.num} <br/>
+                    </div>
 		            <div class="questionContainer">
 		                <s:if test="#sel.num>0">
 		                    <div class="choose panel">
@@ -23,12 +34,12 @@
 			                            <input type="radio" name="choose" class="radioOption" value="A">
 			                        </span>
 			                        <span class="choose-index">A</span>
-			                        <div class="choose-label">${sel.A}</div>
+			                        <div class="choose-label"><s:property value="sel.A"/></div>
 				                </div>
 				                <div class="col-xs-1"></div>
 			                </div>
 			            </s:if>
-		                <s:elseif test="#sel.num>1">
+		                <s:if test="#sel.num>1">
 		                    <div class="choose panel">
 			                    <div class="col-xs-1"></div>
 			                    <div class="col-xs-10">
@@ -36,18 +47,19 @@
 		                                <input type="radio" name="choose" class="radioOption" value="B">
 		                            </span>
 		                            <span class="choose-index">B</span>
-		                            <div class="choose-label">${sel.B}</div>
+		                            <div class="choose-label"><s:property value="sel.B"/></div>
 		                        </div>
 		                        <div class="col-xs-1"></div>
 		                    </div>		            
-		                </s:elseif>
+		                </s:if>
 		            </div>
-	            </s:iterator>
+	            
 	        
 		        <div class="text-align:right">
 			        <button class="btn btn-default btn-primary button-center" type="submit">确认提交</button> 
 		        </div>
 		    </form>
+		</s:iterator>
 	    </div>
     </div>
 </body>
