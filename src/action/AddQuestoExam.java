@@ -77,7 +77,8 @@ public class AddQuestoExam implements Action {
 	public String execute() throws Exception {  	
 		cont =new Connect();
 		try {
-         String SQL="insert into exam_question values ( '"+ExamID+"', '"+questionID+"','"+type+"' )";
+         String SQL="insert into exam_question(examID, questionID, type) values ("+ExamID+", "+questionID+","+type+")";
+         System.out.print("insert exam_question" + SQL);
           cont.executeUpdate(SQL);
            seq =new ShowExamQuestion();
 	       seq.setExamID(ExamID);
