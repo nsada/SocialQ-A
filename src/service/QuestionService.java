@@ -188,6 +188,25 @@ public class QuestionService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public String getQuestionContext(int id, int type) {
+		String sql = "";
+		switch (type) {
+		case 1: sql = "select context from selection where id='" + id;
+		case 2: sql = "select context from textblank where id='" + id;
+		case 3: sql = "select context from answerquestion where id='" + id;
+		}		
+		ResultSet result = cont.executeQuery(sql);
+		String context = "";
+		try{
+			if (result.next()){				
+				context = result.getString("context");
+			}
+			result.close();
+		}catch (Exception e) {
+			context = "";
+		}
+		return context;	
+	}
 
 
 

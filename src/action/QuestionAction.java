@@ -13,6 +13,8 @@ public class QuestionAction implements Action {
 	private int qBaseID;
 	private int type;	
 	private int questionID;
+	private int userID;
+	
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
