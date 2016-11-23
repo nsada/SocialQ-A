@@ -13,6 +13,9 @@
         <a href='<s:url action="updateQuestion"><s:param name="questionID" value="questionID"/></s:url>'><input type="button" value="编辑"/></a>
     </div>
 
+
+<s:if test="type==1">
+<!-- show selection -->
     <div class="col-md-12 column">
         context: ${selection.context} <br/>
 	        <table class="table table-bordered table-hover ">
@@ -81,7 +84,78 @@
 	        </table>
         analysis: ${selection.analysis}
     </div>
-
+</s:if>
+<s:if test="type==2">
+<!-- show textBlank -->
+    <div class="col-md-12 column">
+        context: ${textBlank.context} <br/>
+            <table class="table table-bordered table-hover ">
+                <tbody>
+                   <s:if test='textBlank.A.length()>0'>
+                      <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项A</label>                                                                                     
+                          </td>   
+                          <td>
+                             <div class="col-sm-10"><s:property value="textBlank.A"/></div>
+                          </td>            
+                      </tr>
+                    </s:if>
+                    <s:if test='textBlank.B.length()>0'>
+                      <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项B</label>
+                          </td>
+                          <td>
+                             <div class="col-sm-10"><s:property value="textBlank.B"/></div>                                                      
+                          </td>
+                      </tr>  
+                    </s:if>
+                    <s:if test='textBlank.C.length()>0'>
+                      <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项C</label>
+                          </td>
+                          <td>                           
+                             <div class="col-sm-10"><s:property value="textBlank.C"/></div>                                                      
+                          </td>
+                      </tr>  
+                    </s:if>
+                    <s:if test='textBlank.D.length()>0'>
+                        <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项D</label>
+                          </td>
+                          <td>                             
+                             <div class="col-sm-10"><s:property value="textBlank.D"/></div>                                                      
+                          </td>
+                        </tr>  
+                    </s:if>
+                    <s:if test='textBlank.E.length()>0'>
+                        <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项E</label>
+                          </td>
+                          <td>                             
+                             <div class="col-sm-10"><s:property value="textBlank.E"/></div>                                                      
+                          </td>
+                        </tr>  
+                    </s:if>
+                    <s:if test='textBlank.F.length()>0'>
+                        <tr>
+                          <td>
+                             <label for="context" class="col-sm-2 control-label">选项F</label>
+                          </td>
+                          <td>                             
+                             <div class="col-sm-10"><s:property value="textBlank.F"/></div>                                                      
+                          </td>
+                        </tr>  
+                    </s:if>                    
+                </tbody>
+            </table>
+        analysis: ${textBlank.analysis}
+    </div>
+</s:if>
 </rapid:override>
 
 

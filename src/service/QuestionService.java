@@ -103,6 +103,31 @@ public class QuestionService {
 		}
 		return selection;
 	}
+	public TextBlank getTextBlank(int id) {
+		String sql = "select * from TextBlank where id=" + id;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		
+		try{
+			if (result.next()){
+				textBlank = new TextBlank();
+				textBlank.setId(id);
+				textBlank.setContext(result.getString("context"));
+				textBlank.setNum(result.getInt("num"));
+				textBlank.setA(result.getString("A"));
+				textBlank.setB(result.getString("B"));
+				textBlank.setC(result.getString("C"));
+				textBlank.setD(result.getString("D"));
+				textBlank.setE(result.getString("E"));
+				textBlank.setF(result.getString("F"));		
+				textBlank.setAnalysis(result.getString("analysis"));
+				textBlank.setScore(result.getInt("score"));
+			}
+		}catch (Exception e) {
+			System.out.println("按id查找Selection失败");
+		}
+		return textBlank;
+	}	
 	public int addSelection(Selection sel, int qBaseID) {
 		cont = new Connect();
 		String sql = "insert into selection(id, context, A, B, C, D, E, F, ans, analysis, score, scoreA, scoreB, scoreC, scoreD, scoreE, scoreF) values("
@@ -122,10 +147,9 @@ public class QuestionService {
 	}
 	public int addTextBlank(TextBlank blank, int qBaseID) {
 		cont = new Connect();
-		String sql = "insert into textblank(id, context, num, A, B, C, D, E, F, ansA, ansB, ansC, ansD, ansE, ansF, analysis, score) values("
+		String sql = "insert into textblank(id, context, num, A, B, C, D, E, F, analysis, score) values("
 		+ blank.getId() + ", '" + blank.getContext() + "', " + blank.getNum() + ", '" + 
 		blank.getA() + "', '" + blank.getB() + "', '" + blank.getC() + "', '" + blank.getD() + "', '" + blank.getE() + "', '" + blank.getF() + "', '" + 
-		blank.getAnsA() + "', '" + blank.getAnsB() + "', '" + blank.getAnsC() + "', '" + blank.getAnsD() + "', '" + blank.getAnsE() + "', '" + blank.getAnsF() + "', '" + 
 		blank.getAnalysis() + "', " + blank.getScore() + ")";
 		System.out.println("addTextBlanke sql: "+ sql);
 		int id = cont.executeUpdateID(sql);
@@ -151,10 +175,7 @@ public class QuestionService {
 		int i = cont.executeUpdate(sql);		
 		return i;
 	}
-	public TextBlank getTextBlank(int questionID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	public AnswerQuestion getAandQ(int questionID) {
 		// TODO Auto-generated method stub
 		return null;
