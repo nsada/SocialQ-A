@@ -90,11 +90,17 @@
     <div class="col-md-12 column">
         context: ${textBlank.context} <br/>
             <table class="table table-bordered table-hover ">
+                <thead>
+                    <tr>
+                        <th>空格编号</th>
+                        <th>答案</th>
+                    </tr>
+                </thead>
                 <tbody>
                    <s:if test='textBlank.A.length()>0'>
                       <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项A</label>                                                                                     
+                             <label for="context" class="col-sm-2 control-label">1</label>                                                                                     
                           </td>   
                           <td>
                              <div class="col-sm-10"><s:property value="textBlank.A"/></div>
@@ -104,7 +110,7 @@
                     <s:if test='textBlank.B.length()>0'>
                       <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项B</label>
+                             <label for="context" class="col-sm-2 control-label">2</label>
                           </td>
                           <td>
                              <div class="col-sm-10"><s:property value="textBlank.B"/></div>                                                      
@@ -114,7 +120,7 @@
                     <s:if test='textBlank.C.length()>0'>
                       <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项C</label>
+                             <label for="context" class="col-sm-2 control-label">3</label>
                           </td>
                           <td>                           
                              <div class="col-sm-10"><s:property value="textBlank.C"/></div>                                                      
@@ -124,7 +130,7 @@
                     <s:if test='textBlank.D.length()>0'>
                         <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项D</label>
+                             <label for="context" class="col-sm-2 control-label">4</label>
                           </td>
                           <td>                             
                              <div class="col-sm-10"><s:property value="textBlank.D"/></div>                                                      
@@ -134,7 +140,7 @@
                     <s:if test='textBlank.E.length()>0'>
                         <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项E</label>
+                             <label for="context" class="col-sm-2 control-label">5</label>
                           </td>
                           <td>                             
                              <div class="col-sm-10"><s:property value="textBlank.E"/></div>                                                      
@@ -144,7 +150,7 @@
                     <s:if test='textBlank.F.length()>0'>
                         <tr>
                           <td>
-                             <label for="context" class="col-sm-2 control-label">选项F</label>
+                             <label for="context" class="col-sm-2 control-label">6</label>
                           </td>
                           <td>                             
                              <div class="col-sm-10"><s:property value="textBlank.F"/></div>                                                      

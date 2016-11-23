@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `answerquestion`
+--
+
+DROP TABLE IF EXISTS `answerquestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `answerquestion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` longtext,
+  `answer` longtext,
+  `score` int(10) DEFAULT NULL,
+  `analysis` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `answerquestion`
+--
+
+LOCK TABLES `answerquestion` WRITE;
+/*!40000 ALTER TABLE `answerquestion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `answerquestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `exam`
 --
 
@@ -31,7 +57,7 @@ CREATE TABLE `exam` (
   `rights` int(11) DEFAULT NULL,
   `people` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +143,7 @@ CREATE TABLE `questionbase_question` (
 
 LOCK TABLES `questionbase_question` WRITE;
 /*!40000 ALTER TABLE `questionbase_question` DISABLE KEYS */;
-INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1),(0000000018,4,1),(0000000002,5,1),(0000000005,6,1),(0000000018,7,1);
+INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1),(0000000018,4,1),(0000000002,5,1),(0000000005,6,1),(0000000018,7,1),(0000000003,8,1),(0000000003,1,2),(0000000003,2,2),(0000000003,3,2),(0000000003,9,1),(0000000003,4,2),(0000000003,5,2),(0000000003,6,2),(0000000003,7,2),(0000000003,8,2),(0000000003,9,2),(0000000003,10,2),(0000000003,11,2);
 /*!40000 ALTER TABLE `questionbase_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,24 +157,23 @@ DROP TABLE IF EXISTS `selection`;
 CREATE TABLE `selection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `context` text NOT NULL,
-  `num` int(11) NOT NULL,
   `A` varchar(60) DEFAULT NULL,
   `B` varchar(60) DEFAULT NULL,
   `C` varchar(60) DEFAULT NULL,
   `D` varchar(60) DEFAULT NULL,
   `E` varchar(60) DEFAULT NULL,
   `F` varchar(60) DEFAULT NULL,
-  `ans` char(6) DEFAULT NULL,
+  `ans` int(10) DEFAULT NULL,
   `analysis` text,
   `score` int(11) DEFAULT '1',
-  `scoreA` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreB` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreC` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreD` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreE` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreF` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreA` int(10) DEFAULT NULL,
+  `scoreB` int(10) DEFAULT NULL,
+  `scoreC` int(10) DEFAULT NULL,
+  `scoreD` int(10) DEFAULT NULL,
+  `scoreE` int(10) DEFAULT NULL,
+  `scoreF` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,8 +182,41 @@ CREATE TABLE `selection` (
 
 LOCK TABLES `selection` WRITE;
 /*!40000 ALTER TABLE `selection` DISABLE KEYS */;
-INSERT INTO `selection` VALUES (1,'题库2的第一个题',4,'A','B','C','D','E','F','111100','null',10,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(2,'题库2的第二个题',4,'A','B','C','D','E','F','111100','null',6,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(4,'tmy快疯了没有',1,'没有','有','','','','','010000','null',100,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(5,'题库2的第三个题',1,'1','2','3','4','5','6','001000','null',0,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(6,'题库4的第一个题',1,'11','22','33','44','55','66','100000','null',0,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(7,'test',1,'aaa','bbb','','','','','100000','null',10,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000);
+INSERT INTO `selection` VALUES (1,'题库2的第一个题','A','B','C','D','E','F',111100,'null',10,1,1,1,1,1,1),(2,'题库2的第二个题','A','B','C','D','E','F',111100,'null',6,1,1,1,1,1,1),(4,'tmy快疯了没有','没有','有','','','','',10000,'null',100,0,0,0,0,0,0),(5,'题库2的第三个题','1','2','3','4','5','6',1000,'null',0,0,0,0,0,0,0),(6,'题库4的第一个题','11','22','33','44','55','66',100000,'null',0,0,0,0,0,0,0),(7,'test','aaa','bbb','','','','',100000,'null',10,0,0,0,0,0,0),(8,'题库3的第一个单选题','11','22','33','44','55','',1,'阿斯蒂芬',0,0,0,0,0,0,0),(9,'题库3的第二个单选题','11','22','33','','','',2,'阿斯顿发生',2,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `selection` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `textblank`
+--
+
+DROP TABLE IF EXISTS `textblank`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `textblank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` mediumtext NOT NULL,
+  `num` int(1) unsigned zerofill NOT NULL,
+  `A` varchar(45) DEFAULT NULL,
+  `B` varchar(45) DEFAULT NULL,
+  `C` varchar(45) DEFAULT NULL,
+  `D` varchar(45) DEFAULT NULL,
+  `E` varchar(45) DEFAULT NULL,
+  `F` varchar(45) DEFAULT NULL,
+  `analysis` varchar(45) DEFAULT '无',
+  `score` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `textblank`
+--
+
+LOCK TABLES `textblank` WRITE;
+/*!40000 ALTER TABLE `textblank` DISABLE KEYS */;
+INSERT INTO `textblank` VALUES (2,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(3,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(4,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(5,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(6,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(7,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(8,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(9,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(10,'题库3的第二个填空题',2,'a','b','','','','','',2),(11,'题库3的第二个填空题',2,'a','b','','','','','',2);
+/*!40000 ALTER TABLE `textblank` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -221,4 +279,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-21 15:50:35
+-- Dump completed on 2016-11-23 17:58:15
