@@ -11,15 +11,7 @@ import service.QuestionBaseService;
 
 public class ShowUserQuestionBasesAction implements Action {
 	private List<QuestionBase> questionBases;	
-	private int ExamID;
-    public int getExamID()
-    {
-    	return ExamID;
-    }
-    public void setExamID(int ExamID)
-    {
-    	this.ExamID=ExamID;
-    }
+
 	public List<QuestionBase> getQuestionBases() {
 		return questionBases;
 	}

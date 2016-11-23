@@ -15,6 +15,7 @@ public class Log {
 	private int questionType;
 	private int action;
 	private Date time;
+	private String trans = "";
 	
 	
 	public String translate(){
@@ -28,10 +29,14 @@ public class Log {
 					ans = ans + "注册为新用户";
 				} else if (action == 3) {
 					ans = ans + "更新了个人信息"; 
+				} else if (action == 6) {
+					ans = ans + "上线";
+				} else if (action == 7) {
+					ans = ans + "下线";
 				}
 			} else if (qBaseID > 0) {
 				QuestionBaseService qBases = new QuestionBaseService();
-				String qBase = qBases.getQbaseName(qBaseID);
+				String qBase = qBases.getqBaseName(qBaseID);
 				if (examID == 0 & questionID == 0 && questionType == 0) {
 					switch (action) {
 						case 1:	ans = ans + "添加了题库:"; break;
@@ -48,6 +53,7 @@ public class Log {
 						case 3: ans = ans + "更新"; break;
 						default:;
 					}					
+					ans = ans + "了";
 					switch (questionType) {
 						case 1: ans = ans + "单选题"; break;
 						case 2: ans = ans + "填空题"; break;
@@ -61,6 +67,7 @@ public class Log {
 				}
 			}
 		}
+		setTrans(ans);
 		return ans;
 	}
 	
@@ -111,6 +118,14 @@ public class Log {
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public String getTrans() {
+		return trans;
+	}
+
+	public void setTrans(String trans) {
+		this.trans = trans;
 	}
 	
 	

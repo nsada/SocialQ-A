@@ -14,7 +14,7 @@ public class UserService {
 	private List<User> users;
 	
 	public String getUserName(int id){
-		String sql = "select name from user where id='" + id;
+		String sql = "select name from user where id=" + id;
 		ResultSet result = cont.executeQuery(sql);
 		String name = "";
 		try{

@@ -129,6 +129,12 @@
             <result name="error">/WEB-INF/content/error.jsp</result>
         </action>
 
+
+
+        <action name="showUserLogs" class="action.LogAction">
+            <result name="success">/WEB-INF/content/log/showUserLogs.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>
         </action>
