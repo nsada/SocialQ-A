@@ -26,7 +26,7 @@
                         ${sel.num} <br/>
                     </div>
 		            <div class="questionContainer">
-		                <s:if test="#sel.num>0">
+		                <s:if test="#sel.A.length()>0">
 		                    <div class="choose panel">
 				                <div class="col-xs-1"></div>
 				                <div class="col-xs-10">
@@ -39,7 +39,7 @@
 				                <div class="col-xs-1"></div>
 			                </div>
 			            </s:if>
-		                <s:if test="#sel.num>1">
+		                <s:if test="#sel.B.length()>0">
 		                    <div class="choose panel">
 			                    <div class="col-xs-1"></div>
 			                    <div class="col-xs-10">

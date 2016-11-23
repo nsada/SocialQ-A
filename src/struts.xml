@@ -23,6 +23,12 @@
         <action name="addQuestion">
             <result>/WEB-INF/content/question/addQuestion.jsp</result>
         </action>
+        <action name="addSelection">
+            <result>/WEB-INF/content/question/addSelection.jsp</result>
+        </action>        
+        <action name="addTextBlank">
+            <result>/WEB-INF/content/question/addTextBlank.jsp</result>
+        </action>            
         <action name="showQuestion" class="action.QuestionAction" method="showQuestion">
             <result name="success">/WEB-INF/content//question/showQuestion.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>
@@ -52,7 +58,7 @@
         </action>        
         <action name="addQuestionBase">
             <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
-        </action>
+        </action>        
         <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
             <result>/WEB-INF/content//questionBase/showQuestionBase.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>

@@ -4,12 +4,24 @@
 -- ------------------------------------------------------
 -- Server version	5.7.15-log
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `exam`
 --
 
 DROP TABLE IF EXISTS `exam`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `exam` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
@@ -17,14 +29,19 @@ CREATE TABLE `exam` (
   `userID` int(11) DEFAULT NULL,
   `joiner` int(11) DEFAULT NULL,
   `rights` int(11) DEFAULT NULL,
+  `people` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `exam`
 --
 
 LOCK TABLES `exam` WRITE;
+/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
+INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL);
+/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -32,17 +49,25 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `exam_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `exam_question` (
   `examID` int(11) NOT NULL,
   `questionID` int(11) NOT NULL,
-  `type` int(11) NOT NULL
+  `type` int(11) NOT NULL,
+  `people` int(11) DEFAULT '0',
+  `peopleR` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `exam_question`
 --
 
 LOCK TABLES `exam_question` WRITE;
+/*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
+INSERT INTO `exam_question` VALUES (1,1,1,NULL,NULL),(1,4,1,NULL,NULL),(2,6,1,NULL,NULL),(15,4,1,NULL,NULL),(17,4,1,NULL,NULL),(6,4,1,NULL,NULL),(21,4,1,NULL,NULL),(22,1,1,NULL,NULL),(22,4,1,NULL,NULL),(23,4,1,NULL,NULL),(26,4,1,NULL,NULL),(27,1,1,NULL,NULL),(28,4,1,NULL,NULL),(29,4,1,NULL,NULL),(30,1,1,NULL,NULL),(30,2,1,NULL,NULL),(31,1,1,NULL,NULL),(32,4,1,NULL,NULL),(33,1,1,NULL,NULL),(40,4,1,NULL,NULL),(40,1,1,NULL,NULL);
+/*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -50,6 +75,8 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `questionbase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questionbase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) DEFAULT NULL,
@@ -57,14 +84,17 @@ CREATE TABLE `questionbase` (
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `questionbase`
 --
 
 LOCK TABLES `questionbase` WRITE;
-INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(8,1,'题库1','第一个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null'),(18,1,'题库tmy','tmy的题库');
+/*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
+INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null'),(18,1,'题库tmy','tmy的题库');
+/*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -72,18 +102,23 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `questionbase_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questionbase_question` (
   `questionBaseID` int(10) unsigned zerofill DEFAULT NULL,
   `questionID` int(11) NOT NULL,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `questionbase_question`
 --
 
 LOCK TABLES `questionbase_question` WRITE;
-INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1),(0000000003,3,1),(0000000018,4,1);
+/*!40000 ALTER TABLE `questionbase_question` DISABLE KEYS */;
+INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1),(0000000018,4,1),(0000000002,5,1),(0000000005,6,1),(0000000018,7,1);
+/*!40000 ALTER TABLE `questionbase_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,6 +126,8 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `selection`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `selection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `context` text NOT NULL,
@@ -111,14 +148,17 @@ CREATE TABLE `selection` (
   `scoreE` int(10) unsigned zerofill DEFAULT NULL,
   `scoreF` int(10) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `selection`
 --
 
 LOCK TABLES `selection` WRITE;
-INSERT INTO `selection` VALUES (1,'题库2的第一个题',4,'A','B','C','D','E','F','111100','null',10,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(2,'题库2的第二个题',4,'A','B','C','D','E','F','111100','null',6,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(3,'题库3的第一个题',1,'','','','','','','100000','null',0,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(4,'tmy快疯了没有',1,'没有','有','','','','','010000','null',100,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000);
+/*!40000 ALTER TABLE `selection` DISABLE KEYS */;
+INSERT INTO `selection` VALUES (1,'题库2的第一个题',4,'A','B','C','D','E','F','111100','null',10,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(2,'题库2的第二个题',4,'A','B','C','D','E','F','111100','null',6,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(4,'tmy快疯了没有',1,'没有','有','','','','','010000','null',100,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(5,'题库2的第三个题',1,'1','2','3','4','5','6','001000','null',0,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(6,'题库4的第一个题',1,'11','22','33','44','55','66','100000','null',0,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000),(7,'test',1,'aaa','bbb','','','','','100000','null',10,0000000000,0000000000,0000000000,0000000000,0000000000,0000000000);
+/*!40000 ALTER TABLE `selection` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -126,6 +166,8 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -134,13 +176,17 @@ CREATE TABLE `user` (
   `questionBaseID` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Dumping data for table `user`
 --
 
 LOCK TABLES `user` WRITE;
-INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL);
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL),(2,'tmy2','1015',NULL,NULL),(3,'','',NULL,NULL),(4,'','',NULL,NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -148,17 +194,31 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `user_questionbase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_questionbase` (
   `userID` int(11) DEFAULT NULL,
   `questionBaseID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user_questionbase`
 --
 
 LOCK TABLES `user_questionbase` WRITE;
-INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,8),(1,18);
+/*!40000 ALTER TABLE `user_questionbase` DISABLE KEYS */;
+INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,18);
+/*!40000 ALTER TABLE `user_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
--- Dump completed on 2016-11-16 14:42:35
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-11-21 15:50:35

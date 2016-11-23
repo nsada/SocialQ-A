@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 
-import domain.AandQ;
+import domain.AnswerQuestion;
 import domain.Exam;
-import domain.FillBlank;
 import domain.Multy;
 import domain.Selection;
+import domain.TextBlank;
 import service.ExamService;
 import service.QuestionService;
 
@@ -17,8 +17,8 @@ public class ExamAction implements Action {
 	private Exam exam;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
 	private List<Multy> multys;
-	private List<FillBlank> fillBlanks;
-	private List<AandQ> AandQs;	
+	private List<TextBlank> textBlanks;
+	private List<AnswerQuestion> AandQs;	
 	private char[] choose;
 	private int score;
 	private char[] right;
@@ -35,7 +35,7 @@ public class ExamAction implements Action {
 			selections = qs.getExamSelections(examID);
 			System.out.println("sels size: " + selections.size());
 			for (int i = 0; i < selections.size(); i++) 
-				System.out.println("sel: "+selections.get(i).getContext()+ " // "+selections.get(i).getNum());
+				System.out.println("sel: "+selections.get(i).getContext());
 		} catch (Exception e) {
 			selections = null;
 			return ERROR;
@@ -80,16 +80,16 @@ public class ExamAction implements Action {
 	public void setMultys(List<Multy> multys) {
 		this.multys = multys;
 	}
-	public List<FillBlank> getFillBlanks() {
-		return fillBlanks;
+	public List<TextBlank> getTextBlanks() {
+		return textBlanks;
 	}
-	public void setFillBlanks(List<FillBlank> fillBlanks) {
-		this.fillBlanks = fillBlanks;
+	public void setFillBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
 	}
-	public List<AandQ> getAandQs() {
+	public List<AnswerQuestion> getAandQs() {
 		return AandQs;
 	}
-	public void setAandQs(List<AandQ> aandQs) {
+	public void setAandQs(List<AnswerQuestion> aandQs) {
 		AandQs = aandQs;
 	}
 	public char[] getChoose() {

@@ -3,7 +3,6 @@ package domain;
 public class Selection {
 	private int id;
 	private String context;
-	private int num;
 	private String A;
 	private String B;
 	private String C;
@@ -31,12 +30,6 @@ public class Selection {
 	}
 	public void setContext(String context) {
 		this.context = context;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
 	}
 	public String getA() {
 		return A;

@@ -19,7 +19,7 @@
         <a href='<s:url action="addQuestion"><s:param name="qBaseID" value="qBase.id"/></s:url>'><input type="button" value="添加题目"/></a>
     </div>
     <table class="table table-bordered table-hover ">
-        <caption>题目列表</caption>
+        <caption>单选题</caption>
         <thead>
             <tr>
                 <th>题目描述</th>
@@ -37,6 +37,25 @@
             </s:iterator>
         </tbody>
     </table>
+    <table class="table table-bordered table-hover ">
+        <caption>填空题</caption>
+        <thead>
+            <tr>
+                <th>题目描述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <s:iterator value="textBlanks" var="blank">
+                <tr>                 
+                    <td>${blank.context}</td>                     
+                    <td>
+                        <a href='<s:url action="showQuestion"><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input type="button" value="展开"/></a>
+                    </td>
+                </tr>           
+            </s:iterator>
+        </tbody>
+    </table>    
     
 </div>
 </rapid:override>

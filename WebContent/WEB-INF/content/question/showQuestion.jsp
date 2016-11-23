@@ -15,10 +15,9 @@
 
     <div class="col-md-12 column">
         context: ${selection.context} <br/>
-              选项个数：${selection.num} <br/>
 	        <table class="table table-bordered table-hover ">
 		        <tbody>
-		           <s:if test='selection.num>0'>
+		           <s:if test='selection.A.length()>0'>
 		              <tr>
 			              <td>
 			                 <label for="context" class="col-sm-2 control-label">选项A</label>			                 			                 			                 
@@ -28,7 +27,7 @@
 			              </td>            
 		              </tr>
 		            </s:if>
-		            <s:if test='selection.num>1'>
+		            <s:if test='selection.B.length()>0'>
 		              <tr>
                           <td>
                              <label for="context" class="col-sm-2 control-label">选项B</label>
@@ -38,7 +37,7 @@
                           </td>
                       </tr>  
                     </s:if>
-		            <s:if test='selection.num>2'>
+		            <s:if test='selection.C.length()>0'>
 		              <tr>
                           <td>
                              <label for="context" class="col-sm-2 control-label">选项C</label>
@@ -48,7 +47,7 @@
                           </td>
                       </tr>  
                     </s:if>
-                    <s:if test='selection.num>3'>
+                    <s:if test='selection.D.length()>0'>
                         <tr>
                           <td>
                              <label for="context" class="col-sm-2 control-label">选项D</label>
@@ -58,7 +57,7 @@
                           </td>
                         </tr>  
                     </s:if>
-                    <s:if test='selection.num>3'>
+                    <s:if test='selection.E.length()>0'>
                         <tr>
                           <td>
                              <label for="context" class="col-sm-2 control-label">选项E</label>
@@ -68,7 +67,7 @@
                           </td>
                         </tr>  
                     </s:if>
-                    <s:if test='selection.num>3'>
+                    <s:if test='selection.F.length()>0'>
                         <tr>
                           <td>
                              <label for="context" class="col-sm-2 control-label">选项F</label>

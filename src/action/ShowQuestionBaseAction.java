@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 
-import domain.AandQ;
-import domain.FillBlank;
+import domain.AnswerQuestion;
 import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
+import domain.TextBlank;
 import service.QuestionBaseService;
 import service.QuestionService;
 
@@ -18,8 +18,8 @@ public class ShowQuestionBaseAction implements Action {
 	private QuestionBase qBase;
 	private List<Selection> selections;
 	private List<Multy> multys;
-	private List<FillBlank> fillBlanks;
-	private List<AandQ> AandQs;	
+	private List<TextBlank> textBlanks;
+	private List<AnswerQuestion> AandQs;	
 	private int qBaseID;
 	public int getType()
 	{
@@ -56,16 +56,16 @@ public class ShowQuestionBaseAction implements Action {
 	public void setMultys(List<Multy> multys) {
 		this.multys = multys;
 	}
-	public List<FillBlank> getFillBlanks() {
-		return fillBlanks;
+	public List<TextBlank> getTextBlanks() {
+		return textBlanks;
 	}
-	public void setFillBlanks(List<FillBlank> fillBlanks) {
-		this.fillBlanks = fillBlanks;
+	public void setFillBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
 	}
-	public List<AandQ> getAandQs() {
+	public List<AnswerQuestion> getAandQs() {
 		return AandQs;
 	}
-	public void setAandQs(List<AandQ> aandQs) {
+	public void setAandQs(List<AnswerQuestion> aandQs) {
 		AandQs = aandQs;
 	}
 	
@@ -85,8 +85,10 @@ public class ShowQuestionBaseAction implements Action {
 		try {
 			QuestionService qs = new QuestionService();
 			selections = qs.getQbaseSelections(qBaseID);
+			textBlanks = qs.getQbaseTextBlanks(qBaseID);
 		} catch (Exception e) {
 			selections = null;
+			textBlanks = null;
 			return ERROR;
 		}	
 		return SUCCESS;
