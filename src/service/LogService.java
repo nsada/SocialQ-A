@@ -31,6 +31,11 @@ public class LogService {
 		int i = cont.executeUpdate(sql);
 	}
 
+	public void addQuestionBase(int userID, int qBaseID) {
+		String sql = "insert into log (userID, qBaseID, action, time) values(" + userID + ", " + qBaseID + ", " + 1 + ", '" + dateFormat.format(now) + "')";
+		int i = cont.executeUpdate(sql);
+	}
+
 
 	
 	

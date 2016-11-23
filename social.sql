@@ -97,6 +97,35 @@ INSERT INTO `exam_question` VALUES (1,1,1,NULL,NULL),(1,4,1,NULL,NULL),(2,6,1,NU
 UNLOCK TABLES;
 
 --
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
+  `userID` int(11) NOT NULL DEFAULT '0',
+  `gruopID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `examID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `qBaseID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `questionID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `questionType` int(10) unsigned zerofill DEFAULT '0000000000',
+  `action` int(1) NOT NULL DEFAULT '0',
+  `time` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log`
+--
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` VALUES (1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:09'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:58'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,7,'2016/11/23 21:18:00'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:25:03'),(1,0000000000,0000000000,0000000020,0000000000,0000000000,1,'2016/11/23 21:25:31');
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `questionbase`
 --
 
@@ -110,7 +139,7 @@ CREATE TABLE `questionbase` (
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +148,7 @@ CREATE TABLE `questionbase` (
 
 LOCK TABLES `questionbase` WRITE;
 /*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
-INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null'),(18,1,'题库tmy','tmy的题库');
+INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null'),(18,1,'题库tmy','tmy的题库'),(20,1,'testLog','testLog');
 /*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +295,7 @@ CREATE TABLE `user_questionbase` (
 
 LOCK TABLES `user_questionbase` WRITE;
 /*!40000 ALTER TABLE `user_questionbase` DISABLE KEYS */;
-INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,18);
+INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,18),(1,20);
 /*!40000 ALTER TABLE `user_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -279,4 +308,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-23 17:58:15
+-- Dump completed on 2016-11-23 21:26:21
