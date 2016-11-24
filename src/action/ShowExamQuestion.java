@@ -4,21 +4,20 @@ import java.util.List;
 import java.sql.*;
 import com.opensymphony.xwork2.Action;
 import database.Connect;
-import domain.AandQ;
-import domain.FillBlank;
+import domain.AnswerQuestion;
 import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
+import domain.TextBlank;
 import service.QuestionBaseService;
 import service.QuestionService;
 public class ShowExamQuestion implements Action {
 	private int type;
 	private int ExamID;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
-	private List<Selection> allselections; //=new ArrayList<Selection> ();
 	private List<Multy> multys;
-	private List<FillBlank> fillBlanks;
-	private List<AandQ> AandQs;	
+	private List<TextBlank> textBlanks;
+	private List<AnswerQuestion> AandQs;	
 	private int qBaseID;
      private ResultSet result;
      private Connect cont;
@@ -50,16 +49,16 @@ public class ShowExamQuestion implements Action {
 	public void setMultys(List<Multy> multys) {
 		this.multys = multys;
 	}
-	public List<FillBlank> getFillBlanks() {
-		return fillBlanks;
+	public List<TextBlank> gettextBlanks() {
+		return textBlanks;
 	}
-	public void setFillBlanks(List<FillBlank> fillBlanks) {
-		this.fillBlanks = fillBlanks;
+	public void setTextBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
 	}
-	public List<AandQ> getAandQs() {
+	public List<AnswerQuestion> getAandQs() {
 		return AandQs;
 	}
-	public void setAandQs(List<AandQ> aandQs) {
+	public void setAandQs(List<AnswerQuestion> aandQs) {
 		AandQs = aandQs;
 	}
 	
@@ -73,15 +72,13 @@ public class ShowExamQuestion implements Action {
 	@Override
 	public String execute() throws Exception {
 		selections =new ArrayList<Selection> ();
-	    allselections =new ArrayList<Selection> ();
-		System.out.println("showExamQuestion");
-		String sql ="select * from social.examquestion where examID ="+ExamID;
+		//System.out.println("showExamQuestion");
+		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
-        allselections = cont.GetSelection();
 		result =cont.executeQuery(sql);
 			while(result.next())
 			{
-				System.out.println("µ±Ç°ÒÑ¾­²åÈëµÄÌâÄ¿");
+				//System.out.println("ï¿½ï¿½Ç°ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿");
 			 if( result.getInt("type") ==1 )
 				{
 				 	QuestionService qs= new QuestionService();

@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ActionContext;
 import action.QuestionBaseAction;
 import domain.QuestionBase;
 import domain.User;
+import service.LogService;
 import service.QuestionBaseService;
 import service.UserService;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 
 public class UserAction implements Action {
 	private User user;
+	private LogService ls = new LogService();
 	
 	public User getUser() {
 		return user;
@@ -23,6 +25,7 @@ public class UserAction implements Action {
 	
 	@Override
 	public String execute() throws Exception {	//login in
+		//System.out.println("UserAction login");
 		UserService us = new UserService();
 		User new_user= new User();		
 		try{
@@ -37,6 +40,7 @@ public class UserAction implements Action {
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
+				ls.login(new_user.getId());
 				return SUCCESS;			
 			}
 		}catch (Exception e){
@@ -48,7 +52,8 @@ public class UserAction implements Action {
 	public String regist(){
 		UserService us = new UserService();
 		int id = us.addUser(user);
-		if (id >= 0) {
+		if (id > 0) {			
+			ls.addUser(id);
 			return SUCCESS;
 		}
 		return ERROR;		
@@ -57,13 +62,16 @@ public class UserAction implements Action {
 	public String logout(){
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid"); 
+		ls.logout(userID);
 		sess.remove("username");
 		sess.remove("userid");
+		
 		return SUCCESS;
 	}
 	
 	public String showPersonalInformation() {
-		System.out.println("user: showPersonalInformation");
+		//System.out.println("user: showPersonalInformation");
 		
 		return SUCCESS;
 	}

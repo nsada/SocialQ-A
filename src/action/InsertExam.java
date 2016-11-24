@@ -14,7 +14,6 @@ public class InsertExam implements Action {
          int userID = (int) sess.get("userid");	
          String sql="insert into exam ( userID, title, description) values('"+ userID + "', '" + null + "', '"+ null + "')";
         ExamID= cont.executeUpdateID(sql);
-         System.out.println("当前试卷的ID是"+ExamID);
         return SUCCESS;
     }
     public int getExamID()

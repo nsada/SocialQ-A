@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.15, for Win64 (x86_64)
 --
 -- Host: localhost    Database: social
 -- ------------------------------------------------------
@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `answerquestion`
+--
+
+DROP TABLE IF EXISTS `answerquestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `answerquestion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` longtext,
+  `answer` longtext,
+  `score` int(10) DEFAULT NULL,
+  `analysis` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `answerquestion`
+--
+
+LOCK TABLES `answerquestion` WRITE;
+/*!40000 ALTER TABLE `answerquestion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `answerquestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `exam`
 --
 
@@ -29,8 +55,9 @@ CREATE TABLE `exam` (
   `userID` int(11) DEFAULT NULL,
   `joiner` int(11) DEFAULT NULL,
   `rights` int(11) DEFAULT NULL,
+  `people` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,32 +66,63 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'null','null',1,NULL,NULL),(2,'null','null',1,NULL,NULL),(3,'null','null',1,NULL,NULL),(4,'null','null',1,NULL,NULL),(5,'null','null',1,NULL,NULL),(6,'null','null',1,NULL,NULL),(7,'null','null',1,NULL,NULL),(8,'null','null',1,NULL,NULL),(9,'null','null',1,NULL,NULL),(10,'null','null',1,NULL,NULL),(11,'null','null',1,NULL,NULL),(12,'null','null',1,NULL,NULL),(13,'null','null',1,NULL,NULL),(14,'null','null',1,NULL,NULL),(15,'null','null',1,NULL,NULL),(16,'null','null',1,NULL,NULL),(17,'null','null',1,NULL,NULL),(18,'null','null',1,NULL,NULL),(19,'null','null',1,NULL,NULL),(20,'null','null',1,NULL,NULL),(21,'null','null',1,NULL,NULL),(22,'null','null',1,NULL,NULL),(23,'null','null',1,NULL,NULL),(24,'null','null',1,NULL,NULL),(25,'null','null',1,NULL,NULL),(26,'null','null',1,NULL,NULL),(27,'null','null',1,NULL,NULL),(28,'null','null',1,NULL,NULL),(29,'null','null',1,NULL,NULL),(30,'null','null',1,NULL,NULL),(31,'null','null',1,NULL,NULL),(32,'null','null',1,NULL,NULL),(33,'null','null',1,NULL,NULL),(34,'null','null',1,NULL,NULL),(35,'null','null',1,NULL,NULL),(36,'null','null',1,NULL,NULL),(37,'null','null',1,NULL,NULL),(38,'null','null',1,NULL,NULL),(39,'null','null',1,NULL,NULL),(40,'null','null',1,NULL,NULL),(41,'null','null',1,NULL,NULL),(42,'null','null',1,NULL,NULL),(43,'null','null',1,NULL,NULL),(44,'null','null',1,NULL,NULL),(45,'null','null',1,NULL,NULL),(46,'null','null',1,NULL,NULL),(47,'null','null',1,NULL,NULL),(48,'null','null',1,NULL,NULL),(49,'null','null',1,NULL,NULL),(50,'null','null',1,NULL,NULL),(51,'null','null',1,NULL,NULL),(52,'null','null',1,NULL,NULL),(53,'null','null',1,NULL,NULL),(54,'null','null',1,NULL,NULL),(55,'null','null',1,NULL,NULL),(56,'null','null',1,NULL,NULL),(57,'null','null',1,NULL,NULL),(58,'null','null',1,NULL,NULL),(59,'null','null',1,NULL,NULL),(60,'null','null',1,NULL,NULL),(61,'null','null',1,NULL,NULL),(62,'null','null',1,NULL,NULL),(63,'null','null',1,NULL,NULL),(64,'null','null',1,NULL,NULL),(65,'null','null',1,NULL,NULL),(66,'null','null',1,NULL,NULL),(67,'null','null',1,NULL,NULL),(68,'null','null',1,NULL,NULL),(69,'null','null',1,NULL,NULL),(70,'null','null',1,NULL,NULL),(71,'null','null',1,NULL,NULL),(72,'null','null',1,NULL,NULL),(73,'null','null',1,NULL,NULL),(74,'null','null',1,NULL,NULL),(75,'null','null',1,NULL,NULL),(76,'null','null',1,NULL,NULL),(77,'null','null',1,NULL,NULL),(78,'null','null',1,NULL,NULL),(79,'null','null',1,NULL,NULL),(80,'null','null',1,NULL,NULL),(81,'null','null',1,NULL,NULL),(82,'null','null',1,NULL,NULL),(83,'null','null',1,NULL,NULL),(84,'null','null',1,NULL,NULL),(85,'null','null',1,NULL,NULL),(86,'null','null',1,NULL,NULL),(87,'null','null',1,NULL,NULL),(88,'null','null',1,NULL,NULL),(89,'null','null',1,NULL,NULL),(90,'null','null',1,NULL,NULL),(91,'null','null',1,NULL,NULL),(92,'null','null',1,NULL,NULL),(93,'null','null',1,NULL,NULL),(94,'null','null',1,NULL,NULL),(95,'null','null',1,NULL,NULL),(96,'null','null',1,NULL,NULL),(97,'null','null',1,NULL,NULL),(98,'null','null',1,NULL,NULL),(99,'null','null',1,NULL,NULL),(100,'null','我的第一本书',1,NULL,NULL),(101,'null','我的第一本书',1,NULL,NULL),(102,'April的紫丁香','我的第一本书',1,NULL,NULL),(103,'H','hh',1,NULL,NULL),(104,'AAAAA','DXFDHGDHYDRY',1,NULL,NULL),(105,'4','6',1,NULL,NULL),(106,'DataBase','Database',1,NULL,NULL),(107,'F','G',1,NULL,NULL),(108,'null','null',1,NULL,NULL),(109,'null','null',1,NULL,NULL),(110,'null','null',1,NULL,NULL),(111,'null','null',1,NULL,NULL),(112,'null','null',1,NULL,NULL),(113,'null','null',1,NULL,NULL),(114,'H','Hasta',1,NULL,NULL),(115,'April的紫丁香','四月的紫丁香',1,1,3),(116,'null','null',1,NULL,NULL),(117,'null','null',1,NULL,NULL),(120,'VLDB','Happy Birthday',1,1,3),(122,'AAAAA','A',1,1,1),(123,'','',1,2,2);
+INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL);
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `examquestion`
+-- Table structure for table `exam_question`
 --
 
-DROP TABLE IF EXISTS `examquestion`;
+DROP TABLE IF EXISTS `exam_question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `examquestion` (
-  `examID` int(11) DEFAULT NULL,
-  `questionID` int(11) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL
+CREATE TABLE `exam_question` (
+  `examID` int(11) NOT NULL,
+  `questionID` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `people` int(11) DEFAULT '0',
+  `peopleR` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `examquestion`
+-- Dumping data for table `exam_question`
 --
 
-LOCK TABLES `examquestion` WRITE;
-/*!40000 ALTER TABLE `examquestion` DISABLE KEYS */;
-INSERT INTO `examquestion` VALUES (0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(0,0,0),(32,0,0),(33,0,0),(36,1,1),(37,1,1),(37,2,1),(37,1,1),(38,1,1),(40,1,1),(40,1,1),(42,1,1),(45,1,1),(57,1,1),(57,1,1),(57,2,1),(57,1,1),(58,1,1),(61,1,1),(64,1,1),(64,1,1),(64,1,1),(66,1,1),(66,1,1),(67,1,1),(67,1,1),(67,1,1),(68,1,1),(70,1,1),(71,1,1),(71,1,1),(73,1,1),(74,1,1),(75,1,1),(75,1,1),(76,1,1),(76,1,1),(78,1,1),(79,1,1),(80,1,1),(80,1,1),(81,1,1),(82,1,1),(83,1,1),(84,1,1),(85,1,1),(86,1,1),(87,1,1),(88,1,1),(88,2,1),(89,1,1),(89,2,1),(90,1,1),(90,1,1),(91,1,1),(91,2,1),(92,1,1),(92,2,1),(93,1,1),(93,2,1),(94,1,1),(94,1,1),(95,1,1),(95,2,1),(95,1,1),(96,1,1),(96,2,1),(97,1,1),(97,1,1),(97,1,1),(97,1,1),(97,1,1),(97,1,1),(97,1,1),(98,1,1),(98,1,1),(99,1,1),(99,2,1),(100,1,1),(100,2,1),(101,1,1),(101,2,1),(102,1,1),(102,2,1),(103,1,1),(103,2,1),(104,1,1),(104,2,1),(104,1,1),(104,2,1),(105,1,1),(105,2,1),(106,1,1),(106,2,1),(107,1,1),(107,2,1),(114,1,1),(114,2,1),(120,2,1),(122,1,1);
-/*!40000 ALTER TABLE `examquestion` ENABLE KEYS */;
+LOCK TABLES `exam_question` WRITE;
+/*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
+INSERT INTO `exam_question` VALUES (1,1,1,NULL,NULL),(1,4,1,NULL,NULL),(2,6,1,NULL,NULL),(15,4,1,NULL,NULL),(17,4,1,NULL,NULL),(6,4,1,NULL,NULL),(21,4,1,NULL,NULL),(22,1,1,NULL,NULL),(22,4,1,NULL,NULL),(23,4,1,NULL,NULL),(26,4,1,NULL,NULL),(27,1,1,NULL,NULL),(28,4,1,NULL,NULL),(29,4,1,NULL,NULL),(30,1,1,NULL,NULL),(30,2,1,NULL,NULL),(31,1,1,NULL,NULL),(32,4,1,NULL,NULL),(33,1,1,NULL,NULL),(40,4,1,NULL,NULL),(40,1,1,NULL,NULL);
+/*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
+  `userID` int(11) NOT NULL DEFAULT '0',
+  `gruopID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `examID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `qBaseID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `questionID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `questionType` int(10) unsigned zerofill DEFAULT '0000000000',
+  `action` int(1) NOT NULL DEFAULT '0',
+  `time` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log`
+--
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` VALUES (1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:09'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:58'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,7,'2016/11/23 21:18:00'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:25:03'),(1,0000000000,0000000000,0000000020,0000000000,0000000000,1,'2016/11/23 21:25:31');
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -81,7 +139,7 @@ CREATE TABLE `questionbase` (
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +148,7 @@ CREATE TABLE `questionbase` (
 
 LOCK TABLES `questionbase` WRITE;
 /*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
-INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(8,1,'题库1','第一个题库'),(9,1,'题库5','第五个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null');
+INSERT INTO `questionbase` VALUES (2,1,'题库2','第二个题库'),(3,1,'题库3','第三个题库'),(5,1,'题库4','第四个题库'),(11,1,'null','null'),(12,1,'null','null'),(13,1,'null','null'),(14,1,'null','null'),(15,1,'null','null'),(16,1,'null','null'),(17,1,'null','null'),(18,1,'题库tmy','tmy的题库'),(20,1,'testLog','testLog');
 /*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +172,7 @@ CREATE TABLE `questionbase_question` (
 
 LOCK TABLES `questionbase_question` WRITE;
 /*!40000 ALTER TABLE `questionbase_question` DISABLE KEYS */;
-INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1);
+INSERT INTO `questionbase_question` VALUES (0000000002,1,1),(0000000002,2,1),(0000000018,4,1),(0000000002,5,1),(0000000005,6,1),(0000000018,7,1),(0000000003,8,1),(0000000003,1,2),(0000000003,2,2),(0000000003,3,2),(0000000003,9,1),(0000000003,4,2),(0000000003,5,2),(0000000003,6,2),(0000000003,7,2),(0000000003,8,2),(0000000003,9,2),(0000000003,10,2),(0000000003,11,2);
 /*!40000 ALTER TABLE `questionbase_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,24 +186,23 @@ DROP TABLE IF EXISTS `selection`;
 CREATE TABLE `selection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `context` text NOT NULL,
-  `num` int(11) NOT NULL,
   `A` varchar(60) DEFAULT NULL,
   `B` varchar(60) DEFAULT NULL,
   `C` varchar(60) DEFAULT NULL,
   `D` varchar(60) DEFAULT NULL,
   `E` varchar(60) DEFAULT NULL,
   `F` varchar(60) DEFAULT NULL,
-  `ans` char(6) DEFAULT NULL,
+  `ans` int(10) DEFAULT NULL,
   `analysis` text,
   `score` int(11) DEFAULT '1',
-  `scoreA` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreB` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreC` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreD` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreE` int(10) unsigned zerofill DEFAULT NULL,
-  `scoreF` int(10) unsigned zerofill DEFAULT NULL,
+  `scoreA` int(10) DEFAULT NULL,
+  `scoreB` int(10) DEFAULT NULL,
+  `scoreC` int(10) DEFAULT NULL,
+  `scoreD` int(10) DEFAULT NULL,
+  `scoreE` int(10) DEFAULT NULL,
+  `scoreF` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,8 +211,41 @@ CREATE TABLE `selection` (
 
 LOCK TABLES `selection` WRITE;
 /*!40000 ALTER TABLE `selection` DISABLE KEYS */;
-INSERT INTO `selection` VALUES (1,'题库2的第一个题',4,'A','B','C','D','E','F','111100','null',10,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001),(2,'题库2的第二个题',4,'A','B','C','D','E','F','111100','null',6,0000000001,0000000001,0000000001,0000000001,0000000001,0000000001);
+INSERT INTO `selection` VALUES (1,'题库2的第一个题','A','B','C','D','E','F',111100,'null',10,1,1,1,1,1,1),(2,'题库2的第二个题','A','B','C','D','E','F',111100,'null',6,1,1,1,1,1,1),(4,'tmy快疯了没有','没有','有','','','','',10000,'null',100,0,0,0,0,0,0),(5,'题库2的第三个题','1','2','3','4','5','6',1000,'null',0,0,0,0,0,0,0),(6,'题库4的第一个题','11','22','33','44','55','66',100000,'null',0,0,0,0,0,0,0),(7,'test','aaa','bbb','','','','',100000,'null',10,0,0,0,0,0,0),(8,'题库3的第一个单选题','11','22','33','44','55','',1,'阿斯蒂芬',0,0,0,0,0,0,0),(9,'题库3的第二个单选题','11','22','33','','','',2,'阿斯顿发生',2,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `selection` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `textblank`
+--
+
+DROP TABLE IF EXISTS `textblank`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `textblank` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` mediumtext NOT NULL,
+  `num` int(1) unsigned zerofill NOT NULL,
+  `A` varchar(45) DEFAULT NULL,
+  `B` varchar(45) DEFAULT NULL,
+  `C` varchar(45) DEFAULT NULL,
+  `D` varchar(45) DEFAULT NULL,
+  `E` varchar(45) DEFAULT NULL,
+  `F` varchar(45) DEFAULT NULL,
+  `analysis` varchar(45) DEFAULT '无',
+  `score` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `textblank`
+--
+
+LOCK TABLES `textblank` WRITE;
+/*!40000 ALTER TABLE `textblank` DISABLE KEYS */;
+INSERT INTO `textblank` VALUES (2,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(3,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(4,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(5,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(6,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(7,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(8,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(9,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(10,'题库3的第二个填空题',2,'a','b','','','','','',2),(11,'题库3的第二个填空题',2,'a','b','','','','','',2);
+/*!40000 ALTER TABLE `textblank` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -173,7 +263,7 @@ CREATE TABLE `user` (
   `questionBaseID` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +272,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL);
+INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL),(2,'tmy2','1015',NULL,NULL),(3,'','',NULL,NULL),(4,'','',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +295,7 @@ CREATE TABLE `user_questionbase` (
 
 LOCK TABLES `user_questionbase` WRITE;
 /*!40000 ALTER TABLE `user_questionbase` DISABLE KEYS */;
-INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,8),(1,9);
+INSERT INTO `user_questionbase` VALUES (1,2),(1,3),(1,5),(1,18),(1,20);
 /*!40000 ALTER TABLE `user_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -218,4 +308,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-14 22:57:24
+-- Dump completed on 2016-11-23 21:26:21

@@ -7,11 +7,13 @@
 <rapid:override name="head">  
     <title>我的题库</title>
 </rapid:override>  
+
+
 <rapid:override name="contentText"> 
 
 <div class="col-md-10 column">
     <div class="text-align:right">
-	    <button class="btn btn-default btn-left" type="button" onclick="window.location.href='addQuestionBase'">
+	    <button class="btn btn-default" type="button" onclick="window.location.href='addQuestionBase'">
 	           创建题库
 	    </button> 
     </div>

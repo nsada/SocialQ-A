@@ -9,6 +9,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
+import domain.Exam;
 import domain.QuestionBase;
 import domain.Selection;
 import service.QuestionBaseService;
@@ -23,6 +24,7 @@ public class AddQuestoExam implements Action {
 	private int type;	
 	private int joiner;
 	private int rights;
+	private Exam exam;
 	private ShowExamQuestion seq;
 	private List<Selection> selections =new ArrayList<Selection> ();
 	public int getJoiner() {
@@ -49,18 +51,19 @@ public class AddQuestoExam implements Action {
 	public void setDescription(String description) {
 		this.description = description;
 	}	
-	public List<Selection> getSelections() {
-		return selections;
-	}
-	public void setSelections(List<Selection> selections) {
-		this.selections = selections;
-	}
+
 	public int getExamID() {
 		return ExamID;
 	}
 	public void setExamID(int ExamID) {
 		this.ExamID = ExamID;
 	}	
+	public List<Selection> getSelections() {
+		return selections;
+	}
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
+	}
 	public int getType() {
 		return type;
 	}
@@ -77,12 +80,19 @@ public class AddQuestoExam implements Action {
 	public String execute() throws Exception {  	
 		cont =new Connect();
 		try {
-         String SQL="insert into examquestion values ( '"+ExamID+"', '"+questionID+"','"+type+"' )";
+         String SQL="insert into exam_question(examID, questionID, type) values ("+ExamID+", "+questionID+","+type+")";
+         System.out.print("insert exam_question" + SQL);
           cont.executeUpdate(SQL);
            seq =new ShowExamQuestion();
 	       seq.setExamID(ExamID);
 		   seq.execute();
 		  selections=seq.getSelections();
+		  ExamService es = new ExamService();
+		  exam =es.getExam(ExamID);
+		  title = exam.getTitle();
+		  description =exam.getDescription();
+		  System.out.println("Title:"+title);
+		  
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return ERROR;
@@ -92,8 +102,7 @@ public class AddQuestoExam implements Action {
 	public String submit ()
 	{
 		try{
-			System.out.println("当前的joiner："+joiner);
-			System.out.println("当前的rights："+rights);
+
 			cont=new Connect();
 			String	SQL ="update social.exam set description = '"+description+"', title ='"+title+"', joiner='"+joiner+"',rights ='"+rights+"'  where ID= '"+ExamID+"' ";
 	        cont.executeUpdate(SQL);
@@ -109,9 +118,9 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("当前的questionID："+questionID);
-			System.out.println("当前的ExamID："+ExamID);
-			System.out.println("当前的type："+type);
+			//System.out.println("锟斤拷前锟斤拷questionID锟斤拷"+questionID);
+			//System.out.println("锟斤拷前锟斤拷ExamID锟斤拷"+ExamID);
+			//System.out.println("锟斤拷前锟斤拷type锟斤拷"+type);
 			es.deleteexamquestion(questionID, type, ExamID);
 			seq =new ShowExamQuestion();
 		    seq.setExamID(ExamID);
@@ -129,7 +138,6 @@ public class AddQuestoExam implements Action {
 	{
 		try{
 			 ExamService es = new ExamService();
-			System.out.println("当前的ExamID："+ExamID);
 			es.deleteexam(ExamID);
 	        }
 		catch (Exception e)

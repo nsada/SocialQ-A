@@ -1,37 +1,22 @@
 package database;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 
-import domain.AandQ;
-import domain.FillBlank;
-import domain.Multy;
-import domain.Selection;
+import domain.User;
+
 public class Connect {
-	
-	private List<Selection> selections =new ArrayList<Selection> ();
-	private List<Multy> multys;
-	private List<FillBlank> fillBlanks;
-	private List<AandQ> AandQs;	
 	Connection con=null;
 	Statement state = null;
 	ResultSet result = null;
-	public List<Selection> getSelections() {
-		return selections;
-	}
-	public void setSelections(List<Selection> selections) {
-		this.selections = selections;
-	}
 	public Connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
+			//con = DriverManager.getConnection("jdbc:mysql://lbdzversckma.rds.sae.sina.com.cn:10611/librarydb?useSSL=false", "tmy", "SQL15984608166");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy");
 			state = con.createStatement();	
+			//System.out.println("杩炴帴鏁版嵁搴撴垚鍔�");
 		} catch (Exception e) {
 			con = null;
+			System.out.println("杩炴帴鏁版嵁搴撳け璐�");
 		}
 	}
 	
@@ -39,6 +24,7 @@ public class Connect {
 		try {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
+			System.out.println("鏌ユ壘澶辫触");
 			result = null;
 		}
 		return result;
@@ -51,16 +37,19 @@ public class Connect {
 		try{
 			id = result.getInt(0);
 		}catch (Exception e) {
-			System.out.println("error!");
+			System.out.println("鑾峰彇鏈�鏂版彃鍏D澶辫触");
 		}
 		return id;
 	}
 	
 	public int executeUpdate(String sql) {
+		//System.out.println("connect: " + sql);
 		try {
 			state.executeUpdate(sql);
+		//	System.out.println("鏇存柊鎴愬姛");
 			state.close();
 		} catch (Exception e) {
+			System.out.println("鏇存柊澶辫触");
 			e.printStackTrace();
 			return -1;
 		}
@@ -73,53 +62,13 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
+				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {
-			System.out.println("Update ID失败~");
+			e.printStackTrace();
+			System.out.println("鏌ユ壘骞惰繑鍥炴渶鏂版彃鍏D澶辫触");
 		}
 		return id;
-	}
-	public List<Selection> GetSelection()
-	{
-		
-		try
-		{
-			result =state.executeQuery("select * from social.selection");
-			 while(result.next())
-			 {
-				 Selection sel=new Selection();
-				 sel.setId(result.getInt("id"));
-				 sel.setContext(result.getString("context"));
-				 sel.setNum(result.getInt("num"));
-				 sel.setA(result.getString("A"));
-				 sel.setB(result.getString("B"));
-				 sel.setC(result.getString("C"));
-				 sel.setD(result.getString("D"));
-				 sel.setE(result.getString("E"));
-				 sel.setF(result.getString("F"));
-				 sel.setAns(result.getString("ans"));
-				 sel.setAnalysis(result.getString("analysis"));
-				 sel.setScore(result.getInt("score"));
-				 sel.setScoreA(result.getInt("scoreA"));
-				 sel.setScoreB(result.getInt("scoreB"));
-				 sel.setScoreC(result.getInt("scoreC"));
-				 sel.setScoreD(result.getInt("scoreD"));
-				 sel.setScoreE(result.getInt("scoreE"));
-				 sel.setScoreF(result.getInt("scoreF"));
-				 selections.add(sel);
-			 }
-			 for(Selection s :selections)
-			 {
-				 System.out.println("题库中所有题目的ID"+s.getId());
-			 }
-		
-	} 
-		catch (Exception e) {
-		System.out.println("通过数据库设置题目表错误");
-		return null;
-	}
-		return selections;
-		
 	}
 }

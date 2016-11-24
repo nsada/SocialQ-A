@@ -4,9 +4,12 @@ import java.util.Map;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import domain.QuestionBase;
+import service.LogService;
 import service.QuestionBaseService;
+
 public class QuestionBaseAction implements Action {
 	private QuestionBase qBase;	
+	private LogService ls = new LogService();
 	
 	public QuestionBase getqBase() {
 		return qBase;
@@ -28,10 +31,9 @@ public class QuestionBaseAction implements Action {
 			int userID = (int) sess.get("userid");	
 			qBase.setUserID(userID);
 			QuestionBaseService qbs = new QuestionBaseService();
-			System.out.println("addQuestionBaseAction:");
-			System.out.println(qBase.getTitle() + ", " + qBase.getDescription());
 			int i = qbs.addQuestionBase(qBase);
 			if (i >= 0) {
+				ls.OperateQuestionBase(userID, qBase.getId(), 1);
 				return SUCCESS;
 			}
 		} catch (Exception e) {
@@ -54,6 +56,7 @@ public class QuestionBaseAction implements Action {
 			qBase.setUserID(userID);
 			int i = qbs.delQuestionBase(qBase);
 			if (i >= 0) {
+				ls.OperateQuestionBase(userID, qBase.getId(), 2);
 				return SUCCESS;
 			}
 		} catch (Exception e) {

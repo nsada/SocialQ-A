@@ -86,4 +86,20 @@ public class QuestionBaseService {
 		int i = cont.executeUpdate(sql);		
 		return i;
 	}
+	public String getqBaseName(int id) {
+		String sql = "select title from questionbase where id=" + id;
+		System.out.println("getqBaseName sql:" + sql);
+		ResultSet result = cont.executeQuery(sql);
+		
+		String title = "";
+		try{
+			if (result.next()){				
+				title = result.getString("title");
+			}
+			result.close();
+		}catch (Exception e) {
+			title = "";
+		}
+		return title;	
+	}
 }
