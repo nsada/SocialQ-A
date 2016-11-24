@@ -72,19 +72,30 @@ public class ShowExamQuestion implements Action {
 	@Override
 	public String execute() throws Exception {
 		selections =new ArrayList<Selection> ();
-		//System.out.println("showExamQuestion");
+		textBlanks =new ArrayList<TextBlank>();	
+	try{	
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
 		result =cont.executeQuery(sql);
 			while(result.next())
 			{
-				//System.out.println("��ǰ�Ѿ��������Ŀ");
+			 	QuestionService qs= new QuestionService();
 			 if( result.getInt("type") ==1 )
 				{
-				 	QuestionService qs= new QuestionService();
 				 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
 				}
-			}
+			 else if(result.getInt("type") ==2)
+			 {
+				 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
+			 }
+			 
+			}	
+	}
+	catch (Exception e) {
+		System.out.println(e.getMessage());
+	 return ERROR;
+	}			
+		
 		return SUCCESS;
 	}
 

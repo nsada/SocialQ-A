@@ -108,7 +108,7 @@
         <input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />
         <div>
       		 <a style="float:right" href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'> <button type="button">取消编辑试卷</button>  </a>
-     		 <input style="float:right" type="button" onclick="updateexam()" value="提交生成我的试卷">
+     		  <a style="float:right" href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'> <button type="button">提交生成我的试卷</button>  </a>
       		<input style="float:right"  type="button" onclick="insertQ()"  value= "插入题目">
     	 </div>
     </form>
@@ -117,10 +117,6 @@
 </body>
 
 <script type="text/javascript">
-	function updateexam() {
-		document.myform.action="updateexam"; 
-		document.myform.submit(); 
-	}
 	function insertQ() {
 		document.myform.action="Find"; 
 		document.myform.submit(); 

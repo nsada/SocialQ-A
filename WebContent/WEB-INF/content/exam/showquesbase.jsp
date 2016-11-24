@@ -9,13 +9,25 @@
 </head>
 <body >
       <p>点击选择我要插入的题目 </p>
+      当前试卷的ID  <s:property  value ="ExamID"/>
      <table border="1">  
-     当前试卷的ID  <s:property  value ="ExamID"/>
      <s:iterator value="selections">   
       <tr>
       <td>  
        <s:property value="context"/>
        <a href = '<s:url action="InsertQuestion"><s:param name="questionID" value ="id"/><s:param name="type" value ="1" /> <s:param name="ExamID" value ="ExamID"/></s:url>'><input type="button" value="添加"/> </a>
+       </td>
+       </tr>
+      </s:iterator>
+      </table>
+      
+      
+      <table border="2">  
+     <s:iterator value="textBlanks">   
+      <tr>
+      <td>  
+       <s:property value="context"/>
+       <a href = '<s:url action="InsertQuestion"><s:param name="questionID" value ="id"/><s:param name="type" value ="2" /> <s:param name="ExamID" value ="ExamID"/></s:url>'><input type="button" value="添加"/> </a>
        </td>
        </tr>
       </s:iterator>

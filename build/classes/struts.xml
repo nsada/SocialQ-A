@@ -99,18 +99,9 @@
         </action>
         <action name="ShowBaseQues" class="action.ShowQuestionBaseAction">
             <result name="success">/WEB-INF/content/exam/showquesbase.jsp</result>
-        </action>     
-        
-        
-        
-              
+        </action>            
         <action name="InsertQuestion" class="action.AddQuestoExam">
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
-            <result name="error">/WEB-INF/content/user/error.jsp</result>
-        </action>
-        
-        <action name="updateexam" class="action.AddQuestoExam" method="submit">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
@@ -120,6 +111,11 @@
         </action>
         <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="updateexam" class="action.AddQuestoExam" method ="submit">
+             <result type ="redirect">InsertExam</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         

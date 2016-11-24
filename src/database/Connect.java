@@ -46,8 +46,8 @@ public class Connect {
 		//System.out.println("connect: " + sql);
 		try {
 			state.executeUpdate(sql);
-		//	System.out.println("鏇存柊鎴愬姛");
 			state.close();
+		//	System.out.println("鏇存柊鎴愬姛");
 		} catch (Exception e) {
 			System.out.println("鏇存柊澶辫触");
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class Connect {
 			if (result.next()) {
 				id = result.getInt(1);
 				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
-			}			
+			}	
 			state.close();
 		} catch (Exception e) {
 			e.printStackTrace();

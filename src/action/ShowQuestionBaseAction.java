@@ -86,6 +86,11 @@ public class ShowQuestionBaseAction implements Action {
 			QuestionService qs = new QuestionService();
 			selections = qs.getQbaseSelections(qBaseID);
 			textBlanks = qs.getQbaseTextBlanks(qBaseID);
+			  for(TextBlank k: textBlanks)
+			  { 
+				  System.out.print("Hasta:");
+				  System.out.println(k.getContext());
+			  }
 		} catch (Exception e) {
 			selections = null;
 			textBlanks = null;

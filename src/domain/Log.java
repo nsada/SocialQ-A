@@ -24,6 +24,7 @@ public class Log {
 			UserService us = new UserService();
 			String name = us.getUserName(userID);
 			ans = ans + name;
+			
 			if (groupID+examID+qBaseID+questionID+questionType == 0){
 				if (action == 1) {
 					ans = ans + "注册为新用户";

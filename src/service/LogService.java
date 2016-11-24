@@ -1,15 +1,11 @@
 package service;
-
 import java.util.Date;
 import java.util.List;
-
 import database.Connect;
-
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import domain.Log;
 import domain.Selection;
 import domain.User;
@@ -38,6 +34,16 @@ public class LogService {
 	public void OperateQuestionBase(int userID, int qBaseID, int action) {
 		String sql = "insert into log (userID, qBaseID, action, time) values(" + userID + ", " + qBaseID + ", " + action + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
+	}
+	public void InsertQuesLog(int userID ,int ExamID ,int questionID,int action ,int questionType)
+	{
+		String sql = "insert into log (userID,examID , questionID, questionType , action ,time) values(" + userID + ", " + ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "')";
+		int i= cont.executeUpdate(sql);
+	}
+	public void OperateExam(int userID,int ExamID,int action)
+	{
+		String sql= "insert into log (userID, examID, action, time) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "')";
+		int i= cont.executeUpdate(sql);
 	}
 
 	public List<Log> getUserLogs(int userID) {

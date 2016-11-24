@@ -1,9 +1,6 @@
 package action;
-
 import java.util.List;
-
 import com.opensymphony.xwork2.Action;
-
 import domain.AnswerQuestion;
 import domain.Exam;
 import domain.Multy;
