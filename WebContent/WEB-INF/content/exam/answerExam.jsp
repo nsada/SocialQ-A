@@ -23,7 +23,6 @@
 	            <input type="hidden" name="questionID" value=sel.id />
                     <div>
                         ${sel.context} <br/>
-                        ${sel.num} <br/>
                     </div>
 		            <div class="questionContainer">
 		                <s:if test="#sel.A.length()>0">
