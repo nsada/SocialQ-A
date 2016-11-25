@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -10,18 +8,6 @@
 <meta charset="utf-8"> 
 	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8"> 
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
->>>>>>> LSY
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<%
 		String username;
@@ -30,17 +16,10 @@
 		}else{
 			username = "";
 		}
-<<<<<<< HEAD
 	%>
 <title>Welcome Here</title>
 </head>
 <body>
-=======
-	%>
-<title>Welcome Here</title>
-</head>
-<body>
->>>>>>> LSY
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
 		<div class="container">
 			<div class="navbar-header">
@@ -66,11 +45,7 @@
             </ul>
         </div>
 		</div>
-<<<<<<< HEAD
 	</nav>
-=======
-	</nav>
->>>>>>> LSY
 	<div style="width:60%;
             position:absolute;
             left:20%;
@@ -79,7 +54,6 @@
             border-style:ridge;
             border-width:3px;
             ">
-<<<<<<< HEAD
        
       <form name="myform" action="Paper" method="post">
              
@@ -89,17 +63,6 @@
        
        <textarea name="description" placeholder="试卷的描述" size="50" required="" style="height:50px;width:60%;position:relative;left:20%">试卷的描述</textarea>
        <br>
-=======
-       
-      <form name="myform" action="Paper" method="post">
-             
-       <input name="title" type="text" placeholder="请输入试卷的标题" required="" align="center" style="width:40%;position:relative;left:30%;top:10px">
-       <br>
-       <br>
-       
-       <textarea name="description" placeholder="试卷的描述" size="50" required="" style="height:50px;width:60%;position:relative;left:20%">试卷的描述</textarea>
-       <br>
->>>>>>> LSY
      <div align="center" style="width:60%;position:relative;left:20%;">
   	试卷可见性：
 		<label class="checkbox-inline">
@@ -141,26 +104,6 @@
       
       
       
-<<<<<<< HEAD
-          
-        <input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />
-        <div>
-      		 <a style="float:right" href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'> <button type="button">取消编辑试卷</button>  </a>
-     		 <input style="float:right" type="button" onclick="updateexam()" value="提交生成我的试卷">
-      		 <a style="float:right" href='<s:url action="Find"><s:param name="ExamID" value ="ExamID"/> </s:url>'>  <button type="button">插入题目</button> </a>
-    	 </div>
-    </form>
-	</div>
-
-</body>
-
-<script type="text/javascript">
-	function updateexam() {
-		document.myform.action="updateexam"; 
-		document.myform.submit(); 
-	}
-</script>
-=======
           
         <input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />
         <div>
@@ -179,6 +122,5 @@
 		document.myform.submit(); 
 	}
 </script>
->>>>>>> LSY
 
 </html>
