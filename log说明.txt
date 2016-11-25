@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 action
 	1: add
 	2: del
@@ -5,4 +6,13 @@ action
 	4: answer
 	5: anysise
 	6: login
+=======
+action
+	1: add
+	2: del
+	3: update
+	4: answer
+	5: anysise
+	6: login
+>>>>>>> LSY
 	7: logout

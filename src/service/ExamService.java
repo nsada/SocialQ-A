@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package service;
 import java.sql.ResultSet;
 
@@ -63,3 +64,70 @@ public class ExamService implements Action {
 	}
 
 }
+=======
+package service;
+import java.sql.ResultSet;
+
+import com.opensymphony.xwork2.Action;
+import database.Connect;
+import domain.Exam;
+import domain.Selection;
+
+
+public class ExamService implements Action {
+	private Connect cont;
+	private Exam exam;
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Exam getExam(int examID){
+		String sql = "select * from exam where ID=" + examID;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);			
+		try{
+			if (result.next()){
+				exam = new Exam();
+				exam.setId(examID);
+				exam.setTitle(result.getString("title"));
+				exam.setUserID(result.getInt("userID"));
+				exam.setDescription(result.getString("description"));
+				exam.setJoiner(result.getInt("joiner"));
+				exam.setRights(result.getInt("rights"));
+			}
+		}catch (Exception e) {
+			System.out.println("按examID查找exam失败");
+		}
+		return exam;
+	}
+	public int deleteexamquestion (int questionID,int type ,int ExamID)
+	{
+		cont =new Connect();
+		try {
+         String SQL="delete from exam_question where questionID=" + questionID + " and examID=" + ExamID + " and type=" + type;
+          cont.executeUpdate(SQL);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		 return -1;
+		}				
+		return 1;
+	}
+	public int deleteexam(int ExamID)
+	{
+		 cont =new Connect();
+		try {
+         String SQL="delete from exam_question where  examID=" + ExamID ;
+          cont.executeUpdate(SQL);
+          cont =new Connect();
+          SQL="delete from exam where  ID=" + ExamID ;
+          cont.executeUpdate(SQL);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		 return -1;
+		}				
+		return 1;
+	}
+
+}
+>>>>>>> LSY
