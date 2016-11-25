@@ -6,20 +6,7 @@
 
 
   `score` int(10) DEFAULT NULL,
-  `analysis` longtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `aandq`
---
-
-LOCK TABLES `aandq` WRITE;
-/*!40000 ALTER TABLE `aandq` DISABLE KEYS */;
-INSERT INTO `aandq` VALUES (1,'hhhhhhhh','null',0,'哈哈'),(2,'hhhhhhhh','红红火火恍恍惚惚',10,'哈哈哈哈'),(3,'蛤？','null',100,'蛤蛤');
-/*!40000 ALTER TABLE `aandq` ENABLE KEYS */;
-UNLOCK TABLES;
+  `ana
 
 --
 -- Table structure for table `exam`
