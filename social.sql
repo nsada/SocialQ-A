@@ -1,36 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
---
--- Host: localhost    Database: social
--- ------------------------------------------------------
--- Server version	5.7.15-log
 
-
-  SET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `exam`
---
-
-LOCK TABLES `exam` WRITE;
-/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL,0,1,0),(2,'tmy2','tmy的第二套试题',1,2,1,NULL,0,1,0),(3,'null','null',1,NULL,NULL,NULL,0,1,0),(4,'null','null',1,NULL,NULL,NULL,0,1,0),(5,'null','null',1,NULL,NULL,NULL,0,1,0),(7,'null','null',1,NULL,NULL,NULL,0,1,0),(8,'null','null',1,NULL,NULL,NULL,0,1,0),(9,'null','null',1,NULL,NULL,NULL,0,1,0),(10,'null','null',1,NULL,NULL,NULL,0,1,0),(11,'null','null',1,NULL,NULL,NULL,0,1,0),(12,'null','null',1,NULL,NULL,NULL,0,1,0),(13,'null','null',1,NULL,NULL,NULL,0,1,0),(14,'null','null',1,NULL,NULL,NULL,0,1,0),(15,'test4','44444',1,2,1,NULL,0,1,0),(16,'null','null',1,NULL,NULL,NULL,0,1,0),(17,'test6','test6',1,1,2,NULL,0,1,0),(18,'null','null',1,NULL,NULL,NULL,0,1,0),(19,'null','null',1,NULL,NULL,NULL,0,1,0),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL,0,1,0),(22,'null','null',1,NULL,NULL,NULL,0,1,0),(23,'null','null',1,NULL,NULL,NULL,0,1,0),(24,'null','null',1,NULL,NULL,NULL,0,1,0),(25,'null','null',1,NULL,NULL,NULL,0,1,0),(26,'null','null',1,NULL,NULL,NULL,0,1,0),(27,'null','null',1,NULL,NULL,NULL,0,1,0),(28,'null','null',1,NULL,NULL,NULL,0,1,0),(29,'null','null',1,NULL,NULL,NULL,0,1,0),(30,'null','null',1,NULL,NULL,NULL,0,1,0),(31,'null','null',1,NULL,NULL,NULL,0,1,0),(32,'null','null',1,NULL,NULL,NULL,0,1,0),(33,'null','null',1,NULL,NULL,NULL,0,1,0),(34,'null','null',1,NULL,NULL,NULL,0,1,0),(35,'test','asdf试卷的描述',1,1,1,NULL,0,1,0),(36,'test11.20','1120',1,1,1,NULL,0,1,0),(37,'null','null',1,NULL,NULL,NULL,0,1,0),(38,'null','null',1,NULL,NULL,NULL,0,1,0),(39,'null','null',1,NULL,NULL,NULL,0,1,0),(40,'test11.20','1120',1,2,1,NULL,0,1,0),(42,'tmytest','tmytest',1,1,1,NULL,0,1,0),(43,'null','null',1,NULL,NULL,NULL,0,1,0),(44,'awef','awef',1,1,1,NULL,0,1,0),(45,'null','null',1,NULL,NULL,NULL,0,1,0),(46,'null','null',1,NULL,NULL,NULL,0,1,0),(47,'null','null',1,NULL,NULL,NULL,0,1,0),(48,'null','null',1,NULL,NULL,NULL,0,1,0),(49,'null','null',1,NULL,NULL,NULL,0,1,0),(50,'tmytest2','tmytest2',1,2,1,NULL,0,1,0),(51,'null','null',1,NULL,NULL,NULL,0,1,0),(52,'testNov.30','testNov.30',1,2,1,NULL,0,1,0),(53,'testNov.30 2','testNov.30 2',1,1,1,0,0,1,0),(54,'testYC','testYC',1,1,1,0,0,1,0),(55,'testYC2','testYC2',1,1,1,0,0,1,0),(56,'null','null',1,NULL,NULL,0,0,1,0),(57,'null','null',1,NULL,NULL,0,0,1,0),(58,'null','null',1,NULL,NULL,0,0,1,0),(59,'April的紫丁香','A',1,1,1,0,0,1,0),(60,'AAAAA','A',1,1,1,0,0,1,0),(61,'April的紫丁香','AAAAAA',1,1,1,0,0,1,0),(62,'April的紫丁香','AAAA\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			',1,1,1,0,0,1,0),(63,'April的紫丁香','A\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			',1,1,1,0,0,1,0),(64,'April的紫丁香','ASSSS',3,1,1,0,0,1,0),(65,'April的紫丁香','aaaa\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			\r\n			',1,1,1,0,0,1,0),(66,'April的紫丁香','A\r\n			\r\n			\r\n			\r\n			\r\n			',1,1,1,0,0,1,0),(67,'April的紫丁香','S',1,1,1,0,0,1,0),(68,'April的紫丁香','AAAA\r\n			\r\n			\r\n			\r\n			\r\n			',1,1,1,6,115,1,0),(69,'null','null',1,NULL,NULL,0,0,1,0),(70,'April的紫丁香','a',1,1,1,0,0,1,0),(71,'April的紫丁香','A',1,1,1,0,0,1,0),(72,'April的紫SSSS','SASSSSSS\r\n						\r\n						\r\n						\r\n						\r\n						\r\n						\r\n						',1,1,1,0,0,1,0),(73,'April的紫丁香','AAA',1,1,1,0,0,1,0),(74,'April的紫丁香','aaaaaa',1,1,1,0,0,1,0),(75,'April的紫丁香','A',1,1,1,0,0,1,0),(76,'AAAAA','AAAAAAAAAAAA',1,1,1,0,0,1,0),(77,'April的紫丁香','AAA',1,1,1,0,0,1,0),(78,'April的紫丁香','a\r\n			\r\n			',1,1,1,0,0,1,0),(79,'April的紫丁香','a',1,1,1,0,0,1,0),(80,'null','null',1,NULL,NULL,0,0,1,0),(81,'April的紫丁香','绝密',1,1,1,7,265,1,0),(82,'April的紫丁香','AAAAA',1,1,1,0,0,1,0),(83,'AAAAA','AA',1,1,1,0,0,1,0),(84,'April的紫丁香','SSSS',1,1,1,0,0,1,0),(85,'April的紫丁香','AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',1,1,1,2,500,1,0),(86,'null','null',1,NULL,NULL,0,0,1,0),(87,'testtmy','		hhhhhhh	',1,1,1,2,11,1,0),(88,'null','null',1,NULL,NULL,0,0,1,0),(89,'testMerge2','testMerge2\r\n			\r\n			\r\n			',1,1,1,1,202,1,0),(90,'FKLA','FEE	EEEEEEEE	\r\n						\r\n						',1,1,1,0,0,1,0),(91,'AAAAA','ASSSSSSSSSS\r\n						',1,1,1,0,0,0,0),(92,'FinalTest','FinalTetsss				\r\n						\r\n						\r\n						',1,1,1,5,295,1,0),(93,'null','null',0,NULL,NULL,0,0,1,1),(94,'AAAAA','理科能力综合评估试题		绝密',0,1,1,0,0,1,1),(95,'AAAAA','理科能力测试			',0,2,1,0,0,1,1),(96,'AA','April			\r\n						',0,1,1,0,0,1,1),(97,'','						',0,1,1,0,0,1,1),(98,'AAAAA','			SSSSS			',0,1,1,0,0,1,1),(99,'AAAAA','SSSS	',0,1,1,0,0,1,1),(100,'AAAAA','AAAAAA		\r\n						',0,1,1,0,0,1,1),(101,'AAAS','AEFEFEGSPPP\r\n						\r\n						',0,1,1,0,0,1,1),(102,'AAAAA','			JSP			\r\n						\r\n						',0,1,1,0,0,1,1),(103,'安安','				安安		',0,1,1,0,0,1,1),(104,'AAAAA','			AAAAAA			\r\n						\r\n						',0,1,1,0,0,1,1),(105,'AAAAA','			AAAAAA			\r\n						\r\n						',0,1,1,0,0,1,1),(106,'April的紫丁香','		SADGGGD				\r\n						\r\n						',0,1,1,0,0,1,1);
-/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `exam_question`
---
-
-DROP TABLE IF EXISTS `exam_question`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `exam_question` (
-  `examID` int(11) NOT NULL,
-  `questionID` int(11) NOT NULL,
-  `type` int(11) NOT NULL,
-  `people` int(11) DEFAULT '0',
-  `peopleR` int(11) DEFAULT '0',
   `GroupID` int(11) NOT NULL,
   `score` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
