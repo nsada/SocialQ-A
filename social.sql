@@ -5,29 +5,7 @@
 -- Server version	5.7.15-log
 
 
-  `score` int(10) DEFAULT NULL,
-  `ana
-
---
--- Table structure for table `exam`
---
-
-DROP TABLE IF EXISTS `exam`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `exam` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) NOT NULL,
-  `description` mediumtext,
-  `userID` int(11) DEFAULT '0',
-  `joiner` int(11) DEFAULT NULL,
-  `rights` int(11) DEFAULT NULL,
-  `people` int(11) DEFAULT '0',
-  `totalscore` int(11) DEFAULT '0',
-  `publish` int(11) DEFAULT '1',
-  `groupID` int(11) DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+  SET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
