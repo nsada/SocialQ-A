@@ -19,15 +19,13 @@ public class LogService {
 		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 1 + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
 	}
-
 	public void login(int userid) {
-		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 6 + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 2 + ", '" + dateFormat.format(now) + "')";
 		System.out.println("login LOG_sql: " + sql);
 		int i = cont.executeUpdate(sql);
 	}
-
 	public void logout(int userid) {
-		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 7 + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 3 + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
 	}
 
@@ -35,6 +33,7 @@ public class LogService {
 		String sql = "insert into log (userID, qBaseID, action, time) values(" + userID + ", " + qBaseID + ", " + action + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
 	}
+	
 	public void InsertQuesLog(int userID ,int ExamID ,int questionID,int action ,int questionType)
 	{
 		String sql = "insert into log (userID,examID , questionID, questionType , action ,time) values(" + userID + ", " + ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "')";
@@ -72,10 +71,4 @@ public class LogService {
 		}
 		return logs;
 	}
-
-
-	
-	
-	
-	
 }

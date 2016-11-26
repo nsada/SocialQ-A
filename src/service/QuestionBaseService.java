@@ -87,11 +87,11 @@ public class QuestionBaseService {
 		return i;
 	}
 	public String getqBaseName(int id) {
+		String title = "";
+		if (id <= 0) return title;
 		String sql = "select title from questionbase where id=" + id;
 		System.out.println("getqBaseName sql:" + sql);
-		ResultSet result = cont.executeQuery(sql);
-		
-		String title = "";
+		ResultSet result = cont.executeQuery(sql);		
 		try{
 			if (result.next()){				
 				title = result.getString("title");

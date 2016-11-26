@@ -57,7 +57,7 @@ CREATE TABLE `exam` (
   `rights` int(11) DEFAULT NULL,
   `people` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL);
+INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL),(42,'tmytest','tmytest',1,1,1,NULL),(43,'null','null',1,NULL,NULL,NULL),(44,'awef','awef',1,1,1,NULL),(45,'null','null',1,NULL,NULL,NULL),(46,'null','null',1,NULL,NULL,NULL),(47,'null','null',1,NULL,NULL,NULL),(48,'null','null',1,NULL,NULL,NULL),(49,'null','null',1,NULL,NULL,NULL),(50,'tmytest2','tmytest2',1,2,1,NULL),(51,'null','null',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,8 @@ CREATE TABLE `exam_question` (
   `questionID` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `people` int(11) DEFAULT '0',
-  `peopleR` int(11) DEFAULT '0'
+  `peopleR` int(11) DEFAULT '0',
+  `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,8 +93,99 @@ CREATE TABLE `exam_question` (
 
 LOCK TABLES `exam_question` WRITE;
 /*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
-INSERT INTO `exam_question` VALUES (1,1,1,NULL,NULL),(1,4,1,NULL,NULL),(2,6,1,NULL,NULL),(15,4,1,NULL,NULL),(17,4,1,NULL,NULL),(6,4,1,NULL,NULL),(21,4,1,NULL,NULL),(22,1,1,NULL,NULL),(22,4,1,NULL,NULL),(23,4,1,NULL,NULL),(26,4,1,NULL,NULL),(27,1,1,NULL,NULL),(28,4,1,NULL,NULL),(29,4,1,NULL,NULL),(30,1,1,NULL,NULL),(30,2,1,NULL,NULL),(31,1,1,NULL,NULL),(32,4,1,NULL,NULL),(33,1,1,NULL,NULL),(40,4,1,NULL,NULL),(40,1,1,NULL,NULL);
+INSERT INTO `exam_question` VALUES (1,1,1,NULL,NULL,0),(1,4,1,NULL,NULL,0),(2,6,1,NULL,NULL,0),(15,4,1,NULL,NULL,0),(17,4,1,NULL,NULL,0),(6,4,1,NULL,NULL,0),(21,4,1,NULL,NULL,0),(22,1,1,NULL,NULL,0),(22,4,1,NULL,NULL,0),(23,4,1,NULL,NULL,0),(26,4,1,NULL,NULL,0),(27,1,1,NULL,NULL,0),(28,4,1,NULL,NULL,0),(29,4,1,NULL,NULL,0),(30,1,1,NULL,NULL,0),(30,2,1,NULL,NULL,0),(31,1,1,NULL,NULL,0),(32,4,1,NULL,NULL,0),(33,1,1,NULL,NULL,0),(40,4,1,NULL,NULL,0),(40,1,1,NULL,NULL,0),(42,6,1,0,0,0),(44,4,1,0,0,0),(50,6,1,0,0,0);
 /*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group`
+--
+
+DROP TABLE IF EXISTS `group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group`
+--
+
+LOCK TABLES `group` WRITE;
+/*!40000 ALTER TABLE `group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_exam`
+--
+
+DROP TABLE IF EXISTS `group_exam`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group_exam` (
+  `groupID` int(11) NOT NULL,
+  `examID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_exam`
+--
+
+LOCK TABLES `group_exam` WRITE;
+/*!40000 ALTER TABLE `group_exam` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_exam` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_questionbase`
+--
+
+DROP TABLE IF EXISTS `group_questionbase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group_questionbase` (
+  `groupID` int(11) NOT NULL,
+  `questionbaseID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_questionbase`
+--
+
+LOCK TABLES `group_questionbase` WRITE;
+/*!40000 ALTER TABLE `group_questionbase` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_questionbase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_user`
+--
+
+DROP TABLE IF EXISTS `group_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group_user` (
+  `groupIO` int(11) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_user`
+--
+
+LOCK TABLES `group_user` WRITE;
+/*!40000 ALTER TABLE `group_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -105,7 +197,7 @@ DROP TABLE IF EXISTS `log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `log` (
   `userID` int(11) NOT NULL DEFAULT '0',
-  `gruopID` int(10) unsigned zerofill DEFAULT '0000000000',
+  `groupID` int(10) unsigned zerofill DEFAULT '0000000000',
   `examID` int(10) unsigned zerofill DEFAULT '0000000000',
   `qBaseID` int(10) unsigned zerofill DEFAULT '0000000000',
   `questionID` int(10) unsigned zerofill DEFAULT '0000000000',
@@ -121,7 +213,7 @@ CREATE TABLE `log` (
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
-INSERT INTO `log` VALUES (1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:09'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:58'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,7,'2016/11/23 21:18:00'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:25:03'),(1,0000000000,0000000000,0000000020,0000000000,0000000000,1,'2016/11/23 21:25:31');
+INSERT INTO `log` VALUES (1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:09'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:17:58'),(2,0000000000,0000000000,0000000000,0000000000,0000000000,7,'2016/11/23 21:18:00'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 21:25:03'),(1,0000000000,0000000000,0000000020,0000000000,0000000000,1,'2016/11/23 21:25:31'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 22:24:26'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/23 23:04:37'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/25 21:52:43'),(1,0000000000,0000000042,0000000000,0000000000,0000000000,1,'2016/11/25 21:53:58'),(1,0000000000,0000000042,0000000000,0000000006,0000000001,1,'2016/11/25 21:53:58'),(1,0000000000,0000000044,0000000000,0000000000,0000000000,1,'2016/11/25 21:56:50'),(1,0000000000,0000000044,0000000000,0000000004,0000000001,1,'2016/11/25 21:56:50'),(1,0000000000,0000000045,0000000000,0000000000,0000000000,1,'2016/11/25 21:56:56'),(1,0000000000,0000000047,0000000000,0000000000,0000000000,1,'2016/11/25 21:57:13'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/25 21:59:18'),(1,0000000000,0000000050,0000000000,0000000000,0000000000,1,'2016/11/25 21:59:36'),(1,0000000000,0000000050,0000000000,0000000006,0000000001,1,'2016/11/25 21:59:36'),(1,0000000000,0000000000,0000000000,0000000000,0000000000,6,'2016/11/27 03:59:15');
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +336,7 @@ CREATE TABLE `textblank` (
 
 LOCK TABLES `textblank` WRITE;
 /*!40000 ALTER TABLE `textblank` DISABLE KEYS */;
-INSERT INTO `textblank` VALUES (2,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(3,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(4,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(5,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(6,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(7,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(8,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(9,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(10,'题库3的第二个填空题',2,'a','b','','','','','',2),(11,'题库3的第二个填空题',2,'a','b','','','','','',2);
+INSERT INTO `textblank` VALUES (1,'题库3的第1个填空题',3,'a','ab','abc',NULL,NULL,NULL,'无',0),(2,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(3,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(4,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(5,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(6,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(7,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(8,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(9,'3号题库的第一个填空题',3,'111','222','333','','','','无',3),(10,'题库3的第二个填空题',2,'a','b','','','','','',2),(11,'题库3的第二个填空题',2,'a','b','','','','','',2);
 /*!40000 ALTER TABLE `textblank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-23 21:26:21
+-- Dump completed on 2016-11-26 20:29:38

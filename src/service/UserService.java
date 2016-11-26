@@ -14,9 +14,10 @@ public class UserService {
 	private List<User> users;
 	
 	public String getUserName(int id){
-		String sql = "select name from user where id=" + id;
-		ResultSet result = cont.executeQuery(sql);
 		String name = "";
+		if (id == 0) return name;
+		String sql = "select name from user where id=" + id;
+		ResultSet result = cont.executeQuery(sql);		
 		try{
 			if (result.next()){				
 				name = result.getString("name");

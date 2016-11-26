@@ -33,7 +33,7 @@ public class QuestionBaseAction implements Action {
 			QuestionBaseService qbs = new QuestionBaseService();
 			int i = qbs.addQuestionBase(qBase);
 			if (i >= 0) {
-				ls.OperateQuestionBase(userID, qBase.getId(), 1);
+				ls.OperateQuestionBase(userID, qBase.getId(), 4);
 				return SUCCESS;
 			}
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class QuestionBaseAction implements Action {
 			qBase.setUserID(userID);
 			int i = qbs.delQuestionBase(qBase);
 			if (i >= 0) {
-				ls.OperateQuestionBase(userID, qBase.getId(), 2);
+				ls.OperateQuestionBase(userID, qBase.getId(), 5);
 				return SUCCESS;
 			}
 		} catch (Exception e) {

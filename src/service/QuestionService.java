@@ -17,6 +17,13 @@ public class QuestionService {
 	private List<TextBlank> textBlanks;
 	private TextBlank textBlank;
 	
+	public String getQuestionType(int i){
+		String name = "";
+		if (i == 1) name = name + "单选题";
+		else if (i == 2) name = name + "填空题";
+		else if (i == 3) name = name + "问答题";
+		return name;
+	}
 	public List<Selection> getQbaseSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
@@ -190,6 +197,7 @@ public class QuestionService {
 	}
 	public String getQuestionContext(int id, int type) {
 		String sql = "";
+		if (id <= 0 || type <= 0) return sql;
 		switch (type) {
 		case 1: sql = "select context from selection where id='" + id;
 		case 2: sql = "select context from textblank where id='" + id;
