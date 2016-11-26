@@ -70,24 +70,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ans" class="col-sm-2 control-label">答案1</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="textBlank.ansA" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ans" class="col-sm-2 control-label">答案2</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="textBlank.ansB" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ans" class="col-sm-2 control-label">答案3</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="textBlank.ansC" />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="ans" class="col-sm-2 control-label">解析</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" name="textBlank.analysis" />

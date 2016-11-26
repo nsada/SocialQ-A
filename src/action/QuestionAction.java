@@ -1,9 +1,13 @@
 package action;
+import java.util.Map;
+
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
 
 import domain.AnswerQuestion;
 import domain.Selection;
 import domain.TextBlank;
+import service.LogService;
 import service.QuestionService;
 
 public class QuestionAction implements Action {
@@ -43,16 +47,25 @@ public class QuestionAction implements Action {
 	}
 
 	public String addQuestion() {
-		System.out.println("addQuestion type=" + type + "qBase=" + qBaseID);
-		int i = -1;
+		//System.out.println("addQuestion type=" + type + "qBase=" + qBaseID);
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		userID = (int) sess.get("userid");
+		questionID= -1;
 		switch (type) {
-		case 1: i = addSelection(); break;
-		case 2: i = addTextBlank(); break;
-		case 3: i = addAandQ(); break;
-		default: i = -1;
+		case 1: questionID = addSelection(); break;
+		case 2: questionID = addTextBlank(); break;
+		case 3: questionID = addAandQ(); break;
+		default: questionID = -1;
 		}
-		if (i < 0) return ERROR;
-		return SUCCESS;
+		if (questionID>=0) {
+			LogService ls = new LogService();
+			ls.OperateQuestionBaseQuestion(userID, qBaseID, questionID, type, 7);
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+		
 	}
 	private int addSelection() {
 		int i = -1;
@@ -62,6 +75,7 @@ public class QuestionAction implements Action {
 		} catch (Exception e) {
 			i = -1;
 		}				
+
 		return i;
 	}	
 	private int addTextBlank() {

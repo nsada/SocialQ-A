@@ -21,6 +21,7 @@ public class Connect {
 	}
 	
 	public ResultSet executeQuery(String sql) {
+		//System.out.println("execute sql" + sql);
 		try {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {

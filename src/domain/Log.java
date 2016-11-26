@@ -22,6 +22,8 @@ public class Log {
 	
 	public String translate(){
 		String ans = "";
+		//System.out.println("trans:___________________________");
+		//print();
 		UserService us = new UserService();
 		String user = us.getUserName(userID);
 		QuestionBaseService qBs = new QuestionBaseService();

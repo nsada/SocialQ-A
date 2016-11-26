@@ -65,13 +65,14 @@ public class QuestionBaseService {
 		int userID = qBase.getUserID();
 		int id = qBase.getId();
 		int i = delUser_QuestionBase(userID, id);
-		int j = -1;
+		return i;
+		/*int j = -1;
 		if (i >= 0) {
 			cont = new Connect();
 			String sql = "delete from questionbase where id=" + id;
 			j = cont.executeUpdate(sql);
 		}
-		return j;
+		return j;*/
 	}	
 	public int addUser_QuestionBase(int userID, int qBaseID){
 		cont = new Connect();
@@ -89,8 +90,9 @@ public class QuestionBaseService {
 	public String getqBaseName(int id) {
 		String title = "";
 		if (id <= 0) return title;
+		cont = new Connect();
 		String sql = "select title from questionbase where id=" + id;
-		System.out.println("getqBaseName sql:" + sql);
+		//System.out.println("getqBaseName sql:" + sql);
 		ResultSet result = cont.executeQuery(sql);		
 		try{
 			if (result.next()){				
