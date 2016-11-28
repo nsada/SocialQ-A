@@ -37,7 +37,7 @@ public class LogService {
 	public void OperateQuestionBaseQuestion(int userID, int qBaseID, int questionID, int type, int action) {
 		String sql = "insert into log (userID, qBaseID, questionID, questionType, action, time) values(" + userID + 
 				", " + qBaseID + ", " + questionID + ", " + type + ", " + action + ", '" + dateFormat.format(now) + "')";
-		System.out.println("operateqBaseQuestion sql:" + sql);
+		//System.out.println("operateqBaseQuestion sql:" + sql);
 		int i = cont.executeUpdate(sql);
 	}
 	
@@ -79,4 +79,10 @@ public class LogService {
 		return logs;
 	}
 
+	public void OperateGroup(int userID, int groupID, int action) {
+		String sql = "insert into log (userID, groupID, action, time) values(" + userID + 
+				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "')";
+		System.out.println("operateGroup sql:" + sql);
+		int i = cont.executeUpdate(sql);
+	}
 }

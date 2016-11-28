@@ -12,7 +12,7 @@
                                     个人信息
                  </button> 
                  <button class="btn btn-default " type="button">
-                    <a href='<s:url action="showPersonalInformation"></s:url>'>好友列表</a>
+                    <a href='<s:url action="showFriends"></s:url>'>好友列表</a>
                  </button> 
                  <button class="btn btn-default " type="button">
                     <a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a>

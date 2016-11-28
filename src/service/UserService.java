@@ -2,6 +2,7 @@ package service;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import database.Connect;
@@ -12,7 +13,9 @@ public class UserService {
 	private Connect cont = new Connect();
 	private User user;
 	private List<User> users;
+
 	
+
 	public String getUserName(int id){
 		String name = "";
 		if (id == 0) return name;
@@ -73,7 +76,7 @@ public class UserService {
 		sql = sql.substring(0, sql.length()-1);
 		sql = sql + " WHERE id='" + id + "'";
 		int i = cont.executeUpdate(sql);
-		System.out.println("成功更新User "+ i + " sql:"+sql);
+		//System.out.println("成功更新User "+ i + " sql:"+sql);
 		return i;	
 	}
 	public List<User> getAllUsers() {
@@ -82,11 +85,7 @@ public class UserService {
 		users = new ArrayList<>();		
 		try{
 			while (result.next()){
-				user = new User();
-				user.setId(result.getInt("id"));
-				user.setName(result.getString("name"));
-				user.setPassword(result.getString("password"));
-				users.add(user);
+				users.add(getUser(result.getInt("id")));
 			}
 			result.close();
 		}catch (Exception e) {
@@ -94,9 +93,29 @@ public class UserService {
 		}		
 		return users;		
 	}
+	public User getUser(int id) {
+		String sql = "select * from user where id=" + id;
+		ResultSet result = cont.executeQuery(sql);
+		try{
+			if (result.next()){
+				user = new User();
+				user.setId(result.getInt("id"));
+				user.setName(result.getString("name"));
+				user.setPassword(result.getString("password"));
+			}
+			result.close();
+		}catch (Exception e) {
+			user = null;
+		}		
+		return user;
+	}
+
+
 	public void printUsers(){
-		System.out.println("访问users_________________________");
+		//System.out.println("访问users_________________________");
 		for (int i = 0; i < users.size(); i++)
 			users.get(i).print();
 	}
+
+
 }

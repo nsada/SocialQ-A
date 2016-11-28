@@ -12,6 +12,10 @@
             <result>/index.jsp</result>
         </action>     
         
+        <action name="showFriends" class="action.FriendAction" method="getFriends">
+            <result>/WEB-INF/content/friend/showFriends.jsp</result>
+        </action>
+        
         <action name="delQuestion" class="action.QuestionAction" method="delQuestion">
             <result type ="redirect">showQuestionBase</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            

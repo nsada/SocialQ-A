@@ -10,11 +10,13 @@ import service.LogService;
 import service.QuestionBaseService;
 import service.UserService;
 
+import java.util.List;
 import java.util.Map;
 
 public class UserAction implements Action {
 	private User user;
 	private LogService ls = new LogService();
+	private List<User> friends;
 	
 	public User getUser() {
 		return user;
@@ -70,14 +72,7 @@ public class UserAction implements Action {
 		return SUCCESS;
 	}
 	
-	public String showPersonalInformation() {
-		//System.out.println("user: showPersonalInformation");
-		
-		return SUCCESS;
-	}
-	
-	public String showQuestionBase() {
 
-		return SUCCESS;
-	}
+	
+
 }
