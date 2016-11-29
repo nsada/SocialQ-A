@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
 package domain;
 public class Exam {
 	private int id;
@@ -44,3 +48,7 @@ public class Exam {
 	}
 	
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc

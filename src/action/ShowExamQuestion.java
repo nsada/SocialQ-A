@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
 package action;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,3 +104,7 @@ public class ShowExamQuestion implements Action {
 	}
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc

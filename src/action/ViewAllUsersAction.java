@@ -5,6 +5,10 @@ import domain.User;
 import service.UserService;
 public class ViewAllUsersAction implements Action {
 	private List<User> users;
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
 	public List<User> getUsers() {
 		return users;
 	}
