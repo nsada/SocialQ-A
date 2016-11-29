@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
 package service;
 import java.sql.ResultSet;
 
@@ -82,3 +86,7 @@ public class ExamService implements Action {
 
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc

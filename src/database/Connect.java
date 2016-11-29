@@ -10,8 +10,12 @@ public class Connect {
 	public Connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
+<<<<<<< HEAD
 			//con = DriverManager.getConnection("jdbc:mysql://lbdzversckma.rds.sae.sina.com.cn:10611/librarydb?useSSL=false", "tmy", "SQL15984608166");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166");
+=======
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch");
+>>>>>>> yc
 			state = con.createStatement();	
 			//System.out.println("杩炴帴鏁版嵁搴撴垚鍔�");
 		} catch (Exception e) {
@@ -63,12 +67,21 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
+<<<<<<< HEAD
 				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
 			}	
 			state.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("鏌ユ壘骞惰繑鍥炴渶鏂版彃鍏D澶辫触");
+=======
+				System.out.println("成功获取lastid: "+id);
+			}			
+			state.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("查找并返回最新插入ID失败");
+>>>>>>> yc
 		}
 		return id;
 	}

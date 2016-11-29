@@ -12,7 +12,8 @@
             <h2 class="text-center">If you have any question, please contact with us!</h2><br/>
             <h4 class="text-center">Email:<span class="text-info">hitnstmy@163.com</span></h4><br/>
             <h4 class="text-center">Github:<span class="text-info">https://github.com/nsada</span></h4><br/> 
-            <h4 class="text-center">Blog:<span class="text-info">http://blog.csdn.net/tmy0131</span></h4><br/>                      
+            <h4 class="text-center">Blog:<span class="text-info">http://blog.csdn.net/tmy0131</span></h4><br/> 
+                            
         </ul>
     </div>
 
