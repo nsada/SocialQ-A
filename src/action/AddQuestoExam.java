@@ -91,8 +91,11 @@ public class AddQuestoExam implements Action {
 	public String execute() throws Exception {  		
 			cont =new Connect();
 			try {
-	         String SQL="insert into exam_question(examID, questionID, type) values ("+ExamID+", "+questionID+","+type+")";
-	         System.out.print("insert exam_question" + SQL);
+				ActionContext actCtx = ActionContext.getContext();
+		    	Map<String, Object> sess = actCtx.getSession();
+		         int userID = (int) sess.get("userid");	
+	         String SQL="insert into exam_question(examID, questionID, type,userID) values ("+ExamID+", "+questionID+","+type+","+userID+")";
+	         System.out.print(SQL);
 	          cont.executeUpdate(SQL);
 	           seq =new ShowExamQuestion();
 		       seq.setExamID(ExamID);
@@ -123,7 +126,7 @@ public class AddQuestoExam implements Action {
 	    	Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
 			 LogService ls = new LogService();
-			 ls.OperateExam(userID, ExamID, 1);
+			 ls.OperateExam(userID, ExamID, 9);
 			 String sql ="select * from social.exam_question where examID ="+ExamID;
 			 cont =new Connect();
 			 result = cont.executeQuery(sql);
@@ -131,7 +134,7 @@ public class AddQuestoExam implements Action {
 				{
 				        
 				        LogService l = new LogService();
-					 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),1 , result.getInt("type"));
+					 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
 				}
 			 
 	        }
@@ -178,7 +181,6 @@ public class AddQuestoExam implements Action {
 
 
 }
-
 
 
 
