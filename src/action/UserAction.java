@@ -18,10 +18,7 @@ import org.apache.struts2.ServletActionContext;
 
 public class UserAction implements Action {
 	private User user;
-<<<<<<< HEAD
-	private LogService ls = new LogService();
-	
-=======
+
 
 	private String cpassword;
 	private int Age;
@@ -46,8 +43,6 @@ public class UserAction implements Action {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
->>>>>>> yc
 	public User getUser() {
 		return user;
 	}
@@ -74,12 +69,12 @@ public class UserAction implements Action {
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
-<<<<<<< HEAD
-				ls.login(new_user.getId());
-=======
+
+			
+
 				sess.put("openid", new_user.getTencentOpenID());
 				sess.put("accesstoken", new_user.getTencentToken());
->>>>>>> yc
+
 				return SUCCESS;			
 			}
 		}catch (Exception e){
@@ -91,9 +86,7 @@ public class UserAction implements Action {
 	}
 	
 	public String regist(){
-<<<<<<< HEAD
-		UserService us = new UserService();
-=======
+
 		
 		
 		UserService us = new UserService();
@@ -107,29 +100,19 @@ public class UserAction implements Action {
 		sess.put("username", user.getName());
 		sess.put("userid", user.getId());
 		return SUCCESS;
-		/*UserService us = new UserService();
->>>>>>> yc
-		int id = us.addUser(user);
-		if (id > 0) {			
-			ls.addUser(id);
-			return SUCCESS;
-		}
-		return ERROR;		
 	}
 	
 	public String logout(){
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid"); 
-		ls.logout(userID);
+		//ls.logout(userID);
 		sess.remove("username");
 		sess.remove("userid");
-<<<<<<< HEAD
-		
-=======
+
 		sess.remove("openid");
 		sess.remove("accesstoken");
->>>>>>> yc
+
 		return SUCCESS;
 	}
 	
