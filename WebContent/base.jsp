@@ -32,7 +32,7 @@
             <ul class="nav navbar-nav">
                 <li class="active" id="index"><a href="<%=request.getContextPath()%>/index">主页</a></li>
                 <li id="InsertExam"><a href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-                <li id="add_book"><a href="<%=request.getContextPath()%>/book/addBook">朋友圈</a></li>
+                <li id="add_book"><a href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
                 <li id="showPersonalCenter"><a href="<%=request.getContextPath()%>/user/showPersonalCenter">个人中心</a></li>      
             </ul>
             <ul class="nav navbar-nav navbar-right">

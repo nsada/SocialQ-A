@@ -3,6 +3,10 @@ package service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+import com.opensymphony.xwork2.ActionContext;
 
 import database.Connect;
 import domain.User;
@@ -22,6 +26,8 @@ public class UserService {
 				user.setId(result.getInt("id"));
 				user.setName(result.getString("name"));
 				user.setPassword(result.getString("password"));
+				user.setTencentOpenID(result.getString("tencentOpenID"));
+				user.setTencentToken(result.getString("tencentToken"));
 			}
 			result.close();
 		}catch (Exception e) {
@@ -30,7 +36,7 @@ public class UserService {
 		return user;
 	}
 	public User loginUserByOpenID(String openid){
-		String sql = "select * from user where openid='" + openid ;
+		String sql = "select * from user where tencentOpenID='" + openid + "'" ;
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
 		try{
@@ -38,6 +44,11 @@ public class UserService {
 				user.setId(result.getInt("id"));
 				user.setName(result.getString("name"));
 				user.setPassword(result.getString("password"));
+				user.setTencentOpenID(openid);
+				ActionContext actCtx = ActionContext.getContext();
+				Map<String, Object> sess = actCtx.getSession();
+				user.setTencentToken((String)sess.get("accesstoken"));
+				this.updateUser(user, user.getId());
 			}
 			result.close();
 		}catch (Exception e) {
@@ -46,8 +57,9 @@ public class UserService {
 		return user;
 	}
 	public int addUser(User user) {		
-		String sql = "insert into user(id, name, password) values(" + user.getId() + ",'" +
-				user.getName() + "','" + user.getPassword() + "')";
+		
+		String sql = "insert into user(id, name, password,tencentOpenID,tencentToken) values(" + user.getId() + ",'" +
+				user.getName() + "','" + user.getPassword() + "','" + user.getTencentOpenID() + "','"+user.getTencentToken()+"')";
 		System.out.println("addUser sql: "+ sql);
 		int i = cont.executeUpdateID(sql);
 		//System.out.println("LAST_INSERT_ID: " + i);
@@ -91,6 +103,40 @@ public class UserService {
 		}catch (Exception e) {
 			users = null;
 		}		
+		return users;		
+	}
+	public List<User> getAllFriends(int id) {
+		
+		String sql = "select * from user_user where me="+id;
+		ResultSet result = cont.executeQuery(sql);
+		users = new ArrayList<>();		
+		List<Object> idList = new ArrayList<>();
+		try{
+			while (result.next()){
+				int friendId = result.getInt("friend");
+				idList.add(friendId);
+			}
+			result.close();
+		}catch (Exception e) {
+			users = null;
+		}	
+		for(int lambda = 0 ;lambda<idList.size();lambda++)
+		{
+			id = (int)idList.get(lambda);
+			sql = "select * from user where id="+id;
+			result = cont.executeQuery(sql);
+			try{
+				while (result.next()){
+					User user = new User();
+					user.setId(id);
+					user.setName(result.getString("name"));
+					users.add(user);
+				}
+				result.close();
+			}catch (Exception e) {
+				users = null;
+			}	
+		}
 		return users;		
 	}
 	public void printUsers(){
