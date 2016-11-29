@@ -64,6 +64,8 @@ public class UserAction implements Action {
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
+				sess.put("openid", new_user.getTencentOpenID());
+				sess.put("accesstoken", new_user.getTencentToken());
 				return SUCCESS;			
 			}
 		}catch (Exception e){
@@ -75,9 +77,18 @@ public class UserAction implements Action {
 	}
 	
 	public String regist(){
-		if (email.length() > 10) {
-			throw new IllegalArgumentException("邮箱长度过长");
-		}
+		
+		
+		UserService us = new UserService();
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		user.setTencentOpenID((String)sess.get("openid"));
+		user.setTencentToken((String)sess.get("accesstoken"));
+			
+		
+		user.setId(us.addUser(user));
+		sess.put("username", user.getName());
+		sess.put("userid", user.getId());
 		return SUCCESS;
 		/*UserService us = new UserService();
 		int id = us.addUser(user);
@@ -92,6 +103,8 @@ public class UserAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		sess.remove("username");
 		sess.remove("userid");
+		sess.remove("openid");
+		sess.remove("accesstoken");
 		return SUCCESS;
 	}
 	

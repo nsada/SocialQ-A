@@ -119,6 +119,12 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
             <result name="notSigned">/WEB-INF/content/user/regist.jsp</result>
         </action>
+        <action name="ShowFriends" class="action.ShowFriends" >
+            <result name="success">/WEB-INF/content/friends/FriendList.jsp</result>
+            <result name="error">/WEB-INF/content/user/login.jsp</result>
+            <result name="needlogin">/WEB-INF/content/user/login.jsp</result>
+            
+        </action>
 
     </package>
     

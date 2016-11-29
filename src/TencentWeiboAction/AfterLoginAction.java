@@ -51,10 +51,17 @@ public class AfterLoginAction {
 														  "redirect_uri="+globalVar.redirect_URI);
 		
 		String access_token = str.split("[&]")[0];
+		if(access_token.equals(""))
+			return "error";
 		access_token = access_token.substring(13);
 		str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/me", "access_token="+access_token);
 		str = str.substring(10, str.length()-3);
 		Object openid = tencentApi.convention.ConvertStrToMap(str).get("openid");
+		
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		sess.put("openid", openid);
+		sess.put("accesstoken",access_token);
 		
 		UserService us = new UserService();
 		User new_user= new User();		
@@ -66,18 +73,12 @@ public class AfterLoginAction {
 		}		
 		if(new_user==null)
 		{
-			ActionContext actCtx = ActionContext.getContext();
-			Map<String, Object> sess = actCtx.getSession();
-			sess.put("openid", openid);
-			sess.put("accesstoken",access_token);
+			
 			return "notSigned";
 		}
-		ActionContext actCtx = ActionContext.getContext();
-		Map<String, Object> sess = actCtx.getSession();
 		sess.put("username", new_user.getName());
 		sess.put("userid", new_user.getId());
-		sess.put("openid", openid);
-		sess.put("accesstoken",access_token);
+		
 		return "success";
 	}
 }
