@@ -6,7 +6,25 @@ public class User {
 	private String password;
 	private String mail;
 	private int questionBaseID;
+	private String tencentOpenID;
+	private String tencentToken;
 	
+	public String getTencentOpenID() {
+		return tencentOpenID;
+	}
+
+	public void setTencentOpenID(String tencentOpenID) {
+		this.tencentOpenID = tencentOpenID;
+	}
+
+	public String getTencentToken() {
+		return tencentToken;
+	}
+
+	public void setTencentToken(String tencentToken) {
+		this.tencentToken = tencentToken;
+	}
+
 	public User(){};
 	
 	public User(Integer id, String name, String password) {

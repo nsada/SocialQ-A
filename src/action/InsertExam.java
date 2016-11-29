@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
 package action;
 import com.opensymphony.xwork2.Action;
 import java.util.Map;
@@ -11,7 +15,9 @@ public class InsertExam implements Action {
     {
     	ActionContext actCtx = ActionContext.getContext();
     	Map<String, Object> sess = actCtx.getSession();
-         int userID = (int) sess.get("userid");	
+         Object userID =  sess.get("userid");	
+         if(userID==null)
+        	 return "login needed";
          String sql="insert into exam ( userID, title, description) values('"+ userID + "', '" + null + "', '"+ null + "')";
         ExamID= cont.executeUpdateID(sql);
         return SUCCESS;
@@ -26,3 +32,7 @@ public class InsertExam implements Action {
     }
     
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> yc
