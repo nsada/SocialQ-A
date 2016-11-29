@@ -12,15 +12,13 @@
 <rapid:override name="contentText"> 
 
 <div class="col-md-10 column">
-<<<<<<< HEAD
+
     <div class="text-align:right">
 	    <button class="btn btn-default" type="button" onclick="window.location.href='addQuestionBase'">
 	           创建题库
 	    </button> 
     </div>
-=======
-    
->>>>>>> yc
+
     <table class="table table-bordered table-hover ">
         <caption><h1>我的题库</h1></caption>
         <thead>

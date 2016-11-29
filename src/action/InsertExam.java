@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> yc
 package action;
 import com.opensymphony.xwork2.Action;
 import java.util.Map;
@@ -32,7 +29,4 @@ public class InsertExam implements Action {
     }
     
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> yc

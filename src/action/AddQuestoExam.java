@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> yc
 package action;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -182,13 +179,4 @@ public class AddQuestoExam implements Action {
 
 
 }
-<<<<<<< HEAD
 
-
-
-
-
-
-=======
-
->>>>>>> yc
