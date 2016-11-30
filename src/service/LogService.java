@@ -85,4 +85,9 @@ public class LogService {
 		System.out.println("operateGroup sql:" + sql);
 		int i = cont.executeUpdate(sql);
 	}
+	public void OperateFriend(int a, int b, int action) {
+		String sql = "insert into friend (userID, action, time, userIDB) values(" + a + ", " + action + ", '" + dateFormat.format(now) + "', " + b + ")";
+		System.out.println("operateFriend sql:" + sql);
+		int i = cont.executeUpdate(sql);
+	}
 }

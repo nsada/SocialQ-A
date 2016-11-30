@@ -12,21 +12,21 @@ public class FriendService {
 	private List<Friend> friends;
 	private Friend friend;
 	
-	public void addFriendAB(int a, int b){
+	/*public void addFriendAB(int a, int b){
 		Connect cont = new Connect();
-		String sql = "insert into friend(A, B) values(" + a + "," + b + ")";
+		String sql = "insert into friend(A, B, type) values(" + a + "," + b + ", 2)";
 		System.out.println("addFriendAB sql: "+ sql);
 		int i = cont.executeUpdate(sql);
 	}
-	public void addFriendAO(int a, int open) {
+	public void addFriendAO(int a, int openB, String nameB) {
 		Connect cont = new Connect();
-		String sql = "insert into friend(A, open) values(" + a + "," + open + ")";
+		String sql = "insert into friend(A, openB, nameB, type) values(" + a + "," + openB + ", '" + nameB + "', 1)";
 		System.out.println("addFriendAO sql: "+ sql);
 		int i = cont.executeUpdate(sql);		
-	}
-	public void addFriendABO(int a, int b, int open) {
+	}*/
+	public void addFriendABO(int a, int b, int openB, String nameB, int type) {
 		Connect cont = new Connect();
-		String sql = "insert into friend(A, B, open) values(" + a + "," + b + ", " + open + ")";
+		String sql = "insert into friend(A, B, openB, nameB, type) values(" + a + "," + b + ", " + openB + ", '" + nameB + "', " + type + ")";
 		System.out.println("addFriendABO sql: "+ sql);
 		int i = cont.executeUpdate(sql);		
 	}
