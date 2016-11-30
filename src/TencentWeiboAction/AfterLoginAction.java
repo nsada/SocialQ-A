@@ -13,7 +13,7 @@ import tencentApi.globalVar;
 
 import java.util.Map;
 
-public class AfterLoginAction {
+public class AfterLoginAction implements Action {
 	private String code;
 	private String state;
 	private String usercancel;
