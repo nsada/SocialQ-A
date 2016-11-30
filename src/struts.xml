@@ -142,6 +142,5 @@
             <result>/WEB-INF/content/{1}.jsp</result>
         </action>
     </package>
-    
-    
+
 </struts>

@@ -27,7 +27,7 @@ public class QuestionService {
 	public List<Selection> getQbaseSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
-		System.out.println("questionbase_question sql: " + sql);
+		//System.out.println("questionbase_selections sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();
 		try{
@@ -45,7 +45,7 @@ public class QuestionService {
 	public List<TextBlank> getQbaseTextBlanks(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=2";
-		System.out.println("questionbase_question sql: " + sql);
+		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		textBlanks = new ArrayList<>();
 		try{
