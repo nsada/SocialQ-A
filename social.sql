@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.15, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: social
 -- ------------------------------------------------------
--- Server version	5.7.15-log
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `exam` (
   `rights` int(11) DEFAULT NULL,
   `people` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL),(42,'tmytest','tmytest',1,1,1,NULL),(43,'null','null',1,NULL,NULL,NULL),(44,'awef','awef',1,1,1,NULL),(45,'null','null',1,NULL,NULL,NULL),(46,'null','null',1,NULL,NULL,NULL),(47,'null','null',1,NULL,NULL,NULL),(48,'null','null',1,NULL,NULL,NULL),(49,'null','null',1,NULL,NULL,NULL),(50,'tmytest2','tmytest2',1,2,1,NULL),(51,'null','null',1,NULL,NULL,NULL);
+INSERT INTO `exam` VALUES (1,'tmy1','tmy的第一套试题',1,2,2,NULL),(2,'tmy2','tmy的第二套试题',1,2,1,NULL),(3,'null','null',1,NULL,NULL,NULL),(4,'null','null',1,NULL,NULL,NULL),(5,'null','null',1,NULL,NULL,NULL),(7,'null','null',1,NULL,NULL,NULL),(8,'null','null',1,NULL,NULL,NULL),(9,'null','null',1,NULL,NULL,NULL),(10,'null','null',1,NULL,NULL,NULL),(11,'null','null',1,NULL,NULL,NULL),(12,'null','null',1,NULL,NULL,NULL),(13,'null','null',1,NULL,NULL,NULL),(14,'null','null',1,NULL,NULL,NULL),(15,'test4','44444',1,2,1,NULL),(16,'null','null',1,NULL,NULL,NULL),(17,'test6','test6',1,1,2,NULL),(18,'null','null',1,NULL,NULL,NULL),(19,'null','null',1,NULL,NULL,NULL),(21,'TEST7','试卷的描述TEST7',1,1,1,NULL),(22,'null','null',1,NULL,NULL,NULL),(23,'null','null',1,NULL,NULL,NULL),(24,'null','null',1,NULL,NULL,NULL),(25,'null','null',1,NULL,NULL,NULL),(26,'null','null',1,NULL,NULL,NULL),(27,'null','null',1,NULL,NULL,NULL),(28,'null','null',1,NULL,NULL,NULL),(29,'null','null',1,NULL,NULL,NULL),(30,'null','null',1,NULL,NULL,NULL),(31,'null','null',1,NULL,NULL,NULL),(32,'null','null',1,NULL,NULL,NULL),(33,'null','null',1,NULL,NULL,NULL),(34,'null','null',1,NULL,NULL,NULL),(35,'test','asdf试卷的描述',1,1,1,NULL),(36,'test11.20','1120',1,1,1,NULL),(37,'null','null',1,NULL,NULL,NULL),(38,'null','null',1,NULL,NULL,NULL),(39,'null','null',1,NULL,NULL,NULL),(40,'test11.20','1120',1,2,1,NULL),(42,'tmytest','tmytest',1,1,1,NULL),(43,'null','null',1,NULL,NULL,NULL),(44,'awef','awef',1,1,1,NULL),(45,'null','null',1,NULL,NULL,NULL),(46,'null','null',1,NULL,NULL,NULL),(47,'null','null',1,NULL,NULL,NULL),(48,'null','null',1,NULL,NULL,NULL),(49,'null','null',1,NULL,NULL,NULL),(50,'tmytest2','tmytest2',1,2,1,NULL),(51,'null','null',1,NULL,NULL,NULL),(54,'null','null',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,6 +353,8 @@ CREATE TABLE `user` (
   `password` varchar(30) DEFAULT NULL,
   `mail` varchar(50) DEFAULT NULL,
   `questionBaseID` varchar(45) DEFAULT NULL,
+  `tencentOpenID` varchar(45) DEFAULT NULL,
+  `tencentToken` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -364,7 +366,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL),(2,'tmy2','1015',NULL,NULL),(3,'','',NULL,NULL),(4,'','',NULL,NULL);
+INSERT INTO `user` VALUES (1,'tmy','1015',NULL,NULL,NULL,NULL),(2,'tmy2','1015',NULL,NULL,NULL,NULL),(3,'','',NULL,NULL,NULL,NULL),(4,'','',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-26 21:24:10
+-- Dump completed on 2016-11-30 22:16:16
