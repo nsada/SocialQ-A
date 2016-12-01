@@ -176,6 +176,14 @@
 			analysis: ${textBlank.analysis}
 		</div>
 	</s:if>
+	<s:if test="type==3">
+        <!-- show AandQ -->
+        <div class="col-md-12 column">
+            context: ${aandQ.context} <br />
+            ans: ${aandQ.answer}      <br />       
+            analysis: ${aandQ.analysis} <br />
+        </div>
+    </s:if>
 </rapid:override>
 
 

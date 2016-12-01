@@ -18,7 +18,7 @@
 		href="<%=request.getContextPath()%>/addTextBlank?qBaseID=<%=qBaseID%>">填空题</a></li>
 
 	<li id="addAnswerQuestion"><a
-		href="<%=request.getContextPath()%>/addAnswerQuestion?qBaseID=<%=qBaseID%>">问答题</a></li>
+		href="<%=request.getContextPath()%>/addAandQ?qBaseID=<%=qBaseID%>">问答题</a></li>
 </rapid:override>
 
 

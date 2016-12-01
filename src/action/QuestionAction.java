@@ -4,7 +4,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
-import domain.AnswerQuestion;
+import domain.AandQ;
 import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
@@ -13,7 +13,7 @@ import service.QuestionService;
 public class QuestionAction implements Action {
 	private Selection selection;	
 	private TextBlank textBlank;
-	private AnswerQuestion aandQ;
+	private AandQ aandQ;
 	private int qBaseID;
 	private int type;	
 	private int questionID;
@@ -35,15 +35,6 @@ public class QuestionAction implements Action {
 		}		
 		//printSelection(selection);
 		return SUCCESS;
-	}
-	private void printSelection(Selection sel) {
-		// TODO Auto-generated method stub
-		System.out.println(sel.getA() + " " + sel.getA().length());
-		System.out.println(sel.getB() + " " + sel.getB().length());
-		System.out.println(sel.getC() + " " + sel.getC().length());
-		System.out.println(sel.getD() + " " + sel.getD().length());
-		System.out.println(sel.getE() + " " + sel.getE().length());
-		System.out.println(sel.getF() + " " + sel.getF().length());
 	}
 
 	public String addQuestion() {
@@ -136,10 +127,10 @@ public class QuestionAction implements Action {
 	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}
-	public AnswerQuestion getAandQ() {
+	public AandQ getAandQ() {
 		return aandQ;
 	}
-	public void setAandQ(AnswerQuestion aandQ) {
+	public void setAandQ(AandQ aandQ) {
 		this.aandQ = aandQ;
 	}
 	public TextBlank getTextBlank() {

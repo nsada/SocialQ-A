@@ -58,6 +58,25 @@
 				</s:iterator>
 			</tbody>
 		</table>
+        <table class="table table-bordered table-hover ">
+            <caption>问答题</caption>
+            <thead>
+                <tr>
+                    <th>题目描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <s:iterator value="aandQs" var="aandQ">
+                    <tr>
+                        <td>${aandQ.context}</td>
+                        <td><a
+                            href='<s:url action="showQuestion"><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
+                                type="button" value="展开" /></a></td>
+                    </tr>
+                </s:iterator>
+            </tbody>
+        </table>		
 
 	</div>
 </rapid:override>
