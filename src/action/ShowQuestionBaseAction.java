@@ -39,6 +39,7 @@ public class ShowQuestionBaseAction implements Action {
 			selections = qs.getQbaseSelections(qBaseID);
 			textBlanks = qs.getQbaseTextBlanks(qBaseID);
 			aandQs = qs.getQbaseAandQs(qBaseID);
+			multys = qs.getQbaseMultys(qBaseID);
 		} catch (Exception e) {
 			selections = null;
 			textBlanks = null;

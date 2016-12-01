@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import domain.AandQ;
+import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
@@ -14,6 +15,7 @@ public class QuestionAction implements Action {
 	private Selection selection;	
 	private TextBlank textBlank;
 	private AandQ aandQ;
+	private Multy multy;
 	private int qBaseID;
 	private int type;	
 	private int questionID;
@@ -37,6 +39,7 @@ public class QuestionAction implements Action {
 			case 1: selection = qs.getSelection(questionID); break;
 			case 2: textBlank = qs.getTextBlank(questionID); break;
 			case 3: aandQ = qs.getAandQ(questionID); break;
+			case 4: multy = qs.getMulty(questionID); break;
 			default:;
 		}		
 		return SUCCESS;
@@ -51,6 +54,7 @@ public class QuestionAction implements Action {
 		case 1: questionID = addSelection(); break;
 		case 2: questionID = addTextBlank(); break;
 		case 3: questionID = addAandQ(); break;
+		case 4: questionID = addMulty(); break;
 		default: questionID = -1;
 		}
 		if (questionID>=0) {
@@ -63,6 +67,9 @@ public class QuestionAction implements Action {
 		
 	}
 	
+
+
+
 	private int addSelection() {
 		int i = -1;
 		try {
@@ -93,6 +100,16 @@ public class QuestionAction implements Action {
 		}				
 		return i;
 	}
+	private int addMulty() {
+		int i = -1;
+		try {
+			QuestionService qs = new QuestionService();
+			i = qs.addMulty(multy, qBaseID);
+		} catch (Exception e) {
+			i = -1;
+		}				
+		return i;
+	}	
 
 
 
@@ -134,6 +151,16 @@ public class QuestionAction implements Action {
 	}
 	public void setTextBlank(TextBlank textBlank) {
 		this.textBlank = textBlank;
+	}
+
+
+	public Multy getMulty() {
+		return multy;
+	}
+
+
+	public void setMulty(Multy multy) {
+		this.multy = multy;
 	}	
 
 	

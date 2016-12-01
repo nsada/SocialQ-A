@@ -85,7 +85,29 @@
                     </tr>
                 </s:iterator>
             </tbody>
-        </table>		
+        </table>	
+        <table class="table table-bordered table-hover ">
+            <caption>多选题</caption>
+            <thead>
+                <tr>
+                    <th>题目描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <s:iterator value="multys" var="multy">
+                    <tr>
+                        <td>${multy.context}</td>
+                        <td>
+                            <a href='<s:url action="showQuestion"><s:param name="questionID" value="#multy.id"/><s:param name="type" value="4"/></s:url>'><input
+                                type="button" value="展开" /></a>
+                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#multy.id"/><s:param name="type" value="4"/></s:url>'><input
+                                type="button" value="删除" /></a>
+                        </td>
+                    </tr>
+                </s:iterator>
+            </tbody>
+        </table>            	
 
 	</div>
 </rapid:override>

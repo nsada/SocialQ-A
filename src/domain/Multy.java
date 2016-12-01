@@ -11,6 +11,8 @@ public class Multy {
 	private String F;
 	private String ans;
 	private String analysis;
+	private int score;
+	
 	public int getId() {
 		return id;
 	}
@@ -70,6 +72,12 @@ public class Multy {
 	}
 	public void setAnalysis(String analysis) {
 		this.analysis = analysis;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	
