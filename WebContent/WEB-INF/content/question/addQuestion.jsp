@@ -17,8 +17,11 @@
 	<li id="addTextBlank"><a
 		href="<%=request.getContextPath()%>/addTextBlank?qBaseID=<%=qBaseID%>">填空题</a></li>
 
-	<li id="addAnswerQuestion"><a
+	<li id="addAandQ"><a
 		href="<%=request.getContextPath()%>/addAandQ?qBaseID=<%=qBaseID%>">问答题</a></li>
+
+    <li id="addMulty"><a
+        href="<%=request.getContextPath()%>/addMulty?qBaseID=<%=qBaseID%>">多选题</a></li>		
 </rapid:override>
 
 

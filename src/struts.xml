@@ -35,7 +35,10 @@
         </action>       
         <action name="addAandQ">
             <result>/WEB-INF/content/question/addAandQ.jsp</result>
-        </action>                 
+        </action>       
+        <action name="addMulty">
+            <result>/WEB-INF/content/question/addMulty.jsp</result>
+        </action>                       
         
         <action name="showQuestion" class="action.QuestionAction" method="showQuestion">
             <result name="success">/WEB-INF/content//question/showQuestion.jsp</result>

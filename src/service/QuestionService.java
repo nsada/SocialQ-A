@@ -18,6 +18,8 @@ public class QuestionService {
 	private TextBlank textBlank;
 	private List<AandQ> aandQs;
 	private AandQ aandQ;
+	private List<Multy> multys;
+	private Multy multy;
 	
 	public String getQuestionType(int i){
 		String name = "";
@@ -79,6 +81,24 @@ public class QuestionService {
 			aandQs = null;
 		}
 		return aandQs;
+	}
+	public List<Multy> getQbaseMultys(int qBaseID) {
+		cont = new Connect();
+		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=4";
+		//System.out.println("questionbase_multys sql: " + sql);
+		ResultSet result = cont.executeQuery(sql);	
+		multys = new ArrayList<>();
+		try{
+			while (result.next()){
+				multy = new Multy();
+				multy = getMulty(result.getInt("questionID"));
+				multys.add(multy);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			multys = null;
+		}
+		return multys;
 	}
 
 	public List<Selection> getExamSelections(int examID) {
@@ -225,6 +245,31 @@ public class QuestionService {
 		}
 		return aandQ;
 	}
+	public Multy getMulty(int id) {
+		String sql = "select * from multy where id=" + id;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		
+		try{
+			if (result.next()){
+				multy = new Multy();
+				multy.setId(id);
+				multy.setContext(result.getString("context"));
+				multy.setA(result.getString("A"));
+				multy.setB(result.getString("B"));
+				multy.setC(result.getString("C"));
+				multy.setD(result.getString("D"));
+				multy.setE(result.getString("E"));
+				multy.setF(result.getString("F"));		
+				multy.setAnalysis(result.getString("analysis"));
+				multy.setAns(result.getString("ans"));
+				multy.setScore(result.getInt("score"));
+			}
+		}catch (Exception e) {
+			System.out.println("按id查找Selection失败");
+		}
+		return multy;
+	}
 	public int addAandQ(AandQ aandQ, int qBaseID) {
 		cont = new Connect();
 		String sql = "insert into aandq(id, context, ans, analysis, score) values("
@@ -240,8 +285,21 @@ public class QuestionService {
 		return id;
 	}
 	public int addMulty(Multy multy, int qBaseID) {
-		// TODO Auto-generated method stub
-		return 0;
+		cont = new Connect();
+		String sql = "insert into multy(id, context, A, B, C, D, E, F, ans, analysis, score) values("
+		+ multy.getId() + ", '" + multy.getContext() + "', '"+ multy.getA() + "', '" + multy.getB() + "', '" + multy.getC() + "', '"
+		+ multy.getD() + "', '" + multy.getE() + "', '" + multy.getF() + "', '" + multy.getAns() + "', '" + multy.getAnalysis() + "', " + multy.getScore() + ")";
+		
+		int id = cont.executeUpdateID(sql);
+		System.out.println("addMulty sql: "+ sql + "   *id:" + id);
+		int in = 0;
+		if (id > 0) {
+			multy.setId(id);
+			in = addQuestionBase_Question(qBaseID, id, 4);			
+		}
+		//System.out.println("LAST_INSERT_ID: " + id);
+		if (in < 0) id = -1;
+		return id;
 	}
 	public String getQuestionContext(int id, int type) {
 		String sql = "";
@@ -268,6 +326,8 @@ public class QuestionService {
 		}
 		return context;	
 	}
+
+
 
 
 
