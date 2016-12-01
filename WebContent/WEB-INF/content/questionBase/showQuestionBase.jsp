@@ -32,9 +32,12 @@
 				<s:iterator value="selections" var="sel">
 					<tr>
 						<td>${sel.context}</td>
-						<td><a
-							href='<s:url action="showQuestion"><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input
-								type="button" value="展开" /></a></td>
+						<td>
+						  <a href='<s:url action="showQuestion"><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input
+								type="button" value="展开" /></a>
+                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input
+                                type="button" value="删除" /></a>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -51,9 +54,12 @@
 				<s:iterator value="textBlanks" var="blank">
 					<tr>
 						<td>${blank.context}</td>
-						<td><a
-							href='<s:url action="showQuestion"><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input
-								type="button" value="展开" /></a></td>
+						<td>
+						  <a href='<s:url action="showQuestion"><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input
+								type="button" value="展开" /></a>
+						  <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input
+                                type="button" value="删除" /></a>
+						</td>
 					</tr>
 				</s:iterator>
 			</tbody>
@@ -70,9 +76,12 @@
                 <s:iterator value="aandQs" var="aandQ">
                     <tr>
                         <td>${aandQ.context}</td>
-                        <td><a
-                            href='<s:url action="showQuestion"><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
-                                type="button" value="展开" /></a></td>
+                        <td>
+                            <a href='<s:url action="showQuestion"><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
+                                type="button" value="展开" /></a>
+                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
+                                type="button" value="删除" /></a>
+                        </td>
                     </tr>
                 </s:iterator>
             </tbody>

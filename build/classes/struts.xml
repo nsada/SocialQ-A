@@ -16,8 +16,8 @@
             <result>/WEB-INF/content/friend/showFriends.jsp</result>
         </action>
         
-        <action name="delQuestion" class="action.QuestionAction" method="delQuestion">
-            <result type ="redirect">showQuestionBase</result>
+        <action name="delQbaseQuestion" class="action.QuestionAction" method="delQbaseQuestion">
+            <result type="chain">showQuestionBase</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
         </action>   
         <action name="addQuestionPro" class="action.QuestionAction" method="addQuestion">
@@ -36,11 +36,11 @@
         <action name="addAandQ">
             <result>/WEB-INF/content/question/addAandQ.jsp</result>
         </action>                 
+        
         <action name="showQuestion" class="action.QuestionAction" method="showQuestion">
             <result name="success">/WEB-INF/content//question/showQuestion.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>
-        </action>          
-        
+        </action>                  
         <action name="showTextBlank">
             <result name="success">/WEB-INF/content//question/showTextBlank.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>
@@ -71,7 +71,7 @@
             <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
         </action>        
         <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
-            <result name = 'success'>/WEB-INF/content/questionBase/showQuestionBase.jsp</result>
+            <result name='success'>/WEB-INF/content/questionBase/showQuestionBase.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
         </action>      
 

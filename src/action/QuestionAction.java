@@ -25,6 +25,12 @@ public class QuestionAction implements Action {
 		return null;
 	}
 	
+	
+	public String delQbaseQuestion() {
+		QuestionService qs = new QuestionService();
+		qs.delQuestionBase_Question(qBaseID, questionID, type);
+		return SUCCESS;				
+	}
 	public String showQuestion() {
 		QuestionService qs = new QuestionService();
 		switch (type) {
@@ -33,12 +39,10 @@ public class QuestionAction implements Action {
 			case 3: aandQ = qs.getAandQ(questionID); break;
 			default:;
 		}		
-		//printSelection(selection);
 		return SUCCESS;
 	}
 
 	public String addQuestion() {
-		//System.out.println("addQuestion type=" + type + "qBase=" + qBaseID);
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		userID = (int) sess.get("userid");
@@ -58,6 +62,7 @@ public class QuestionAction implements Action {
 		}
 		
 	}
+	
 	private int addSelection() {
 		int i = -1;
 		try {
@@ -66,12 +71,10 @@ public class QuestionAction implements Action {
 		} catch (Exception e) {
 			i = -1;
 		}				
-
 		return i;
 	}	
 	private int addTextBlank() {
 		int i = -1;
-		printTextBlank(textBlank);
 		try {
 			QuestionService qs = new QuestionService();
 			i = qs.addTextBlank(textBlank, qBaseID);
@@ -80,13 +83,6 @@ public class QuestionAction implements Action {
 		}				
 		return i;
 	}	
-	
-	private void printTextBlank(TextBlank blank) {
-		System.out.println("ansA: " + blank.getAnsA());
-		System.out.println("ansB: " + blank.getAnsB());
-		System.out.println("ansC: " + blank.getAnsC());
-	}
-
 	private int addAandQ() {
 		int i = -1;
 		try {
