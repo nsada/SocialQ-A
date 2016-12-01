@@ -5,14 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<link rel="stylesheet"
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<%
+
+<meta charset="utf-8"> 
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<%
 		String username;
 		if (session.getAttribute("username")!=null){
 			username = session.getAttribute("username").toString();
@@ -23,6 +22,7 @@
 <title>Welcome Here</title>
 </head>
 <body>
+
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
 	<div class="container">
 		<div class="navbar-header">
@@ -156,6 +156,7 @@
 	</div>
 
 </body>
+
 
 <script type="text/javascript">
 	function insertQ() {

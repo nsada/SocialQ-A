@@ -10,8 +10,7 @@
 		<ul class="row">
 			<h2 class="text-center">Hello! Here is the index of SocialQ-A~</h2>
 			<br />
-			<h2 class="text-center">If you have any question, please contact
-				with us!</h2>
+			<h2 class="text-center">If you have any question, please contact with us!</h2>
 			<br />
 			<h4 class="text-center">
 				Email:<span class="text-info">hitnstmy@163.com</span>
@@ -27,6 +26,7 @@
 			<br />
 		</ul>
 	</div>
+
 
 </rapid:override>
 
