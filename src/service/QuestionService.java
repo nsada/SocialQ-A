@@ -216,7 +216,7 @@ public class QuestionService {
 				aandQ = new AandQ();
 				aandQ.setId(id);
 				aandQ.setContext(result.getString("context"));
-				aandQ.setAnswer(result.getString("answer"));
+				aandQ.setAns(result.getString("ansr"));
 				aandQ.setAnalysis(result.getString("analysis"));
 				aandQ.setScore(result.getInt("score"));
 			}
@@ -227,8 +227,8 @@ public class QuestionService {
 	}
 	public int addAandQ(AandQ aandQ, int qBaseID) {
 		cont = new Connect();
-		String sql = "insert into aandq(id, context, answer, analysis, score) values("
-		+ aandQ.getId() + ", '" + aandQ.getContext() + "', '" + aandQ.getAnswer() + "', '" + aandQ.getAnalysis() + "', " + aandQ.getScore() + ")";
+		String sql = "insert into aandq(id, context, ans, analysis, score) values("
+		+ aandQ.getId() + ", '" + aandQ.getContext() + "', '" + aandQ.getAns() + "', '" + aandQ.getAnalysis() + "', " + aandQ.getScore() + ")";
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addAandQsql: "+ sql + "   *id:" + id);
 		int in = 0;

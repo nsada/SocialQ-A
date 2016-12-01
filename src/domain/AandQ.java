@@ -3,7 +3,7 @@ package domain;
 public class AandQ {
 	private int id;
 	private String context;
-	private String answer;
+	private String ans;
 	private int score;
 	private String analysis;
 	public int getId() {
@@ -18,11 +18,11 @@ public class AandQ {
 	public void setContext(String context) {
 		this.context = context;
 	}
-	public String getAnswer() {
-		return answer;
+	public String getAns() {
+		return ans;
 	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setAns(String ans) {
+		this.ans = ans;
 	}
 	public int getScore() {
 		return score;
