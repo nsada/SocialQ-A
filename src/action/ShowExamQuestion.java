@@ -5,7 +5,7 @@ import java.util.List;
 import java.sql.*;
 import com.opensymphony.xwork2.Action;
 import database.Connect;
-import domain.AnswerQuestion;
+import domain.AandQ;
 import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
@@ -18,7 +18,7 @@ public class ShowExamQuestion implements Action {
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
 	private List<Multy> multys;
 	private List<TextBlank> textBlanks;
-	private List<AnswerQuestion> AandQs;	
+	private List<AandQ> AandQs;	
 	private int qBaseID;
      private ResultSet result;
      private Connect cont;
@@ -56,10 +56,10 @@ public class ShowExamQuestion implements Action {
 	public void setTextBlanks(List<TextBlank> textBlanks) {
 		this.textBlanks = textBlanks;
 	}
-	public List<AnswerQuestion> getAandQs() {
+	public List<AandQ> getAandQs() {
 		return AandQs;
 	}
-	public void setAandQs(List<AnswerQuestion> aandQs) {
+	public void setAandQs(List<AandQ> aandQs) {
 		AandQs = aandQs;
 	}
 	

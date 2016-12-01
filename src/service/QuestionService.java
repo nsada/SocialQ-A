@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.Connect;
-import domain.AnswerQuestion;
+import domain.AandQ;
 import domain.TextBlank;
 import domain.Multy;
 import domain.Selection;
@@ -16,6 +16,8 @@ public class QuestionService {
 	private Selection selection;
 	private List<TextBlank> textBlanks;
 	private TextBlank textBlank;
+	private List<AandQ> aandQs;
+	private AandQ aandQ;
 	
 	public String getQuestionType(int i){
 		String name = "";
@@ -60,6 +62,25 @@ public class QuestionService {
 		}
 		return textBlanks;
 	}	
+	public List<AandQ> getQbaseAandQs(int qBaseID) {
+		cont = new Connect();
+		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=3";
+		//System.out.println("questionbase_textblanks sql: " + sql);
+		ResultSet result = cont.executeQuery(sql);	
+		aandQs = new ArrayList<>();
+		try{
+			while (result.next()){
+				aandQ = new AandQ();
+				aandQ = getAandQ(result.getInt("questionID"));
+				aandQs.add(aandQ);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			aandQs = null;
+		}
+		return aandQs;
+	}
+
 	public List<Selection> getExamSelections(int examID) {
 		cont = new Connect();
 		String sql = "select questionID from exam_question where examID=" + examID + " and type=1";
@@ -80,7 +101,7 @@ public class QuestionService {
 	}
 
 	public Selection getSelection(int id) {
-		String sql = "select * from Selection where id=" + id;
+		String sql = "select * from selection where id=" + id;
 		cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
@@ -111,7 +132,7 @@ public class QuestionService {
 		return selection;
 	}
 	public TextBlank getTextBlank(int id) {
-		String sql = "select * from TextBlank where id=" + id;
+		String sql = "select * from textblank where id=" + id;
 		cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
@@ -159,7 +180,6 @@ public class QuestionService {
 		+ blank.getId() + ", '" + blank.getContext() + "', " + blank.getNum() + ", '" + 
 		blank.getA() + "', '" + blank.getB() + "', '" + blank.getC() + "', '" + blank.getD() + "', '" + blank.getE() + "', '" + blank.getF() + "', '" + 
 		blank.getAnalysis() + "', " + blank.getScore() + ")";
-		System.out.println("addTextBlanke sql: "+ sql);
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addTextBlanke sql: "+ sql + "   *id:" + id);
 		int in = 0;
@@ -185,13 +205,38 @@ public class QuestionService {
 		return i;
 	}
 
-	public AnswerQuestion getAandQ(int questionID) {
-		// TODO Auto-generated method stub
-		return null;
+	public AandQ getAandQ(int id) {
+		String sql = "select * from aandq where id=" + id;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		
+		try{
+			if (result.next()){
+				aandQ = new AandQ();
+				aandQ.setId(id);
+				aandQ.setContext(result.getString("context"));
+				aandQ.setAnswer(result.getString("answer"));
+				aandQ.setAnalysis(result.getString("analysis"));
+				aandQ.setScore(result.getInt("score"));
+			}
+		}catch (Exception e) {
+			System.out.println("按id查找Selection失败");
+		}
+		return aandQ;
 	}
-	public int addAandQ(AnswerQuestion aandQ, int qBaseID) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addAandQ(AandQ aandQ, int qBaseID) {
+		cont = new Connect();
+		String sql = "insert into aandq(id, context, answer, analysis, score) values("
+		+ aandQ.getId() + ", '" + aandQ.getContext() + "', '" + aandQ.getAnswer() + "', '" + aandQ.getAnalysis() + "', " + aandQ.getScore() + ")";
+		int id = cont.executeUpdateID(sql);
+		System.out.println("addAandQsql: "+ sql + "   *id:" + id);
+		int in = 0;
+		if (id > 0) {
+			aandQ.setId(id);
+			in = addQuestionBase_Question(qBaseID, id, 3);			
+		}
+		if (in < 0) id = -1;
+		return id;
 	}
 	public int addMulty(Multy multy, int qBaseID) {
 		// TODO Auto-generated method stub
