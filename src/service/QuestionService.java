@@ -198,11 +198,12 @@ public class QuestionService {
 		System.out.println("insert questionbase_question sql: " + sql + " i: " + i);
 		return i;
 	}
-	public int delUser_QuestionBase(int qBaseID, int id, int type){
+	public int delQuestionBase_Question(int qBaseID, int id, int type) {
 		cont = new Connect();
-		String sql = "delete from questionbase_question where questionBaseID=" + qBaseID + " and questionID=" + id + " and type=" + type;
-		int i = cont.executeUpdate(sql);		
-		return i;
+		String sql = "delete from questionbase_question where questionBaseID=" + qBaseID + " and questionID=" + id + " and type=" + type; 
+		int i = cont.executeUpdate(sql);
+		System.out.println("delete questionbase_question sql: " + sql + " i: " + i);
+		return i;		
 	}
 
 	public AandQ getAandQ(int id) {
