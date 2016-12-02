@@ -4,6 +4,15 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 
+<%
+		String username;
+		if (session.getAttribute("username")!=null){
+			username = session.getAttribute("username").toString();
+		}else{
+			username = "";
+		}
+%>
+	
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/css/base.css">
 <link rel="stylesheet" type="text/css"
@@ -14,18 +23,13 @@
 <html>
 <rapid:block name="head">base_head</rapid:block>
 <body class="ui-selectable">
+
+
 	<br />
 	<rapid:block name="content">base_content</rapid:block>
 	<br />
 
-	<%
-		String username;
-		if (session.getAttribute("username")!=null){
-			username = session.getAttribute("username").toString();
-		}else{
-			username = "";
-		}
-	%>
+	
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
 		<div class="container">
