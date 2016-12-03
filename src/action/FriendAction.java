@@ -3,12 +3,15 @@ package action;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
+import TencentWeiboAction.Information;
 import domain.Friend;
 import domain.User;
 import service.FriendService;
@@ -58,25 +61,14 @@ public class FriendAction implements Action {
 				System.out.println("fail to get information of user's frends");
 				return ERROR;
 			}
-			//JSONObject jasonObject = JSON
-			Map <String,Object> result = convention.ConvertStrToMap(str);
-		
-			List<Map> list = (List<Map>)result.get("info");
-			System.out.println("get info " + list.size());
-			for(int lambda=0;lambda<list.size();lambda++){
-				Map<String,Object> temp = list.get(lambda);	
-				
-				
-				//String msg = temp.get("msg").toString();
-				//System.out.println(ret+" "+msg);
-				String nameB = (String)temp.get("nickname");
-				System.out.println("nick");
-				String openB = (String)temp.get("openid");
-				System.out.println("openid");
-				System.out.println("weibo nameB=" + nameB + ", openB=" + openB);
-				fs.checkFriend(userID, nameB, openB);
-				Friend friend = new Friend(userID, 0, openB, nameB, 2);
-			}
+			Information in = new Information();
+			List<String> data = in.toMap(str);
+/*
+			System.out.println("openid");
+			System.out.println("weibo nameB=" + nameB + ", openB=" + openB);
+			fs.checkFriend(userID, nameB, openB);
+			Friend friend = new Friend(userID, 0, openB, nameB, 2);
+*/
 			
 		} catch (Exception e) {
 			friends = null;
