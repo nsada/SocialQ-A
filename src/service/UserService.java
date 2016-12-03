@@ -68,6 +68,8 @@ public class UserService {
 				Map<String, Object> sess = actCtx.getSession();
 				user.setTencentToken((String)sess.get("accesstoken"));
 				this.updateUser(user, user.getId());
+			} else {
+				user = null;
 			}
 			result.close();
 		}catch (Exception e) {
@@ -177,6 +179,12 @@ public class UserService {
 		//System.out.println("访问users_________________________");
 		for (int i = 0; i < users.size(); i++)
 			users.get(i).print();
+	}
+
+	public void delete(int userID) {
+		cont = new Connect();
+		String sql = "delete from user where id=" + userID;
+		int i = cont.executeUpdate(sql);				
 	}
 
 
