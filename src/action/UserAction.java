@@ -115,7 +115,16 @@ public class UserAction implements Action {
 		return SUCCESS;
 	}
 	
-
+	public String delete(){
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid");
+		
+		UserService us = new UserService();
+		us.delete(userID);
+		return logout();
+	}
+	
 	
 
 }

@@ -97,6 +97,10 @@
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+        <action name="delUser" class="action.UserAction" method="delete">
+            <result name="success">/WEB-INF/content/user/login.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
         
         <action name="InsertExam" class="action.InsertExam">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
@@ -157,8 +161,8 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
             <result name="notSigned">/WEB-INF/content/user/regist.jsp</result>
         </action>
-        <action name="ShowFriends" class="action.ShowFriends" >
-            <result name="success">/WEB-INF/content/friends/FriendList.jsp</result>
+        <action name="showFriends" class="action.FriendAction" >
+            <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
             <result name="error">/WEB-INF/content/user/login.jsp</result>
             <result name="needlogin">/WEB-INF/content/user/login.jsp</result>
             

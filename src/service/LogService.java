@@ -90,4 +90,5 @@ public class LogService {
 		System.out.println("operateFriend sql:" + sql);
 		int i = cont.executeUpdate(sql);
 	}
+
 }

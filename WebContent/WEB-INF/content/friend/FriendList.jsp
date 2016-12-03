@@ -18,7 +18,7 @@
 			username = "";
 		}
 	%>
-<title>Welcome Here</title>
+<title>好友列表</title>
 <style type="text/css">
 	* {margin: 0; padding: 0;} 
 
