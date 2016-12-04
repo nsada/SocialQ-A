@@ -68,8 +68,10 @@ public class UserService {
 				Map<String, Object> sess = actCtx.getSession();
 				user.setTencentToken((String)sess.get("accesstoken"));
 				this.updateUser(user, user.getId());
+
 			} else {
 				user = null;
+
 			}
 			result.close();
 		}catch (Exception e) {

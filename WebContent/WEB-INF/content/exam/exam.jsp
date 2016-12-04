@@ -1,63 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta charset="utf-8"> 
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<%
-		String username;
-		if (session.getAttribute("username")!=null){
-			username = session.getAttribute("username").toString();
-		}else{
-			username = "";
-		}
-	%>
-<title>Welcome Here</title>
-</head>
-<body>
+<rapid:override name="content">
+	<form name="myform" action="Paper" method="post">
 
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigetion">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">SocialQ-A</a>
-		</div>
-		<div class="collapse navbar-collapse" id="navbar-collapse-basepage">
-			<ul class="nav navbar-nav">
-				<li id="index"><a href="<%=request.getContextPath()%>/index">主页</a></li>
-				<li class="active" id="InsertExam"><a
-					href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-				<li id="add_book"><a
-					href="<%=request.getContextPath()%>/book/addBook">朋友圈</a></li>
-				<li id="showPersonalCenter"><a
-					href="<%=request.getContextPath()%>/user/showPersonalCenter">个人中心</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-
-				<%if (username==null || username==""){%>
-				<li><a href="<%=request.getContextPath()%>/user/regist">注册</a></li>
-				<li><a href="<%=request.getContextPath()%>/user/login">登录</a></li>
-				<%}else{%>
-				<li><p class="navbar-text">
-						欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span>
-					</p></li>
-				<li><a href="<%=request.getContextPath()%>/user/logout">注销</a></li>
-				<%}%>
-
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div
-		style="width: 60%; position: absolute; left: 20%; top: 60px; background: white; border-style: ridge; border-width: 3px;">
-
-		<form name="myform" action="Paper" method="post">
 
 			<input name="title" type="text" placeholder="请输入试卷的标题" required=""
 				align="center"
@@ -66,7 +16,8 @@
 
 			<textarea name="description" placeholder="试卷的描述" size="50"
 				required=""
-				style="height: 50px; width: 60%; position: relative; left: 20%">试卷的描述</textarea>
+				
+				style="height: 50px; width: 60%; position: relative; left: 20%"></textarea>
 			<br>
 			<div align="center"
 				style="width: 60%; position: relative; left: 20%;">
@@ -87,43 +38,43 @@
 
 			<div style="width: 70%; position: relative; left: 15%">
 				<%int i =1; %>
-				<s:iterator value="selections" var="sel">
+				<s:iterator value="selections">
 
 					<p><%=i %>.
 						<s:property value="context" />
 					</p>
 					<%i++; %>
-					<s:if test='#sel.num>=1'>
+					<s:if test='num>=1'>
 						<p>
 							A:
 							<s:property value="A" />
 						</p>
 					</s:if>
-					<s:if test='#sel.num>=2'>
+					<s:if test='num>=2'>
 						<p>
 							B:
 							<s:property value="B" />
 						</p>
 					</s:if>
-					<s:if test='#sel.num>=3'>
+					<s:if test='num>=3'>
 						<p>
 							C:
 							<s:property value="C" />
 						</p>
 					</s:if>
-					<s:if test='#sel.num>=4'>
+					<s:if test='num>=4'>
 						<p>
 							D:
 							<s:property value="D" />
 						</p>
 					</s:if>
-					<s:if test='#sel.num>=5'>
+					<s:if test='num>=5'>
 						<p>
 							E:
 							<s:property value="E" />
 						</p>
 					</s:if>
-					<s:if test='#sel.num>=6'>
+					<s:if test='num>=6'>
 						<p>
 							F:
 							<s:property value="F" />
@@ -153,10 +104,6 @@
 					value="插入题目">
 			</div>
 		</form>
-	</div>
-
-</body>
-
 
 <script type="text/javascript">
 	function insertQ() {
@@ -165,4 +112,8 @@
 	}
 </script>
 
-</html>
+</rapid:override>
+		
+
+<%@ include file="../../../base.jsp"%>
+

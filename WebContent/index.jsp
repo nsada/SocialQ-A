@@ -6,7 +6,7 @@
 	<title>主页</title>
 </rapid:override>
 <rapid:override name="content">
-	<div class="container table-center">
+	
 		<ul class="row">
 			<h2 class="text-center">Hello! Here is the index of SocialQ-A~</h2>
 			<br />
@@ -25,7 +25,7 @@
 			</h4>
 			<br />
 		</ul>
-	</div>
+
 
 
 </rapid:override>

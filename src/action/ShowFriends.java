@@ -42,7 +42,9 @@ public class ShowFriends implements Action{
 															"access_token="+sess.get("accesstoken")+"&"+
 															"openid="+sess.get("openid")+"&"+
 															"reqnum=30&startindex=0");
+
 		System.out.println("ShowFriends: " + str);
+
 		Map <String,Object> result = convention.ConvertStrToMap(str);
 		List<Map> list = (List<Map>)result.get("info");
 		this.WeiboFriends = new ArrayList<>();
