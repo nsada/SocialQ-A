@@ -1,6 +1,3 @@
-<%@page import="domain.Selection"%>
-<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
-<%@page import="java.lang.reflect.Array"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -11,6 +8,20 @@
 <head>
     <title>答题</title>
     <script src="<%=request.getContextPath()%>/js/jquery-3.1.1.js"></script>
+    <script>
+    	var jq = jQuery.noConflict();
+    	jq(document).ready(function(){
+    		jq(".submit_result").click(function(){
+    			var selection_result = ""; 
+    			jq(".choose").each(function(){
+    				var valu = this.value;
+    				selection_result += valu + "#";	
+    				selection_result = selection_result.substring(0,selection_result.length()-1);
+    			})
+    			jq.post("<%=request.getContextPath()%>/submitAnswer.action", {selection_answer : selection_result})
+    		})
+    	})
+    </script>
 </head>
 <body>
 
@@ -79,27 +90,4 @@
 		       
 	    </div>
 </body>
-<script>
-    	var selection_num = <%=i%>;
-    	var jq = jQuery.noConflict();
-    	jq(document).ready(function(){
-    		jq(".submit_result").click(function(){
-    			var selection_result = ""; 
-    			for(var k = 1 ; k <= selection_num;k++){
-    				var obj = document.getElementsByName("choose"+k);
-    				find:{
-    					for(var l = 0 ; l <obj.length;l++){
-        					if(obj[l].checked){
-        						selection_result += obj[l].value + "#";
-            					break find ;
-        					}
-        						
-        				}
-    					selection_result +=  "#";
-    				}
-    			}
-    		})
-    	
-    	})
-    </script>
 </html>
