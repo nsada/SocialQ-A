@@ -102,7 +102,7 @@
 					<s:iterator value="friends">   		
 						<li class = "biao"> 
 							<img class = "biao" src="<%=request.getContextPath()%>/images/background.jpg"/> 
-							<h3 class = "biao"><s:property value="name"/></h3> 
+							<h3 class = "biao"><s:property value="nameB"/></h3> 
 							<p class = "biao">详细信息</p> 
 							<button class = "biao">删除该好友</button>
 						</li> 				
@@ -114,11 +114,10 @@
            	<h2 style = "position:relative;left:2.5%">微博粉丝 </h2>
            	<div class ="biao"> 
 				<ul class = "biao"> 
-					<s:iterator value="WeiboFriends">   		
+					<s:iterator value="weibofriends">   		
 						<li class = "biao"> 
 							<img class = "biao" src="<%=request.getContextPath()%>/images/background.jpg"/> 
-							<h3 class = "biao"><s:property value="name"/></h3> 
-							<p class = "biao">详细信息</p> 
+							<h3 class = "biao"><s:property value="B"/></h3>
 							<button class = "biao">邀请该好友</button>
 						</li> 				
 							

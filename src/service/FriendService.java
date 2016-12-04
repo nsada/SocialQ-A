@@ -7,6 +7,7 @@ import java.util.List;
 
 import database.Connect;
 import domain.Friend;
+import domain.WeiboFriend;
 
 public class FriendService {
 	private List<Friend> friends;
@@ -54,12 +55,7 @@ public class FriendService {
 		return friends;	
 	}
 
-	public void checkFriend(int A, String nameB, String openB) {
-		friend = getFriend(A, nameB, openB);
-		if (friend == null) {
-			addFriend(A, 0, openB, nameB, 2);
-		}
-	}
+
 	public Friend getFriend(int A, String nameB, String openB) {
 		String sql = "select * from friend where A=" + A + " and openB='" + openB + "' and nameB='" + "'";
 		Connect cont = new Connect();
@@ -79,5 +75,32 @@ public class FriendService {
 			friend = null;
 		}		
 		return friend;
+	}
+
+	public WeiboFriend getWeiboFriend(String A, String B) {
+		String sql = "select * from weibofriend where A='" + A + "' and B='" + B + "'";
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		WeiboFriend weibofriend = new WeiboFriend();
+		try{
+			if (result.next()){
+				weibofriend.setA(result.getString("A"));
+				weibofriend.setB(result.getString("B"));
+				weibofriend.setType(result.getInt("type"));
+			} else {
+				weibofriend = null;
+			}
+			result.close();
+		}catch (Exception e) {
+			weibofriend = null;
+		}		
+		return weibofriend;
+	}
+
+	public void addWeiboFriend(String A, String B, int type) {
+		Connect cont = new Connect();
+		String sql = "insert into weibofriend(A, B, type) values('" + A + "','" + B + "', " + type + ")";
+		System.out.println("addWeiboFriend sql: "+ sql);
+		int i = cont.executeUpdate(sql);		
 	}
 }

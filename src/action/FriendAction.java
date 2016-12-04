@@ -8,12 +8,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import TencentWeiboAction.Information;
 import domain.Friend;
 import domain.User;
+import domain.WeiboFriend;
 import service.FriendService;
 import service.LogService;
 import tencentApi.HttpRequest;
@@ -22,7 +27,9 @@ import tencentApi.globalVar;
 
 public class FriendAction implements Action {
 	private List<Friend> friends;
+	private List<WeiboFriend> weibofriends;
 	private Friend friend;
+	private WeiboFriend weibofriend;
 	FriendService fs = new FriendService();
 	
 
@@ -34,7 +41,7 @@ public class FriendAction implements Action {
 			int userID = (int) sess.get("userid");
 			getsetWeicoFriends();
 			friends = getUserFriends(userID);
-			Collections.sort(friends);
+			//Collections.sort(friends);
 			return SUCCESS;
 		} catch (Exception e) {
 			friends = null;
@@ -48,6 +55,9 @@ public class FriendAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		if(sess.get("userid")==null) return "needlogin";
 		int userID = (int) sess.get("userid");
+		String username = sess.get("username").toString();
+		weibofriends = new ArrayList<>();
+		
 		try {
 			String str = HttpRequest.sendGet("https://graph.qq.com/relation/get_fanslist", 
 					"oauth_consumer_key="+globalVar.AppID+"&"+
@@ -62,16 +72,35 @@ public class FriendAction implements Action {
 				return ERROR;
 			}
 			Information in = new Information();
-			List<String> data = in.toMap(str);
-/*
-			System.out.println("openid");
-			System.out.println("weibo nameB=" + nameB + ", openB=" + openB);
-			fs.checkFriend(userID, nameB, openB);
-			Friend friend = new Friend(userID, 0, openB, nameB, 2);
-*/
+			JSONArray array = in.getFriendsInformation(str);
+			String nameB = "";
+			String openB = "";
+			try {
+				for (int i = 0; i < array.length(); i++) {
+					JSONObject jsonObj = array.getJSONObject(i);
+					nameB = ""; openB = "";
+					Iterator<?> ite = jsonObj.keys();
+					while (ite.hasNext()) {
+						String key = ite.next().toString();
+						if (key.equals("nick")) {									
+							nameB = jsonObj.get(key).toString();
+						} else if (key.equals("openid")) {
+							openB = jsonObj.get(key).toString();
+						}
+					}
+					weibofriend = fs.getWeiboFriend(username, nameB);
+					if (weibofriend == null) {
+						weibofriend = new WeiboFriend(username, nameB);
+						fs.addWeiboFriend(username, nameB, 1);
+					}
+					weibofriends.add(weibofriend);
+				}	
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			
 		} catch (Exception e) {
-			friends = null;
+			weibofriends = null;
 			return ERROR;
 		}
 		return SUCCESS;
@@ -107,6 +136,22 @@ public class FriendAction implements Action {
 	}
 	public void setFriend(Friend friend) {
 		this.friend = friend;
+	}
+
+	public List<WeiboFriend> getWeibofriends() {
+		return weibofriends;
+	}
+
+	public void setWeibofriends(List<WeiboFriend> weibofriends) {
+		this.weibofriends = weibofriends;
+	}
+
+	public WeiboFriend getWeibofriend() {
+		return weibofriend;
+	}
+
+	public void setWeibofriend(WeiboFriend weibofriend) {
+		this.weibofriend = weibofriend;
 	}
 	
 	

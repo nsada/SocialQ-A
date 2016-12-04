@@ -9,7 +9,6 @@ public class Friend implements Comparable<Friend>{
 	/* type 
 	 * 0 -> weibo & web
 	 * 1 -> web
-	 * 2 -> weibo	 
 	 */	
 	public Friend() {
 		A = 0; B= 0; openB = ""; nameB = ""; type = -1;
