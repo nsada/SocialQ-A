@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>   
-<%@ taglib prefix="s" uri="/struts-tags" %>
 
-<html>
-<head>
-    <title>答题</title>
-    <script src="<%=request.getContextPath()%>/js/jquery-3.1.1.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+<rapid:override name="head">
+	<title>答题</title>
     <script>
     	var jq = jQuery.noConflict();
     	jq(document).ready(function(){
@@ -22,14 +21,15 @@
     		})
     	})
     </script>
-</head>
-<body>
-
+</rapid:override>
     
-    <div>
-        examID: <% int examID=Integer.parseInt(request.getParameter("examID")); out.println(examID); %> <br/>
-        title: ${exam.title} <br/>
-        description: ${exam.description} <br/>
+
+
+<rapid:override name="content">
+		<div>
+        
+        	<h2 style="text-align: center;">${exam.title}</h2>
+        	<p style="text-align: center;"> ${exam.description}<p>
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>
@@ -79,15 +79,17 @@
 			                        </span>
 			                        <span class="choose-index">F:<s:property value = "F"/></span> 
 			            </s:if>
-		            
-	            
-	        
-		       
-		   
 		</s:iterator>
-	
-			        <button class = "submit_result" >确认提交</button> 
+		<s:iterator value="textBlanks" >			
+		</s:iterator>
+		<div>
+			<span class="button-wrap" style="float:right;">
+    				<button class="button button-pill button-raised button-primary submit_result">确认提交</button>
+  			</span>  
+		</div>
+		      
 		       
 	    </div>
-</body>
-</html>
+</rapid:override>   
+<%@ include file="../../../../base.jsp"%>
+

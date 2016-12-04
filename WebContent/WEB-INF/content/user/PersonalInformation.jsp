@@ -7,7 +7,7 @@
 </rapid:override>
 
 
-<rapid:override name="contentText">
+<rapid:override name="content">
 	<div class="col-md-10 column">
 		<h2>基本信息</h2>
 		<p>用户名: ${sessionScope.username}</p>
@@ -19,4 +19,4 @@
 
 
 
-<%@include file="../PersonalCenter.jsp"%>
+<%@include file="../../../base.jsp"%>

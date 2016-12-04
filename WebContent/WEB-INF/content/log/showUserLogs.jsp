@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+
 
 <rapid:override name="head">
 	<title>操作记录</title>

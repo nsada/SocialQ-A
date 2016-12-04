@@ -3,18 +3,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html>
 <html>
    <head>
-      <rapid:block name="head">
-      	    <title>Bootstrap 模板</title>
-      </rapid:block>      
+            
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- 引入 Bootstrap -->
       <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/buttons.css">
  	  <script src="https://code.jquery.com/jquery.js"></script>
       <!-- 包括所有已编译的插件 -->
-      <script src="js/bootstrap.min.js"></script>
+      <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+      <rapid:block name="head">
+      	    <title>Bootstrap 模板</title>
+      </rapid:block>
    </head>
 <%
 		String username;
@@ -28,9 +32,9 @@
 
 
 
-<body style="margin-top: 60px;">
-		<div>
-			
+<body style="margin-top: 50px;">
+		<div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
+			<img style="opacity:0.4;position:fixed;" src="<%=request.getContextPath()%>/images/background.jpg" height="100%" width="100%" /> 
 		</div>
 
 	
@@ -56,9 +60,8 @@
                    		 		个人中心 <b class="caret"></b>
                			 </a>
                			 <ul class="dropdown-menu">
-                    		<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>
-                    		
-                    		<li><a href='<s:url action="showFriends"></s:url>'>好友列表</a></li>
+               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
+                    		<li><a href="<%=request.getContextPath()%>/ShowFriends">好友列表</a></li>
                     		<li><a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a></li>
            
                     		<li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>
@@ -86,7 +89,7 @@
     	</div>
 	</nav>
 	<br />
-	<div class="well well-lg container table-center">
+	<div class="well well-lg container table-center" style="opacity: 0.85;">
 		<rapid:block name="content">base_content</rapid:block>
 	</div>
 	
