@@ -34,7 +34,17 @@ public class GroupAction implements Action {
 		}	
 		return SUCCESS;
 	}
-	
+	public String showUserGroups() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");	
+			groups = gs.getUserGroups(userID);
+		} catch (Exception e) {
+			return ERROR;
+		}				
+		return ERROR;
+	}
 	public String addGroup() {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
@@ -44,6 +54,23 @@ public class GroupAction implements Action {
 			if (groupID > 0) {
 				LogService ls = new LogService();
 				ls.OperateGroup(userID, groupID, 15);
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			return ERROR;
+		}				
+	}
+	public String quiteGroup() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");		
+			int i = gs.quiteGroup(userID, groupID);
+			if (i >= 0) {
+				LogService ls = new LogService();
+				ls.OperateGroup(userID, groupID, 16);
 				return SUCCESS;
 			} else {
 				return ERROR;

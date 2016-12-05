@@ -6,6 +6,7 @@ import java.util.List;
 
 import database.Connect;
 import domain.Group;
+import domain.QuestionBase;
 import domain.User;
 
 public class GroupService {
@@ -48,6 +49,7 @@ public class GroupService {
 		}		
 		return group;	
 	}
+	
 
 	public int addGroup(int userID, Group group) {
 		Connect cont = new Connect();
@@ -75,7 +77,7 @@ public class GroupService {
 
 	public List<User> getGroupUsers(int groupID) {
 		Connect cont = new Connect();
-		String sql = "select groupID from group_user where groupId=" + groupID;
+		String sql = "select groupID from group_user where groupID=" + groupID;
 		System.out.println("group_user sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		users = new ArrayList<>();
@@ -89,6 +91,34 @@ public class GroupService {
 			users = null;
 		}
 		return users;
+	}
+
+	public List<Group> getUserGroups(int userID) {
+		Connect cont = new Connect();
+		String sql = "select groupID from group_user where userID=" + userID;
+		System.out.println("group_user sql: " + sql);
+		ResultSet result = cont.executeQuery(sql);	
+		groups = new ArrayList<>();
+		try{
+			while (result.next()){
+				groups.add(getGroup(result.getInt("groupID")));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			groups = null;
+		}
+		return groups;
+	}
+
+	public int quiteGroup(int userID, int groupID) {
+		int i = delGroup_User(userID, groupID);
+		return i;
+	}
+	private int delGroup_User(int userID, int groupID) {
+		Connect cont = new Connect();
+		String sql = "delete from group_user where userID=" + userID + " and groupID=" + groupID;
+		int i = cont.executeUpdate(sql);		
+		return i;
 	}
 	
 	
