@@ -203,8 +203,6 @@ public class FriendAction implements Action {
 		this.weibofriend = weibofriend;
 	}
 
-	
-	
 	public int getA() {
 		return A;
 	}
