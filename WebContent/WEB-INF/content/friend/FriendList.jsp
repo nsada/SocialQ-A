@@ -118,7 +118,14 @@
 						<li class = "biao"> 
 							<img class = "biao" src="<%=request.getContextPath()%>/images/background.jpg"/> 
 							<h3 class = "biao"><s:property value="B"/></h3>
-							<button class = "biao">邀请该好友</button>
+							<s:if test="biao.type == 1">
+							 <button class = "biao">邀请该好友</button>
+							</s:if>
+							<s:if test="biao.type == 2">
+			                    <button class="btn btn-default " type="button"
+			                        onclick="window.location.href='addFriend?type=2'">好友列表</a>
+			                    </button>
+							</s:if>
 						</li> 				
 							
 					</s:iterator>

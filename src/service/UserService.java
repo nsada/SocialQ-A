@@ -187,5 +187,35 @@ public class UserService {
 		int i = cont.executeUpdate(sql);				
 	}
 
+	public int getUserIDfromOpen(String openID) {
+		String sql = "select id from user where tencentOpenID='" + openID + "'";
+		ResultSet result = cont.executeQuery(sql);
+		int userid = -1;
+		try{
+			if (result.next()){
+				userid = result.getInt("id");
+			}
+			result.close();
+		}catch (Exception e) {
+			
+		}		
+		return userid;
+	}
+
+	public String getUserOpenfromID(int id) {
+		String sql = "select tencentOpenID from user where id=" + id;
+		ResultSet result = cont.executeQuery(sql);
+		String tencentOpenID = "";
+		try{
+			if (result.next()){
+				tencentOpenID = result.getString("tencentOpenID");
+			}
+			result.close();
+		}catch (Exception e) {
+			
+		}		
+		return tencentOpenID;
+	}
+
 
 }

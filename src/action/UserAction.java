@@ -21,37 +21,13 @@ public class UserAction implements Action {
 	private User user;
 	private LogService ls = new LogService();
 	private List<User> friends;
-
-
 	private String cpassword;
 	private int Age;
 	private String email;
+	private String redirect_url;
 	
 	
-	public String getCpassword() {
-		return cpassword;
-	}
-	public void setCpassword(String cpassword) {
-		this.cpassword = cpassword;
-	}
-	public int getAge() {
-		return Age;
-	}
-	public void setAge(int age) {
-		Age = age;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 	
 	@Override
 	public String execute() throws Exception {	//login in
@@ -123,6 +99,37 @@ public class UserAction implements Action {
 		UserService us = new UserService();
 		us.delete(userID);
 		return logout();
+	}
+	
+	public String getCpassword() {
+		return cpassword;
+	}
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
+	}
+	public int getAge() {
+		return Age;
+	}
+	public void setAge(int age) {
+		Age = age;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getRedirect_url() {
+		return redirect_url;
+	}
+	public void setRedirect_url(String redirect_url) {
+		this.redirect_url = redirect_url;
 	}
 	
 	

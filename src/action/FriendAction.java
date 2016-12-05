@@ -21,6 +21,7 @@ import domain.User;
 import domain.WeiboFriend;
 import service.FriendService;
 import service.LogService;
+import service.UserService;
 import tencentApi.HttpRequest;
 import tencentApi.convention;
 import tencentApi.globalVar;
@@ -31,7 +32,8 @@ public class FriendAction implements Action {
 	private Friend friend;
 	private WeiboFriend weibofriend;
 	FriendService fs = new FriendService();
-	
+	private int A;
+	private String openB;	
 
 	@Override
 	public String execute() throws Exception {
@@ -90,8 +92,8 @@ public class FriendAction implements Action {
 					}
 					weibofriend = fs.getWeiboFriend(username, nameB);
 					if (weibofriend == null) {
-						weibofriend = new WeiboFriend(username, nameB);
-						fs.addWeiboFriend(username, nameB, 1);
+						weibofriend = new WeiboFriend(username, nameB, openB);
+						fs.addWeiboFriend(username, nameB, 1, openB);
 					}
 					weibofriends.add(weibofriend);
 				}	
@@ -105,14 +107,55 @@ public class FriendAction implements Action {
 		}
 		return SUCCESS;
 	}
+	
+	public String sendAddFriendMessage(int a, int b) {
+		LogService ls = new LogService();
+		UserService us = new UserService();	
+		String nameA = us.getUserName(a);
+		String message = "用户 " + nameA + " 申请您为好友"; 
+		Message mes = new Message();
+		mes.Systemsendmessage(b, message, a);	
+		ls.OperateMessage(a,b,18);
+		return SUCCESS;
+	}
+	public String accepteAddFriendMessage(int a, int b) {			
+		addFriend(a,b);
+		return SUCCESS;
+	}
+	private void becomeFriend(int a, int b, int type) {		
+		fs.addFriend(a, b, type);
+		
+		UserService us = new UserService();	
+		String nameB = us.getUserName(b);
+		String message = "用户 " + nameB + " 接受了您的好友申请";
 
-	public String addFriend(int a, int b, String open, String name, int type) {
-		fs.addFriend(a, b, open, name, type);
 		LogService ls = new LogService();
 		switch (type) {
-		case 0: ls.OperateFriend(a, b, 17);
-		case 2: ls.OperateFriend(a, b, 19);
-		}		
+		case 0: 			
+			message = message + ", 恭喜你们已成为微博和社交问答网站双重好友";
+			ls.OperateFriend(a, b, 20); 
+			break;
+		case 1: 
+			message = message + ", 恭喜你们已成为社交问答网站好友";
+			ls.OperateFriend(a, b, 19); 
+			break;		
+		}	
+		Message mes = new Message();
+		mes.Systemsendmessage(b, message, a);	
+	}
+	public String addFriend(int a, int b) {
+		UserService us = new UserService();	
+		String openB = us.getUserOpenfromID(b);
+		String nameA = us.getUserName(a);
+		WeiboFriend weibofriend = fs.getWeiboFriendOpen(nameA, openB);
+		
+		if (weibofriend == null) {
+			becomeFriend(a,b,1);			
+		} else if (weibofriend.getType() == 2) {
+			fs.updateWeiboFriend(nameA, openB, 0);			
+			becomeFriend(a,b,0);
+		}
+
 		return SUCCESS;
 	}
 	
@@ -121,10 +164,16 @@ public class FriendAction implements Action {
 		friends = fs.getFriends(userID);		
 		return friends;
 	}
+	
+	public String addFriendWeiboWeb() {
+		UserService us = new UserService();		
+		int B = us.getUserIDfromOpen(openB);
+		sendAddFriendMessage(A, B);
+		return SUCCESS;
+	}	
+	
 
-	
-	
-	
+
 	public List<Friend> getFriends() {
 		return friends;
 	}
@@ -153,6 +202,23 @@ public class FriendAction implements Action {
 	public void setWeibofriend(WeiboFriend weibofriend) {
 		this.weibofriend = weibofriend;
 	}
+
+	public int getA() {
+		return A;
+	}
+
+	public void setA(int a) {
+		A = a;
+	}
+
+	public String getOpenB() {
+		return openB;
+	}
+
+	public void setOpenB(String openB) {
+		this.openB = openB;
+	}
+
 	
 	
 
