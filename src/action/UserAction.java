@@ -27,8 +27,6 @@ public class UserAction implements Action {
 	private String redirect_url;
 	
 	
-
-	
 	@Override
 	public String execute() throws Exception {	//login in
 		//System.out.println("UserAction login");
@@ -101,6 +99,7 @@ public class UserAction implements Action {
 		return logout();
 	}
 	
+
 	public String getCpassword() {
 		return cpassword;
 	}
@@ -131,7 +130,7 @@ public class UserAction implements Action {
 	public void setRedirect_url(String redirect_url) {
 		this.redirect_url = redirect_url;
 	}
-	
+
 	
 
 }

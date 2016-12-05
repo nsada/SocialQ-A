@@ -4,6 +4,7 @@ public class WeiboFriend {
 	private String A;
 	private String B;
 	private int type;
+<<<<<<< HEAD
 	private String openB;
 	/* type 
 	 * 0 -> web & weibo
@@ -16,6 +17,17 @@ public class WeiboFriend {
 		B = b;
 		type = 1;
 		this.openB = openB;
+=======
+	/* type 
+	 * 0 -> web
+	 * 1 -> weibo
+	 */		
+	public WeiboFriend() {}
+	public WeiboFriend(String a, String b) {
+		A = a;
+		B = b;
+		type = 1;
+>>>>>>> 32a82cab50d8c667f3c96f585b7371e8928bb5e4
 	}
 	public String getA() {
 		return A;
@@ -35,12 +47,15 @@ public class WeiboFriend {
 	public void setType(int type) {
 		this.type = type;
 	}
+<<<<<<< HEAD
 	public String getOpenB() {
 		return openB;
 	}
 	public void setOpenB(String openB) {
 		this.openB = openB;
 	}
+=======
+>>>>>>> 32a82cab50d8c667f3c96f585b7371e8928bb5e4
 	
 	
 }

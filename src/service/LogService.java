@@ -96,4 +96,5 @@ public class LogService {
 		int i = cont.executeUpdate(sql);
 	}
 
+
 }

@@ -180,7 +180,7 @@
         <!-- show AandQ -->
         <div class="col-md-12 column">
             context: ${aandQ.context} <br />
-            ans: ${aandQ.answer}      <br />       
+            ans: ${aandQ.ans}      <br />       
             analysis: ${aandQ.analysis} <br />
         </div>
     </s:if>

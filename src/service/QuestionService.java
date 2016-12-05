@@ -236,12 +236,12 @@ public class QuestionService {
 				aandQ = new AandQ();
 				aandQ.setId(id);
 				aandQ.setContext(result.getString("context"));
-				aandQ.setAns(result.getString("ansr"));
+				aandQ.setAns(result.getString("ans"));
 				aandQ.setAnalysis(result.getString("analysis"));
 				aandQ.setScore(result.getInt("score"));
 			}
 		}catch (Exception e) {
-			System.out.println("按id查找Selection失败");
+			System.out.println("按id查找AandQ失败 id:"+id);
 		}
 		return aandQ;
 	}

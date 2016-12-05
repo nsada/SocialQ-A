@@ -1,8 +1,10 @@
+<%@page import="domain.QuestionBase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
 
 <rapid:override name="head">
 	<title>题库</title>
@@ -16,9 +18,40 @@
 		${qBase.description}
 
 		<div class="text-align:right">
-			<a
-				href='<s:url action="addQuestion"><s:param name="qBaseID" value="qBase.id"/></s:url>'><input
-				type="button" value="添加题目" /></a>
+			<select id = "ChooseType">
+ 				 <option value="xuanze">选择题</option>
+  				 <option value="tiankong">填空题</option>
+  				 <option value="wenda">问答题</option>	
+			</select>
+			<button id = "AddQuestion">添加题目</button>
+			<%
+				QuestionBase qb = (QuestionBase)request.getAttribute("qBase");
+				int i = qb.getId();
+			%>
+			<script src="<%=request.getContextPath()%>/js/jquery-3.1.1.js"></script>
+			<script>
+				$("#AddQuestion").click(function(){
+					var choose = $("#ChooseType").val();
+					switch(choose){
+						case "xuanze":
+								window.location.href = "<%=request.getContextPath()%>/addSelection?qBaseID=<%= i%>";
+								break;
+						case "tiankong":
+							window.location.href = "<%=request.getContextPath()%>/addTextBlank?qBaseID=<%= i%>";
+							break;
+						case "wenda":
+							window.location.href = "<%=request.getContextPath()%>/addAandQ?qBaseID=<%= i%>";
+							break;
+						default:
+							
+					}
+					
+				})
+				
+				
+			
+			</script>
+			
 		</div>
 		<table class="table table-bordered table-hover ">
 			<caption>单选题</caption>

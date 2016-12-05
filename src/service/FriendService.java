@@ -131,4 +131,5 @@ public class FriendService {
 		System.out.println("updateWeiboFriend sql: "+ sql);
 		int i = cont.executeUpdate(sql);	
 	}
+
 }

@@ -79,7 +79,7 @@
         </action>      
 
        <action name="loginPro" class="action.UserAction">
-            <result name="success">/WEB-INF/redirectpage.jsp</result>
+            <result name="success">/index.jsp</result>
             <result name="error">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="login">
