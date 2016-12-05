@@ -1,3 +1,4 @@
+
 package service;
 import java.sql.ResultSet;
 
@@ -14,6 +15,24 @@ public class ExamService implements Action {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public String getExamTitle(int examID) {
+		String title = "";
+		if (examID <= 0) return title;
+		String sql = "select title from exam where ID=" + examID;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);			
+		try{
+			if (result.next()){
+				exam = new Exam();
+				title = result.getString("title");
+			}
+		}catch (Exception e) {
+			//System.out.println("按examID查找exam失败");
+			title = "";
+		}
+		return title;
 	}
 	public Exam getExam(int examID){
 		String sql = "select * from exam where ID=" + examID;
@@ -62,4 +81,6 @@ public class ExamService implements Action {
 		return 1;
 	}
 
+
 }
+

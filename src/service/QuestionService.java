@@ -17,10 +17,17 @@ public class QuestionService {
 	private List<TextBlank> textBlanks;
 	private TextBlank textBlank;
 	
+	public String getQuestionType(int i){
+		String name = "";
+		if (i == 1) name = name + "单选题";
+		else if (i == 2) name = name + "填空题";
+		else if (i == 3) name = name + "问答题";
+		return name;
+	}
 	public List<Selection> getQbaseSelections(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
-		System.out.println("questionbase_question sql: " + sql);
+		//System.out.println("questionbase_selections sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		selections = new ArrayList<>();
 		try{
@@ -38,7 +45,7 @@ public class QuestionService {
 	public List<TextBlank> getQbaseTextBlanks(int qBaseID) {
 		cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=2";
-		System.out.println("questionbase_question sql: " + sql);
+		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		textBlanks = new ArrayList<>();
 		try{
@@ -143,7 +150,8 @@ public class QuestionService {
 			in = addQuestionBase_Question(qBaseID, id, 1);			
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
-		return in;
+		if (in < 0) id = -1;
+		return id;
 	}
 	public int addTextBlank(TextBlank blank, int qBaseID) {
 		cont = new Connect();
@@ -160,7 +168,8 @@ public class QuestionService {
 			in = addQuestionBase_Question(qBaseID, id, 2);			
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
-		return in;
+		if (in < 0) id = -1;
+		return id;
 	}
 	private int addQuestionBase_Question(int qBaseID, int id, int type) {
 		cont = new Connect();
@@ -190,11 +199,17 @@ public class QuestionService {
 	}
 	public String getQuestionContext(int id, int type) {
 		String sql = "";
+		if (id <= 0 || type <= 0) return sql;
+		cont = new Connect();
+		sql = "select context from ";
 		switch (type) {
-		case 1: sql = "select context from selection where id='" + id;
-		case 2: sql = "select context from textblank where id='" + id;
-		case 3: sql = "select context from answerquestion where id='" + id;
+		case 1: sql = sql + "selection"; break;
+		case 2: sql = sql + "textblank"; break;
+		case 3: sql = sql + "answerquestion"; break;
 		}		
+		sql = sql + " where id=" + id;
+		//System.out.println("getQuestionContext sql________________ ");
+		//System.out.println("getQuestionContext sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);
 		String context = "";
 		try{

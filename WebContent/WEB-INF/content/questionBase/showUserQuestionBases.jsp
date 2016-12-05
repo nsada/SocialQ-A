@@ -12,26 +12,28 @@
 <rapid:override name="contentText"> 
 
 <div class="col-md-10 column">
+
     <div class="text-align:right">
 	    <button class="btn btn-default" type="button" onclick="window.location.href='addQuestionBase'">
 	           创建题库
 	    </button> 
     </div>
+
     <table class="table table-bordered table-hover ">
         <caption><h1>我的题库</h1></caption>
         <thead>
             <tr>
-                <th>题库名称</th>
-                <th>题库描述</th>
-                <th>操作</th>
+                <th style="text-align:center;">题库名称</th>
+                <th style="text-align:center;">题库描述</th>
+                <th style="text-align:center;">操作</th>
             </tr>
         </thead>
         <tbody>
             <s:iterator value="questionBases" var="qBase">
                 <tr>
-                    <td><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
-                    <td>${qBase.description}</td>                     
-                    <td>
+                    <td style="text-align:center;"><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
+                    <td style="text-align:center;">${qBase.description}</td>                     
+                    <td style="text-align:center;">
                         <a href='<s:url action="delQuestionBase"><s:param name="qBase.id" value="#qBase.id"/></s:url>'><input type="button" value="删除"/></a>
                     </td>
                 </tr>           
@@ -39,10 +41,14 @@
         </tbody>
     </table>
     
+	    <button  type="button" onclick="window.location.href='addQuestionBase'">
+	           创建题库
+	    </button> 
+    
 </div>
 </rapid:override>
 
 
 
 
-<%@include file="../PersonalCenter.jsp"%>  
+<%@include file="../PersonalCenter.jsp"%>

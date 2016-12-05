@@ -12,6 +12,10 @@
             <result>/index.jsp</result>
         </action>     
         
+        <action name="showFriends" class="action.FriendAction" method="getFriends">
+            <result>/WEB-INF/content/friend/showFriends.jsp</result>
+        </action>
+        
         <action name="delQuestion" class="action.QuestionAction" method="delQuestion">
             <result type ="redirect">showQuestionBase</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
@@ -64,13 +68,13 @@
             <result>/WEB-INF/content/questionBase/addQuestionBase.jsp</result>
         </action>        
         <action name="showQuestionBase" class="action.ShowQuestionBaseAction">
-            <result>/WEB-INF/content//questionBase/showQuestionBase.jsp</result>
+            <result name = 'success'>/WEB-INF/content/questionBase/showQuestionBase.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
         </action>      
 
        <action name="loginPro" class="action.UserAction">
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
-            <result name="error">/WEB-INF/content/user/error.jsp</result>
+            <result name="error">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="login">
             <result>/WEB-INF/content/user/login.jsp</result>
@@ -90,6 +94,8 @@
         
         <action name="InsertExam" class="action.InsertExam">
             <result name="success">/WEB-INF/content/exam/exam.jsp</result>
+            <result name="login needed">/WEB-INF/content/user/login.jsp</result>
+            
         </action>
         
 
@@ -105,17 +111,18 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
+
         <action name="Deletequestion" class="action.AddQuestoExam" method="deletequestion">
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result type ="redirect">index</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
         <action name="updateexam" class="action.AddQuestoExam" method ="submit">
-             <result type ="redirect">InsertExam</result>
+            <result type ="redirect">index</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
@@ -126,6 +133,7 @@
         <action name="answerExamPro" class="action.ExamAction" method="analysisExam">
             <result name="success">/WEB-INF/content/exam/rank.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
+
         </action>
 
 
@@ -137,7 +145,36 @@
         <action name="*">
             <result>/WEB-INF/content/{1}.jsp</result>
         </action>
+        
+        <action name="AfterLoginAction" class="TencentWeiboAction.AfterLoginAction" >
+            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+            <result name="notSigned">/WEB-INF/content/user/regist.jsp</result>
+        </action>
+        <action name="ShowFriends" class="action.ShowFriends" >
+            <result name="success">/WEB-INF/content/friends/FriendList.jsp</result>
+            <result name="error">/WEB-INF/content/user/login.jsp</result>
+            <result name="needlogin">/WEB-INF/content/user/login.jsp</result>      
+        </action>
+        <action name="answerExamPro" class="action.Answerexam">
+            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>  
+        
+        <action name="SendmessagePro">
+            <result name="success">/WEB-INF/content/user/Sendmessage.jsp</result>           
+        </action>  
+          <action name="Sendmessage" class="action.Message">
+            <result name="success">/WEB-INF/content/user/login.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>  
+        
+         <action name="Showmessage" class="action.Message" method="accept">
+            <result name="success">/WEB-INF/content/user/Acceptmessage.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>  
+       
+
     </package>
-    
-    
+
 </struts>

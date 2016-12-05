@@ -1,0 +1,95 @@
+package service;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.Connect;
+import domain.Group;
+import domain.User;
+
+public class GroupService {
+	private Group group;
+	private List<Group> groups;
+	private List<User> users;
+	
+	
+	public List<Group> getGroups(int userID) {
+		String sql = "select * from group_user where userID=" + userID;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		groups = new ArrayList<>();		
+		try{
+			while (result.next()){
+				group = new Group();
+				group = getGroup(result.getInt("groupID"));
+				groups.add(group);
+			}
+			result.close();
+		}catch (Exception e) {
+			groups = null;
+		}		
+		return groups;				
+	}
+
+	public Group getGroup(int id) {
+		String sql = "select * from group where id=" + id;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		group = new Group();
+		try{
+			if (result.next()){
+				group.setName(result.getString("name"));
+				group.setName(result.getString("description"));
+			}
+			result.close();
+		}catch (Exception e) {
+			group = null;
+		}		
+		return group;	
+	}
+
+	public int addGroup(int userID, Group group) {
+		Connect cont = new Connect();
+		String sql = "insert into group(name, description) values('" + group.getName() + "', '" + group.getDescription() + "')";
+		
+		int id = cont.executeUpdateID(sql);
+		System.out.println("addGroup sql: "+ sql + "   *id:" + id);
+		int in = 0;
+		if (id > 0) {
+			group.setId(id);
+			in = addGroup_User(userID, id);			
+		}
+		//System.out.println("LAST_INSERT_ID: " + id);
+		if (in < 0) id = -1;
+		return id;
+	}
+
+	private int addGroup_User(int userID, int id) {
+		Connect cont = new Connect();
+		String sql = "insert into group_user(groupID, userID) values(" + id+ ", " + userID + ")";
+		int i = cont.executeUpdate(sql);
+		System.out.println("insert group_user sql: " + sql + " i: " + i);
+		return i;
+	}
+
+	public List<User> getGroupUsers(int groupID) {
+		Connect cont = new Connect();
+		String sql = "select groupID from group_user where groupId=" + groupID;
+		System.out.println("group_user sql: " + sql);
+		ResultSet result = cont.executeQuery(sql);	
+		users = new ArrayList<>();
+		try{
+			while (result.next()){
+				UserService us = new UserService();
+				users.add(us.getUser(result.getInt("userID")));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			users = null;
+		}
+		return users;
+	}
+	
+	
+}
