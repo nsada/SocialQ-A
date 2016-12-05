@@ -1,7 +1,8 @@
 package action;
 import java.util.List;
 import com.opensymphony.xwork2.Action;
-import domain.AnswerQuestion;
+
+import domain.AandQ;
 import domain.Exam;
 import domain.Multy;
 import domain.Selection;
@@ -15,7 +16,7 @@ public class ExamAction implements Action {
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
 	private List<Multy> multys;
 	private List<TextBlank> textBlanks;
-	private List<AnswerQuestion> AandQs;	
+	private List<AandQ> AandQs;	
 	private char[] choose;
 	private int score;
 	private char[] right;
@@ -83,10 +84,10 @@ public class ExamAction implements Action {
 	public void setFillBlanks(List<TextBlank> textBlanks) {
 		this.textBlanks = textBlanks;
 	}
-	public List<AnswerQuestion> getAandQs() {
+	public List<AandQ> getAandQs() {
 		return AandQs;
 	}
-	public void setAandQs(List<AnswerQuestion> aandQs) {
+	public void setAandQs(List<AandQ> aandQs) {
 		AandQs = aandQs;
 	}
 	public char[] getChoose() {

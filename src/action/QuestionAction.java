@@ -4,7 +4,8 @@ import java.util.Map;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
-import domain.AnswerQuestion;
+import domain.AandQ;
+import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
@@ -13,7 +14,8 @@ import service.QuestionService;
 public class QuestionAction implements Action {
 	private Selection selection;	
 	private TextBlank textBlank;
-	private AnswerQuestion aandQ;
+	private AandQ aandQ;
+	private Multy multy;
 	private int qBaseID;
 	private int type;	
 	private int questionID;
@@ -25,29 +27,25 @@ public class QuestionAction implements Action {
 		return null;
 	}
 	
+	
+	public String delQbaseQuestion() {
+		QuestionService qs = new QuestionService();
+		qs.delQuestionBase_Question(qBaseID, questionID, type);
+		return SUCCESS;				
+	}
 	public String showQuestion() {
 		QuestionService qs = new QuestionService();
 		switch (type) {
 			case 1: selection = qs.getSelection(questionID); break;
 			case 2: textBlank = qs.getTextBlank(questionID); break;
 			case 3: aandQ = qs.getAandQ(questionID); break;
+			case 4: multy = qs.getMulty(questionID); break;
 			default:;
 		}		
-		//printSelection(selection);
 		return SUCCESS;
-	}
-	private void printSelection(Selection sel) {
-		// TODO Auto-generated method stub
-		System.out.println(sel.getA() + " " + sel.getA().length());
-		System.out.println(sel.getB() + " " + sel.getB().length());
-		System.out.println(sel.getC() + " " + sel.getC().length());
-		System.out.println(sel.getD() + " " + sel.getD().length());
-		System.out.println(sel.getE() + " " + sel.getE().length());
-		System.out.println(sel.getF() + " " + sel.getF().length());
 	}
 
 	public String addQuestion() {
-		//System.out.println("addQuestion type=" + type + "qBase=" + qBaseID);
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		userID = (int) sess.get("userid");
@@ -56,6 +54,7 @@ public class QuestionAction implements Action {
 		case 1: questionID = addSelection(); break;
 		case 2: questionID = addTextBlank(); break;
 		case 3: questionID = addAandQ(); break;
+		case 4: questionID = addMulty(); break;
 		default: questionID = -1;
 		}
 		if (questionID>=0) {
@@ -67,6 +66,10 @@ public class QuestionAction implements Action {
 		}
 		
 	}
+	
+
+
+
 	private int addSelection() {
 		int i = -1;
 		try {
@@ -75,12 +78,10 @@ public class QuestionAction implements Action {
 		} catch (Exception e) {
 			i = -1;
 		}				
-
 		return i;
 	}	
 	private int addTextBlank() {
 		int i = -1;
-		printTextBlank(textBlank);
 		try {
 			QuestionService qs = new QuestionService();
 			i = qs.addTextBlank(textBlank, qBaseID);
@@ -89,13 +90,6 @@ public class QuestionAction implements Action {
 		}				
 		return i;
 	}	
-	
-	private void printTextBlank(TextBlank blank) {
-		System.out.println("ansA: " + blank.getAnsA());
-		System.out.println("ansB: " + blank.getAnsB());
-		System.out.println("ansC: " + blank.getAnsC());
-	}
-
 	private int addAandQ() {
 		int i = -1;
 		try {
@@ -106,6 +100,16 @@ public class QuestionAction implements Action {
 		}				
 		return i;
 	}
+	private int addMulty() {
+		int i = -1;
+		try {
+			QuestionService qs = new QuestionService();
+			i = qs.addMulty(multy, qBaseID);
+		} catch (Exception e) {
+			i = -1;
+		}				
+		return i;
+	}	
 
 
 
@@ -136,10 +140,10 @@ public class QuestionAction implements Action {
 	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}
-	public AnswerQuestion getAandQ() {
+	public AandQ getAandQ() {
 		return aandQ;
 	}
-	public void setAandQ(AnswerQuestion aandQ) {
+	public void setAandQ(AandQ aandQ) {
 		this.aandQ = aandQ;
 	}
 	public TextBlank getTextBlank() {
@@ -147,6 +151,16 @@ public class QuestionAction implements Action {
 	}
 	public void setTextBlank(TextBlank textBlank) {
 		this.textBlank = textBlank;
+	}
+
+
+	public Multy getMulty() {
+		return multy;
+	}
+
+
+	public void setMulty(Multy multy) {
+		this.multy = multy;
 	}	
 
 	

@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ActionContext;
 import action.QuestionBaseAction;
 import domain.QuestionBase;
 import domain.User;
+import service.LogService;
 import service.QuestionBaseService;
 import service.UserService;
 import tencentApi.HttpRequest;
@@ -64,16 +65,19 @@ public class AfterLoginAction implements Action {
 		sess.put("accesstoken",access_token);
 		
 		UserService us = new UserService();
-		User new_user= new User();		
+		User new_user= new User();
+		new_user = null;
 		try{
 			new_user = us.loginUserByOpenID((String)openid);
+			LogService ls = new LogService();
+			ls.login(new_user.getId());
 		}catch (Exception e) {
 			new_user = null;
 			return "error";
 		}		
 		if(new_user==null)
 		{
-			
+			System.out.println("not sign");
 			return "notSigned";
 		}
 		sess.put("username", new_user.getName());

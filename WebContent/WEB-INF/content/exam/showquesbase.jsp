@@ -32,6 +32,26 @@
 			</tr>
 		</s:iterator>
 	</table>
+	<table border="2">
+		<s:iterator value="AandQs">
+			<tr>
+				<td><s:property value="context" /> <a
+					href='<s:url action="InsertQuestion"><s:param name="questionID" value ="id"/><s:param name="type" value ="3" /> <s:param name="ExamID" value ="ExamID"/></s:url>'><input
+						type="button" value="添加" /> </a></td>
+			</tr>
+		</s:iterator>
+	</table>
+	<table border="2">
+		<s:iterator value="multys">
+			<tr>
+				<td><s:property value="context" /> <a
+					href='<s:url action="InsertQuestion"><s:param name="questionID" value ="id"/><s:param name="type" value ="4" /> <s:param name="ExamID" value ="ExamID"/></s:url>'><input
+						type="button" value="添加" /> </a></td>
+			</tr>
+		</s:iterator>
+	</table>
+	
+	
 </body>
 
 </html>

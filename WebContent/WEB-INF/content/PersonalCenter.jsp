@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%> 
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+
+
 <rapid:override name="content">
 	<div class="container">
 		<div class="row clearfix">
@@ -9,8 +11,8 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showPersonalInformation'">
 						个人信息</button>
-					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showFriends"></s:url>'>好友列表</a>
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='showFriends'">好友列表</a>
 					</button>
 					<button class="btn btn-default " type="button">
 						<a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a>
@@ -26,14 +28,10 @@
 						<a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a>
 					</button>
 					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a>				
+						<a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a>
 					</button>
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserLogs'">个人动态</button>
-				    
-				    <button class="btn btn-default " type="button"
-						onclick="window.location.href='Showmessage'">
-					   查看我的消息</button>
 				</div>
 			</div>
 			<rapid:block name="contentText">PersonalInformaion_contentText</rapid:block>
@@ -41,4 +39,4 @@
 	</div>
 </rapid:override>
 
-<%@include file="../../../base.jsp"%>
+<%@include file="../../base.jsp"%>

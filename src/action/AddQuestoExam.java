@@ -1,3 +1,4 @@
+
 package action;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +10,9 @@ import java.util.Map;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
+import domain.AandQ;
 import domain.Exam;
+import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
 import domain.TextBlank;
@@ -30,11 +33,25 @@ public class AddQuestoExam implements Action {
 	private Exam exam;
 	private List<TextBlank> textBlanks;
 	private ShowExamQuestion seq;
+	private List<Multy> multys;
+	private List<AandQ> AandQs;	
 	private List<Selection> selections =new ArrayList<Selection> ();
+	public List<Multy> getMultys() {
+		return multys;
+	}
+	public void setMultys(List<Multy> multys) {
+		this.multys = multys;
+	}
+	public List<AandQ> getAandQs() {
+		return AandQs;
+	}
+	public void setAandQs(List<AandQ> aandQs) {
+		AandQs = aandQs;
+	}
 	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
 	}
-	public void setTextBlanks(List<TextBlank> textBlanks) {
+	public void setFillBlanks(List<TextBlank> textBlanks) {
 		this.textBlanks = textBlanks;
 	}
 	
@@ -102,7 +119,9 @@ public class AddQuestoExam implements Action {
 			   seq.execute();
 			  selections=seq.getSelections();
 			  textBlanks=seq.gettextBlanks();
-			  for(TextBlank k: textBlanks)
+			  multys =seq.getMultys();
+			  AandQs=seq.getAandQs();
+			  for(AandQ k: AandQs)
 			  {
 				  System.out.println(k.getContext());
 			  }
@@ -157,6 +176,9 @@ public class AddQuestoExam implements Action {
 		    seq.setExamID(ExamID);
 			seq.execute();
 			selections=seq.getSelections();
+			textBlanks=seq.gettextBlanks();
+			multys =seq.getMultys();
+			AandQs=seq.getAandQs();
 	        }
 		catch (Exception e)
 		{
@@ -178,8 +200,4 @@ public class AddQuestoExam implements Action {
 		}	
 		 return SUCCESS;
 	}
-
-
-
 }
-

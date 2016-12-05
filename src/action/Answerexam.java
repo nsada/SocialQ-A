@@ -3,6 +3,8 @@ import java.util.*;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
+import domain.AandQ;
+import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
@@ -13,6 +15,8 @@ public class Answerexam  implements Action{
 	 private int ExamID =52;
      private List<TextBlank> textBlanks;
  	 private List<Selection> selections;
+ 	 private List<Multy> multys;
+ 	 private List<AandQ> AandQs;	
  	 private Queue <String> textb;
  	 private Queue<String> sels;
 		public int getExamID() {
@@ -32,6 +36,18 @@ public class Answerexam  implements Action{
 		}
 		public void setSelection_answer(String selection_answer) {
 			this.selection_answer = selection_answer;
+		}
+		public List<Multy> getMultys() {
+			return multys;
+		}
+		public void setMultys(List<Multy> multys) {
+			this.multys = multys;
+		}
+		public List<AandQ> getAandQs() {
+			return AandQs;
+		}
+		public void setAandQs(List<AandQ> aandQs) {
+			AandQs = aandQs;
 		}
 	@Override
 	public String execute() throws Exception {  

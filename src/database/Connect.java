@@ -28,7 +28,8 @@ public class Connect {
 		try {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
-			System.out.println("鏌ユ壘澶辫触");
+			e.printStackTrace();
+			//System.out.println("鏌ユ壘澶辫触");
 			result = null;
 		}
 		return result;

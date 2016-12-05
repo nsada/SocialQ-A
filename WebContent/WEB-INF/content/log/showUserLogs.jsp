@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+
 
 <rapid:override name="head">
 	<title>操作记录</title>
@@ -11,7 +11,11 @@
 
 
 <rapid:override name="contentText">
-
+    <div class="text-align:right">
+        <button class="btn btn-default" type="button" onclick="window.location.href='delUser">
+               删除此用户
+        </button> 
+    </div>
 	<div class="col-md-10 column">
 		<table class="table table-bordered table-hover ">
 			<caption>操作记录</caption>

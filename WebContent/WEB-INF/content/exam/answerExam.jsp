@@ -1,21 +1,35 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid" %>   
-<%@ taglib prefix="s" uri="/struts-tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
-<html>
-<head>
-    <title>答题</title>
-    <script src="<%=request.getContextPath()%>/js/jquery-3.1.1.js"></script>
+<rapid:override name="head">
+	<title>答题</title>
+    <script>
+    	var jq = jQuery.noConflict();
+    	jq(document).ready(function(){
+    		jq(".submit_result").click(function(){
+    			var selection_result = ""; 
+    			jq(".choose").each(function(){
+    				var valu = this.value;
+    				selection_result += valu + "#";	
+    				selection_result = selection_result.substring(0,selection_result.length()-1);
+    			})
+    			jq.post("<%=request.getContextPath()%>/submitAnswer.action", {selection_answer : selection_result})
+    		})
+    	})
+    </script>
+</rapid:override>
     
-</head>
-<body>
 
-    <div>
-        examID: <% int examID=Integer.parseInt(request.getParameter("examID")); out.println(examID); %> <br/>
-        title: ${exam.title} <br/>
-        description: ${exam.description} <br/>
+
+<rapid:override name="content">
+		<div>
+        
+        	<h2 style="text-align: center;">${exam.title}</h2>
+        	<p style="text-align: center;"> ${exam.description}<p>
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>
@@ -65,42 +79,17 @@
 			                        </span>
 			                        <span class="choose-index">F:<s:property value = "F"/></span> 
 			            </s:if>
-
 		</s:iterator>
-	
-			        <button class = "submit_result" >确认提交</button> 
+		<s:iterator value="textBlanks" >			
+		</s:iterator>
+		<div>
+			<span class="button-wrap" style="float:right;">
+    				<button class="button button-pill button-raised button-primary submit_result">确认提交</button>
+  			</span>  
+		</div>
+		      
 		       
 	    </div>
-	    <script>
-    	function post(URL, PARAMS) {        
-        	var temp = document.createElement("form");        
-        	temp.action = URL;        
-        	temp.method = "post";        
-        	temp.style.display = "none";        
-        	for (var x in PARAMS) {        
-            	var opt = document.createElement("textarea");        
-            	opt.name = x;        
-            	opt.value = PARAMS[x];        
-            // alert(opt.name)        
-            	temp.appendChild(opt);        
-        	}        
-        	document.body.appendChild(temp);        
-        	temp.submit();        
-        	return temp;        
-    	} 
-    	var jq = jQuery.noConflict();
-    	jq(document).ready(function(){
-    		jq(".submit_result").click(function(){
-    			var selection_result = ""; 
-    			var num = <%=i%>
-    			for(var i =1 ; i <= num ; i ++){
-    				var temp = jq("input[name='choose'"+i+"]:checked").val();
-    				selection_result += temp + "#";
-    			}
-    				
-    			post("/Answerexam.action",selection_result);
-    		})
-    	})
-    </script>
-</body>
-</html>
+</rapid:override>   
+<%@ include file="../../../../base.jsp"%>
+
