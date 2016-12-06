@@ -152,11 +152,7 @@ public class Message implements Action {
 	 {
 		 try
 		 {
-<<<<<<< HEAD
 			 String system = "系统提示您:";
-=======
-			 String system = "System";
->>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+0+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
 		     System.out.println(SQL);
 		     cont =new Connect();

@@ -143,12 +143,6 @@
         <action name="answerExamPro" class="action.ExamAction" method="analysisExam">
             <result name="success">/WEB-INF/content/exam/rank.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>
-<<<<<<< HEAD
-=======
-
-        </action>
-
->>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 
         </action>
 
@@ -174,7 +168,6 @@
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-<<<<<<< HEAD
         
          <action name="answerExamPro" >
             <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>
@@ -186,8 +179,6 @@
         </action>  
         
         
-=======
->>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 
     </package>
 
