@@ -1,5 +1,8 @@
 package action;
+<<<<<<< HEAD
 import java.sql.ResultSet;
+=======
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 import java.util.*;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -10,6 +13,7 @@ import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
 public class Answerexam  implements Action{
+<<<<<<< HEAD
 	 private ResultSet result = null;
 	 private Connect cont;
 	 private String selection_answer ="1#2#3#4#3#";
@@ -17,6 +21,11 @@ public class Answerexam  implements Action{
 	 private String multy_answer="010010#010100#";
 	 private String AandQ_answer="第一个问答题的答案/#第二题的问答题的答案/#第二个问答题的答案/#第三个问答题的答案/#";	 
 	 private int score=0;
+=======
+	 private Connect cont;
+	 private String selection_answer ="1#2#3#4#3#";
+	 private String textblank_answer="111/#212/#333/$255/#344/#";
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 	 private int ExamID =52;
      private List<TextBlank> textBlanks;
  	 private List<Selection> selections;
@@ -24,13 +33,18 @@ public class Answerexam  implements Action{
  	 private List<AandQ> AandQs;	
  	 private Queue <String> textb;
  	 private Queue<String> sels;
+<<<<<<< HEAD
  	 private Queue<String> muls;
  	private Queue<String> aands;
 	 public int getExamID() {
+=======
+		public int getExamID() {
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 			return ExamID;
 		}
 		public void setExamID(int ExamID) {
 			this.ExamID = ExamID;
+<<<<<<< HEAD
 		}
 		
 		 public String getMulty_answer(String multy_answer) {
@@ -45,6 +59,9 @@ public class Answerexam  implements Action{
 		   public void setAandQ_answer(String AandQ_answer) {
 					this.AandQ_answer = AandQ_answer;
 			}
+=======
+		}	
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 	 public String getTextblank_answer(String textblank_answer) {
 			return textblank_answer;
 		}
@@ -71,14 +88,20 @@ public class Answerexam  implements Action{
 		}
 	@Override
 	public String execute() throws Exception {  
+<<<<<<< HEAD
 		     int flag=1;
 		    Answerexam ans =new Answerexam();
 		    LogService log= new LogService();
 		    score=0;
+=======
+		    Answerexam ans =new Answerexam();
+		    LogService log= new LogService();
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 			try {
 				 ActionContext actCtx = ActionContext.getContext();
 		    	 Map<String, Object> sess = actCtx.getSession();
 		         int userID = (int) sess.get("userid");	
+<<<<<<< HEAD
 		         System.out.println(selection_answer);
 		         System.out.println(textblank_answer);
 		         System.out.println(multy_answer);
@@ -86,17 +109,25 @@ public class Answerexam  implements Action{
 		          sels=ans.getSelectionanswer(selection_answer);
 		          textb=ans.getTextBlankanswer(textblank_answer);
 		          muls=ans.getMultyanswer(multy_answer);        
+=======
+		          sels=ans.getSelectionanswer(selection_answer);
+		          textb=ans.getTextBlankanswer(textblank_answer);
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 		          ShowExamQuestion seq =new ShowExamQuestion();
 			      seq.setExamID(ExamID);
 				  seq.execute();
 				  selections=seq.getSelections();
 				  textBlanks=seq.gettextBlanks();
+<<<<<<< HEAD
 				  multys=seq.getMultys();
 				  AandQs=seq.getAandQs();
+=======
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
                  for(Selection sel: selections)	  
                  {
                 	 int right=0;
                 	 String answer = sels.poll();
+<<<<<<< HEAD
                 	
                 	 if(sel.getAns().equals(answer))
                 	 {
@@ -183,12 +214,66 @@ public class Answerexam  implements Action{
        }
                  
             for(TextBlank tes :textBlanks)
+=======
+                	 int judge =Integer.parseInt(answer);
+                	 switch(judge)
+                	 {
+                	 case 1:
+                		 if(sel.getScoreA()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                	 case 2:
+                		 if(sel.getScoreB()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                	 case 3:
+                		 if(sel.getScoreC()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                	 case 4:
+                		 if(sel.getScoreD()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                	 case 5:
+                		 if(sel.getScoreE()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                	 case 6:
+                		 if(sel.getScoreF()==0 &&!sel.getAns().equals(answer))
+                		 {
+                			 right=0;
+                		 }
+                		 break;
+                		 default :
+                	     right =1;           		       		 
+                	 }
+      
+            String SQL="insert into exam_user_answer(userID, examID, questionID,questionType,answer,right) values ("+userID+", "+ExamID+","+sel.getId()+","+1+","+answer+","+right+")";
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL);
+            
+                 }
+                 
+                 for(TextBlank tes :textBlanks)
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
                  {
                 	 int right=1;
                 	 String answer =textb.poll();
                 	String everyblank[]= answer.split("/#");
                 	for(int i=0;i<tes.getNum();i++)
                 	{
+<<<<<<< HEAD
                 		if(i==0&& !everyblank[i].equals(tes.getA()))
                 		{
                 			right=0;
@@ -215,10 +300,34 @@ public class Answerexam  implements Action{
                 			break;
                 		}
                 		else if(i==5&& !everyblank[i].equals(tes.getF()))
+=======
+                		if(i==0&& !everyblank[i].equals(tes.getAnsA()))
+                		{
+                			right=0;
+                		}
+                		else if(i==1&& !everyblank[i].equals(tes.getAnsB()))
+                		{
+                			right=0;
+                		}
+                		else if(i==2&& !everyblank[i].equals(tes.getAnsC()))
+                		{
+                			right=0;
+                		}
+                		else if(i==3&& !everyblank[i].equals(tes.getAnsD()))
+                		{
+                			right=0;
+                		}
+                		else if(i==4&& !everyblank[i].equals(tes.getAnsE()))
+                		{
+                			right=0;
+                		}
+                		else if(i==5&& !everyblank[i].equals(tes.getAnsF()))
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
                 		{
                 			right=0;
                 		}
                 	}
+<<<<<<< HEAD
                  String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+tes.getId()+","+2+",'"+answer+"',"+right+")";
                  System.out.println(SQL);
                  cont =new Connect();
@@ -241,10 +350,14 @@ public class Answerexam  implements Action{
                  	score =score+tes.getScore();
                  }
                  SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+" where questionID ="+tes.getId()+" and type="+2+" ";
+=======
+                 String SQL="insert into exam_user_answer(userID, examID, questionID,questionType,answer,right) values ("+userID+", "+ExamID+","+tes.getId()+","+2+","+answer+","+right+")";
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);
                  }
+<<<<<<< HEAD
             for(Multy mul :multys)
             {
            	    int right=0;
@@ -339,6 +452,10 @@ public class Answerexam  implements Action{
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);			  
+=======
+                 log.OperateExam(userID, userID, 14);
+			  
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			 return ERROR;
@@ -389,6 +506,7 @@ public class Answerexam  implements Action{
 		}
 		return  sels;
 	}
+<<<<<<< HEAD
 	public Queue<String>  getMultyanswer(String multy_answer)
 	{
 		  Queue<String> muls =new LinkedList<String>();
@@ -409,5 +527,7 @@ public class Answerexam  implements Action{
 			 }
 	     return aandqs;	
 	}
+=======
+>>>>>>> 6664023e2034c69699ad34de33fda253ea71e6d8
 	
 }
