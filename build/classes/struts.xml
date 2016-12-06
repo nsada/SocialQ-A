@@ -146,8 +146,6 @@
 
         </action>
 
-
-
         <action name="showUserLogs" class="action.LogAction">
             <result name="success">/WEB-INF/content/log/showUserLogs.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>            
@@ -170,6 +168,17 @@
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+        
+         <action name="answerExamPro" >
+            <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>  
+        <action name="answerExam" class="action.Answerexam">
+            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>  
+        
+        
 
     </package>
 
