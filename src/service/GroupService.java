@@ -41,7 +41,7 @@ public class GroupService {
 		try{
 			if (result.next()){
 				group.setName(result.getString("name"));
-				group.setName(result.getString("description"));
+				group.setDescription(result.getString("description"));
 			}
 			result.close();
 		}catch (Exception e) {
@@ -119,6 +119,23 @@ public class GroupService {
 		String sql = "delete from group_user where userID=" + userID + " and groupID=" + groupID;
 		int i = cont.executeUpdate(sql);		
 		return i;
+	}
+
+	public String getGroupName(int id) {
+		if (id == 0) return "";
+		String sql = "select name from group where id=" + id;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		String groupname = "";
+		try{
+			if (result.next()){
+				groupname = result.getString("name");
+			}
+			result.close();
+		}catch (Exception e) {
+			groupname = null;
+		}		
+		return groupname;	
 	}
 	
 	

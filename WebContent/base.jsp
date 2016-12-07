@@ -69,7 +69,7 @@
                			 </a>
                			 <ul class="dropdown-menu">
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/ShowFriends">好友列表</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
                     		<li><a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a></li>
 
            

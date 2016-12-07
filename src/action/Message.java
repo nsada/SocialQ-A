@@ -19,7 +19,7 @@ import service.QuestionService;
 import service.ExamService;
 import service.LogService;
 import domain.Usermessage;
-import java.util.Date;
+
 public class Message implements Action {
 	private ResultSet result = null;
 	private Connect cont;
@@ -152,7 +152,7 @@ public class Message implements Action {
 	 {
 		 try
 		 {
-			 String system = "系统提示您:";
+			 String system = "System";
 			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+0+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
 		     System.out.println(SQL);
 		     cont =new Connect();
@@ -163,5 +163,19 @@ public class Message implements Action {
 			System.out.println(e.getMessage());
 		}				 
 	 }
+	public void Systemsendmessage(int accepterID, String message, int senderName) {
+		 try
+		 {
+			 String system = "System";
+			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+0+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+senderName+"')";
+		     System.out.println(SQL);
+		     cont =new Connect();
+	         cont.executeUpdate(SQL); 
+		  }
+	   catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
 
 }

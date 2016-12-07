@@ -12,8 +12,8 @@ public class Connect {
 			Class.forName("com.mysql.jdbc.Driver");			
 
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
+			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
 			state = con.createStatement();	
 			//System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挻鍨氶崝锟�");

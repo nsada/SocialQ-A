@@ -90,6 +90,27 @@
             top:100px;
             background:white;
             ">
+            <form action="searchUser" method="POST" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="searchname" />
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-default">搜索用户</button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </form>      
+            <div>
+                <s:iterator value="users">        
+                    <li class = "searchuser"> 
+                        <s:property value="name"/>
+                        <button class="btn btn-default " type="button"
+                        onclick="window.location.href='addFriend?friendID=2'">添加为好友</a>
+                    </li>               
+                        
+                </s:iterator>
+            </div>
             <h2 style = "position:relative;left:2.5%">本地好友 </h2>
             <div class ="biao"> 
                 <ul class = "biao"> 
