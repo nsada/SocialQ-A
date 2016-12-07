@@ -108,6 +108,35 @@
 			
 			</div>
 			
+			<div style="width: 70%; position: relative; left: 15%">
+				<% i=1;%>
+				<s:iterator value="AandQs">
+					<p><%=i %>.
+						<s:property value="context" />
+						<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
+						href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="3"/><s:param name="questionID" value ="id"/></s:url>'>
+						删除题目
+						</a>
+					</p>
+					<%i++; %>
+				</s:iterator>
+			</div>
+			
+			<div style="width: 70%; position: relative; left: 15%">
+				<% i=1;%>
+				<s:iterator value="multys">
+					<p><%=i %>.
+						<s:property value="context" />
+						<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
+						href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="4"/><s:param name="questionID" value ="id"/></s:url>'>
+						删除题目
+						</a>
+					</p>
+					<%i++; %>
+				</s:iterator>
+			
+			</div>
+			
 			
 			
 				<input

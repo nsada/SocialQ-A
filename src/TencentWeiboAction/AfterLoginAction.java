@@ -77,9 +77,7 @@ public class AfterLoginAction implements Action {
 		}		
 		if(new_user==null)
 		{
-
 			System.out.println("not sign");
-
 			return "notSigned";
 		}
 		sess.put("username", new_user.getName());

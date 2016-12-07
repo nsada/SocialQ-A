@@ -25,10 +25,10 @@ public class FriendService {
 		System.out.println("addFriendAO sql: "+ sql);
 		int i = cont.executeUpdate(sql);		
 	}*/
-	public void addFriend(int a, int b, String openB, String nameB, int type) {
+	public void addFriend(int a, int b, int type) {
 		Connect cont = new Connect();
-		String sql = "insert into friend(A, B, openB, nameB, type) values(" + a + "," + b + ", " + openB + ", '" + nameB + "', " + type + ")";
-		System.out.println("addFriendABO sql: "+ sql);
+		String sql = "insert into friend(A, B, type) values(" + a + "," + b + ", " + type + ")";
+		System.out.println("addFriend sql: "+ sql);
 		int i = cont.executeUpdate(sql);		
 	}
 	
@@ -45,19 +45,20 @@ public class FriendService {
 		friends = new ArrayList<>();		
 		try{
 			while (result.next()){
-				friend = new Friend(result.getInt("A"), result.getInt("B"), result.getString("openB"), result.getString("nameB"), result.getInt("type"));
+				//friend = new Friend(result.getInt("A"), result.getInt("B"), result.getString("openB"), result.getString("nameB"), result.getInt("type"));
+				friend = new Friend(result.getInt('A'), result.getInt('B'), result.getInt("type"));
 				friends.add(friend);
 			}
 			result.close();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			friends = null;
 		}		
 		return friends;	
 	}
 
 
-	public Friend getFriend(int A, String nameB, String openB) {
-		String sql = "select * from friend where A=" + A + " and openB='" + openB + "' and nameB='" + "'";
+	public Friend getFriend(int A, int B) {
+		String sql = "select * from friend where A=" + A + " and B=" + B + "";
 		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		Friend friend = new Friend();
@@ -65,8 +66,7 @@ public class FriendService {
 			if (result.next()){
 				friend.setA(result.getInt("A"));
 				friend.setB(result.getInt("B"));
-				friend.setOpenB(result.getString("openB"));
-				friend.setOpenB(result.getString("nameB"));
+				friend.setType(result.getInt("type"));
 			} else {
 				friend = null;
 			}
@@ -87,6 +87,7 @@ public class FriendService {
 				weibofriend.setA(result.getString("A"));
 				weibofriend.setB(result.getString("B"));
 				weibofriend.setType(result.getInt("type"));
+				weibofriend.setOpenB(result.getString("openB"));
 			} else {
 				weibofriend = null;
 			}
@@ -96,11 +97,39 @@ public class FriendService {
 		}		
 		return weibofriend;
 	}
-
-	public void addWeiboFriend(String A, String B, int type) {
+	public WeiboFriend getWeiboFriendOpen(String A, String openB) {
+		String sql = "select * from weibofriend where A='" + A + "' and openB='" + openB + "'";
 		Connect cont = new Connect();
-		String sql = "insert into weibofriend(A, B, type) values('" + A + "','" + B + "', " + type + ")";
+		ResultSet result = cont.executeQuery(sql);
+		WeiboFriend weibofriend = new WeiboFriend();
+		try{
+			if (result.next()){
+				weibofriend.setA(result.getString("A"));
+				weibofriend.setB(result.getString("B"));
+				weibofriend.setType(result.getInt("type"));
+				weibofriend.setOpenB(result.getString("openB"));
+			} else {
+				weibofriend = null;
+			}
+			result.close();
+		}catch (Exception e) {
+			weibofriend = null;
+		}		
+		return weibofriend;
+	}	
+
+	public void addWeiboFriend(String A, String B, int type, String openB) {
+		Connect cont = new Connect();
+		String sql = "insert into weibofriend(A, B, type, openB) values('" + A + "','" + B + "', " + type + ", '"+ openB + "')";
 		System.out.println("addWeiboFriend sql: "+ sql);
 		int i = cont.executeUpdate(sql);		
 	}
+
+	public void updateWeiboFriend(String nameA, String openB, int type) {
+		Connect cont = new Connect();
+		String sql = "UPDATE weibofriend SET type=" + type + "where A='" + nameA + "' and openB='" + openB + "'";
+		System.out.println("updateWeiboFriend sql: "+ sql);
+		int i = cont.executeUpdate(sql);	
+	}
+
 }

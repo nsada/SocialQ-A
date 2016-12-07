@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
@@ -24,41 +23,41 @@
 		            
 		                <s:if test="A.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="A">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="1">
 			                        </span>
 			                        <span class="choose-index">A:<s:property value = "A"/></span>    
 			            </s:if>
 		                <s:if test="B.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="B">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="2">
 			                        </span>
 			                        <span class="choose-index">B:<s:property value = "B"/></span>
 			               
 			            </s:if>
 			            <s:if test="C.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="C">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="3">
 			                        </span>
 			                        <span class="choose-index">C:<s:property value = "C"/></span>
 			                  
 			            </s:if>
 			            <s:if test="D.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="D">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="4">
 			                        </span>
 			                        <span class="choose-index">D:<s:property value = "D"/></span>
 			                 
 			            </s:if>
 			            <s:if test="E.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="E">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="5">
 			                        </span>
 			                        <span class="choose-index">E:<s:property value = "E"/></span>
 			                   
 			            </s:if>
 			            <s:if test="F.length()>0">
 			                        <span>
-			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="F">
+			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="6">
 			                        </span>
 			                        <span class="choose-index">F:<s:property value = "F"/></span> 
 			            </s:if>
@@ -220,7 +219,8 @@
     			num=<%=l%>;
     			for(var i =1 ; i <= num ; i ++){
     				var obj= document.getElementById("AandQs"+i);
-    				textBlanks_result += obj.value + "/$";
+    				AandQs_result += obj.value + "/#";
+
     			}
 
     			var form = document.createElement("form");        
@@ -245,9 +245,16 @@
             	var opt = document.createElement("input");    
             	opt.name = "AandQ_answer"
             	opt.value = AandQs_result;
-            	form.appendChild(opt);        
+
+            	form.appendChild(opt);   
+            	
+            	var opt = document.createElement("input");    
+            	opt.name = "ExamID";
+            	opt.value = <%=request.getAttribute("ExamID")%>;
+            	form.appendChild(opt); 
     			
-            	document.body.appendChild(temp);        
+            	document.body.appendChild(form);        
+
             	form.submit();        
      			
     			

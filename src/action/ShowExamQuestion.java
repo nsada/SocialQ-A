@@ -17,8 +17,8 @@ public class ShowExamQuestion implements Action {
 	private int ExamID;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
 	private List<Multy> multys;
-	private List<TextBlank> textBlanks;
 	private List<AandQ> AandQs;	
+	private List<TextBlank> textBlanks;
 	private int qBaseID;
      private ResultSet result;
      private Connect cont;
@@ -50,18 +50,19 @@ public class ShowExamQuestion implements Action {
 	public void setMultys(List<Multy> multys) {
 		this.multys = multys;
 	}
-	public List<TextBlank> gettextBlanks() {
-		return textBlanks;
-	}
-	public void setTextBlanks(List<TextBlank> textBlanks) {
-		this.textBlanks = textBlanks;
-	}
 	public List<AandQ> getAandQs() {
 		return AandQs;
 	}
 	public void setAandQs(List<AandQ> aandQs) {
 		AandQs = aandQs;
 	}
+	public List<TextBlank> getTextBlanks() {
+		return textBlanks;
+	}
+	public void setTextBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
+	}
+
 	
 	
 	public int getqBaseID() {
@@ -74,6 +75,8 @@ public class ShowExamQuestion implements Action {
 	public String execute() throws Exception {
 		selections =new ArrayList<Selection> ();
 		textBlanks =new ArrayList<TextBlank>();	
+		    AandQs = new ArrayList<AandQ>();	
+		    multys= new ArrayList<Multy>();	
 	try{	
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
@@ -88,6 +91,14 @@ public class ShowExamQuestion implements Action {
 			 else if(result.getInt("type") ==2)
 			 {
 				 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
+			 }
+			 else if(result.getInt("type") ==3)
+			 {
+				  AandQs.add(qs.getAandQ(result.getInt("questionID")));
+			 }
+			 else if(result.getInt("type") ==4)
+			 {
+				 multys.add(qs.getMulty(result.getInt("questionID")));
 			 }
 			 
 			}	
