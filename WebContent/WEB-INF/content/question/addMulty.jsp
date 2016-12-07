@@ -86,7 +86,6 @@
 							<span class = "glyphicon glyphicon-plus" ></span>
 						</a>
 					</label>
-					
 				</div>
 					
 				
