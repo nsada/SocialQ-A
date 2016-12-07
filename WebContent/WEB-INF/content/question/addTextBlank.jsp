@@ -18,6 +18,8 @@
 				role="form">
 				<input type="hidden" name="type" value="2" /> <input type="hidden"
 					name="qBaseID" value="<%=qBaseID%>" />
+					
+					
 				<div class="form-group">
 					<label for="context" class="col-sm-2 control-label">题干</label>
 					<div class="col-sm-4">
@@ -28,6 +30,8 @@
 						<input type="text" class="form-control" name="textBlank.score" />
 					</div>
 				</div>
+				
+				
 				<div class="form-group">
 					<label for="num" class="col-sm-2 control-label">填空个数</label>
 					<div class="col-sm-6">

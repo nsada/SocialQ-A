@@ -19,13 +19,30 @@
 				 <input type="hidden" name="type" value="1" />
 				 <input type="hidden"name="qBaseID" value="<%=qBaseID%>" />
 				 <input id="num" style="display: none;"value= 2 />
+				 
+				 <div class="form-group">
+					<label for="context" class="col-sm-2 control-label"></label>
+					<div class="col-sm-6">
+						
+					</div>
+					<div class="col-sm-1">
+						分数:
+						
+					</div>
+					<div class="col-sm-2">
+							是否统一分数:
+    						<input id = "tongyi" onclick="tongyifenshu()"type="checkbox" checked />
+					</div>
+					
+				</div>
+				
 				<div class="form-group">
 					<label for="context" class="col-sm-2 control-label">题干</label>
 					<div class="col-sm-6">
 						<textarea class="form-control" name="selection.context" ></textarea> 
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.score" />
+					<div class="col-sm-1">
+						<input id="ctotal" type="text" class="form-control" name="selection.score" />
 					</div>
 				</div>
 				
@@ -34,8 +51,8 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.A" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreA" />
+					<div class="col-sm-1">
+						<input id="c1" disabled="disabled" type="text" class="form-control" name="selection.scoreA" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -43,8 +60,8 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.B" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreB" />
+					<div class="col-sm-1">
+						<input id="c2" disabled="disabled" type="text" class="form-control" name="selection.scoreB" />
 					</div>
 				</div>
 				<div  id = "s3" style="display: none;"class="form-group">
@@ -52,8 +69,8 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.C" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreC" />
+					<div class="col-sm-1">
+						<input id="c3"disabled="disabled"type="text" class="form-control" name="selection.scoreC" />
 					</div>
 				</div>
 				<div id="s4"style="display: none;"class="form-group">
@@ -61,8 +78,8 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.D" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreD" />
+					<div class="col-sm-1">
+						<input id="c4"disabled="disabled"type="text" class="form-control" name="selection.scoreD" />
 					</div>
 				</div>
 				<div  id = "s5"style="display: none;"class="form-group">
@@ -70,8 +87,8 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.E" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreE" />
+					<div class="col-sm-1">
+						<input id="c5"disabled="disabled"type="text" class="form-control" name="selection.scoreE" />
 					</div>
 				</div>
 				<div  id = "s6"style="display: none;"class="form-group">
@@ -79,38 +96,72 @@
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="selection.F" />
 					</div>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" name="selection.scoreF" />
+					<div class="col-sm-1">
+						<input id="c6"disabled="disabled" type="text" class="form-control" name="selection.scoreF" />
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="choose" class="col-sm-2 control-label">
+						<a onclick="AddSelect()"class="button button-caution button-circle button-small">
+							<span class = "glyphicon glyphicon-plus" ></span>
+						</a>
+					</label>
+				</div>
+				
 				
 					
 				<div class="form-group">
 					<label for="ans" class="col-sm-2 control-label">答案</label>
 					<div class="col-sm-8">
-						<input name="selection.ans" type="radio" value="A" checked/>A &nbsp;  
-						<input name="selection.ans" type="radio" value="B" />B &nbsp; 
-						<input  id = "a3"disabled="disabled" name="selection.ans" type="radio" value="C" />C &nbsp; 
-						<input  id = "a4"disabled="disabled"name="selection.ans" type="radio" value="D" />D &nbsp; 
-						<input id = "a5" disabled="disabled"name="selection.ans" type="radio" value="E" />E &nbsp; 
-						<input  id = "a6"disabled="disabled"name="selection.ans" type="radio" value="F" />F &nbsp; 
+						<input name="selection.ans" type="radio" value="1" checked/>A &nbsp;  
+						<input name="selection.ans" type="radio" value="2" />B &nbsp; 
+						<input  id = "a3"disabled="disabled" name="selection.ans" type="radio" value="3" />C &nbsp; 
+						<input  id = "a4"disabled="disabled"name="selection.ans" type="radio" value="4" />D &nbsp; 
+						<input id = "a5" disabled="disabled"name="selection.ans" type="radio" value="5" />E &nbsp; 
+						<input  id = "a6"disabled="disabled"name="selection.ans" type="radio" value="6" />F &nbsp; 
 					
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="ans" class="col-sm-2 control-label">解析</label>
 					<div class="col-sm-8">
-						<textarea type="text" class="form-control" name="selection.analysis" ></textarea>
+						<textarea class="form-control" name="selection.analysis" ></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">确认添加</button>
-						<a id="AddSelection" onclick="AddSelect()"class="btn btn-default">添加选项</a>
+						
 					</div>
 				</div>
 			</form>
 			<script>
+				function tongyifenshu(){
+					var tongyi = document.getElementById("tongyi");
+					if(tongyi.checked){
+						for(var i =1;i <=6;i++){
+							var temp = document.getElementById("c"+i);
+							temp.disabled = "disabled";
+							temp.value = "";
+						}
+						var temp = document.getElementById("ctotal");
+						temp.disabled=null;
+						temp.value ="";
+					}
+						
+					else{
+						for(var i =1;i <=6;i++){
+							var temp = document.getElementById("c"+i);
+							temp.disabled = null;
+						}
+						var temp = document.getElementById("ctotal");
+						temp.disabled="disabled";
+						temp.value ="";
+					}
+						
+					return ;
+				}
 				function AddSelect(){
 					var num = document.getElementById("num").value;
 					switch(num){
@@ -133,10 +184,10 @@
 							document.getElementById("s6").style.display = "block";
 							document.getElementById("a6").disabled = false;
 							document.getElementById("num").value="6";
-							var a = document.getElementById("AddSelection");
-							a.disabled="disabled";
+							break;		
+						case "6":
+							alert("最多有6个选项！");
 							break;
-							
 						default:
 					}
 					return ;

@@ -12,7 +12,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- 引入 Bootstrap -->
       <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      
       <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/buttons.css">
+      
  	  <script src="https://code.jquery.com/jquery.js"></script>
       <!-- 包括所有已编译的插件 -->
       <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
@@ -142,12 +144,12 @@
   				<div class="form-group  has-success">
     				<label class="col-sm-2 control-label" for="inputSuccess">Password</label>
    	 				<div class="col-sm-10">
-        				<input id="password"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
+        				<input id="loginpassword"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
     				</div>
   				</div>
   				<div class="form-gruop">
   					<label class="col-sm-2 control-label" for="inputSuccess"></label>
-  					<button  id="login_submit"class="button button-glow button-border button-rounded button-primary">登录</button>          
+  					<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
             		<div style="float: right">
             			<p style="float: left;">第三方登录:</p>
             			<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
@@ -156,21 +158,34 @@
     			</div>
     		</form>
     		<script>
-    			$(document).ready(function(){
-    				$("#login_submit").click(function(){
-    					var form = document.getElementById("loginform");
-    					var loginname = document.getElementById("loginname");
-    					loginname = 
-
-    					var new_input = document.createElement("input");
-    					new_input.name="redirect_url";
-    					new_input.value = window.location.href;
-    					new_input.style.display="none";
-    					form.appendChild(new_input);
-    					form.submit();
-    					return ;
-    				})
-    			})
+    			function LoginSubmit(){
+    				var form = document.getElementById("loginform");
+					
+    				/*
+    				var loginName = document.getElementById("loginname");
+					var loginNameMatchResult =loginName.value.match(/[a-zA-z0-9]+@[a-zA-z0-9]+.com/g);
+					if(loginNameMatchResult==null || loginNameMatchResult[0].length !=loginName.value.length){
+						alert("您的用户名格式输入错误！");
+						return ;
+					}
+					var loginPassword = document.getElementById("loginpassword");
+					if(loginPassword==null||loginPassword.value==""){
+						alert("输入的密码不能为空！");
+						return ;
+					}
+					*/	
+				
+					
+					var new_input = document.createElement("input");
+					new_input.name="redirect_url";
+					new_input.value = window.location.href;
+					new_input.style.display="none";
+					form.appendChild(new_input);
+					form.submit();
+					return ;
+    			}
+    					
+    		
     		
     		</script>
     </div>

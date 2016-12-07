@@ -19,7 +19,8 @@
 
 		<div class="text-align:right">
 			<select id = "ChooseType">
- 				 <option value="xuanze">选择题</option>
+ 				 <option value="danxuan">单选题</option>
+ 				 <option value ="duoxuan">多选题</option>
   				 <option value="tiankong">填空题</option>
   				 <option value="wenda">问答题</option>	
 			</select>
@@ -33,15 +34,17 @@
 				$("#AddQuestion").click(function(){
 					var choose = $("#ChooseType").val();
 					switch(choose){
-						case "xuanze":
+						case "danxuan":
 								window.location.href = "<%=request.getContextPath()%>/addSelection?qBaseID=<%= i%>";
 								break;
 						case "tiankong":
 							window.location.href = "<%=request.getContextPath()%>/addTextBlank?qBaseID=<%= i%>";
 							break;
 						case "wenda":
-							window.location.href = "<%=request.getContextPath()%>/addAnswerQuestion?qBaseID=<%= i%>";
+							window.location.href = "<%=request.getContextPath()%>/addAandQ?qBaseID=<%= i%>";
 							break;
+						case "duoxuan":
+							window.location.href= "<%=request.getContextPath()%>/addMulty?qBaseID=<%= i%>";
 						default:
 							
 					}
