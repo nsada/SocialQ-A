@@ -71,13 +71,10 @@
             <button  class="button button-glow button-border button-rounded button-primary"type="submit">登录</button>
           
             <div style="float: right">
-                <p style="float: left;">第三方登录:</p>
-                <span class="button-wrap">
-    <button class="button button-circle button-raised button-primary">
-      <i class="fa fa-cloud"></i>
-    </button>
-  </span>
-                <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+
+            	<p style="float: left;">第三方登录:</p>
+            	<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+
             </div>
             
     </div>
