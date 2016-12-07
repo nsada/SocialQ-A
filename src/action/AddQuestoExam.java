@@ -51,7 +51,7 @@ public class AddQuestoExam implements Action {
 	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
 	}
-	public void setFillBlanks(List<TextBlank> textBlanks) {
+	public void setTextBlanks(List<TextBlank> textBlanks) {
 		this.textBlanks = textBlanks;
 	}
 	
@@ -118,7 +118,7 @@ public class AddQuestoExam implements Action {
 		       seq.setExamID(ExamID);
 			   seq.execute();
 			  selections=seq.getSelections();
-			  textBlanks=seq.gettextBlanks();
+			  textBlanks=seq.getTextBlanks();
 			  multys =seq.getMultys();
 			  AandQs=seq.getAandQs();
 			  for(AandQ k: AandQs)
@@ -176,7 +176,7 @@ public class AddQuestoExam implements Action {
 		    seq.setExamID(ExamID);
 			seq.execute();
 			selections=seq.getSelections();
-			textBlanks=seq.gettextBlanks();
+			textBlanks=seq.getTextBlanks();
 			multys =seq.getMultys();
 			AandQs=seq.getAandQs();
 	        }

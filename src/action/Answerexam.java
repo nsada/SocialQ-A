@@ -85,12 +85,13 @@ public class Answerexam  implements Action{
 		         System.out.println(AandQ_answer);
 		          sels=ans.getSelectionanswer(selection_answer);
 		          textb=ans.getTextBlankanswer(textblank_answer);
-		          muls=ans.getMultyanswer(multy_answer);        
+		          muls=ans.getMultyanswer(multy_answer); 
+		          aands=ans.getAandQanswer(AandQ_answer);
 		          ShowExamQuestion seq =new ShowExamQuestion();
 			      seq.setExamID(ExamID);
 				  seq.execute();
 				  selections=seq.getSelections();
-				  textBlanks=seq.gettextBlanks();
+				  textBlanks=seq.getTextBlanks();
 				  multys=seq.getMultys();
 				  AandQs=seq.getAandQs();
                  for(Selection sel: selections)	  
@@ -287,7 +288,7 @@ public class Answerexam  implements Action{
       for(AandQ aandq :AandQs)
             {
     	     flag=1;
-           	String answer =muls.poll();           	
+           	String answer =aands.poll();           	
             String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+aandq.getId()+","+3+",'"+answer+"',"+1+")";
             System.out.println(SQL);
             cont =new Connect();
@@ -315,7 +316,8 @@ public class Answerexam  implements Action{
        if(flag !=0)
        {
     	   String  SQL="select * from social.exam where ID ="+ExamID+"";
-         
+    	   cont =new Connect();
+           result=  cont.executeQuery(SQL);
            int accepterID=0;
            if(result.next())
            {

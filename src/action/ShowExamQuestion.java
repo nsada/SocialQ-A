@@ -56,7 +56,7 @@ public class ShowExamQuestion implements Action {
 	public void setAandQs(List<AandQ> aandQs) {
 		AandQs = aandQs;
 	}
-	public List<TextBlank> gettextBlanks() {
+	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
 	}
 	public void setTextBlanks(List<TextBlank> textBlanks) {
