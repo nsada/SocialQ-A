@@ -10,6 +10,8 @@ import service.LogService;
 import service.QuestionBaseService;
 import service.UserService;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +22,13 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction implements Action {
 	private User user;
 	private LogService ls = new LogService();
-	private List<User> friends;
 	private String cpassword;
 	private int Age;
 	private String email;
 	private String redirect_url;
+	private String searchname;
+	private List<User> users;
+	private int friendID;
 	
 	
 	@Override
@@ -99,6 +103,34 @@ public class UserAction implements Action {
 		return logout();
 	}
 	
+	public String searchUser() {
+		UserService us = new UserService();
+		String[] searchnames = searchname.split(" ");
+		users = us.getSearchUsers(searchnames);
+			
+		try {
+			ActionContext actCtx = ActionContext.getContext();
+			Map<String, Object> sess = actCtx.getSession();
+			int userID = (int)sess.get("userid");
+			Iterator<User> ListIterator = users.iterator();  
+			while(ListIterator.hasNext()){  
+			    User e = ListIterator.next();  
+			    if(e.getId() == userID){  
+			    	ListIterator.remove();  
+			    }  
+			}  
+		} catch (Exception e){
+		}
+		return SUCCESS;
+	}
+	public String addFriend() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid");
+		FriendAction friaction = new FriendAction();
+		return friaction.sendAddFriendMessage(userID, friendID);
+	}
+	
 
 	public String getCpassword() {
 		return cpassword;
@@ -129,6 +161,29 @@ public class UserAction implements Action {
 	}
 	public void setRedirect_url(String redirect_url) {
 		this.redirect_url = redirect_url;
+	}
+	public String getSearchname() {
+		return searchname;
+	}
+
+	public void setSearchname(String searchname) {
+		this.searchname = searchname;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public int getFriendID() {
+		return friendID;
+	}
+
+	public void setFriendID(int friendID) {
+		this.friendID = friendID;
 	}
 
 	

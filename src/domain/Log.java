@@ -3,6 +3,7 @@ package domain;
 import java.util.Date;
 
 import service.ExamService;
+import service.GroupService;
 import service.QuestionBaseService;
 import service.QuestionService;
 import service.UserService;
@@ -16,22 +17,24 @@ public class Log {
 	private int questionType;
 	private int action;
 	private Date time;
+	private int userIDB;
 	private String trans = "";
 	
 
 	
 	public String translate(){
 		String ans = "";
-		//System.out.println("trans:___________________________");
-		//print();
 		UserService us = new UserService();
 		String user = us.getUserName(userID);
+		String userB = us.getUserName(userIDB);
 		QuestionBaseService qBs = new QuestionBaseService();
 		String qBase = qBs.getqBaseName(qBaseID);
 		QuestionService qs = new QuestionService();
 		String question = qs.getQuestionContext(questionID, questionType);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
+		GroupService gs = new GroupService();
+		String group = gs.getGroupName(groupID);
 		ans = "用户"+user;
 		switch (action) {
 		case 1: ans = ans + "注册成功"; break;
@@ -48,6 +51,13 @@ public class Log {
 		case 12: ans = ans + "向试卷"+exam+"添加一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 13: ans = ans + "向题库"+exam+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 14: ans = ans + "答试卷"+exam; break;
+		case 15: ans = ans + "新建了工作组: " + group; break;
+		case 16: ans = ans + "退出了工作组: " + group; break;
+		case 17: ans = ans + "接受了用户" + userB + "的好友申请"; break;
+		case 18: ans = ans + "向用户" + userB + "发送了好友申请"; break;
+		case 19: ans = ans + "和用户" + userB + "成为了社交问答网站好友"; break;
+		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
+		
 		}
 		this.trans= ans;
 		return ans;
@@ -114,6 +124,12 @@ public class Log {
 	}
 	public void setTime(Date time) {
 		this.time = time;
+	}	
+	public int getUserIDB() {
+		return userIDB;
+	}
+	public void setUserIDB(int userIDB) {
+		this.userIDB = userIDB;
 	}
 
 	public String getTrans() {
