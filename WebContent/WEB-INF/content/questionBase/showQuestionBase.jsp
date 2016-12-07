@@ -1,4 +1,5 @@
 <%@page import="domain.QuestionBase"%>
+<%@page import = "java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -50,14 +51,14 @@
 					}
 					
 				})
-				
-				
-			
 			</script>
-			
 		</div>
+		<%List<Object> a ; %>
+		<% a = (List<Object>)request.getAttribute("selections");%>
+		 <% if(a!=null && a.size()!=0){ %>
+		
 		<table class="table table-bordered table-hover ">
-			<caption>单选题</caption>
+			<caption>单选题 </caption>
 			<thead>
 				<tr>
 					<th>题目描述</th>
@@ -78,6 +79,9 @@
 				</s:iterator>
 			</tbody>
 		</table>
+		<% }%>
+		<% a =(List<Object>)request.getAttribute("textBlanks");%>
+		 <% if(a != null&&a.size()!=0){ %>
 		<table class="table table-bordered table-hover ">
 			<caption>填空题</caption>
 			<thead>
@@ -100,6 +104,10 @@
 				</s:iterator>
 			</tbody>
 		</table>
+		
+		<% }%>
+		<% a =(List<Object>)request.getAttribute("aandQs");%>
+		 <% if(a != null&&a.size()!=0){ %>
         <table class="table table-bordered table-hover ">
             <caption>问答题</caption>
             <thead>
@@ -122,6 +130,9 @@
                 </s:iterator>
             </tbody>
         </table>	
+        <% }%>
+		<% a =(List<Object>)request.getAttribute("multys");%>
+		 <% if(a != null&&a.size()!=0){ %>
         <table class="table table-bordered table-hover ">
             <caption>多选题</caption>
             <thead>
@@ -144,7 +155,7 @@
                 </s:iterator>
             </tbody>
         </table>            	
-
+		<% }%>
 	</div>
 </rapid:override>
 
