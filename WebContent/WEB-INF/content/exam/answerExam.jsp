@@ -228,22 +228,22 @@
             	form.method = "post";        
             	form.style.display = "none";        
             	var opt = document.createElement("input");    
-            	opt.name = ""
+            	opt.name = "selection_answer"
             	opt.value = selection_result;
             	form.appendChild(opt); 
             	
             	var opt = document.createElement("input");    
-            	opt.name = ""
+            	opt.name = "multy_answer"
             	opt.value = multys_result;
             	form.appendChild(opt);        
             	
             	var opt = document.createElement("input");    
-            	opt.name = ""
+            	opt.name = "textblank_answer"
             	opt.value = textBlanks_result;
             	form.appendChild(opt);        
             	
             	var opt = document.createElement("input");    
-            	opt.name = ""
+            	opt.name = "AandQ_answer"
             	opt.value = AandQs_result;
             	form.appendChild(opt);        
     			
