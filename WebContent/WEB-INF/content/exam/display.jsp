@@ -5,17 +5,22 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <rapid:override name="content">
-    <p>点击选择我要插入的题库</p>
-    <table border="1">
-        <p>当前试卷的ID<s:property value="ExamID" /></p>     
-        <s:iterator value="questionBases">
-            <tr>
-                <td><a
-                    href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        <s:property value="title" />
-                </a></td>
-            </tr>
-        </s:iterator>
-    </table>
+
+        <div class="panel panel-info">
+  							<div class="panel-heading">点击选择我要插入的题库</div>
+  							
+							<div class="panel-body">
+   								 <p>当前试卷的ID<s:property value="ExamID" /></p>
+   								   <div class="list-group">
+   								   		<s:iterator value="questionBases">
+           									<a  class="list-group-item list-group-item-success"
+           										 href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                        						<s:property value="title" />
+               								</a>
+       		 							</s:iterator>
+
+									</div>
+  							</div>
+		</div>
 </rapid:override>
 <%@ include file="../../../../base.jsp"%>
