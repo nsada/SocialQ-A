@@ -1,4 +1,4 @@
-
+<%@page import="tencentApi.globalVar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
@@ -41,14 +41,14 @@
 
 	
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
     		<div class="container-fluid">
   				  <div class="navbar-header">
        				
        				 <a class=" navbar-brand" href="<%=request.getContextPath()%>" style="font-size: 40px" >SocialQ-A</a>
    				 </div>
   		  	<div>
-        		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
+        		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
         		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
@@ -75,9 +75,12 @@
                 		</ul>
            		 	</li>
 
+        			
+        		</ul>
+        		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
         			<%if (username==null || username==""){%>
 								<li><a href="<%=request.getContextPath()%>/user/regist"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-								<li><a href="<%=request.getContextPath()%>/user/login"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+								<li><a onclick="showlogin()"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
 					<%}else{%>
 								<li style="margin-top: 5px">
 									<p class="navbar-text">
@@ -90,7 +93,97 @@
     	</div>
     	</div>
 	</nav>
-	<br />
+	
+	
+	
+	<script>
+		function showlogin(){
+			back = document.getElementById("grayback");
+			box = document.getElementById("LoginBox");
+			back.style.display="block";
+			box.style.display="block";
+			return ;
+		}
+		function killLogin(){
+			back = document.getElementById("grayback");
+			box = document.getElementById("LoginBox");
+			back.style.display="none";
+			box.style.display="none";
+			return ;
+		}
+	</script>
+	<div id="grayback"style=" display:none;
+											POSITION:absolute; 
+											left:0; top:0; 
+											width:100%; height:100%; 
+											background-color:#000; 
+											opacity: 0.5;
+											z-index: 1000"></div>
+	<div id="LoginBox" class="well well-lg"style = "z-index: 2000;
+												margin:auto;
+												display:none;
+												position:absolute;
+												left:35%;top:35%;
+												width:30%; min-height:200px;
+												">    	
+    	<form class="form-horizontal" role="form" action="loginPro"  id= "loginform" method="post">
+    		<div class="form-group  has-success">	
+    			 <a class="button  button-tiny button-caution button-circle button-jumbo" style = "float: right;" onclick="killLogin()">&times;</a>
+    		</div>
+        		<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Name</label>
+   	 				<div class="col-sm-10">
+        				<input id="loginname"type="text" class="form-control" id="inputSuccess" name="user.name" placeholder="请输入用户名">
+        			</div>
+  				</div>
+  				
+  		
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Password</label>
+   	 				<div class="col-sm-10">
+        				<input id="password"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
+    				</div>
+  				</div>
+  				<div class="form-gruop">
+  					<label class="col-sm-2 control-label" for="inputSuccess"></label>
+  					<button  id="login_submit"class="button button-glow button-border button-rounded button-primary">登录</button>          
+            		<div style="float: right">
+            			<p style="float: left;">第三方登录:</p>
+            			<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+            		</div>
+            
+    			</div>
+    		</form>
+    		<script>
+    			$(document).ready(function(){
+    				$("#login_submit").click(function(){
+    					var form = document.getElementById("loginform");
+    					var loginname = document.getElementById("loginname");
+    					loginname = 
+
+    					var new_input = document.createElement("input");
+    					new_input.name="redirect_url";
+    					new_input.value = window.location.href;
+    					new_input.style.display="none";
+    					form.appendChild(new_input);
+    					form.submit();
+    					return ;
+    				})
+    			})
+    		
+    		</script>
+    </div>
+   
+    
+
+	
+	
+	
+	
+	
+	
+	
 	<div class="well well-lg container table-center" style="opacity: 0.85;">
 		<rapid:block name="content">base_content</rapid:block>
 	</div>
