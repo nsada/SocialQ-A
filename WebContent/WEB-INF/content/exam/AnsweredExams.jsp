@@ -14,7 +14,7 @@
    								   <div class="list-group">
    								   		<s:iterator value="Exams">
            									<a  class="list-group-item list-group-item-success"
-           										 href='<s:url action="ShowDrafsContent"><s:param name="ExamID" value ="id"/> </s:url>'>
+           										 href='<s:url action="ShowExamDetail"><s:param name="ExamID" value ="id"/> </s:url>'>
                         						题目：<s:property value="title" /> 
                         						<br>
                         						描述：<s:property value="description" />

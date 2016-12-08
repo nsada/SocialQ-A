@@ -76,7 +76,8 @@
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
                              
                              <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
+                             
+                            <li><a href="<%= request.getContextPath()%>/FindUserExam">批改试卷</a></li>
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
                         </ul>
                     </li>

@@ -28,7 +28,7 @@ public class AddQuestoExam implements Action {
 	private String title;
 	private String description;
 	private Connect cont;
-	private int ExamID=78;	
+	private int ExamID=81;	
 	private int questionID;
 	private int type;	
 	private int joiner;

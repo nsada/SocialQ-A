@@ -18,6 +18,38 @@ public class Selection {
 	private int scoreD;
 	private int scoreE;
 	private int scoreF;
+	private int right;
+	private int userscore;
+	private String useranswer;
+	private int readd;
+	public int getReadd() {
+		return readd;
+	}
+	public void setReadd(int readd) {
+		this.readd = readd;
+	}
+	public String getUseranswer() {
+		return useranswer;
+	}
+	public void setUseranswer(String useranswer) {
+		this.useranswer = useranswer;
+	}
+	public int getRight() {
+		return right;
+	}
+	public void setRight(int right) {
+		this.right = right;
+	}
+	public int getUserscore() {
+		return userscore;
+	}
+	public void setUserscore(int userscore) {
+		this.userscore = userscore;
+	}
+	
+	
+	
+	
 	
 	public int getId() {
 		return id;

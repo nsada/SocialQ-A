@@ -24,8 +24,8 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
-					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a>
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='FindUserExam'">批改试卷</a>
 					</button>
 					
 					<button class="btn btn-default " type="button"

@@ -120,8 +120,6 @@
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        
-
         <action name="Deletequestion" class="action.AddQuestoExam" method="deletequestion">
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
@@ -188,10 +186,19 @@
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        
-       
+             
           <action name="ShowAnsweredExams" class="action.AddQuestoExam" method="ShowHaveAnsaweredExam">
             <result name="success">/WEB-INF/content/exam/AnsweredExams.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="ShowExamDetail" class="action.Answerexam" method="ShowExamDetail">
+            <result name="success">/WEB-INF/content/exam/Answeredexamdetail.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+       <action name="FindUserExam" class="action.CheckExam" >
+            <result name="success">/WEB-INF/content/exam/UncheckedExam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
