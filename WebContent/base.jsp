@@ -71,10 +71,8 @@
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
                     		<li><a href="<%=request.getContextPath()%>/ShowFriends">好友列表</a></li>
                     		<li><a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a></li>
-
-           
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>
-                            
+                         
+                           <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>

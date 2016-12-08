@@ -334,13 +334,32 @@ public class Answerexam  implements Action{
            }
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
-           mess.Systemsendmessage(accepterID, message);          
+           mess.Systemsendmessage(userID,accepterID, message);          
        }    
           log.OperateExam(userID, userID, 14);
-         String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
+            String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
-            cont.executeUpdate(SQL);			  
+            cont.executeUpdate(SQL);	
+            
+            
+            SQL="select * from social.exam  where ID ="+ExamID+"  ";
+            System.out.println(SQL);
+            cont =new Connect();
+            result=  cont.executeQuery(SQL);
+            int people=0;
+            int totalscore=0;
+            if(result.next())
+            {
+            	people=result.getInt("people");
+            	totalscore=result.getInt("totalscore");
+            }
+            people++;
+            totalscore =totalscore+score;             
+            SQL="update social.exam set people = "+people+",totalscore="+totalscore+" where ID ="+ExamID+" ";
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL);                         
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			 return ERROR;

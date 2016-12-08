@@ -198,12 +198,15 @@
     			for(var i =1 ; i <= num ; i ++){
     				var obj=document.getElementsByName('multys'+i); 
     				var temp = ""
-    				for(var j = 0 ; j< obj.length;j++ ){
+    				var j ;
+    				for( j = 0 ; j< obj.length;j++ ){
     					if(obj[j].checked) 
     						temp +="1";
     					else 
     						temp += "0";
     				}
+    				for(;j<6;j++)
+    					temp+="0";
     				multys_result += temp + "#";
     			}
     			
@@ -261,7 +264,6 @@
     		})
     	})
     </script>
-		       
 </div>
 </rapid:override>   
 <%@ include file="../../../../base.jsp"%>

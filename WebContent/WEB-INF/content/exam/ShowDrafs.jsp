@@ -12,10 +12,12 @@
 							<div class="panel-body">
    								 <p>当前试卷的ID<s:property value="ExamID" /></p>
    								   <div class="list-group">
-   								   		<s:iterator value="questionBases">
+   								   		<s:iterator value="Exams">
            									<a  class="list-group-item list-group-item-success"
-           										 href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        						<s:property value="title" />
+           										 href='<s:url action="ShowDrafsContent"><s:param name="ExamID" value ="id"/> </s:url>'>
+                        						题目：<s:property value="title" /> 
+                        						<br>
+                        						描述：<s:property value="description" />
                								</a>
        		 							</s:iterator>
 

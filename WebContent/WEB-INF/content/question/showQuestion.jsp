@@ -15,7 +15,6 @@
 			type="button" value="编辑" /></a>
 	</div>
 
-
 	<s:if test="type==1">
 		<!-- show selection -->
 		<div class="col-md-12 column">

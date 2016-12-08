@@ -148,12 +148,12 @@ public class Message implements Action {
 		return unread ;
 		
 	}
-	 public void Systemsendmessage (int accepterID, String message)
+	 public void Systemsendmessage ( int senderID,int accepterID, String message)
 	 {
 		 try
 		 {
 			 String system = "系统提示您:";
-			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+0+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
+			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
 		     System.out.println(SQL);
 		     cont =new Connect();
 	         cont.executeUpdate(SQL); 

@@ -177,7 +177,18 @@
         <action name="answerExam" class="action.Answerexam">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>            
+        </action>     
+        
+       <action name="ShowUncomExam" class="action.AddQuestoExam" method="ShowDrafs">
+            <result name="success">/WEB-INF/content/exam/ShowDrafs.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>            
         </action>  
+        
+       <action name="ShowDrafsContent" class="action.AddQuestoExam" method="ShowDrafsContent">
+            <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
         
         
 

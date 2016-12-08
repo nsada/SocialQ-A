@@ -16,10 +16,10 @@ public class Connect {
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
 			state = con.createStatement();	
-			//System.out.println("杩炴帴鏁版嵁搴撴垚鍔�");
+			//System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挻鍨氶崝锟�");
 		} catch (Exception e) {
 			con = null;
-			System.out.println("杩炴帴鏁版嵁搴撳け璐�");
+			System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挸銇戠拹锟�");
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class Connect {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
-			//System.out.println("鏌ユ壘澶辫触");
+			//System.out.println("閺屻儲澹樻径杈Е");
 			result = null;
 		}
 		return result;
@@ -42,7 +42,7 @@ public class Connect {
 		try{
 			id = result.getInt(0);
 		}catch (Exception e) {
-			System.out.println("鑾峰彇鏈�鏂版彃鍏D澶辫触");
+			System.out.println("閼惧嘲褰囬張锟介弬鐗堝絻閸忣檹D婢惰精瑙�");
 		}
 		return id;
 	}
@@ -52,9 +52,9 @@ public class Connect {
 		try {
 			state.executeUpdate(sql);
 			state.close();
-		//	System.out.println("鏇存柊鎴愬姛");
+		//	System.out.println("閺囧瓨鏌婇幋鎰");
 		} catch (Exception e) {
-			System.out.println("鏇存柊澶辫触");
+			System.out.println("閺囧瓨鏌婃径杈Е");
 			e.printStackTrace();
 			return -1;
 		}
@@ -68,12 +68,12 @@ public class Connect {
 			if (result.next()) {
 				id = result.getInt(1);
 
-				System.out.println("成功获取lastid: "+id);
+				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("查找并返回最新插入ID失败");
+			System.out.println("鏌ユ壘骞惰繑鍥炴渶鏂版彃鍏D澶辫触");
 
 		}
 		return id;
