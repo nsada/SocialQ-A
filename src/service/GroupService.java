@@ -67,7 +67,7 @@ public class GroupService {
 		return id;
 	}
 
-	private int addGroup_User(int userID, int id) {
+	public int addGroup_User(int userID, int id) {
 		Connect cont = new Connect();
 		String sql = "insert into group_user(groupID, userID) values(" + id+ ", " + userID + ")";
 		int i = cont.executeUpdate(sql);
@@ -77,7 +77,7 @@ public class GroupService {
 
 	public List<User> getGroupUsers(int groupID) {
 		Connect cont = new Connect();
-		String sql = "select groupID from group_user where groupID=" + groupID;
+		String sql = "select userID from group_user where groupID=" + groupID;
 		System.out.println("group_user sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
 		users = new ArrayList<>();
@@ -138,6 +138,22 @@ public class GroupService {
 			groupname = null;
 		}		
 		return groupname;	
+	}
+
+	public boolean findUser_in_Group(int userID, int groupID) {
+		String sql = "select * from group_user where groupID=" + groupID + " and userID="+userID;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		String groupname = "";
+		try{
+			if (result.next()){
+				return true;
+			}
+			result.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return false;
 	}
 	
 	

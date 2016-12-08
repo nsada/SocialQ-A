@@ -1,5 +1,6 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,23 +12,35 @@ import domain.User;
 import service.GroupService;
 import service.LogService;
 import service.QuestionBaseService;
+import service.UserService;
 
 public class GroupAction implements Action {
 	private Group group;
 	private List<Group> groups;
 	private int groupID;
-	private int userID;
+	private int adduserID;
 	private GroupService gs = new GroupService();
 	private List<User> users;
+	private List<User> groupusers;
 
 	@Override
 	public String execute() throws Exception { //show group
 		try {
 			group = gs.getGroup(groupID);
-			users = gs.getGroupUsers(groupID);
+			groupusers = gs.getGroupUsers(groupID);
+			users = new ArrayList<>();
+			ActionContext actCtx = ActionContext.getContext();
+			Map<String, Object> sess = actCtx.getSession();
+			int userID = (int) sess.get("userid");		
+			UserService us = new UserService();
+			List<User> friends = us.getAllFriends(userID);
+			for (int i = 0; i < friends.size(); i++) {
+				User u = friends.get(i); 
+				if (!gs.findUser_in_Group(u.getId(), groupID)) users.add(u);
+			}
 		} catch (Exception e) {
 			group = null;
-			users = null;
+			groupusers = null;
 			return ERROR;
 		}	
 		return SUCCESS;
@@ -80,11 +93,11 @@ public class GroupAction implements Action {
 			return ERROR;
 		}				
 	}
-	public String addUser_into_Group() {
+	public String addGroupUser() {
+
+		System.out.println("addGroupUser");
 		try{
-			ActionContext actCtx = ActionContext.getContext();
-	    	Map<String, Object> sess = actCtx.getSession();
-	        int userID = (int) sess.get("userid");	
+			gs.addGroup_User(adduserID,groupID);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return ERROR;
@@ -110,17 +123,23 @@ public class GroupAction implements Action {
 	public void setGroupID(int groupID) {
 		this.groupID = groupID;
 	}
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 	public List<User> getUsers() {
 		return users;
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	public int getAdduserID() {
+		return adduserID;
+	}
+	public void setAdduserID(int adduserID) {
+		this.adduserID = adduserID;
+	}
+	public List<User> getGroupusers() {
+		return groupusers;
+	}
+	public void setGroupusers(List<User> groupusers) {
+		this.groupusers = groupusers;
 	}
 	
 	
