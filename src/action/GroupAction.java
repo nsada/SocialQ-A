@@ -94,10 +94,9 @@ public class GroupAction implements Action {
 		}				
 	}
 	public String addGroupUser() {
-
-		System.out.println("addGroupUser");
 		try{
-			gs.addGroup_User(adduserID,groupID);
+			if (!gs.findUser_in_Group(adduserID, groupID)) 
+				gs.addGroup_User(adduserID,groupID);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return ERROR;

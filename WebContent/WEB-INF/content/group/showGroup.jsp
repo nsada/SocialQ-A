@@ -19,19 +19,20 @@
         ${group.description}
 
         <div class="text-align:right">
-<%--             <li class="dropdown" style="margin-top: 5px">
+            <li class="dropdown" style="margin-top: 5px">
                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         选择用户添加入工作组<b class="caret"></b>
                  </a>
                  <ul class="dropdown-menu">
                     <s:iterator value="users" var="u">
-                        <button><a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="u.id"/></s:url>'></a>${u.name}</button>
+                        <button><a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a></button>
                     </s:iterator> 
                 </ul>
-            </li>   --%>     
+            </li>      
+<%--             选择用户添加入工作组
             <s:iterator value="users" var="u">
-                 <button><a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="u.id"/></s:url>'></a>${u.name}</button>
-            </s:iterator>     
+                 <a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a>
+            </s:iterator>      --%>
         </div>
         <table class="table table-bordered table-hover ">
             <caption>工作组成员</caption>
