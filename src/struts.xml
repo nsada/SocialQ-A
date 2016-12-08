@@ -179,8 +179,8 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>
                 
-        <action name="showUserAllMessage" class="action.Message" method="accept">
-            <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>
+        <action name="showUserAllMessage" class="action.Message" method="showUserAllMessage">
+            <result name="success">/WEB-INF/content/message/showUserAllMessage.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>
         

@@ -69,7 +69,7 @@ public class Usermessage {
 		this.type = type;
 	}
 	public void print() {
-		System.out.println(senderID+"to "+accepterID+":"+message+"at "+date+"url:"+url+",type:"+type);
+		System.out.println(senderID+" to "+accepterID+":"+message+"at "+date+"url:"+url+",type:"+type);
 	}
 	public int getId() {
 		return id;

@@ -10,7 +10,7 @@
 
 <rapid:override name="content">
     <table class="table table-bordered table-hover ">
-        <caption><h1>未处理消息</h1></caption>
+        <caption><h1>所有消息</h1></caption>
         <thead>
             <tr>
                 <th style="text-align:center;">消息内容</th>
@@ -24,7 +24,6 @@
                     <s:if test="type == 1">
                         <td style="text-align:center;">                            
                             <button><a href="${mes.url}">查看用户详细信息</a></button>
-                            <a href='<s:url action="acceptFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="通过申请"/></a>
                         </td>
                     </s:if>      
                     <s:if test="type == 3">
@@ -41,7 +40,6 @@
                 </tr>           
             </s:iterator>
         </tbody>
-        <button><a href="showUserAllMessage">所有消息</a></button>
     </table>
 </rapid:override>
 

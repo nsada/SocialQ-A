@@ -18,6 +18,7 @@ import service.QuestionBaseService;
 import service.QuestionService;
 import service.ExamService;
 import service.LogService;
+import service.MessageService;
 import domain.Usermessage;
 
 public class Message implements Action {
@@ -31,7 +32,7 @@ public class Message implements Action {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private int rread=0;
 	private int unread;
-	private LinkedList<Usermessage> messages =new LinkedList<Usermessage>(); 	
+	private List<Usermessage> messages =new ArrayList<Usermessage>(); 	
 	private String url;
 	private int type;
 	private int id;
@@ -70,7 +71,7 @@ public class Message implements Action {
 	public String getSendername() {
 		return sendername;
 	}
-	public void setSname(String sendername) {
+	public void setSendername(String sendername) {
 		this.sendername = sendername;
 	}
 	public String getMessage() {
@@ -79,12 +80,14 @@ public class Message implements Action {
 	public void setMessage(String message) {
 		this.message = message;
 	}	
-	public LinkedList<Usermessage> getMessages() {
-		return messages ;
+
+	public List<Usermessage> getMessages() {
+		return messages;
 	}
-	public void setMessages(LinkedList<Usermessage> messages) {
+	public void setMessages(List<Usermessage> messages) {
 		this.messages = messages;
-	}	
+	}
+
 	public void setAccepterID(int accepterID) {
 		this.accepterID=accepterID;
 	}
@@ -143,8 +146,7 @@ public class Message implements Action {
 				um.setType(result.getInt("type"));
 				messages.add(um);
 		}
-		 /*  for (int i = 0; i < messages.size(); i ++)
-			   messages.get(i).print();
+		 /*  
 		  SQL="update social.message set rread = "+1+" where accepterID="+userID+" ";
 		 cont =new Connect();
          cont.executeUpdate(SQL);  */
@@ -202,6 +204,18 @@ public class Message implements Action {
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+	public String showUserAllMessage() {
+		try {
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	        int userID = (int) sess.get("userid");
+	        MessageService ms = new MessageService();
+	        messages = ms.getUserAllMessage(userID);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return SUCCESS;
 	}
 
 
