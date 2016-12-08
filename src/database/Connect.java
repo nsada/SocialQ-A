@@ -69,8 +69,7 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
-
-				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
+				System.out.println("lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {

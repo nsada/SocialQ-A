@@ -53,7 +53,7 @@ public class UserAction implements Action {
 				sess.put("userid", new_user.getId());
 				sess.put("openid", new_user.getTencentOpenID());
 				sess.put("accesstoken", new_user.getTencentToken());
-				ls.login(new_user.getId());
+				//ls.login(new_user.getId());
 				return SUCCESS;			
 			}
 		}catch (Exception e){
@@ -85,7 +85,7 @@ public class UserAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid");
 		
-		ls.logout(userID);
+		//ls.logout(userID);
 		sess.remove("username");
 		sess.remove("userid");
 		sess.remove("openid");

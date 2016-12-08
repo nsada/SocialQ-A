@@ -70,7 +70,7 @@
                			 <ul class="dropdown-menu">
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
                     		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
 
            
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>

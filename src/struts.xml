@@ -11,7 +11,23 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>     
-                
+                                
+        <action name="showUserGroups" class="action.GroupAction" method="showUserGroups">
+            <result>/WEB-INF/content//group/showUserGroups.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>       
+        <action name="addGroupPro" class="action.GroupAction" method="addGroup">
+            <result>/WEB-INF/content//group/addGroup.jsp</result>
+            <result type="redirect">showUserGroups</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>     
+        <action name="addGroup">
+            <result>/WEB-INF/content//group/addGroup.jsp</result>          
+        </action>              
+        <action name="quitGroup" class="action.GroupAction" method="quitGroup">
+            <result type="redirect">showUserGroups</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>          
         <action name="delQbaseQuestion" class="action.QuestionAction" method="delQbaseQuestion">
             <result type="chain">showQuestionBase</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
