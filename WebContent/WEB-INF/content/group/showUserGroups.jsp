@@ -34,7 +34,7 @@
                     <td style="text-align:center;"><a href='<s:url action="showGroup"><s:param name="groupID" value="#group.id"/></s:url>'>${group.name}</a></td>                    
                     <td style="text-align:center;">${group.description}</td>                     
                     <td style="text-align:center;">
-                        <a href='<s:url action="quitGroup"><s:param name="groupID" value="#group.id"/></s:url>'><input type="button" value="删除"/></a>
+                        <a href='<s:url action="quitGroup"><s:param name="groupID" value="#group.id"/></s:url>'><input type="button" value="退出"/></a>
                     </td>
                 </tr>           
             </s:iterator>
