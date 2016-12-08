@@ -33,20 +33,71 @@ public class FriendService {
 	}
 	
 	public List<Friend> getFriends(int userID) {
-		String sql = "select * from friend where B=" + userID;
-		friends = getFriendsAB(userID, sql);
-		sql = "select * from friend where A=" + userID;
-		friends.addAll(getFriendsAB(userID, sql));
-		return friends;
-	}
-	private List<Friend> getFriendsAB(int id, String sql) {
-		Connect cont = new Connect();
+		String sql = "select * from friend where A="+userID;
+		Connect cont = new Connect();	
 		ResultSet result = cont.executeQuery(sql);
-		friends = new ArrayList<>();		
+		friends = new ArrayList<>();	
 		try{
+			while (result.next()){
+				friend = new Friend();
+				friend.setA(result.getInt("A"));
+				friend.setB(result.getInt("B"));
+				friend.setType(result.getInt("type"));
+				friends.add(friend);
+			}
+			result.close();
+		}catch (Exception e) {
+			friends = null;
+		}	
+		
+		sql = "select * from friend where B="+userID;
+		result = cont.executeQuery(sql);
+		try{
+			while (result.next()){
+				friend = new Friend();
+				friend.setA(result.getInt("A"));
+				friend.setB(result.getInt("B"));
+				friend.setType(result.getInt("type"));
+				friends.add(friend);
+			}
+			result.close();
+		}catch (Exception e) {
+			friends = null;
+		}	
+		System.out.println("friend");
+		for (int i = 0; i < friends.size(); i ++)
+			friends.get(i).print();
+		return friends;		
+/*		System.out.println("userID "+ userID);
+		String sql = "select * from friend where B=" + userID;
+		friends = getFriendsAB(sql);
+		System.out.println("friend1");
+		for (int i = 0; i < friends.size(); i ++)
+			friends.get(i).print();
+		sql = "select * from friend where A=" + userID;
+		
+		List<Friend> fri = getFriendsAB(sql);
+		System.out.println("getFriends2 sql "+sql + " size " + fri.size());
+		for (int i = 0; i < fri.size(); i ++) {
+			friends.add(fri.get(i));
+			fri.get(i).print();
+		}
+		//friends.addAll(getFriendsAB(userID, sql));
+		System.out.println("friend2");
+		for (int i = 0; i < friends.size(); i ++)
+			friends.get(i).print();
+		return friends;*/
+	}
+	private List<Friend> getFriendsAB(String sql) {
+		Connect cont = new Connect();		
+		List<Friend> friends = new ArrayList<>();
+		System.out.println("AB");friend.print();
+		try{
+			ResultSet result = cont.executeQuery(sql);
 			while (result.next()){
 				//friend = new Friend(result.getInt("A"), result.getInt("B"), result.getString("openB"), result.getString("nameB"), result.getInt("type"));
 				friend = new Friend(result.getInt('A'), result.getInt('B'), result.getInt("type"));
+				System.out.println("AB");friend.print();
 				friends.add(friend);
 			}
 			result.close();
@@ -129,6 +180,12 @@ public class FriendService {
 		Connect cont = new Connect();
 		String sql = "UPDATE weibofriend SET type=" + type + "where A='" + nameA + "' and openB='" + openB + "'";
 		System.out.println("updateWeiboFriend sql: "+ sql);
+		int i = cont.executeUpdate(sql);	
+	}
+
+	public void delFriend(int a, int b) {
+		Connect cont = new Connect();
+		String sql = "delete from friend where A=" + a + " and B=" + b;		
 		int i = cont.executeUpdate(sql);	
 	}
 

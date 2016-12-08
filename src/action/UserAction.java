@@ -128,7 +128,6 @@ public class UserAction implements Action {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid");
-		//System.out.println("addFriend " + userID + " " + friendID);
 		FriendAction friaction = new FriendAction();
 		return friaction.sendAddFriendMessage(userID, friendID);
 	}
@@ -136,6 +135,13 @@ public class UserAction implements Action {
 		UserService us = new UserService();
 		user = us.getUser(userID);
 		return SUCCESS;
+	}
+	public String delFriend() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid");
+		FriendAction friaction = new FriendAction();
+		return friaction.delFriend(userID, friendID);
 	}
 	
 

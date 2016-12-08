@@ -181,8 +181,7 @@
         </action>
         <action name="showFriends" class="action.FriendAction" >
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
-            <result name="error">/WEB-INF/content/user/login.jsp</result>
-            <result name="needlogin">/WEB-INF/content/user/login.jsp</result>            
+            <result name="error">/WEB-INF/content/user/login.jsp</result>         
         </action>
         <action name="addFriendWeiboWeb" class="action.FriendAction" method="addFriendWeiboWeb">
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
@@ -197,7 +196,10 @@
             <result type="redirect">showFriends</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>  
-        
+        <action name="delFriend" class="action.UserAction" method="delFriend">
+            <result type="redirect">showFriends</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action> 
         <action name="ShowUserMessage" class="action.Message" method="accept">
             <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
