@@ -21,6 +21,7 @@ import domain.User;
 import domain.WeiboFriend;
 import service.FriendService;
 import service.LogService;
+import service.MessageService;
 import service.UserService;
 import tencentApi.HttpRequest;
 import tencentApi.convention;
@@ -34,6 +35,7 @@ public class FriendAction implements Action {
 	FriendService fs = new FriendService();
 	private int A;
 	private String openB;	
+	private int messageID;
 
 	@Override
 	public String execute() throws Exception {
@@ -112,14 +114,23 @@ public class FriendAction implements Action {
 		LogService ls = new LogService();
 		UserService us = new UserService();	
 		String nameA = us.getUserName(a);
-		String message = "用户 " + nameA + " 申请您为好友"; 
+		String message = "用户 " + nameA + " 申请您好友"; 
 		Message mes = new Message();
-		mes.Systemsendmessage(b, message, a);	
+		String url = "showFriendInformation?userID=" + a;
+		mes.Systemsendmessage(a, b, message, url, 1);	
 		ls.OperateMessage(a,b,18);
 		return SUCCESS;
 	}
-	public String accepteAddFriendMessage(int a, int b) {			
-		addFriend(a,b);
+	public String accepteAddFriendMessage() {		
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		if(sess.get("userid")==null) return "needlogin";
+		int B = (int) sess.get("userid");
+		System.out.println("addFriend " + A + " "+ B);
+		addFriend(A,B);
+		MessageService ms = new MessageService();
+		ms.read(messageID);
+
 		return SUCCESS;
 	}
 	private void becomeFriend(int a, int b, int type) {		
@@ -141,7 +152,7 @@ public class FriendAction implements Action {
 			break;		
 		}	
 		Message mes = new Message();
-		mes.Systemsendmessage(b, message, a);	
+		mes.Systemsendmessage(b, a, message, "", 2);	
 	}
 	public String addFriend(int a, int b) {
 		UserService us = new UserService();	
@@ -186,40 +197,36 @@ public class FriendAction implements Action {
 	public void setFriend(Friend friend) {
 		this.friend = friend;
 	}
-
 	public List<WeiboFriend> getWeibofriends() {
 		return weibofriends;
 	}
-
 	public void setWeibofriends(List<WeiboFriend> weibofriends) {
 		this.weibofriends = weibofriends;
 	}
-
 	public WeiboFriend getWeibofriend() {
 		return weibofriend;
 	}
-
 	public void setWeibofriend(WeiboFriend weibofriend) {
 		this.weibofriend = weibofriend;
 	}
-
 	public int getA() {
 		return A;
 	}
-
 	public void setA(int a) {
 		A = a;
 	}
-
 	public String getOpenB() {
 		return openB;
 	}
-
 	public void setOpenB(String openB) {
 		this.openB = openB;
 	}
-
-	
+	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
+	}
 	
 
 }

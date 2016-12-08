@@ -29,6 +29,7 @@ public class UserAction implements Action {
 	private String searchname;
 	private List<User> users;
 	private int friendID;
+	private int userID;
 	
 	
 	@Override
@@ -127,8 +128,14 @@ public class UserAction implements Action {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid");
+		//System.out.println("addFriend " + userID + " " + friendID);
 		FriendAction friaction = new FriendAction();
 		return friaction.sendAddFriendMessage(userID, friendID);
+	}
+	public String showUserIndex() {
+		UserService us = new UserService();
+		user = us.getUser(userID);
+		return SUCCESS;
 	}
 	
 
@@ -186,6 +193,13 @@ public class UserAction implements Action {
 		this.friendID = friendID;
 	}
 
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	
 
 }

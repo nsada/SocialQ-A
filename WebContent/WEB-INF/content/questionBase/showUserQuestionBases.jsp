@@ -41,10 +41,6 @@
         </tbody>
     </table>
     
-	    <button  type="button" onclick="window.location.href='addQuestionBase'">
-	           创建题库
-	    </button> 
-    
 </div>
 </rapid:override>
 

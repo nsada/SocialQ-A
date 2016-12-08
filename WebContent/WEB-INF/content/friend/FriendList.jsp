@@ -102,11 +102,12 @@
                 </div>
             </form>      
             <div>
-                <s:iterator value="users">        
+                <s:iterator value="users" var="u">        
                     <li class = "searchuser"> 
                         <s:property value="name"/>
-                        <button class="btn btn-default " type="button"
-                        onclick="window.location.href='addFriend?friendID=2'">添加为好友</a>
+                        <a href='<s:url action="addFriend"><s:param name="friendID" value ="#u.id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                                            添加为好友
+                        </a>
                     </li>               
                         
                 </s:iterator>

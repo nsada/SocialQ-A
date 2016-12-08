@@ -170,9 +170,28 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="addFriend" class="action.UserAction" method="addFriend">
-            <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
+            <result type="redirect">showFriends</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>  
+        
+        <action name="ShowUserMessage" class="action.Message" method="accept">
+            <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>
+                
+        <action name="showUserAllMessage" class="action.Message" method="accept">
+            <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>
+        
+        <action name="showFriendInformation" class="action.UserAction" method="showUserIndex">
+            <result name="success">/WEB-INF/content/user/userIndex.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>
+        <action name="acceptFriendApply" class="action.FriendAction" method="accepteAddFriendMessage">
+            <result type ="chain">ShowUserMessage</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>        
         
          <action name="ShowExam" class="action.ShowExamQuestion" >
             <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>
