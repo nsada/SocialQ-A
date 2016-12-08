@@ -52,7 +52,7 @@ public class FriendAction implements Action {
 			if (getsetWeicoFriends().equals("success")) {
 				System.out.println("show friends before");
 				friends = getUserFriends(userID);
-				System.out.println("show friends");
+				System.out.println("show friends size "+friends.size());
 				return SUCCESS;
 			}
 		} catch (Exception e) {
@@ -205,6 +205,7 @@ public class FriendAction implements Action {
 	public List<User> getUserFriends(int userID) {
 		UserService us = new UserService();
 		friends = us.getAllFriends(userID);		
+		System.out.println("getUserFriends size "+friends.size());
 		return friends;
 	}
 	

@@ -167,6 +167,7 @@ public class UserService {
 			while (result.next()){
 				int friendId = result.getInt("B");
 				idList.add(friendId);
+				System.out.println("friendID " + friendId);
 			}
 			result.close();
 		}catch (Exception e) {
@@ -175,8 +176,6 @@ public class UserService {
 		
 		sql = "select * from friend where B="+id;
 		result = cont.executeQuery(sql);
-		users = new ArrayList<>();		
-		idList = new ArrayList<>();
 		try{
 			while (result.next()){
 				int friendId = result.getInt("A");
@@ -184,8 +183,8 @@ public class UserService {
 			}
 			result.close();
 		}catch (Exception e) {
-			users = null;
 		}	
+		
 		try {
 			for(int lambda = 0 ;lambda<idList.size();lambda++)
 			{

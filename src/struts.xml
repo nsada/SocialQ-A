@@ -189,7 +189,7 @@
         </action>
 
         <action name="searchUser" class="action.UserAction" method="searchUser">
-            <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
+            <result type="chain">showFriends</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="addFriend" class="action.UserAction" method="addFriend">
