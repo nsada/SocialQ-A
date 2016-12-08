@@ -8,6 +8,7 @@ import domain.AandQ;
 import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
+import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
 	 private ResultSet result = null;
@@ -430,5 +431,6 @@ public class Answerexam  implements Action{
 			 }
 	     return aandqs;	
 	}
+	
 	
 }

@@ -24,6 +24,7 @@ import service.ExamService;
 import service.LogService;
 public class AddQuestoExam implements Action {
 	private ResultSet result = null;
+	private ResultSet resultanswer = null;
 	private String title;
 	private String description;
 	private Connect cont;
@@ -304,6 +305,43 @@ public class AddQuestoExam implements Action {
 		 return SUCCESS;
 	}
 	
+	
+	public String ShowHaveAnsaweredExam()
+	{
+		try{
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	        int userID = (int) sess.get("userid");	
+		 String	SQL="select * from social.exam_user where userID ="+userID+" ";	
+		 cont =new Connect();
+		 result = cont.executeQuery(SQL);
+		 while(result.next())
+			{
+			      int ID = result.getInt("examID");
+			 SQL="select * from social.exam where ID ="+ID+" ";
+			 cont =new Connect();
+			 resultanswer = cont.executeQuery(SQL);
+			   if(resultanswer.next())
+				 {
+				      Exam ex =new Exam();
+				      ex.setDescription(resultanswer.getString("description"));
+				      ex.setId(resultanswer.getInt("ID"));
+				      ex.setJoiner(resultanswer.getInt("joiner"));
+				      ex.setRights(resultanswer.getInt("rights"));
+				      ex.setTitle(resultanswer.getString("title"));
+				      Exams.add(ex);
+				 }
+			     
+			}
+  
+	   }
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}	
+		 return SUCCESS;
+	}
 	
 	
 	

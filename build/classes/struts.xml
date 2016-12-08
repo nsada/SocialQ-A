@@ -189,6 +189,11 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
+       
+          <action name="ShowAnsweredExams" class="action.AddQuestoExam" method="ShowHaveAnsaweredExam">
+            <result name="success">/WEB-INF/content/exam/AnsweredExams.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
         
         
 
