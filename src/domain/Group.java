@@ -22,5 +22,8 @@ public class Group {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public void print() {
+		System.out.println("group: "+id+", "+name+", "+description);
 	}	
 }

@@ -90,14 +90,37 @@
             top:100px;
             background:white;
             ">
+            <form action="searchUser" method="POST" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="searchname" />
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-default">搜索用户</button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </form>      
+            <div>
+                <s:iterator value="users" var="u">        
+                    <li class = "searchuser"> 
+                        <s:property value="name"/>
+                        <a href='<s:url action="addFriend"><s:param name="friendID" value ="#u.id"/></s:url>'>
+                                            添加为好友
+                        </a>
+                    </li>               
+                        
+                </s:iterator>
+            </div>
             <h2 style = "position:relative;left:2.5%">本地好友 </h2>
             <div class ="biao"> 
                 <ul class = "biao"> 
-                    <s:iterator value="friends">        
+                    <s:iterator value="friends" var="fri">        
                         <li class = "biao"> 
                             <img class = "biao" src="<%=request.getContextPath()%>/images/background.jpg"/> 
-                            <h3 class = "biao"><s:property value="nameB"/></h3> 
-                            <button class = "biao">删除该好友</button>
+                            <h3 class = "biao"><s:property value="name"/></h3> 
+                            <button><a href='<s:url action="delFriend"><s:param name="friendID" value ="#fri.id"/></s:url>'>
+                                                    删除好友</a></button>
                         </li>               
                             
                     </s:iterator>

@@ -139,39 +139,62 @@ public class UserService {
 		}		
 		return user;
 	}
+	public User getUser(String name) {
+		String sql = "select * from user where name=" + name;
+		ResultSet result = cont.executeQuery(sql);
+		try{
+			if (result.next()){
+				user = new User();
+				user.setId(result.getInt("id"));
+				user.setName(result.getString("name"));
+				user.setPassword(result.getString("password"));
+				user.setTencentOpenID(result.getString("tencentOpenID"));
+				user.setTencentToken(result.getString("tencentToken"));
+			}
+			result.close();
+		}catch (Exception e) {
+			user = null;
+		}		
+		return user;
+	}	
 
-	public List<User> getAllFriends(int id) {
-		
-		String sql = "select * from user_user where me="+id;
+	public List<User> getAllFriends(int id) {		
+		String sql = "select * from friend where A="+id;
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();		
 		List<Object> idList = new ArrayList<>();
 		try{
 			while (result.next()){
-				int friendId = result.getInt("friend");
+				int friendId = result.getInt("B");
 				idList.add(friendId);
+				System.out.println("friendID " + friendId);
 			}
 			result.close();
 		}catch (Exception e) {
 			users = null;
 		}	
-		for(int lambda = 0 ;lambda<idList.size();lambda++)
-		{
-			id = (int)idList.get(lambda);
-			sql = "select * from user where id="+id;
-			result = cont.executeQuery(sql);
-			try{
-				while (result.next()){
-					User user = new User();
-					user.setId(id);
-					user.setName(result.getString("name"));
-					users.add(user);
-				}
-				result.close();
-			}catch (Exception e) {
-				users = null;
-			}	
-		}
+		
+		sql = "select * from friend where B="+id;
+		result = cont.executeQuery(sql);
+		try{
+			while (result.next()){
+				int friendId = result.getInt("A");
+				idList.add(friendId);
+			}
+			result.close();
+		}catch (Exception e) {
+		}	
+		
+		try {
+			for(int lambda = 0 ;lambda<idList.size();lambda++)
+			{
+				id = (int)idList.get(lambda);
+				user = getUser(id);
+				users.add(user);				
+			}
+		}catch (Exception e) {
+			users = null;
+		}	
 		return users;		
 	}
 
@@ -215,6 +238,31 @@ public class UserService {
 			
 		}		
 		return tencentOpenID;
+	}
+
+	public List<User> getSearchUsers(String[] searchnames) {
+		String sql = "select * from user where";
+		for (int i = 0; i < searchnames.length; i ++) {
+			sql = sql + " name like '%" + searchnames[i] + "%'";
+		}
+		System.out.println("searchUser sql:" + sql);
+		ResultSet result = cont.executeQuery(sql);
+		users = new ArrayList<>();
+		try{
+			while (result.next()){
+				user = new User();
+				user.setId(result.getInt("id"));
+				user.setName(result.getString("name"));
+				user.setPassword(result.getString("password"));
+				user.setTencentOpenID(result.getString("tencentOpenID"));
+				user.setTencentToken(result.getString("tencentToken"));
+				users.add(user);
+			}
+			result.close();
+		}catch (Exception e) {
+			
+		}				
+		return users;
 	}
 
 }

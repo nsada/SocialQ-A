@@ -21,44 +21,58 @@ import domain.User;
 import domain.WeiboFriend;
 import service.FriendService;
 import service.LogService;
+import service.MessageService;
 import service.UserService;
 import tencentApi.HttpRequest;
 import tencentApi.convention;
 import tencentApi.globalVar;
 
 public class FriendAction implements Action {
-	private List<Friend> friends;
+	private List<User> friends;
 	private List<WeiboFriend> weibofriends;
 	private Friend friend;
 	private WeiboFriend weibofriend;
 	FriendService fs = new FriendService();
 	private int A;
 	private String openB;	
+	private int messageID;
+	int userID;
 
 	@Override
 	public String execute() throws Exception {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		try {
-			int userID = (int) sess.get("userid");
-			getsetWeicoFriends();
-			friends = getUserFriends(userID);
-			//Collections.sort(friends);
-			return SUCCESS;
+			 userID = (int) sess.get("userid");
 		} catch (Exception e) {
 			friends = null;
-			return ERROR;
+			return "needlogin";
 		}
+		try {
+			if (getsetWeicoFriends().equals("success")) {
+				System.out.println("show friends before");
+				friends = getUserFriends(userID);
+				System.out.println("show friends size "+friends.size());
+				return SUCCESS;
+			}
+		} catch (Exception e) {
+			friends = null;			
+		}
+		return ERROR;
 	}
 	
 	private String getsetWeicoFriends() {
 		System.out.println("setgetWeiboFriends");
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
-		if(sess.get("userid")==null) return "needlogin";
-		int userID = (int) sess.get("userid");
 		String username = sess.get("username").toString();
 		weibofriends = new ArrayList<>();
+		try {
+			String openid = sess.get("openid").toString();
+		} catch (Exception e) {
+			weibofriends = null;
+			return SUCCESS;
+		}
 		
 		try {
 			String str = HttpRequest.sendGet("https://graph.qq.com/relation/get_fanslist", 
@@ -112,14 +126,23 @@ public class FriendAction implements Action {
 		LogService ls = new LogService();
 		UserService us = new UserService();	
 		String nameA = us.getUserName(a);
-		String message = "用户 " + nameA + " 申请您为好友"; 
+		String message = "用户 " + nameA + " 申请您好友"; 
 		Message mes = new Message();
-		mes.Systemsendmessage(b, message, a);	
+		String url = "showFriendInformation?userID=" + a;
+		mes.Systemsendmessage(a, b, message, url, 1);	
 		ls.OperateMessage(a,b,18);
 		return SUCCESS;
 	}
-	public String accepteAddFriendMessage(int a, int b) {			
-		addFriend(a,b);
+	public String accepteAddFriendMessage() {		
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		if(sess.get("userid")==null) return "needlogin";
+		int B = (int) sess.get("userid");
+		System.out.println("addFriend " + A + " "+ B);
+		addFriend(A,B);
+		MessageService ms = new MessageService();
+		ms.read(messageID);
+
 		return SUCCESS;
 	}
 	private void becomeFriend(int a, int b, int type) {		
@@ -141,7 +164,7 @@ public class FriendAction implements Action {
 			break;		
 		}	
 		Message mes = new Message();
-		mes.Systemsendmessage(b, message, a);	
+		mes.Systemsendmessage(b, a, message, "", 2);	
 	}
 	public String addFriend(int a, int b) {
 		UserService us = new UserService();	
@@ -158,10 +181,31 @@ public class FriendAction implements Action {
 
 		return SUCCESS;
 	}
+	public String delFriend(int a, int b) {
+		UserService us = new UserService();	
+		String openB = us.getUserOpenfromID(b);
+		String nameA = us.getUserName(a);
+		WeiboFriend weibofriend = fs.getWeiboFriendOpen(nameA, openB);
+		
+		if (weibofriend == null || weibofriend.getType() == 1) {
+			delWebFriend(a,b);			
+		} else if (weibofriend.getType() == 0) {
+			fs.updateWeiboFriend(nameA, openB, 2);			
+			delWebFriend(a,b);
+		}
+
+		return SUCCESS;
+	}
 	
-	public List<Friend> getUserFriends(int userID) {		
-		friends = new ArrayList<>();
-		friends = fs.getFriends(userID);		
+	private void delWebFriend(int a, int b) {
+		fs.delFriend(a,b);
+		fs.delFriend(b,a);
+	}
+
+	public List<User> getUserFriends(int userID) {
+		UserService us = new UserService();
+		friends = us.getAllFriends(userID);		
+		System.out.println("getUserFriends size "+friends.size());
 		return friends;
 	}
 	
@@ -174,10 +218,10 @@ public class FriendAction implements Action {
 	
 
 
-	public List<Friend> getFriends() {
+	public List<User> getFriends() {
 		return friends;
 	}
-	public void setFriends(List<Friend> friends) {
+	public void setFriends(List<User> friends) {
 		this.friends = friends;
 	}
 	public Friend getFriend() {
@@ -186,40 +230,36 @@ public class FriendAction implements Action {
 	public void setFriend(Friend friend) {
 		this.friend = friend;
 	}
-
 	public List<WeiboFriend> getWeibofriends() {
 		return weibofriends;
 	}
-
 	public void setWeibofriends(List<WeiboFriend> weibofriends) {
 		this.weibofriends = weibofriends;
 	}
-
 	public WeiboFriend getWeibofriend() {
 		return weibofriend;
 	}
-
 	public void setWeibofriend(WeiboFriend weibofriend) {
 		this.weibofriend = weibofriend;
 	}
-
 	public int getA() {
 		return A;
 	}
-
 	public void setA(int a) {
 		A = a;
 	}
-
 	public String getOpenB() {
 		return openB;
 	}
-
 	public void setOpenB(String openB) {
 		this.openB = openB;
 	}
-
-	
+	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
+	}
 	
 
 }

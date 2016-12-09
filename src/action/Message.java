@@ -18,8 +18,9 @@ import service.QuestionBaseService;
 import service.QuestionService;
 import service.ExamService;
 import service.LogService;
+import service.MessageService;
 import domain.Usermessage;
-import java.util.Date;
+
 public class Message implements Action {
 	private ResultSet result = null;
 	private Connect cont;
@@ -31,7 +32,29 @@ public class Message implements Action {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private int rread=0;
 	private int unread;
-	private LinkedList<Usermessage> messages =new LinkedList<Usermessage>(); 
+	private List<Usermessage> messages =new ArrayList<Usermessage>(); 	
+	private String url;
+	private int type;
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public void setUnread(int unread) {
 		this.unread=unread;
 	}
@@ -48,7 +71,7 @@ public class Message implements Action {
 	public String getSendername() {
 		return sendername;
 	}
-	public void setSname(String sendername) {
+	public void setSendername(String sendername) {
 		this.sendername = sendername;
 	}
 	public String getMessage() {
@@ -57,12 +80,14 @@ public class Message implements Action {
 	public void setMessage(String message) {
 		this.message = message;
 	}	
-	public LinkedList<Usermessage> getMessages() {
-		return messages ;
+
+	public List<Usermessage> getMessages() {
+		return messages;
 	}
-	public void setMessages(LinkedList<Usermessage> messages) {
+	public void setMessages(List<Usermessage> messages) {
 		this.messages = messages;
-	}	
+	}
+
 	public void setAccepterID(int accepterID) {
 		this.accepterID=accepterID;
 	}
@@ -83,7 +108,7 @@ public class Message implements Action {
 	    	Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
 	         String SQL = "select * from social.user  where id ="+ userID;
-	         System.out.print(SQL);
+	         //System.out.print(SQL);
 	         result = cont.executeQuery(SQL);
 	         if(result.next())
 	         {
@@ -106,21 +131,25 @@ public class Message implements Action {
 	    	Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
           String SQL="select * from social.message where accepterID ="+userID+" AND rread ="+0+" " ;
-          System.out.println(SQL);
+          //System.out.println(SQL);
           result=cont.executeQuery(SQL);
 		   while (result.next()){
 				Usermessage um= new Usermessage();
+				um.setId(result.getInt("id"));
 				um.setAccepterID(result.getInt("accepterID"));
 				um.setDate(result.getString("time"));
 				um.setMessage(result.getString("message"));
 				um.setRead(result.getInt("rread"));
 				um.setSenderID(result.getInt("senderID"));
 				um.setSendername(result.getString("sendername"));
+				um.setUrl(result.getString("url"));
+				um.setType(result.getInt("type"));
 				messages.add(um);
 		}
+		 /*  
 		  SQL="update social.message set rread = "+1+" where accepterID="+userID+" ";
 		 cont =new Connect();
-         cont.executeUpdate(SQL);  
+         cont.executeUpdate(SQL);  */
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return ERROR;
@@ -152,7 +181,7 @@ public class Message implements Action {
 	 {
 		 try
 		 {
-			 String system = "系统提示您:";
+			 String system = "System";
 			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+0+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
 		     System.out.println(SQL);
 		     cont =new Connect();
@@ -163,5 +192,32 @@ public class Message implements Action {
 			System.out.println(e.getMessage());
 		}				 
 	 }
+	public void Systemsendmessage(int senderID, int accepterID, String message, String url, int type) {
+		 try
+		 {
+			 String  SQL= "insert into social.message (senderID, accepterID, rread,message,time,url,type) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+url+"',"+type+")";
+		     //System.out.println("systemsendmessage sql:" + SQL);
+		     cont =new Connect();
+	         cont.executeUpdate(SQL); 
+		  }
+	   catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	public String showUserAllMessage() {
+		try {
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	        int userID = (int) sess.get("userid");
+	        MessageService ms = new MessageService();
+	        messages = ms.getUserAllMessage(userID);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return SUCCESS;
+	}
+
+
 
 }

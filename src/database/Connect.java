@@ -12,8 +12,10 @@ public class Connect {
 			Class.forName("com.mysql.jdbc.Driver");			
 
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
+			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
+			
+			//con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
 			
 			state = con.createStatement();	
 			//System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挻鍨氶崝锟�");
@@ -67,8 +69,7 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
-
-				System.out.println("鎴愬姛鑾峰彇lastid: "+id);
+				System.out.println("lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {

@@ -59,7 +59,7 @@
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
-       				
+       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
        				
 					
@@ -69,8 +69,8 @@
                			 </a>
                			 <ul class="dropdown-menu">
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/ShowFriends">好友列表</a></li>
-                    		<li><a href='<s:url action="showPersonalInformation"></s:url>'>工作组</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
 
            
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>

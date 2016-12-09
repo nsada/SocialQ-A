@@ -10,6 +10,8 @@ import service.LogService;
 import service.QuestionBaseService;
 import service.UserService;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +22,14 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction implements Action {
 	private User user;
 	private LogService ls = new LogService();
-	private List<User> friends;
 	private String cpassword;
 	private int Age;
 	private String email;
 	private String redirect_url;
+	private String searchname;
+	private List<User> users;
+	private int friendID;
+	private int userID;
 	
 	
 	@Override
@@ -48,7 +53,7 @@ public class UserAction implements Action {
 				sess.put("userid", new_user.getId());
 				sess.put("openid", new_user.getTencentOpenID());
 				sess.put("accesstoken", new_user.getTencentToken());
-				ls.login(new_user.getId());
+				//ls.login(new_user.getId());
 				return SUCCESS;			
 			}
 		}catch (Exception e){
@@ -80,7 +85,7 @@ public class UserAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid");
 		
-		ls.logout(userID);
+		//ls.logout(userID);
 		sess.remove("username");
 		sess.remove("userid");
 		sess.remove("openid");
@@ -97,6 +102,46 @@ public class UserAction implements Action {
 		UserService us = new UserService();
 		us.delete(userID);
 		return logout();
+	}
+	
+	public String searchUser() {
+		UserService us = new UserService();
+		String[] searchnames = searchname.split(" ");
+		users = us.getSearchUsers(searchnames);
+			
+		try {
+			ActionContext actCtx = ActionContext.getContext();
+			Map<String, Object> sess = actCtx.getSession();
+			int userID = (int)sess.get("userid");
+			Iterator<User> ListIterator = users.iterator();  
+			while(ListIterator.hasNext()){  
+			    User e = ListIterator.next();  
+			    if(e.getId() == userID){  
+			    	ListIterator.remove();  
+			    }  
+			}  
+		} catch (Exception e){
+		}
+		return SUCCESS;
+	}
+	public String addFriend() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid");
+		FriendAction friaction = new FriendAction();
+		return friaction.sendAddFriendMessage(userID, friendID);
+	}
+	public String showUserIndex() {
+		UserService us = new UserService();
+		user = us.getUser(userID);
+		return SUCCESS;
+	}
+	public String delFriend() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = (int)sess.get("userid");
+		FriendAction friaction = new FriendAction();
+		return friaction.delFriend(userID, friendID);
 	}
 	
 
@@ -130,7 +175,37 @@ public class UserAction implements Action {
 	public void setRedirect_url(String redirect_url) {
 		this.redirect_url = redirect_url;
 	}
+	public String getSearchname() {
+		return searchname;
+	}
 
+	public void setSearchname(String searchname) {
+		this.searchname = searchname;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public int getFriendID() {
+		return friendID;
+	}
+
+	public void setFriendID(int friendID) {
+		this.friendID = friendID;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	
 
 }
