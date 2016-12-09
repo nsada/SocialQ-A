@@ -146,6 +146,10 @@
 							form.action="InsertQuestion";
 							form.method = "post";
 							var input = document.createElement("input");    
+			            	input.name = "ExamID"
+			            	input.value = <s:property value="ExamID" />;
+			            	form.appendChild(input); 
+							var input = document.createElement("input");    
 			            	input.name = "questionstr"
 			            	input.value = result;
 			            	form.appendChild(input);      

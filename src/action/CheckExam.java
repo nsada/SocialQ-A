@@ -8,13 +8,19 @@ import domain.AandQ;
 public class CheckExam implements Action{
 	 private ResultSet result = null;
 	 private Connect cont;
-	 private int ExamID =81;
+	 private int ExamID =85;
 	 private int TesttakerID=1;
      private List<AandQ> AandQs;	
 	 private String Takename="";
-	 private String scorestr="10#11#12#";
+	 private String scorestr="13#14#";
 	 private Queue<String> scores;
  	 private List<AandQ> UncheckedAandQs =new ArrayList<AandQ>();	
+	 public String getScorestr() {
+		return scorestr;
+	}
+	public void setScorestr(String scorestr) {
+		this.scorestr = scorestr;
+	}
      public String getTakename() {
  		return Takename;
  	}
@@ -37,14 +43,13 @@ public class CheckExam implements Action{
 		ExamID = examID;
 	}
 
-	public int getTesttaker() {
+	public int getTesttakerID() {
 		return TesttakerID;
 	}
 
-	public void setTesttaker(int testtaker) {
-		TesttakerID = testtaker;
+	public void setTesttakerID(int testtakerID) {
+		TesttakerID = testtakerID;
 	}
-
 	@Override
 		public String execute() throws Exception {		 
 		 try
@@ -91,6 +96,30 @@ public class CheckExam implements Action{
 	public String UpdateScore() throws Exception {		 
 		 try
 		 {
+			 ShowExamQuestion seq =new ShowExamQuestion();
+		      seq.setExamID(ExamID);
+			  seq.execute();
+			  AandQs=seq.getAandQs();
+			  for(AandQ aandq :AandQs)
+		       {
+			    int readd=1;       
+		        String answer="";
+			    String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+3+" and questionID="+aandq.getId()+"";
+		        System.out.println(SQL);       
+		         cont =new Connect();
+		        result=  cont.executeQuery(SQL);
+		       if (result.next())
+		       {
+		      	answer=result.getString("answer");
+		       	readd=result.getInt("rrred");
+		       }	 
+		       aandq.setUseranswer(answer);
+		       aandq.setReadd(readd);
+		       if(readd==0)
+		       {
+		    	   UncheckedAandQs.add(aandq);
+		       }
+		     } 
 			 ActionContext actCtx = ActionContext.getContext();
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
@@ -148,7 +177,7 @@ public class CheckExam implements Action{
 		      	ques_totalscore=result.getInt("score");
 		       }	   
             ques_totalscore=ques_totalscore+totalscore;      
-            SQL="update social.exam_user set score="+ques_totalscore+",checked="+1+" where examID ="+ExamID+" userID ="+TesttakerID+"";
+            SQL="update social.exam_user set score="+ques_totalscore+",checked="+1+" where examID ="+ExamID+" and userID ="+TesttakerID+"";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);  
