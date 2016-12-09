@@ -8,7 +8,7 @@
 <rapid:override name="content">
 
 
-	<div class = "col-md-2">
+	<div class = "col-md-3">
 		 <a style="float: right"
                     href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
                     <button type="button">取消编辑试卷</button>
@@ -18,7 +18,7 @@
                 </a> <input style="float: right" type="button" onclick="insertQ()"
                     value="插入题目">
 	</div>
-	<div class = "col-md-10">
+	<div class = "col-md-9">
 		<form name="myform" action="Paper" method="post">
 
 

@@ -87,8 +87,8 @@
         		</ul>
         		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
         			<%if (username==null || username==""){%>
-								<li><a href="<%=request.getContextPath()%>/user/regist"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-								<li><a onclick="showlogin()"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+								<li><a onclick = "showbox('regist')"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+								<li><a onclick="showbox('login')"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
 					<%}else{%>
 								<li style="margin-top: 5px">
 									<p class="navbar-text">
@@ -105,39 +105,80 @@
 	
 	
 	<script>
-		function showlogin(){
+		function showbox(status){
 			back = document.getElementById("grayback");
-			box = document.getElementById("LoginBox");
 			back.style.display="block";
+			box = document.getElementById("LoginBox");
 			box.style.display="block";
+			switch (status){
+				case "regist": 
+					SwitchBoxStatusToRegist();
+					break;
+				default:
+					SwitchBoxStatusToLogin();
+					break;
+			}
+			
 			return ;
 		}
-		function killLogin(){
+		function killbox(){
 			back = document.getElementById("grayback");
 			box = document.getElementById("LoginBox");
 			back.style.display="none";
 			box.style.display="none";
 			return ;
 		}
+		function SwitchBoxStatusToLogin(){
+			var registform = document.getElementById("registform");
+			registform.style.display = "none";
+			var loginform =  document.getElementById("loginform");
+			loginform.style.display = "block";
+			var status = document.getElementById("statusLogin");
+			status.className = "button button-pill button-action active";
+			status = document.getElementById("statusRegist");
+			status.className="button button-pill button-action";
+		}
+		function SwitchBoxStatusToRegist(){
+			var registform = document.getElementById("registform");
+			registform.style.display = "block";
+			var loginform =  document.getElementById("loginform");
+			loginform.style.display = "none";
+			var status = document.getElementById("statusLogin");
+			status.className = "button button-pill button-action";
+			status = document.getElementById("statusRegist");
+			status.className="button button-pill button-action active";
+		}
 	</script>
 	<div id="grayback"style=" display:none;
 											POSITION:absolute; 
 											left:0; top:0; 
-											width:100%; height:100%; 
+											width:200%; height:200%; 
 											background-color:#000; 
 											opacity: 0.5;
 											z-index: 1000"></div>
-	<div id="LoginBox" class="well well-lg"style = "z-index: 2000;
+	<div id="LoginBox" class="well well-lg"
+								style = "z-index: 2000;
 												margin:auto;
 												display:none;
 												position:absolute;
 												left:35%;top:35%;
 												width:30%; min-height:200px;
 												">    	
+												
+		<div class="button-group">
+    		<button onclick="SwitchBoxStatusToLogin()"type="button" id="statusLogin" class="button button-pill button-action ">登录</button>
+    		<button onclick="SwitchBoxStatusToRegist()"type="button" id="statusRegist" class="button button-pill button-action">注册</button>
+  		</div>
+  		<a class="button  button-tiny button-caution button-circle button-jumbo" style = "float: right;" onclick="killbox()">
+			<span class="glyphicon glyphicon-remove"></span>
+		</a>
+  		
+  		<p><br></p>
+  		
+  		<br>
+  		
     	<form class="form-horizontal" role="form" action="loginPro"  id= "loginform" method="post">
-    		<div class="form-group  has-success">	
-    			 <a class="button  button-tiny button-caution button-circle button-jumbo" style = "float: right;" onclick="killLogin()">&times;</a>
-    		</div>
+    		
         		<div class="form-group  has-success">
     				<label class="col-sm-2 control-label" for="inputSuccess">Name</label>
    	 				<div class="col-sm-10">
@@ -145,6 +186,7 @@
         			</div>
   				</div>
   				
+  				<p><br></p>
   		
   				
   				<div class="form-group  has-success">
@@ -153,16 +195,77 @@
         				<input id="loginpassword"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
     				</div>
   				</div>
-  				<div class="form-gruop">
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group">
   					<label class="col-sm-2 control-label" for="inputSuccess"></label>
-  					<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
-            		<div style="float: right">
-            			<p style="float: left;">第三方登录:</p>
-            			<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
-            		</div>
-            
+  					<div class="col-sm-10">
+  						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
+  						<div style="float: right">
+            				<p style="float: left;">第三方登录:</p>
+            				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+            			</div>
+  					</div>
+  					
+            		
     			</div>
     		</form>
+    		
+    		
+    		
+    		
+    		
+    		<form class="form-horizontal" role="form" action="registPro"  id= "registform" method="post">
+    		
+        		<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Name</label>
+   	 				<div class="col-sm-10">
+        				<input id="registName"type="text" class="form-control" id="inputSuccess" name="user.name" placeholder="请输入用户名">
+        			</div>
+  				</div>
+  				
+  				<p><br></p>
+  		
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Password</label>
+   	 				<div class="col-sm-10">
+        				<input id="registPassword"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Repeat</label>
+   	 				<div class="col-sm-10">
+        				<input id="registPasswordAgain"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请再次输入密码">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Email</label>
+   	 				<div class="col-sm-10">
+        				<input id="registEmail"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group">
+  					<label class="col-sm-2 control-label" for="inputSuccess"></label>
+  					<div class="col-sm-10">
+  						<a  onclick="RegistSubmit()"class="button button-glow button-border button-rounded button-primary">注册</a>          
+  					</div>
+    			</div>
+    		</form>
+    		
+    		
+    		
+    		
     		<script>
     			function LoginSubmit(){
     				var form = document.getElementById("loginform");
@@ -190,9 +293,37 @@
 					form.submit();
 					return ;
     			}
-    					
-    		
-    		
+    			
+    			
+    			function 	RegistSubmit(){
+    				var registName = $("#registName")[0]
+    				var registPassword = $("#registPassword")[0]
+    				var registPasswordAgain  =$("#registPasswordAgain")[0]
+    				var registEmail = $("#registEmail")[0];
+    				if(registName.value == ""){
+    					alert("输入的用户名为空！");
+    					return ;
+    				}
+    				if(registPassword.value == ""){
+    					alert("输入的密码为空！");
+    					return ;
+    				}
+    				if(registPassword.value != registPasswordAgain.value){
+    					alert("两次输入的密码不一致！");
+    					return ;
+    				}
+    				if(registEmail.value == ""){
+    					alert("输入的邮箱为空！");
+    					return ;
+    				}
+    				var registEmailMatchResult =registEmail.value.match(/[a-zA-z0-9]+@[a-zA-z0-9]+.com/g);
+					if(registEmailMatchResult==null || registEmailMatchResult[0].length !=registEmail.value.length){
+						alert("您的邮箱格式存在错误！");
+						return ;
+					}
+					form = $("#registform")[0];
+					form.submit();
+    			}
     		</script>
     </div>
     
