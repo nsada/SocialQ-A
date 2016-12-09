@@ -39,6 +39,5 @@
         <button class="btn btn-default btn-primary button-center" type="submit">注册</button> 
     </form>
 </div>
->>>>>>> YC
 </rapid:override>
 <%@include file="../../../base.jsp"%>
