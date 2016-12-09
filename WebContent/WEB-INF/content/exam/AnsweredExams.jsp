@@ -7,15 +7,17 @@
 <rapid:override name="content">
 
         <div class="panel panel-info">
-  							<div class="panel-heading">点击选择我要插入的题库</div>
+  							<div class="panel-heading">点击查看具体答题情况哦</div>
   							
 							<div class="panel-body">
    								 <p>当前试卷的ID<s:property value="ExamID" /></p>
    								   <div class="list-group">
-   								   		<s:iterator value="questionBases">
+   								   		<s:iterator value="Exams">
            									<a  class="list-group-item list-group-item-success"
-           										 href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        						<s:property value="title" />
+           										 href='<s:url action="ShowExamDetail"><s:param name="ExamID" value ="id"/> </s:url>'>
+                        						题目：<s:property value="title" /> 
+                        						<br>
+                        						描述：<s:property value="description" />
                								</a>
        		 							</s:iterator>
 

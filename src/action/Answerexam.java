@@ -17,6 +17,7 @@ public class Answerexam  implements Action{
 	 private String multy_answer="010010#010100#";
 	 private String AandQ_answer="第一个问答题的答案/#第二题的问答题的答案/#第二个问答题的答案/#第三个问答题的答案/#";	 
 	 private int score=0;
+	 private int everyscore=0;
 	 private int ExamID =52;
      private List<TextBlank> textBlanks;
  	 private List<Selection> selections;
@@ -26,6 +27,18 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
+	public List<TextBlank> getTextBlanks() {
+		return textBlanks;
+	}
+	public void setTextBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
+	}
+	public List<Selection> getSelections() {
+		return selections;
+	}
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
+	}
 	 public int getExamID() {
 			return ExamID;
 		}
@@ -94,14 +107,18 @@ public class Answerexam  implements Action{
 				  textBlanks=seq.getTextBlanks();
 				  multys=seq.getMultys();
 				  AandQs=seq.getAandQs();
+				  int quesscore=0;
                  for(Selection sel: selections)	  
                  {
                 	 int right=0;
+                	 everyscore=0;
+                	 
                 	 String answer = sels.poll();
                 	
                 	 if(sel.getAns().equals(answer))
                 	 {
                 		 score=score+sel.getScore();
+                		 everyscore=sel.getScore();
                 		 right=1;
                 	 }
                 	 else 
@@ -114,6 +131,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreA();
+                    			 everyscore=sel.getScoreA();
                     		 }
                     		 break;
                     	 case 2:
@@ -121,6 +139,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreB();
+                    			 everyscore=sel.getScoreB();
                     		 }
                     		 break;
                     	 case 3:
@@ -128,6 +147,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreC();
+                    			 everyscore=sel.getScoreC();
                     		 }
                     		 break;
                     	 case 4:
@@ -135,6 +155,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreD();
+                    			 everyscore=sel.getScoreD();
                     		 }
                     		 break;
                     	 case 5:
@@ -142,6 +163,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreE();
+                    			 everyscore=sel.getScoreE();
                     		 }
                     		 break;
                     	 case 6:
@@ -149,6 +171,7 @@ public class Answerexam  implements Action{
                     		 {
                     			 right=1;
                     			 score=score+sel.getScoreF();
+                    			 everyscore=sel.getScoreF();
                     		 }
                     		 break;
                     		 default :
@@ -156,8 +179,15 @@ public class Answerexam  implements Action{
                     	 }
                 		 
                 	 }
-                	          
-            String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+sel.getId()+","+1+",'"+answer+"',"+right+")";
+            String  SQL= "delete from exam_user_answer where questionID=" + sel.getId() + " and examID=" + ExamID + " and userID=" + userID + " and questionType=" + 1;
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL); 	
+            SQL= "delete from exam_user where examID=" + ExamID + " and userID=" + userID + "";
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL); 
+            SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt,score) values ("+userID+", "+ExamID+","+sel.getId()+","+1+",'"+answer+"',"+right+","+everyscore+")";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);
@@ -169,15 +199,17 @@ public class Answerexam  implements Action{
             int peopleR=0;
             if(result.next())
             {
+            	quesscore =result.getInt("score");
             	people=result.getInt("people");
             	peopleR=result.getInt("peopleR");
             }
             people++;
             if(right==1)
             {
+            	quesscore=quesscore+everyscore;
             	peopleR++;
             }
-            SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+" where questionID ="+sel.getId()+" and type="+1+" ";
+            SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+",score="+quesscore+" where questionID ="+sel.getId()+" and type="+1+" ";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);
@@ -185,6 +217,7 @@ public class Answerexam  implements Action{
                  
             for(TextBlank tes :textBlanks)
                  {
+            	     everyscore=0;
                 	 int right=1;
                 	 String answer =textb.poll();
                 	String everyblank[]= answer.split("/#");
@@ -220,7 +253,19 @@ public class Answerexam  implements Action{
                 			right=0;
                 		}
                 	}
-                 String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+tes.getId()+","+2+",'"+answer+"',"+right+")";
+                	  if(right==1)
+                      { 
+                      	everyscore =tes.getScore();
+                      }
+                	  
+                	  
+               String  SQL= "delete from exam_user_answer where questionID=" + tes.getId() + " and examID=" + ExamID + " and userID=" + userID + " and questionType=" + 2;
+                System.out.println(SQL);
+                cont =new Connect();
+                cont.executeUpdate(SQL); 	 
+                            	 	  
+                	  
+                 SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt,score) values ("+userID+", "+ExamID+","+tes.getId()+","+2+",'"+answer+"',"+right+","+everyscore+")";
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);  
@@ -232,16 +277,19 @@ public class Answerexam  implements Action{
                  int peopleR=0;
                  if(result.next())
                  {
+                    quesscore =result.getInt("score");
                  	people=result.getInt("people");
                  	peopleR=result.getInt("peopleR");
                  }
                  people++;
                  if(right==1)
                  {
+                	 
+                    quesscore=quesscore+everyscore;
                  	peopleR++;
                  	score =score+tes.getScore();
                  }
-                 SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+" where questionID ="+tes.getId()+" and type="+2+" ";
+                 SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+",score="+quesscore+" where questionID ="+tes.getId()+" and type="+2+" ";
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);
@@ -249,17 +297,24 @@ public class Answerexam  implements Action{
             for(Multy mul :multys)
             {
            	    int right=0;
+           	     everyscore=0;
            	     String answer =muls.poll();
            		if( answer.equals(mul.getAns()))
            		{
+           			everyscore=mul.getScore();
            			right=1;
            		}
            		else 
            		{
            			right=0;
-           		}
-           	
-            String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+mul.getId()+","+4+",'"+answer+"',"+right+")";
+           		}     
+           		
+           	String  SQL= "delete from exam_user_answer where questionID=" + mul.getId() + " and examID=" + ExamID + " and userID=" + userID + " and questionType=" + 4;
+           System.out.println(SQL);
+           cont =new Connect();
+           cont.executeUpdate(SQL); 	 
+           		
+            SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt,score) values ("+userID+", "+ExamID+","+mul.getId()+","+4+",'"+answer+"',"+right+","+everyscore+")";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);  
@@ -271,6 +326,7 @@ public class Answerexam  implements Action{
             int peopleR=0;
             if(result.next())
             {
+            	quesscore =result.getInt("score");
             	people=result.getInt("people");
             	peopleR=result.getInt("peopleR");
             }
@@ -279,17 +335,23 @@ public class Answerexam  implements Action{
             {
             	peopleR++;
             	score =score+mul.getScore();
+            	quesscore=quesscore+everyscore;
             }
-            SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+" where questionID ="+mul.getId()+" and type="+4+" ";
+            SQL="update social.exam_question set people = "+people+",peopleR="+peopleR+",score="+quesscore+" where questionID ="+mul.getId()+" and type="+4+" ";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);           
             }  
       for(AandQ aandq :AandQs)
             {
+    	  
+    	    String  SQL= "delete from exam_user_answer where questionID=" + aandq.getId() + " and examID=" + ExamID + " and userID=" + userID + " and questionType=" + 3;
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL); 	 
     	     flag=1;
            	String answer =aands.poll();           	
-            String SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+aandq.getId()+","+3+",'"+answer+"',"+1+")";
+            SQL="insert into social.exam_user_answer(userID, examID, questionID,questionType,answer,rightt) values ("+userID+", "+ExamID+","+aandq.getId()+","+3+",'"+answer+"',"+1+")";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);  
@@ -334,13 +396,32 @@ public class Answerexam  implements Action{
            }
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
-           mess.Systemsendmessage(accepterID, message);          
+           mess.Systemsendmessage(userID,accepterID, message);          
        }    
           log.OperateExam(userID, userID, 14);
-         String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
+            String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
-            cont.executeUpdate(SQL);			  
+            cont.executeUpdate(SQL);	
+            
+            
+            SQL="select * from social.exam  where ID ="+ExamID+"  ";
+            System.out.println(SQL);
+            cont =new Connect();
+            result=  cont.executeQuery(SQL);
+            int people=0;
+            int totalscore=0;
+            if(result.next())
+            {
+            	people=result.getInt("people");
+            	totalscore=result.getInt("totalscore");
+            }
+            people++;
+            totalscore =totalscore+score;             
+            SQL="update social.exam set people = "+people+",totalscore="+totalscore+" where ID ="+ExamID+" ";
+            System.out.println(SQL);
+            cont =new Connect();
+            cont.executeUpdate(SQL);                         
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			 return ERROR;
@@ -411,5 +492,108 @@ public class Answerexam  implements Action{
 			 }
 	     return aandqs;	
 	}
-	
+	public String ShowExamDetail() throws Exception {  
+		try {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");	
+	          ShowExamQuestion seq =new ShowExamQuestion();
+		      seq.setExamID(ExamID);
+			  seq.execute();
+			  selections =seq.getSelections();
+			  textBlanks =seq.getTextBlanks();
+			  multys  =seq.getMultys();
+			  AandQs =seq.getAandQs();
+            for(Selection sel: selections)	  
+            {
+           	 int right=0;
+           	 everyscore=0;
+           	 String answer="";
+             String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+1+" and questionID="+sel.getId()+"";
+             System.out.println(SQL);       
+             cont =new Connect();
+             result=  cont.executeQuery(SQL);             
+             while (result.next())
+             {
+             	answer=result.getString("answer");
+             	right=result.getInt("rightt");
+             	everyscore=result.getInt("score");
+             }	 
+             sel.setRight(right);
+             sel.setUseranswer(answer);
+             sel.setUserscore(everyscore);           	          
+  }
+            
+       for(TextBlank tes :textBlanks)
+            {
+    	      int right=0;
+         	 everyscore=0;
+         	 String answer="";
+    	   String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+2+" and questionID="+tes.getId()+"";
+           System.out.println(SQL);       
+           cont =new Connect();
+           result=  cont.executeQuery(SQL);
+           while (result.next())
+           {
+           	answer=result.getString("answer");
+           	right=result.getInt("rightt");
+           	everyscore=result.getInt("score");
+           }	 
+            tes.setRight(right);
+            tes.setUseranswer(answer);
+            tes.setUserscore(everyscore);    
+           
+            }
+           	
+       for(Multy mul :multys)
+       {
+    	   int right=0;
+       	 everyscore=0;
+       	 String answer="";
+  	   String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+4+" and questionID="+mul.getId()+"";
+         System.out.println(SQL);       
+         cont =new Connect();
+         result=  cont.executeQuery(SQL);
+         while (result.next())
+         {
+         	answer=result.getString("answer");
+         	right=result.getInt("rightt");
+         	everyscore=result.getInt("score");
+         }	 
+          mul.setRight(right);
+          mul.setUseranswer(answer);
+          mul.setUserscore(everyscore);
+      	
+          
+       }  
+     for(AandQ aandq :AandQs)
+       {
+	  int readd=1;       
+	  int right=0;
+    	 everyscore=0;
+    	 String answer="";
+	   String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+3+" and questionID="+aandq.getId()+"";
+      System.out.println(SQL);       
+      cont =new Connect();
+      result=  cont.executeQuery(SQL);
+      while (result.next())
+      {
+      	answer=result.getString("answer");
+      	right=result.getInt("rightt");
+      	 everyscore=result.getInt("score");
+       	readd=result.getInt("rrred");
+      }	 
+       aandq.setRight(right);
+       aandq.setUseranswer(answer);
+       aandq.setUserscore(everyscore);
+       aandq.setReadd(readd);
+     } 
+		}
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}				
+		return SUCCESS;
+   }
 }

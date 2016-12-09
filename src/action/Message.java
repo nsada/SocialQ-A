@@ -192,6 +192,21 @@ public class Message implements Action {
 			System.out.println(e.getMessage());
 		}				 
 	 }
+	 public void Systemsendmessage ( int senderID,int accepterID, String message)
+	 {
+		 try
+		 {
+			 String system = "系统提示您:";
+			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
+		     System.out.println(SQL);
+		     cont =new Connect();
+	         cont.executeUpdate(SQL); 
+		  }
+	   catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}				 
+	 }
 	public void Systemsendmessage(int senderID, int accepterID, String message, String url, int type) {
 		 try
 		 {

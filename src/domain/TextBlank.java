@@ -18,6 +18,27 @@ public class TextBlank {
 	private String ansF;
 	private String analysis;
 	private int score;
+	private int right;
+	private int userscore;
+	private String useranswer;
+	public String getUseranswer() {
+		return useranswer;
+	}
+	public void setUseranswer(String useranswer) {
+		this.useranswer = useranswer;
+	}
+	public int getRight() {
+		return right;
+	}
+	public void setRight(int right) {
+		this.right = right;
+	}
+	public int getUserscore() {
+		return userscore;
+	}
+	public void setUserscore(int userscore) {
+		this.userscore = userscore;
+	}
 	public int getId() {
 		return id;
 	}

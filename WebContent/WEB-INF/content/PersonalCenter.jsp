@@ -18,18 +18,20 @@
                         onclick="window.location.href='showUserGroups'">工作组</a>
 					</button>
 					
-					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a>
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='ShowUncomExam'">草稿箱</a>
 					</button>
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
-					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a>
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='FindUserExam'">批改试卷</a>
 					</button>
-					<button class="btn btn-default " type="button">
-						<a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a>
+					
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='ShowAnsweredExams' ">答过的试卷</a>
 					</button>
+					
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserLogs'">个人动态</button>
 				</div>

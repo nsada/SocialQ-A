@@ -147,8 +147,12 @@
 					<button type="button">取消编辑试卷</button>
 				</a> 
 				<a style="float: right"
-					href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+					href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/><s:param name="publish" value ="1"/> </s:url>'>
 					<button type="button">提交生成我的试卷</button>
+				</a>
+				<a style="float: right"
+					href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> <s:param name="publish" value ="0"/></s:url>'>
+					<button type="button">存到草稿箱</button>
 				</a>
 				 <input style="float: right" type="button" onclick="insertQ()"
 					value="插入题目">
