@@ -195,10 +195,12 @@
     		
     		</script>
     </div>
-
+    
 	<div class="well well-lg container table-center" style="opacity: 0.85;">
 		<rapid:block name="content">base_content</rapid:block>
 	</div>
+	
+	
 	
 	<br />
 

@@ -6,7 +6,20 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <rapid:override name="content">
-    <form name="myform" action="Paper" method="post">
+
+
+	<div class = "col-md-2">
+		 <a style="float: right"
+                    href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                    <button type="button">取消编辑试卷</button>
+                </a> <a style="float: right"
+                    href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                    <button type="button">提交生成我的试卷</button>
+                </a> <input style="float: right" type="button" onclick="insertQ()"
+                    value="插入题目">
+	</div>
+	<div class = "col-md-10">
+		<form name="myform" action="Paper" method="post">
 
 
             <input name="title" type="text" placeholder="请输入试卷的标题" required=""
@@ -93,16 +106,7 @@
 
             <input name="ExamID" type="hidden"
                 value='<s:property  value ="ExamID"/>' />
-            <div>
-                <a style="float: right"
-                    href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                    <button type="button">取消编辑试卷</button>
-                </a> <a style="float: right"
-                    href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                    <button type="button">提交生成我的试卷</button>
-                </a> <input style="float: right" type="button" onclick="insertQ()"
-                    value="插入题目">
-            </div>
+       
         </form>
 
 <script type="text/javascript">
@@ -111,6 +115,9 @@
         document.myform.submit(); 
     }
 </script>
+	</div>
+	
+    
 
 </rapid:override>
         
