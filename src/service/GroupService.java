@@ -118,14 +118,14 @@ public class GroupService {
 	}
 	private int delGroup_User(int userID, int groupID) {
 		Connect cont = new Connect();
-		String sql = "delete from group_user where userID=" + userID + " and groupID=" + groupID;
+		String sql = "delete from social.group_user where userID=" + userID + " and groupID=" + groupID;
 		int i = cont.executeUpdate(sql);		
 		return i;
 	}
 
 	public String getGroupName(int id) {
 		if (id == 0) return "";
-		String sql = "select name from group where id=" + id;
+		String sql = "select name from social.group where id=" + id;
 		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		String groupname = "";
@@ -141,7 +141,7 @@ public class GroupService {
 	}
 
 	public boolean findUser_in_Group(int userID, int groupID) {
-		String sql = "select * from group_user where groupID=" + groupID + " and userID="+userID;
+		String sql = "select * from social.group_user where groupID=" + groupID + " and userID="+userID;
 		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		String groupname = "";

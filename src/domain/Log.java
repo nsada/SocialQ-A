@@ -23,18 +23,24 @@ public class Log {
 
 	
 	public String translate(){
+		//print();
 		String ans = "";
 		UserService us = new UserService();
 		String user = us.getUserName(userID);
 		String userB = us.getUserName(userIDB);
+		//System.out.println("user: " + user + " " + userB);
 		QuestionBaseService qBs = new QuestionBaseService();
 		String qBase = qBs.getqBaseName(qBaseID);
+		//System.out.println("qBase: " + qBase);
 		QuestionService qs = new QuestionService();
 		String question = qs.getQuestionContext(questionID, questionType);
+		//System.out.println("question: " + question);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
+		//System.out.println("exam: " + exam);
 		GroupService gs = new GroupService();
 		String group = gs.getGroupName(groupID);
+		//System.out.println("group: " + group);
 		ans = "用户"+user;
 		switch (action) {
 		case 1: ans = ans + "注册成功"; break;
@@ -72,8 +78,9 @@ public class Log {
 		System.out.print("questionType("+questionType+") ");		
 		System.out.print("action("+action+") ");
 		System.out.print("time("+time+") ");
+		System.out.print("userIDB("+userIDB+") ");
 		System.out.println();
-		System.out.println("trans: " + trans);
+	//	System.out.println("trans: " + trans);
 		
 	} 
 	
@@ -81,8 +88,14 @@ public class Log {
 		return userID;
 	}
 	public void setUserID(int userID) {
-		this.userID = userID;
+		
+		this.userID = init(userID);;
 	}
+	private int init(int a) {
+		if (a < 0) return 0;
+		return a;
+	}
+
 	public int getGroupID() {
 		return groupID;
 	}

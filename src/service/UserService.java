@@ -14,17 +14,19 @@ import domain.User;
 
 
 public class UserService {
-	private Connect cont = new Connect();
+	private Connect cont;
 	private User user;
 	private List<User> users;
 
 	
 
-	public String getUserName(int id){
+	public String getUserName(int id){		
 		String name = "";
 		if (id == 0) return name;
+		cont = new Connect();
 		String sql = "select name from user where id=" + id;
-		ResultSet result = cont.executeQuery(sql);		
+		//System.out.println("getUserName sql " + sql);
+		ResultSet result = cont.executeQuery(sql);			
 		try{
 			if (result.next()){				
 				name = result.getString("name");
@@ -37,6 +39,7 @@ public class UserService {
 	}
 
 	public User loginUser(User user) {
+		cont = new Connect();
 		String sql = "select * from user where name='" + user.getName() + "' and password='" + user.getPassword() + "'";
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
@@ -55,6 +58,7 @@ public class UserService {
 		return user;
 	}
 	public User loginUserByOpenID(String openid){
+		cont = new Connect();
 		String sql = "select * from user where tencentOpenID='" + openid + "'" ;
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
@@ -79,7 +83,7 @@ public class UserService {
 		return user;
 	}
 	public int addUser(User user) {		
-		
+		cont = new Connect();
 		String sql = "insert into user(id, name, password,tencentOpenID,tencentToken) values(" + user.getId() + ",'" +
 				user.getName() + "','" + user.getPassword() + "','" + user.getTencentOpenID() + "','"+user.getTencentToken()+"')";
 		System.out.println("addUser sql: "+ sql);
@@ -88,6 +92,7 @@ public class UserService {
 		return id;
 	}
 	public int updateUser(User user, int id) {
+		cont = new Connect();
 		String sql = "UPDATE user SET"; 
 		if (user.getName() != null && user.getName().length() > 0){
 			sql = sql + " name='" + user.getName() + "',"; 
@@ -110,6 +115,7 @@ public class UserService {
 		return i;	
 	}
 	public List<User> getAllUsers() {
+		cont = new Connect();
 		String sql = "select * from user";
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();		
@@ -124,6 +130,7 @@ public class UserService {
 		return users;		
 	}
 	public User getUser(int id) {
+		cont = new Connect();
 		String sql = "select * from user where id=" + id;
 		ResultSet result = cont.executeQuery(sql);
 		try{
@@ -140,6 +147,7 @@ public class UserService {
 		return user;
 	}
 	public User getUser(String name) {
+		cont = new Connect();
 		String sql = "select * from user where name=" + name;
 		ResultSet result = cont.executeQuery(sql);
 		try{
@@ -159,6 +167,7 @@ public class UserService {
 	}	
 
 	public List<User> getAllFriends(int id) {		
+		cont = new Connect();
 		String sql = "select * from friend where A="+id;
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();		
@@ -211,6 +220,7 @@ public class UserService {
 	}
 
 	public int getUserIDfromOpen(String openID) {
+		cont = new Connect();
 		String sql = "select id from user where tencentOpenID='" + openID + "'";
 		ResultSet result = cont.executeQuery(sql);
 		int userid = -1;
@@ -226,6 +236,7 @@ public class UserService {
 	}
 
 	public String getUserOpenfromID(int id) {
+		cont = new Connect();
 		String sql = "select tencentOpenID from user where id=" + id;
 		ResultSet result = cont.executeQuery(sql);
 		String tencentOpenID = "";
@@ -241,6 +252,7 @@ public class UserService {
 	}
 
 	public List<User> getSearchUsers(String[] searchnames) {
+		cont = new Connect();
 		String sql = "select * from user where";
 		for (int i = 0; i < searchnames.length; i ++) {
 			sql = sql + " name like '%" + searchnames[i] + "%'";

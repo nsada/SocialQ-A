@@ -11,9 +11,9 @@ public class Connect {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
 
-			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
+			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
 			//con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
 			
@@ -26,7 +26,7 @@ public class Connect {
 	}
 	
 	public ResultSet executeQuery(String sql) {
-		//System.out.println("execute sql" + sql);
+		System.out.println("execute sql" + sql);
 		try {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {

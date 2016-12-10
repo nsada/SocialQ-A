@@ -309,7 +309,8 @@ public class QuestionService {
 		switch (type) {
 		case 1: sql = sql + "selection"; break;
 		case 2: sql = sql + "textblank"; break;
-		case 3: sql = sql + "answerquestion"; break;
+		case 3: sql = sql + "aandq"; break;
+		case 4: sql = sql + "multy"; break;
 		}		
 		sql = sql + " where id=" + id;
 		//System.out.println("getQuestionContext sql________________ ");

@@ -69,6 +69,7 @@ public class LogService {
 				log.setAction(result.getInt("action"));
 				String time = result.getString("time");
 				log.setTime(dateFormat.parse(time));
+				log.setUserIDB(result.getInt("userIDB"));
 				log.translate();
 				logs.add(log);
 			}
