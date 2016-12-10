@@ -83,20 +83,14 @@ public class Log {
 		System.out.println();
 	//	System.out.println("trans: " + trans);
 		
-	} 
-	
+	}
+
 	public int getUserID() {
 		return userID;
 	}
 	public void setUserID(int userID) {
-		
-		this.userID = init(userID);;
+		this.userID = userID;
 	}
-	private int init(int a) {
-		if (a < 0) return 0;
-		return a;
-	}
-
 	public int getGroupID() {
 		return groupID;
 	}
@@ -138,21 +132,20 @@ public class Log {
 	}
 	public void setTime(Date time) {
 		this.time = time;
-	}	
+	}
 	public int getUserIDB() {
 		return userIDB;
 	}
 	public void setUserIDB(int userIDB) {
 		this.userIDB = userIDB;
 	}
-
 	public String getTrans() {
 		return trans;
 	}
-
 	public void setTrans(String trans) {
 		this.trans = trans;
-	}
+	} 
 	
+
 	
 }

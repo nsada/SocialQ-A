@@ -8,6 +8,7 @@ import domain.AandQ;
 import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
+import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
 	 private ResultSet result = null;
@@ -18,7 +19,7 @@ public class Answerexam  implements Action{
 	 private String AandQ_answer="第一个问答题的答案/#第二题的问答题的答案/#第二个问答题的答案/#第三个问答题的答案/#";	 
 	 private int score=0;
 	 private int everyscore=0;
-	 private int ExamID =52;
+	 private int ExamID;
      private List<TextBlank> textBlanks;
  	 private List<Selection> selections;
  	 private List<Multy> multys;
@@ -27,6 +28,27 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
+ 	private int friendID;
+ 	private int rank = 0;
+ 	
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getFriendID() {
+		return friendID;
+	}
+	public void setFriendID(int friendID) {
+		this.friendID = friendID;
+	}
 	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
 	}
@@ -82,6 +104,14 @@ public class Answerexam  implements Action{
 		public void setAandQs(List<AandQ> aandQs) {
 			AandQs = aandQs;
 		}
+		
+	public String showFriendExamDetail() {
+		ExamService es = new ExamService();
+		score = es.getUserExamScore(friendID, ExamID);
+		return SUCCESS;
+	}
+		
+		
 	@Override
 	public String execute() throws Exception {  
 		     int flag=1;
@@ -398,7 +428,8 @@ public class Answerexam  implements Action{
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
            mess.Systemsendmessage(userID,accepterID, message);          
        }    
-          log.OperateExam(userID, userID, 14);
+//          log.OperateExam(userID, userID, 14);
+       log.OperateExam(userID, ExamID, 14);
             String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
@@ -596,4 +627,5 @@ public class Answerexam  implements Action{
 		}				
 		return SUCCESS;
    }
+
 }

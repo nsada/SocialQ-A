@@ -6,7 +6,7 @@ import service.ExamService;
 import service.UserService;
 
 public class Event {
-	private String name;
+	private int userID;
 	private String event;
 	private String url;
 	private int type;
@@ -19,18 +19,20 @@ public class Event {
 	
 	public Event() {}
 	public Event(Log log) {
+		//log.print();
 		int action = log.getAction();
-		int userID = log.getUserID();
+		userID = log.getUserID();
 		time = log.getTime();
 		UserService us = new UserService();
-		name = us.getUserName(userID);
+		String name = us.getUserName(userID);
 		int examID = log.getExamID();
+		//System.out.println("examID " + examID);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
 		if (action == 14) {
 			type = 1;
 			event = name + "回答了试卷:" + exam;
-			url = "ShowFriendAnsweredExamDetail?userID=" + userID + "?examID=" + examID;			
+			url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;			
 		}
 		if (action == 9) {
 			type = 0;
@@ -49,14 +51,21 @@ public class Event {
 	
 	
 
-	public String getName() {
+/*	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
+	}*/
+	
 	public String getEvent() {
 		return event;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 	public void setEvent(String event) {
 		this.event = event;
@@ -81,7 +90,7 @@ public class Event {
 		this.type = type;
 	}
 	public void print() {
-		System.out.println("event: "+name+" " +event + " type(" +type+")" + time);
+		System.out.println("event: "+userID+" " +event + " type(" +type+")" + " url(" +url+") "+time);
 	}
 	
 	

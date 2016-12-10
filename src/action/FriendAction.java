@@ -259,10 +259,10 @@ public class FriendAction implements Action {
 				for (int j = 0; j < logs.size(); j++) {
 					
 					Log log = logs.get(j);
-					log.print();
+					//log.print();
 					if (log.getAction() == 9 || log.getAction() == 14) { 
 						Event event = new Event(log);
-						event.print();
+						//event.print();
 						events.add(event);
 					}
 				}

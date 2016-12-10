@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<label for="ans" class="col-sm-2 control-label">答案</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="aandQ.answer" />
+						<input type="text" class="form-control" name="aandQ.ans" />
 					</div>
 				</div>
 				<div class="form-group">

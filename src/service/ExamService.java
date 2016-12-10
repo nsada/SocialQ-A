@@ -81,6 +81,21 @@ public class ExamService implements Action {
 		return 1;
 	}
 
+	public int getUserExamScore(int userID, int examID) {
+		String sql = "select score from exam_user where examID="+examID+" and userID="+userID;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		int score = -1;
+		try{
+			if (result.next()){
+				score = result.getInt("score");
+			}
+		}catch (Exception e) {
+			System.out.println("按examID&userID查找score失败");
+		}
+		return score;
+	}
+
 
 }
 

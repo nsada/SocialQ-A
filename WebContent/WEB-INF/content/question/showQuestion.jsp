@@ -183,7 +183,84 @@
             analysis: ${aandQ.analysis} <br />
         </div>
     </s:if>
-    
+    <s:if test="type==4">
+        <!-- show multy -->
+        <div class="col-md-12 column">
+            context: ${multy.context} <br />
+            <table class="table table-bordered table-hover ">
+                <tbody>
+                    <s:if test='multy.A.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项A</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.A" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                    <s:if test='multy.B.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项B</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.B" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                    <s:if test='multy.C.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项C</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.C" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                    <s:if test='multy.D.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项D</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.D" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                    <s:if test='multy.E.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项E</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.E" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                    <s:if test='multy.F.length()>0'>
+                        <tr>
+                            <td><label for="context" class="col-sm-2 control-label">选项F</label>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <s:property value="multy.F" />
+                                </div>
+                            </td>
+                        </tr>
+                    </s:if>
+                </tbody>
+            </table>
+            ans: ${multy.ans}      <br /> 
+            analysis: ${multy.analysis}
+        </div>
+    </s:if>    
     
 </rapid:override>
 

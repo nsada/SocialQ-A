@@ -16,7 +16,12 @@
             <result>/WEB-INF/content//friend/showFriendsEvents.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>    
             <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>   
-        </action>          
+        </action>         
+        <action name="ShowFriendAnsweredExamDetail" class="action.Answerexam" method="showFriendExamDetail">
+            <result>/WEB-INF/content//friend/showFriendExamDetail.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>    
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>   
+        </action> 
         <action name="showUserGroups" class="action.GroupAction" method="showUserGroups">
             <result>/WEB-INF/content//group/showUserGroups.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
@@ -241,7 +246,8 @@
         </action>  
         
         <action name="answerExam" class="action.Answerexam">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+<!--             <result name="success">/WEB-INF/content/exam/successful.jsp</result> -->
+            <result type="chain">ShowExamDetail</result>
             <result name="error">/WEB-INF/content/error.jsp</result>            
         </action>     
         
