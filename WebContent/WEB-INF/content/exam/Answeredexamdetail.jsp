@@ -10,8 +10,9 @@
 <rapid:override name="content">
 		<div>
         
-        	<h2 style="text-align: center;">${exam.title}</h2>
-        	<p style="text-align: center;"> ${exam.description}<p>
+  
+        	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
+        	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>

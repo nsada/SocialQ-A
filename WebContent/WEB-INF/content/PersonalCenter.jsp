@@ -25,7 +25,7 @@
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
 					<button class="btn btn-default " type="button"
-						onclick="window.location.href='FindUserExam'">批改试卷</a>
+						onclick="window.location.href='FindUserExams'">批改试卷</a>
 					</button>
 					
 					<button class="btn btn-default " type="button"

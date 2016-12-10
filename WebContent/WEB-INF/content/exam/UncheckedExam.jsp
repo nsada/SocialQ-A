@@ -62,7 +62,6 @@
        		 							 
        		 							 </script>
        		 
-						<a onclick = "SendAandQScores()">adfadfda</a>
 	                   <a onclick="SendAandQScores()">
                         批改试卷   
                         </a>		 
