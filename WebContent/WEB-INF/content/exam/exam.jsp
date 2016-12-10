@@ -1,125 +1,190 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+
+
+<rapid:override name="head">
+	<script type="text/javascript">
+		function insertQ(){
+			document.myform.action="Find"; 
+			document.myform.submit(); 
+		}
+		$(document).ready(function(){
+			var list = document.getElementsByClassName("insertedQuestion");
+			document.getElementById("numofQuestions").innerHTML=list.length;
+		})
+	</script>
+</rapid:override>
 <rapid:override name="content">
 
 
 	<div class = "col-md-3">
-		 <a style="float: right"
-                    href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                    <button type="button">取消编辑试卷</button>
-                </a> <a style="float: right"
-                    href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                    <button type="button">提交生成我的试卷</button>
-                </a> <input style="float: right" type="button" onclick="insertQ()"
-                    value="插入题目">
+		<div style="position: fixed;
+    						top: 20%;
+    						z-index: 20;
+    						width: 250px;">
+    			<div class="panel panel-success">
+  					<div class="panel-heading">试卷信息</div>
+  							
+					<div class="panel-body">
+					
+						<p>总题数:<span style="float:right"><span id="numofQuestions" style="color: orange;"></span>道</span></p>
+						<p>总分:<span style="float:right"><span id="scoreofQuestions"style="color: red;"></span>分</span></p>
+						<br/>
+						
+						<a 	onclick="insertQ()"
+								class="button button-block button-rounded button-primary button-small">
+								插入题目
+						</a>
+						
+						 <a 	href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'
+						 		class="button button-block button-rounded button-action button-small">
+						 		提交生成我的试卷
+						 </a>
+						 
+						 <a 	href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'
+								class="button button-block button-rounded button-caution button-small">
+								取消编辑试卷
+						 </a>
+
+  					</div>
+				</div>
+		</div>
 	</div>
 	<div class = "col-md-9">
-		<form name="myform" action="Paper" method="post">
+
+			<form name="myform" action="Paper" method="post">
+			
+				<div class="panel panel-info">
+  					<div class="panel-heading">基本信息</div>
+  							
+					<div class="panel-body">
+   						<input name="title" type="text" placeholder="请输入试卷的标题" 
+							value="<s:property value="title" />" 		
+							align="center"
+							style="width: 40%; position: relative; left: 30%; top: 10px">
+						<br> <br>
+
+						<textarea name="description" placeholder="试卷的描述" size="50"
+							style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" />
+						</textarea>
+						<br>
+		
+						<div align="center"
+							style="width: 60%; position: relative; left: 20%;">
+							试卷可见性： 
+							<label class="checkbox-inline"> 
+								<input type="radio"name="joiner" id="optionsRadios3" value="1" checked="">
+								试卷仅好友可见
+							</label> 
+							<label class="checkbox-inline"> 
+								<input type="radio"name="joiner" id="optionsRadios4" value="2"> 试卷所有人可见
+							</label>
+							 <br> 
+							 排名可见性： 
+							 <label class="checkbox-inline"> 
+							 		<input type="radio" name="rights" id="optionsRadios3" value="1" checked="">
+									排名仅好友可见
+							</label>
+							<label class="checkbox-inline"> 
+								<input type="radio" name="rights" id="optionsRadios4" value="2"> 
+								排名所有人可见
+							</label>
+						</div>
+  					</div>
+				</div>
 
 
-            <input name="title" type="text" placeholder="请输入试卷的标题" required=""
-                align="center"
-                style="width: 40%; position: relative; left: 30%; top: 10px">
-            <br> <br>
-
-            <textarea name="description" placeholder="试卷的描述" size="50"
-                required=""
-                
-                style="height: 50px; width: 60%; position: relative; left: 20%"></textarea>
-            <br>
-            <div align="center"
-                style="width: 60%; position: relative; left: 20%;">
-                试卷可见性： <label class="checkbox-inline"> <input type="radio"
-                    name="joiner" id="optionsRadios3" value="1" checked="">
-                    试卷仅好友可见
-                </label> <label class="checkbox-inline"> <input type="radio"
-                    name="joiner" id="optionsRadios4" value="2"> 试卷所有人可见
-                </label> <br> 排名可见性： <label class="checkbox-inline"> <input
-                    type="radio" name="rights" id="optionsRadios3" value="1" checked="">
-                    排名仅好友可见
-                </label> <label class="checkbox-inline"> <input type="radio"
-                    name="rights" id="optionsRadios4" value="2"> 排名所有人可见
-                </label>
-            </div>
-
-
-
-            <div style="width: 70%; position: relative; left: 15%">
-                <%int i =1; %>
-                <s:iterator value="selections">
-
-                    <p><%=i %>.
-                        <s:property value="context" />
-                    </p>
-                    <%i++; %>
-                    <s:if test='num>=1'>
-                        <p>
-                            A:
-                            <s:property value="A" />
-                        </p>
-                    </s:if>
-                    <s:if test='num>=2'>
-                        <p>
-                            B:
-                            <s:property value="B" />
-                        </p>
-                    </s:if>
-                    <s:if test='num>=3'>
-                        <p>
-                            C:
-                            <s:property value="C" />
-                        </p>
-                    </s:if>
-                    <s:if test='num>=4'>
-                        <p>
-                            D:
-                            <s:property value="D" />
-                        </p>
-                    </s:if>
-                    <s:if test='num>=5'>
-                        <p>
-                            E:
-                            <s:property value="E" />
-                        </p>
-                    </s:if>
-                    <s:if test='num>=6'>
-                        <p>
-                            F:
-                            <s:property value="F" />
-                        </p>
-                    </s:if>
-
-                    <a
-                        href='<s:url action="Deletequestion"><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="1"/><s:param name="questionID" value ="id"/></s:url>'>
-                        删除题目 </a>
-
-                </s:iterator>
-            </div>
-
-
-
-
-            <input name="ExamID" type="hidden"
-                value='<s:property  value ="ExamID"/>' />
-       
-        </form>
-
-<script type="text/javascript">
-    function insertQ() {
-        document.myform.action="Find"; 
-        document.myform.submit(); 
-    }
-</script>
+				<div class="panel panel-info">
+  					<div class="panel-heading">单选题</div>
+  							
+					<div class="panel-body">
+   								<%int i =1; %>
+								<s:iterator value="selections" >
+									<p class="insertedQuestion"><%=i %>.
+									
+									<s:property value="context" />
+						 			<a style="float: right;" class="button button-tiny button-glow button-rounded button-caution"
+										href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="1"/><s:param name="questionID" value ="id"/></s:url>'>
+						 				删除题目
+						 			</a>
+						
+									</p>
+									<%i++; %>
+								</s:iterator>
+  					</div>
+				</div>
+				
+				<div class="panel panel-info">
+  					<div class="panel-heading">多选题</div>
+  							
+					<div class="panel-body">
+   									<% i=1;%>
+									<s:iterator value="multys">
+										<p class="insertedQuestion"><%=i %>.
+											<s:property value="context" />
+											<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
+												href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="4"/><s:param name="questionID" value ="id"/></s:url>'>
+												删除题目
+											</a>
+										</p>
+										<%i++; %>
+									</s:iterator>
+  					</div>
+				</div>
+				
+				<div class="panel panel-info">
+  					<div class="panel-heading">填空题</div>
+  							
+					<div class="panel-body">
+   								<% i=1;%>
+								<s:iterator value="textBlanks">
+									<p class="insertedQuestion"><%=i %>.
+										<s:property value="context" />
+										<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
+											href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="2"/><s:param name="questionID" value ="id"/></s:url>'>
+											删除题目
+										</a>
+									</p>
+									<%i++; %>
+								</s:iterator>
+  					</div>
+				</div>
+				
+				
+				<div class="panel panel-info">
+  					<div class="panel-heading">问答题</div>
+  							
+					<div class="panel-body">
+   								<% i=1;%>
+								<s:iterator value="AandQs">
+									<p class="insertedQuestion"><%=i %>.
+										<s:property value="context" />
+										<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
+											href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="3"/><s:param name="questionID" value ="id"/></s:url>'>
+											删除题目
+										</a>
+									</p>
+									<%i++; %>
+								</s:iterator>
+  					</div>
+				</div>
+				<input name="ExamID" type="hidden" value='<s:property  value ="ExamID"/>' />
+		</form>
+		
+		
+		
+		
 	</div>
 	
-    
-
 </rapid:override>
-        
+	
+	
+		
 
-<%@ include file="../../../base.jsp"%>
+
+
+<%@ include file="../../../../base.jsp"%>

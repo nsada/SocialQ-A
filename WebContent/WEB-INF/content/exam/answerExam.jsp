@@ -8,161 +8,206 @@
 	<title>答题</title>
 </rapid:override>
 <rapid:override name="content">
-		<div>
-        
-        	<h2 style="text-align: center;">${exam.title}</h2>
-        	<p style="text-align: center;"> ${exam.description}<p>
-    </div>
-        <div class="col-md-12 column">
-        <%int i = 0; %>
+
+    	
+    	
+    		
+    	<div class="panel panel-primary">
+			<div class="panel-heading">试卷基本信息</div>
+  			<div class="panel-body">
+  				<h2>试卷名：${exam.title}</h2>
+        		<p > 试卷描述：${exam.description}<p>
+  			</div>
+  		</div>
+    	
+    	<div class="panel panel-success">
+			<div class="panel-heading">单选题</div>
+  			<div class="panel-body">
+    			 <%int i = 0; %>
         <s:iterator value="selections" >
         			<%i++; %>
                     <div>
                         <%=i %>.<s:property value = "context"/><br/>
                     </div>
-		            
-		                <s:if test="A.length()>0">
+		            <div style="position: relative;left: 15px;">
+		            	<s:if test="A.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="1">
 			                        </span>
-			                        <span class="choose-index">A:<s:property value = "A"/></span>    
+			                        <span class="choose-index">A:<s:property value = "A"/><br></span>    
 			            </s:if>
 		                <s:if test="B.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="2">
 			                        </span>
-			                        <span class="choose-index">B:<s:property value = "B"/></span>
+			                        <span class="choose-index">B:<s:property value = "B"/><br></span>
 			               
 			            </s:if>
 			            <s:if test="C.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="3">
 			                        </span>
-			                        <span class="choose-index">C:<s:property value = "C"/></span>
+			                        <span class="choose-index">C:<s:property value = "C"/><br></span>
 			                  
 			            </s:if>
 			            <s:if test="D.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="4">
 			                        </span>
-			                        <span class="choose-index">D:<s:property value = "D"/></span>
+			                        <span class="choose-index">D:<s:property value = "D"/><br></span>
 			                 
 			            </s:if>
 			            <s:if test="E.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="5">
 			                        </span>
-			                        <span class="choose-index">E:<s:property value = "E"/></span>
+			                        <span class="choose-index">E:<s:property value = "E"/><br></span>
 			                   
 			            </s:if>
 			            <s:if test="F.length()>0">
 			                        <span>
 			                            <input type="radio" name="choose<%=i %>" class="choose" id ="<%=i %>" value="6">
 			                        </span>
-			                        <span class="choose-index">F:<s:property value = "F"/></span> 
+			                        <span class="choose-index">F:<s:property value = "F"/><br></span> 
 			            </s:if>
+		            </div>
+		                
 		</s:iterator>
-		 <% int j = 0; %>
+  			</div>
+		</div>
+		
+    	<div class="panel panel-info">
+			<div class="panel-heading">多选题</div>
+  			<div class="panel-body">
+    		 <% int j = 0; %>
 		<s:iterator value="multys" >			
 			<%j++; %>
                     <div>
                         <%=j %>.<s:property value = "context"/><br/>
                     </div>
-		            
-		                <s:if test="A.length()>0">
+		            <div style="position: relative;left: 15px;">
+		            	<s:if test="A.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="A">
 			                        </span>
-			                        <span class="choose-index">A:<s:property value = "A"/></span>    
+			                        <span class="choose-index">A:<s:property value = "A"/><br></span>    
 			            </s:if>
 		                <s:if test="B.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="B">
 			                        </span>
-			                        <span class="choose-index">B:<s:property value = "B"/></span>
+			                        <span class="choose-index">B:<s:property value = "B"/><br></span>
 			               
 			            </s:if>
 			            <s:if test="C.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="C">
 			                        </span>
-			                        <span class="choose-index">C:<s:property value = "C"/></span>
+			                        <span class="choose-index">C:<s:property value = "C"/><br></span>
 			                  
 			            </s:if>
 			            <s:if test="D.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="D">
 			                        </span>
-			                        <span class="choose-index">D:<s:property value = "D"/></span>
+			                        <span class="choose-index">D:<s:property value = "D"/><br></span>
 			                 
 			            </s:if>
 			            <s:if test="E.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="E">
 			                        </span>
-			                        <span class="choose-index">E:<s:property value = "E"/></span>
+			                        <span class="choose-index">E:<s:property value = "E"/><br></span>
 			                   
 			            </s:if>
 			            <s:if test="F.length()>0">
 			                        <span>
 			                            <input type="checkbox" name="multys<%=j %>"  value="F">
 			                        </span>
-			                        <span class="choose-index">F:<s:property value = "F"/></span> 
+			                        <span class="choose-index">F:<s:property value = "F"/><br></span> 
 			            </s:if>
+		            	
+		            </div>
+		                
 		</s:iterator>
 		
-		  <% int  k = 0; %>
+  			</div>
+		</div>
+		
+    	<div class="panel panel-warning">
+			<div class="panel-heading">填空题</div>
+  			<div class="panel-body">
+    		 <% int  k = 0; %>
 		<s:iterator value="textBlanks" >			
 			<%k++; %>
                     <div>
                         <%=k %>.<s:property value = "context"/><br/>
                     </div>
-		            
-		                <s:if test="1<=num">
+		             <div style="position: relative;left: 15px;">
+		             	<s:if test="1<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
 			            <s:if test="2<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
 			            <s:if test="3<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
 			            <s:if test="4<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
 			            <s:if test="5<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
 			            <s:if test="6<=num">
 			                        <span>
-			                            <input type="text" class="textBlanks<%=k %>"  >
+			                            <input type="text" class="textBlanks<%=k %>"  ><br><br>
 			                        </span>
 			            </s:if>
+		             </div>
+		                
 		               
 		</s:iterator>
+  			</div>
+		</div>
 		
-
-		
-		  <% int l = 0; %>
+		<div class="panel panel-danger">
+			<div class="panel-heading">问答题</div>
+  			<div class="panel-body">
+    		<% int l = 0; %>
 		<s:iterator value="AandQs" >			
 			<%l++; %>
                     <div>
                         <%=l %>.<s:property value = "context"/><br/>
                     </div>
-		             <span>
+                    <div style="position: relative;left: 15px;">
+                    	<span>
 			                    <textarea  id ="AandQs<%=l %>"></textarea>
-			                  </span>
+			            </span>
+                    </div>
+		             		
 		</s:iterator>
+  			</div>
+		</div>
+    	
+        <div class="col-md-12 column">
+       
+		
+		 
+		
+
+		
+		  
 		
 		<div>
 			<span class="button-wrap" style="float:right;">

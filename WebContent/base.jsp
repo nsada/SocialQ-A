@@ -81,6 +81,27 @@
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
                         </ul>
                     </li>
+                    
+                    
+                    
+                    <li class="dropdown" style="margin-top: 5px">
+               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                   		 		消息<span class="badge">14</span> <b class="caret"></b>
+               			 </a>
+               			 <ul class="dropdown-menu">
+               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
+                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+
+           
+                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>
+                            
+                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
+                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
+                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
+                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
+                        </ul>
+                    </li>
 
 
         			
