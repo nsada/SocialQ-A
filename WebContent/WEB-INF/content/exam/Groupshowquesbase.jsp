@@ -143,7 +143,7 @@
 									result += list[i].id +"/$";
 							var form =document.createElement("form");
 							form.style.display="none";
-							form.action="InsertQuestion";
+							form.action="InsertGroupQuestion";
 							form.method = "post";
 							var input = document.createElement("input");    
 			            	input.name = "questionstr"

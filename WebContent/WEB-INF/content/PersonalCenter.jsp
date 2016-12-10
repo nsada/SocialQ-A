@@ -11,6 +11,9 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showPersonalInformation'">
 						个人信息</button>
+						<button class="btn btn-default " type="button"
+						onclick="window.location.href='GroupInsertExam'">
+						工作组出题</button>
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showFriends'">好友列表</a>
 					</button>
