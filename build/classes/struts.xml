@@ -11,7 +11,12 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>     
-                                
+        
+        <action name="ShowFriendsEvents" class="action.FriendAction" method="showFriendsEvents">
+            <result>/WEB-INF/content//friend/showFriendsEvents.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>    
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>   
+        </action>          
         <action name="showUserGroups" class="action.GroupAction" method="showUserGroups">
             <result>/WEB-INF/content//group/showUserGroups.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
@@ -99,7 +104,7 @@
         </action>      
 
        <action name="loginPro" class="action.UserAction">
-            <result name="success">/index.jsp</result>
+            <result name="success">/redirectpage.jsp</result>
             <result name="error">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="login">
@@ -114,7 +119,7 @@
             <result>/WEB-INF/content/user/regist.jsp</result>
         </action>        
         <action name="logout" class="action.UserAction" method="logout">
-            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+            <result type="redirect">index</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="delUser" class="action.UserAction" method="delete">

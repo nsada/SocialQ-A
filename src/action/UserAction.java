@@ -34,7 +34,7 @@ public class UserAction implements Action {
 	
 	@Override
 	public String execute() throws Exception {	//login in
-		//System.out.println("UserAction login");
+		System.out.println("UserAction login redirect_url:" + redirect_url);
 		UserService us = new UserService();
 		User new_user= new User();		
 		try{

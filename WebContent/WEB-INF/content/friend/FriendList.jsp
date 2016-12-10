@@ -8,7 +8,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
-
+<rapid:override name="head">
+    <title>好友列表</title>
+</rapid:override>
 
 <rapid:override name="content">
 

@@ -32,7 +32,7 @@
         }else{
             username = "";
         }
-        session.setMaxInactiveInterval(1000);
+        session.setMaxInactiveInterval(18000);
 %>
     
 
@@ -58,7 +58,7 @@
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
         		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
+       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				

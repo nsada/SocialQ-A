@@ -176,7 +176,7 @@ public class UserService {
 			while (result.next()){
 				int friendId = result.getInt("B");
 				idList.add(friendId);
-				System.out.println("friendID " + friendId);
+				//System.out.println("friendID " + friendId);
 			}
 			result.close();
 		}catch (Exception e) {
@@ -257,7 +257,7 @@ public class UserService {
 		for (int i = 0; i < searchnames.length; i ++) {
 			sql = sql + " name like '%" + searchnames[i] + "%'";
 		}
-		System.out.println("searchUser sql:" + sql);
+		//System.out.println("searchUser sql:" + sql);
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();
 		try{
