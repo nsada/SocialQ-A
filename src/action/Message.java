@@ -36,7 +36,15 @@ public class Message implements Action {
 	private String url;
 	private int type;
 	private int id;
+	private int messageID;
 	
+	
+	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
+	}
 	public int getId() {
 		return id;
 	}
@@ -230,6 +238,11 @@ public class Message implements Action {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return SUCCESS;
+	}
+	public String check() {
+		MessageService ms = new MessageService();
+		ms.read(messageID);
 		return SUCCESS;
 	}
 

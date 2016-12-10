@@ -63,7 +63,8 @@ public class Log {
 		case 18: ans = ans + "向用户" + userB + "发送了好友申请"; break;
 		case 19: ans = ans + "和用户" + userB + "成为了社交问答网站好友"; break;
 		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
-		
+		case 21: ans = ans + "解除了和用户"+userB+"的好友关系"; break;
+		case 22: ans = ans + "拒绝了用户"+userB+"的好友申请"; break;
 		}
 		this.trans= ans;
 		return ans;

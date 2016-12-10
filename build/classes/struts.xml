@@ -179,7 +179,8 @@
         </action>
         <action name="showFriends" class="action.FriendAction" >
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
-            <result name="error">/WEB-INF/content/user/login.jsp</result>         
+            <result name="error">/WEB-INF/content/user/login.jsp</result>     
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>    
         </action>
         <action name="addFriendWeiboWeb" class="action.FriendAction" method="addFriendWeiboWeb">
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
@@ -198,24 +199,31 @@
             <result type="redirect">showFriends</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action> 
+        
         <action name="ShowUserMessage" class="action.Message" method="accept">
-            <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>
+            <result name="success">/WEB-INF/content/message/showUserMessage.jsp</result>            
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
-        </action>
-                
+        </action>       
+        <action name="checkMessage" class="action.Message" method="check">
+            <result type="chain">ShowUserMessage</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>         
         <action name="showUserAllMessage" class="action.Message" method="showUserAllMessage">
             <result name="success">/WEB-INF/content/message/showUserAllMessage.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
-        </action>
-        
+        </action>        
         <action name="showFriendInformation" class="action.UserAction" method="showUserIndex">
             <result name="success">/WEB-INF/content/user/userIndex.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>
-        <action name="acceptFriendApply" class="action.FriendAction" method="accepteAddFriendMessage">
-            <result type ="chain">ShowUserMessage</result>
+        <action name="acceptFriendApply" class="action.FriendAction" method="acceptAddFriendMessage">
+            <result type="chain">ShowUserMessage</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>        
+        <action name="refuseFriendApply" class="action.FriendAction" method="refuseAddFriendMessage">
+            <result type ="chain">ShowUserMessage</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action> 
         
          <action name="ShowExam" class="action.ShowExamQuestion" >
             <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>

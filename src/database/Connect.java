@@ -28,6 +28,7 @@ public class Connect {
 	public ResultSet executeQuery(String sql) {
 		System.out.println("execute sql" + sql);
 		try {
+			state = con.createStatement();	
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,6 +53,7 @@ public class Connect {
 	public int executeUpdate(String sql) {
 		//System.out.println("connect: " + sql);
 		try {
+			state = con.createStatement();	
 			state.executeUpdate(sql);
 			state.close();
 		//	System.out.println("閺囧瓨鏌婇幋鎰");
@@ -65,6 +67,7 @@ public class Connect {
 	public int executeUpdateID(String sql) {
 		int id = -1;
 		try {
+			state = con.createStatement();	
 			state.executeUpdate(sql);
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
