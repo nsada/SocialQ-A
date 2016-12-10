@@ -11,7 +11,7 @@ public class Connect {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
+			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			

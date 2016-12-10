@@ -12,6 +12,24 @@
 			document.myform.action="Find"; 
 			document.myform.submit(); 
 		}
+		function SubmitExam(){
+			form = document.getElementsByName("myform")[0];
+			
+			opt = document.createElement("input");
+			opt.name ="publish";
+			opt.value = "1";
+			form.appendChild(opt);
+			form.submit();
+		}
+		function SaveToDraft(){
+			form = document.getElementsByName("myform")[0];
+			
+			opt = document.createElement("input");
+			opt.name ="publish";
+			opt.value = "0";
+			form.appendChild(opt);
+			form.submit();
+		}
 		$(document).ready(function(){
 			var list = document.getElementsByClassName("insertedQuestion");
 			document.getElementById("numofQuestions").innerHTML=list.length;
@@ -35,12 +53,14 @@
 						<p>总分:<span style="float:right"><span id="scoreofQuestions"style="color: red;"></span>分</span></p>
 						<br/>
 						
+	
+						
 						<a 	onclick="insertQ()"
 								class="button button-block button-rounded button-primary button-small">
 								插入题目
 						</a>
 						
-						 <a 	href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'
+						 <a 	onclick ="SubmitExam()"
 						 		class="button button-block button-rounded button-action button-small">
 						 		提交生成我的试卷
 						 </a>
@@ -49,6 +69,11 @@
 								class="button button-block button-rounded button-caution button-small">
 								取消编辑试卷
 						 </a>
+						 
+						 <a 	onclick = "SaveToDraft()"
+								class="button button-block button-rounded button-caution button-small">
+								保存到草稿箱
+						 </a>
 
   					</div>
 				</div>
@@ -56,19 +81,19 @@
 	</div>
 	<div class = "col-md-9">
 
-			<form name="myform" action="Paper" method="post">
-			
+			<form name="myform" action="updateexam" method="post">
+				
 				<div class="panel panel-info">
   					<div class="panel-heading">基本信息</div>
   							
 					<div class="panel-body">
-   						<input name="title" type="text" placeholder="请输入试卷的标题" 
+   						<input id="examTitle"name="title" type="text" placeholder="请输入试卷的标题" 
 							value="<s:property value="title" />" 		
 							align="center"
 							style="width: 40%; position: relative; left: 30%; top: 10px">
 						<br> <br>
 
-						<textarea name="description" placeholder="试卷的描述" size="50"
+						<textarea id="examDescription"name="description" placeholder="试卷的描述" size="50"
 							style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" />
 						</textarea>
 						<br>
@@ -77,20 +102,20 @@
 							style="width: 60%; position: relative; left: 20%;">
 							试卷可见性： 
 							<label class="checkbox-inline"> 
-								<input type="radio"name="joiner" id="optionsRadios3" value="1" checked="">
+								<input type="radio"name="joiner"  value="1" checked="">
 								试卷仅好友可见
 							</label> 
 							<label class="checkbox-inline"> 
-								<input type="radio"name="joiner" id="optionsRadios4" value="2"> 试卷所有人可见
+								<input type="radio"name="joiner"  value="2"> 试卷所有人可见
 							</label>
 							 <br> 
 							 排名可见性： 
 							 <label class="checkbox-inline"> 
-							 		<input type="radio" name="rights" id="optionsRadios3" value="1" checked="">
+							 		<input type="radio" name="rights"  value="1" checked="">
 									排名仅好友可见
 							</label>
 							<label class="checkbox-inline"> 
-								<input type="radio" name="rights" id="optionsRadios4" value="2"> 
+								<input type="radio" name="rights"  value="2"> 
 								排名所有人可见
 							</label>
 						</div>

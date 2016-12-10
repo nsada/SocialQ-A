@@ -40,7 +40,7 @@
 
 <body style="margin-top: 50px;">
         <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
-            <img style="opacity:0.4;position:fixed;" src="<%=request.getContextPath()%>/images/background.jpg" height="100%" width="100%" /> 
+            <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
 
@@ -77,6 +77,27 @@
                              <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
                              
                             <li><a href="<%= request.getContextPath()%>/FindUserExam">批改试卷</a></li>
+                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    <li class="dropdown" style="margin-top: 5px">
+               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                   		 		消息<span class="badge">14</span> <b class="caret"></b>
+               			 </a>
+               			 <ul class="dropdown-menu">
+               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
+                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+
+           
+                            <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
+                            
+                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
+                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
+                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
                         </ul>
                     </li>
@@ -208,13 +229,9 @@
   					</div>
   					
             		
+
     			</div>
     		</form>
-    		
-    		
-    		
-    		
-    		
     		<form class="form-horizontal" role="form" action="registPro"  id= "registform" method="post">
     		
         		<div class="form-group  has-success">
@@ -261,10 +278,6 @@
   					</div>
     			</div>
     		</form>
-    		
-    		
-    		
-    		
     		<script>
     			function LoginSubmit(){
     				var form = document.getElementById("loginform");

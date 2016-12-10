@@ -167,6 +167,7 @@ public class AddQuestoExam implements Action {
 			  title = exam.getTitle();
 			  description =exam.getDescription();
 			  System.out.println("Title:"+title);
+			  System.out.println("Description:"+description);
 			  
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -197,7 +198,6 @@ public class AddQuestoExam implements Action {
 		  title = exam.getTitle();
 		  description =exam.getDescription();
 		  System.out.println("Title:"+title);
-		  
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return ERROR;
@@ -216,14 +216,17 @@ public class AddQuestoExam implements Action {
 			 String sql ="select * from social.exam_question where examID ="+ExamID;
 			 cont =new Connect();
 			 result = cont.executeQuery(sql);
-			 while(result.next())
-				{
-				        
-				        LogService l = new LogService();
-				        //System.out.println("log_____________________________________ exam question");
-					 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
-				}
-			 sql ="update social.exam set publish = "+publish+"  where ID ="+ExamID+" ";
+			 if(publish==1)
+			 {
+				 while(result.next())
+					{
+					        
+					        LogService l = new LogService();
+					        //System.out.println("log_____________________________________ exam question");
+						 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
+					}
+			 }
+			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
 			 System.out.println(sql);
 			 cont =new Connect();
 			 cont.executeUpdate(sql);
