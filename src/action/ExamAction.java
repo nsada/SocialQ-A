@@ -11,7 +11,6 @@ import service.ExamService;
 import service.QuestionService;
 
 public class ExamAction implements Action {
-	private int examID;
 	private Exam exam;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
 	private List<Multy> multys;
@@ -20,51 +19,38 @@ public class ExamAction implements Action {
 	private char[] choose;
 	private int score;
 	private char[] right;
+	private String searchstr;
+	private int type=0;
+	private int ExamID;
 	
 	@Override
 	public String execute() throws Exception { //get questions of this exam
-		ExamService es = new ExamService();
-		exam = es.getExam(examID);	
-		
-		try {
-			if (exam.getId() <= 0) return ERROR;
-			System.out.println("examTitle: " + exam.getTitle());
-			QuestionService qs = new QuestionService();
-			selections = qs.getExamSelections(examID);
-			System.out.println("sels size: " + selections.size());
-			for (int i = 0; i < selections.size(); i++) 
-				System.out.println("sel: "+selections.get(i).getContext());
-		} catch (Exception e) {
-			selections = null;
-			return ERROR;
-		}	
 		return SUCCESS;
 	}
-	public String analysisExam(){
-		System.out.println("ExamAction analysisExam");
-		score = 0;	
-		QuestionService qs = new QuestionService();
-		selections = qs.getExamSelections(examID);
-		int num1 = selections.size();
-		Selection sel;
-		for (int i = 0; i < num1; i++) {
-			 sel = selections.get(i);
-			 if (sel.getAns().charAt(choose[i]) == '1'){
-				 right[i] = 1;
-				 score += sel.getScore();
-			 }
+	public String searchExamtoanswer(){
+		System.out.println("ExamAction searchExamtoanswer searchstr=" + searchstr);
+		
+		int examID = -1;
+		if (type == 0) { // by id
+			examID = Integer.valueOf(searchstr).intValue();
+		} else if (type == 1){
+			ExamService es = new ExamService();
+			examID = es.getExamIDfromTitle(searchstr);
+		} else {
+			return ERROR;
 		}
 		return SUCCESS;
-	}
+	} 
 	
 	
 	
+
 	
 	public int getExamID() {
-		return examID;
+		return ExamID;
 	}
 	public void setExamID(int examID) {
-		this.examID = examID;
+		ExamID = examID;
 	}
 	public List<Selection> getSelections() {
 		return selections;
@@ -113,6 +99,21 @@ public class ExamAction implements Action {
 	}
 	public void setRight(char[] right) {
 		this.right = right;
+	}
+	public String getSearchstr() {
+		return searchstr;
+	}
+	public void setSearchstr(String searchstr) {
+		this.searchstr = searchstr;
+	}
+	public void setTextBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class LogService {
 		Connect cont = new Connect();
 		String sql = "insert into log (userID, action, time, groupID, examID, qBaseID) values(" + userid + ", " + 2 + ", '" + 
 		dateFormat.format(now) + "',0,0,0)";
-		System.out.println("login LOG_sql: " + sql);
+		//System.out.println("login LOG_sql: " + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
 	}
@@ -44,7 +44,7 @@ public class LogService {
 		action + ", '" + dateFormat.format(now) + ",0,0)";
 		int i = cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 
 	public void OperateQuestionBaseQuestion(int userID, int qBaseID, int questionID, int type, int action) {
@@ -54,7 +54,7 @@ public class LogService {
 		Connect cont = new Connect();
 		int i = cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 	
 	public void InsertQuesLog(int userID ,int ExamID ,int questionID,int action ,int questionType)
@@ -64,13 +64,13 @@ public class LogService {
 		ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "',0,0)";
 		int i= cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 	public void OperateExam(int userID,int ExamID,int action)
 	{
 		Connect cont = new Connect();
 		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 		int i= cont.executeUpdate(sql);
 		cont.Close();
 	}
@@ -112,7 +112,7 @@ public class LogService {
 		//System.out.println("operateGroup sql:" + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 	public void OperateFriend(int a, int b, int action) {
 		Connect cont = new Connect();
@@ -121,16 +121,16 @@ public class LogService {
 		//System.out.println("operateFriend sql:" + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 	public void OperateMessage(int a, int b, int action) {
 		Connect cont = new Connect();
 		String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", " + 
 		action + ", '" + dateFormat.format(now) + "', " + b + ",0,0,0)";
-		System.out.println("operateMessage sql:" + sql);
+		//System.out.println("operateMessage sql:" + sql);
 		//int i = cont.executeUpdate(sql);
 		cont.Close();
-		System.out.println("log "+sql);
+		//System.out.println("log "+sql);
 	}
 
 

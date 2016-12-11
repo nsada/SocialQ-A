@@ -64,8 +64,10 @@ public class ExamService implements Action {
           cont.Close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			cont.Close();
 		 return -1;
-		}				
+		}		
+		cont.Close();
 		return 1;
 	}
 	public int deleteexam(int ExamID)
@@ -81,8 +83,10 @@ public class ExamService implements Action {
           cont.Close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			cont.Close();
 		 return -1;
-		}				
+		}			
+		cont.Close();
 		return 1;
 	}
 
@@ -98,7 +102,24 @@ public class ExamService implements Action {
 		}catch (Exception e) {
 			System.out.println("按examID&userID查找score失败");
 		}
+		cont.Close();
 		return score;
+	}
+
+	public int getExamIDfromTitle(String title) {
+		String sql = "select ID from exam where title='"+title+"'";
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		int id = -1;
+		try{
+			if (result.next()){
+				id = result.getInt("ID");
+			}
+		}catch (Exception e) {
+			System.out.println("按examtitle查找id失败");
+		}
+		cont.Close();
+		return id;
 	}
 
 

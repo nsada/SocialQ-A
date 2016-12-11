@@ -12,6 +12,14 @@
             <result>/index.jsp</result>
         </action>     
 
+        <action name="WantAnswerExam">
+            <result>/WEB-INF/content//exam/searchExamtoanswer.jsp</result>
+        </action>
+        <action name="SearchExamtoanswer" class="action.ExamAction" method="searchExamtoanswer">
+            <result type="chain">ShowExam</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>    
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>   
+        </action>          
         <action name="ShowFriendsEvents" class="action.FriendAction" method="showFriendsEvents">
             <result>/WEB-INF/content//friend/showFriendsEvents.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>    
@@ -191,16 +199,6 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
-        <action name="answerExam" class="action.ExamAction">
-            <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>
-            <result name="error">/WEB-INF/content/error.jsp</result>
-        </action>
-        <action name="answerExamPro" class="action.ExamAction" method="analysisExam">
-            <result name="success">/WEB-INF/content/exam/rank.jsp</result>
-            <result name="error">/WEB-INF/content/error.jsp</result>
-
-        </action>
-
         <action name="showUserLogs" class="action.LogAction">
             <result name="success">/WEB-INF/content/log/showUserLogs.jsp</result>
             <result name="error">/WEB-INF/content/error.jsp</result>            

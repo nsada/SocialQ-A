@@ -36,9 +36,9 @@ public class Answerexam  implements Action{
  	private int friendID;
  	private int rank = 0;
  	private int messageID;
- 	
- 	
- 	public int getMessageID() {
+
+
+	public int getMessageID() {
 		return messageID;
 	}
 	public void setMessageID(int messageID) {

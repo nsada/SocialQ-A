@@ -10,6 +10,7 @@ import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
 import domain.TextBlank;
+import service.ExamService;
 import service.QuestionBaseService;
 import service.QuestionService;
 public class ShowExamQuestion implements Action {
@@ -36,6 +37,24 @@ public class ShowExamQuestion implements Action {
 	private int qBaseID;
      private ResultSet result;
      private Connect cont;
+     
+ 	private String searchstr;
+ 	private int searchtype=1;
+  	
+ 	
+  	
+  	public String getSearchstr() {
+ 		return searchstr;
+ 	}
+ 	public void setSearchstr(String searchstr) {
+ 		this.searchstr = searchstr;
+ 	} 	
+	public int getSearchtype() {
+		return searchtype;
+	}
+	public void setSearchtype(int searchtype) {
+		this.searchtype = searchtype;
+	}
 	public int getType()
 	{
 		return type;
@@ -87,10 +106,20 @@ public class ShowExamQuestion implements Action {
 	}
 	@Override
 	public String execute() throws Exception {
+		ExamID = -1;
+		if (searchtype == 0) { // by id
+			ExamID = Integer.valueOf(searchstr).intValue();
+		} else if (searchtype == 1){
+			ExamService es = new ExamService();
+			ExamID = es.getExamIDfromTitle(searchstr);
+		} else {
+			return ERROR;
+		}
 		selections =new ArrayList<Selection> ();
 		textBlanks =new ArrayList<TextBlank>();	
 		    AandQs = new ArrayList<AandQ>();	
 		    multys= new ArrayList<Multy>();	
+		    System.out.println("searchExamWithID showExanQuestion ExamID:" + ExamID);
 	try{	
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
@@ -121,6 +150,7 @@ public class ShowExamQuestion implements Action {
 			if(result.next())
 			{
 				title=result.getString("title");
+				System.out.println("title" + title);
 				description=result.getString("description");
 			}
 		 cont.Close();
