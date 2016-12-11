@@ -146,6 +146,22 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>    
         </action>
         
+        <action name="PublishedExam" class="action.CheckExam" method ="UserAnsweredExamList">
+            <result name="success">/WEB-INF/content/exam/AllAnsweredExamList.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>    
+        </action>
+        
+          <action name="FindExamInfor" class="action.CheckExam" method ="ExamDetailInfor">
+            <result name="success">/WEB-INF/content/exam/MyPublishedExamDetail.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>    
+        </action>
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -307,10 +323,18 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
+        <action name="MyFriendRank" class="action.Rank">
+            <result name="success">/WEB-INF/content/user/FriendsRank.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        <action name="AllTakerRank" class="action.Rank" method="AllPeopleRank">
+            <result name="success">/WEB-INF/content/user/FriendsRank.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
         
         
-        
-        
+       
         
      
 

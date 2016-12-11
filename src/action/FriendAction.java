@@ -215,9 +215,6 @@ public class FriendAction implements Action {
 		sendAddFriendMessage(A, B);
 		return SUCCESS;
 	}	
-	
-
-
 	public List<User> getFriends() {
 		return friends;
 	}

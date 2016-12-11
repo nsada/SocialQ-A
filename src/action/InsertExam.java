@@ -1,4 +1,3 @@
-
 package action;
 import com.opensymphony.xwork2.Action;
 import java.util.Map;
@@ -29,12 +28,15 @@ public class InsertExam implements Action {
     }
     public String GroupExam()
     {
+    	  ActionContext actCtx = ActionContext.getContext();
+    	  Map<String, Object> sess = actCtx.getSession();
+          int userID = (int) sess.get("userid");	
          if(GroupID==0)
         
          {
         	 return "login needed";
          }       	
-         String sql="insert into exam ( GroupID, title, description) values('"+ GroupID + "', '" + null + "', '"+ null + "')";
+         String sql="insert into exam (userID , GroupID, title, description) values("+userID+" , "+ GroupID + ", '" + null + "', '"+ null + "')";
          Connect cont=new Connect();
          ExamID= cont.executeUpdateID(sql);
          cont.Close();
@@ -50,4 +52,3 @@ public class InsertExam implements Action {
     }
     
 }
-

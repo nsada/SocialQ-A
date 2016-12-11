@@ -34,6 +34,10 @@
 					
 					
 					<button class="btn btn-default " type="button"
+						onclick="window.location.href='PublishedExam'">发布过的试卷
+					</button>
+					
+					<button class="btn btn-default " type="button"
 						onclick="window.location.href='FindUserExams'">批改试卷</a>
 					</button>
 					

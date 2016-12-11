@@ -63,12 +63,15 @@
 						 		class="button button-block button-rounded button-action button-small">
 						 		提交生成我的试卷
 						 </a>
-						 
+
 						 <a 	href='<s:url action="deleteexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'
 								class="button button-block button-rounded button-caution button-small">
 								取消编辑试卷
 						 </a>
-						 
+						  <a 	onclick = "SaveToDraft()"
+								class="button button-block button-rounded button-caution button-small">
+								保存到草稿箱
+						 </a>
 
   					</div>
 				</div>
