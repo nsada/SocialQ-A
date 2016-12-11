@@ -71,6 +71,60 @@ public class Rank implements Action{
 		public String execute() throws Exception {		 
 		 try
 		 {
+	            String  SQL="select * from social.exam where ID ="+ExamID+" ";
+	             System.out.println(SQL);       
+	             cont =new Connect();
+	             result=  cont.executeQuery(SQL);
+	             if (result.next()&&result.getInt("rights")==1)
+	             {
+	            	 Rank rk =new Rank();
+	            	friends=rk.GetFriends(ExamID); 
+	             }	
+	             else
+	             {
+	            	 Rank rk =new Rank();
+		             friends=rk.AllPeopleRanking(ExamID); 
+	             } 
+	 } catch (Exception e) {
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}				
+		return SUCCESS;
+       }
+
+	
+	public String AllPeopleRank() throws Exception {		 
+		 try
+		 {
+
+                friends= new ArrayList<User>();
+	           String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
+	             System.out.println(SQL);       
+	             cont =new Connect();
+	             result=  cont.executeQuery(SQL);
+	             int  rank =0;
+	             while (result.next())
+	             {
+	            	 rank++;
+	            	 UserService us =new UserService();
+	            	 TesttakerID = result.getInt("userID");
+	            	 User user = us.getUser(TesttakerID);
+	            	 int score =result.getInt("score");
+	            	 user.setExamscore(score);
+	            	 user.setRank(rank);
+	                 friends.add(user); 	             	 
+	             }		                   
+	        
+	 } catch (Exception e) {
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}				
+		return SUCCESS;
+      }
+
+	public List<User> GetFriends(int ExamID) throws Exception {		 
+		 try
+		 {
 			 ActionContext actCtx = ActionContext.getContext();
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
@@ -103,17 +157,16 @@ public class Rank implements Action{
 	        
 	 } catch (Exception e) {
 			System.out.println(e.getMessage());
-		 return ERROR;
+		 return null;
 		}				
-		return SUCCESS;
-       }
+		return friends;
+      }
 
-	
-	public String AllPeopleRank() throws Exception {		 
+	public List<User> AllPeopleRanking(int ExamID) throws Exception {		 
 		 try
 		 {
 
-                friends= new ArrayList<User>();
+               friends= new ArrayList<User>();
 	           String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
 	             System.out.println(SQL);       
 	             cont =new Connect();
@@ -128,19 +181,15 @@ public class Rank implements Action{
 	            	 int score =result.getInt("score");
 	            	 user.setExamscore(score);
 	            	 user.setRank(rank);
-	                 friends.add(user);
-	            	 	             	 
+	                 friends.add(user); 	             	 
 	             }		                   
 	        
 	 } catch (Exception e) {
 			System.out.println(e.getMessage());
-		 return ERROR;
+		 return null;
 		}				
-		return SUCCESS;
-      }
-
-	
-	
+		return friends;
+     }
 	
 	
 	

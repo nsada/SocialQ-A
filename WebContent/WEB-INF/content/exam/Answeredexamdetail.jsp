@@ -112,8 +112,10 @@
         		<br> 解析
         		<s:property value="analysis" />	                  
 		</s:iterator>
+		<br>
+		<p> 查看我的小伙伴的排名 :<p>
 		<a  class="list-group-item list-group-item-success"
-           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/>查看我的小伙伴的排名 </s:url>'>
+           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
                         			
                								</a>
 		      

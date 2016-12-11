@@ -113,8 +113,10 @@
         		<br> 所有分数的总和
         		<s:property value="totalscore" />	                   
 		</s:iterator>
+		<br>
+		<p> 查看所有用户回答的排名情况 :<p>
         <a  class="list-group-item list-group-item-success"
-           		 href='<s:url action="AllTakerRank"><s:param name="ExamID" value ="ExamID"/>查看所有用户回答的排名情况 </s:url>'>                      								</a>
+           		 href='<s:url action="AllTakerRank"><s:param name="ExamID" value ="ExamID"/></s:url>'>                      								</a>
 		      
 </div>
 </rapid:override>   
