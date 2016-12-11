@@ -426,7 +426,7 @@ public class Answerexam  implements Action{
            }
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
-           String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+testername;
+           String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+userID;
            mess.Systemsendmessage(userID,accepterID, message, url, 3);          
        }    
 //          log.OperateExam(userID, userID, 14);

@@ -182,7 +182,8 @@ public class CheckExam implements Action{
             cont =new Connect();
             cont.executeUpdate(SQL);  
             Message mess =new Message();
-            mess.Systemsendmessage(userID, TesttakerID, "你的题目已经被check完毕了，赶紧快去看");//添加是出题人的姓名信息
+            String url = "ShowExamDetail?ExamID="+ExamID+"&TesttakerID="+TesttakerID;
+            mess.Systemsendmessage(userID, TesttakerID, "你的题目已经被check完毕了，赶紧快去看", url, 4);//添加是出题人的姓名信息
 	         
 			 
 	 } catch (Exception e) {

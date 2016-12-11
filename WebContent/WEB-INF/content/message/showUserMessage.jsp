@@ -32,13 +32,10 @@
 	                      
 	                    </s:if>      
 	                    <s:if test="type == 3">
-	                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="前去批改"/></a>
-	                            <button><a href="checkMessage?messageID='${mes.id}'">确认已读</a></button>
-	                                       
+	                            <button><a href="${mes.url}">前去批改</a></button>	                                       
 	                    </s:if>         
 	                    <s:if test="type == 4">
-	                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="查看"/></a>
-	                                      
+	                            <button><a href="${mes.url}">查看给分</a></button> 
 	                    </s:if> 
                     </td>   
 

@@ -21,7 +21,7 @@
 
                  <s:iterator value="events" var="e">     
 <%--                     <a href='<s:url action="#e.url"></s:url>'>${e.event}${e.url}</a> --%>
-                      <a class="list-group-item list-group-item-success" href='<s:url action="#e.url"></s:url>'><s:property value="event"/>${e.url}</a>  
+                    <button><a class="list-group-item list-group-item-success" href="${e.url}">${e.event}</a></button> 
                  </s:iterator>
                 
             </div>
