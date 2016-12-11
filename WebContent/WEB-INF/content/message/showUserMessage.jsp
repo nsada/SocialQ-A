@@ -23,13 +23,10 @@
                     <td style="text-align:center;">${mes.message}</td>   
                     <td style="text-align:center;">  
                         <button><a href="checkMessage?messageID=${mes.id}">确认已读</a></button>
-                        <s:if test="type == 1">
-	                                                  
-	                            
+                        <s:if test="type == 1"> 
 	                            <button><a href="${mes.url}">查看用户详细信息</a></button>
 	                            <a href='<s:url action="acceptFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="通过申请"/></a>
 	                            <a href='<s:url action="refuseFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="拒绝申请"/></a>
-	                      
 	                    </s:if>      
 	                    <s:if test="type == 3">
 	                            <button><a href="${mes.url}">前去批改</a></button>	                                       
@@ -37,9 +34,7 @@
 	                    <s:if test="type == 4">
 	                            <button><a href="${mes.url}">查看给分</a></button> 
 	                    </s:if> 
-                    </td>   
-
-                   
+                    </td>                      
                 </tr>           
             </s:iterator>
         </tbody>

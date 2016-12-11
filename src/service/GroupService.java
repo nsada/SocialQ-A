@@ -29,7 +29,8 @@ public class GroupService {
 			result.close();
 		}catch (Exception e) {
 			groups = null;
-		}		
+		}	
+		cont.Close();
 		return groups;				
 	}
 
@@ -48,6 +49,7 @@ public class GroupService {
 		}catch (Exception e) {
 			group = null;
 		}		
+		cont.Close();
 		return group;	
 	}
 	
@@ -64,6 +66,7 @@ public class GroupService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 
@@ -72,6 +75,7 @@ public class GroupService {
 		String sql = "insert into group_user(groupID, userID) values(" + id+ ", " + userID + ")";
 		int i = cont.executeUpdate(sql);
 		System.out.println("insert group_user sql: " + sql + " i: " + i);
+		cont.Close();
 		return i;
 	}
 
@@ -90,6 +94,7 @@ public class GroupService {
 			e.printStackTrace();
 			users = null;
 		}
+		cont.Close();
 		return users;
 	}
 
@@ -109,6 +114,7 @@ public class GroupService {
 			System.out.println("sql error");
 			groups = null;
 		}
+		cont.Close();
 		return groups;
 	}
 
@@ -120,6 +126,7 @@ public class GroupService {
 		Connect cont = new Connect();
 		String sql = "delete from social.group_user where userID=" + userID + " and groupID=" + groupID;
 		int i = cont.executeUpdate(sql);		
+		cont.Close();
 		return i;
 	}
 
@@ -136,7 +143,8 @@ public class GroupService {
 			result.close();
 		}catch (Exception e) {
 			groupname = null;
-		}		
+		}	
+		cont.Close();
 		return groupname;	
 	}
 
@@ -153,6 +161,7 @@ public class GroupService {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}		
+		cont.Close();
 		return false;
 	}
 	

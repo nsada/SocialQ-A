@@ -8,6 +8,10 @@ YC
 	1. 添加单选题时，选择了不统一分数后，答案那一行也消失
 	2. 新建试卷页面没有保存到草稿箱
 	3. 填空题的默认选项个数改成1个
+	
+TMY
+	SQL ERROR: too many connection
+	每次链接了数据库后没有关闭connect。
 
 已修改：
 	1.回答问题的log log.OperateExam(userID, userID, 14);

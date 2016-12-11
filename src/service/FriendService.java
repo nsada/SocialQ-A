@@ -29,7 +29,8 @@ public class FriendService {
 		Connect cont = new Connect();
 		String sql = "insert into friend(A, B, type) values(" + a + "," + b + ", " + type + ")";
 		System.out.println("addFriend sql: "+ sql);
-		int i = cont.executeUpdate(sql);		
+		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
 	
 	public List<Friend> getFriends(int userID) {
@@ -48,7 +49,7 @@ public class FriendService {
 			result.close();
 		}catch (Exception e) {
 			friends = null;
-		}	
+		}
 		
 		sql = "select * from friend where B="+userID;
 		result = cont.executeQuery(sql);
@@ -67,26 +68,8 @@ public class FriendService {
 		System.out.println("friend");
 		for (int i = 0; i < friends.size(); i ++)
 			friends.get(i).print();
+		cont.Close();
 		return friends;		
-/*		System.out.println("userID "+ userID);
-		String sql = "select * from friend where B=" + userID;
-		friends = getFriendsAB(sql);
-		System.out.println("friend1");
-		for (int i = 0; i < friends.size(); i ++)
-			friends.get(i).print();
-		sql = "select * from friend where A=" + userID;
-		
-		List<Friend> fri = getFriendsAB(sql);
-		System.out.println("getFriends2 sql "+sql + " size " + fri.size());
-		for (int i = 0; i < fri.size(); i ++) {
-			friends.add(fri.get(i));
-			fri.get(i).print();
-		}
-		//friends.addAll(getFriendsAB(userID, sql));
-		System.out.println("friend2");
-		for (int i = 0; i < friends.size(); i ++)
-			friends.get(i).print();
-		return friends;*/
 	}
 	private List<Friend> getFriendsAB(String sql) {
 		Connect cont = new Connect();		
@@ -103,7 +86,8 @@ public class FriendService {
 			result.close();
 		} catch (Exception e) {
 			friends = null;
-		}		
+		}	
+		cont.Close();
 		return friends;	
 	}
 
@@ -124,7 +108,8 @@ public class FriendService {
 			result.close();
 		}catch (Exception e) {
 			friend = null;
-		}		
+		}	
+		cont.Close();
 		return friend;
 	}
 
@@ -165,7 +150,8 @@ public class FriendService {
 			result.close();
 		}catch (Exception e) {
 			weibofriend = null;
-		}		
+		}	
+		cont.Close();
 		return weibofriend;
 	}	
 
@@ -173,7 +159,8 @@ public class FriendService {
 		Connect cont = new Connect();
 		String sql = "insert into weibofriend(A, B, type, openB) values('" + A + "','" + B + "', " + type + ", '"+ openB + "')";
 		System.out.println("addWeiboFriend sql: "+ sql);
-		int i = cont.executeUpdate(sql);		
+		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
 
 	public void updateWeiboFriend(String nameA, String openB, int type) {
@@ -181,12 +168,13 @@ public class FriendService {
 		String sql = "UPDATE weibofriend SET type=" + type + "where A='" + nameA + "' and openB='" + openB + "'";
 		System.out.println("updateWeiboFriend sql: "+ sql);
 		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
 
 	public void delFriend(int a, int b) {
 		Connect cont = new Connect();
 		String sql = "delete from friend where A=" + a + " and B=" + b;		
 		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
-
 }

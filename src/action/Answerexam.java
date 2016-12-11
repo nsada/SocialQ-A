@@ -11,6 +11,9 @@ import domain.TextBlank;
 import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
+
+	private String title;
+	private String description;
 	 private ResultSet result = null;
 	 private Connect cont;
 	 private String selection_answer ="1#2#3#4#3#";
@@ -19,7 +22,7 @@ public class Answerexam  implements Action{
 	 private String AandQ_answer="第一个问答题的答案/#第二题的问答题的答案/#第二个问答题的答案/#第三个问答题的答案/#";	 
 	 private int score=0;
 	 private int everyscore=0;
-	 private int ExamID;
+	 private int ExamID =52;
      private List<TextBlank> textBlanks;
  	 private List<Selection> selections;
  	 private List<Multy> multys;
@@ -28,6 +31,7 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
+ 	
  	private int friendID;
  	private int rank = 0;
  	
@@ -48,6 +52,18 @@ public class Answerexam  implements Action{
 	}
 	public void setFriendID(int friendID) {
 		this.friendID = friendID;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
@@ -104,14 +120,6 @@ public class Answerexam  implements Action{
 		public void setAandQs(List<AandQ> aandQs) {
 			AandQs = aandQs;
 		}
-		
-	public String showFriendExamDetail() {
-		ExamService es = new ExamService();
-		score = es.getUserExamScore(friendID, ExamID);
-		return SUCCESS;
-	}
-		
-		
 	@Override
 	public String execute() throws Exception {  
 		     int flag=1;
@@ -427,10 +435,9 @@ public class Answerexam  implements Action{
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
            String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+userID;
-           mess.Systemsendmessage(userID,accepterID, message, url, 3);          
+           mess.Systemsendmessage(userID,accepterID, message, url, 3);         
        }    
-//          log.OperateExam(userID, userID, 14);
-       log.OperateExam(userID, ExamID, 14);
+          log.OperateExam(userID, userID, 14);
             String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
@@ -542,7 +549,7 @@ public class Answerexam  implements Action{
            	 everyscore=0;
            	 String answer="";
              String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+1+" and questionID="+sel.getId()+"";
-             //System.out.println(SQL);       
+             System.out.println(SQL);       
              cont =new Connect();
              result=  cont.executeQuery(SQL);             
              while (result.next())
@@ -619,6 +626,15 @@ public class Answerexam  implements Action{
        aandq.setUseranswer(answer);
        aandq.setUserscore(everyscore);
        aandq.setReadd(readd);
+       SQL="select * from social.exam where ID ="+ExamID;
+	    result =cont.executeQuery(SQL);	
+		if(result.next())
+		{
+			title=result.getString("title");
+			description=result.getString("description");
+		}
+       
+       
      } 
 		}
 		catch (Exception e) 
@@ -628,5 +644,12 @@ public class Answerexam  implements Action{
 		}				
 		return SUCCESS;
    }
-
+	
+	public String showFriendExamDetail() {
+		ExamService es = new ExamService();
+		score = es.getUserExamScore(friendID, ExamID);
+		return SUCCESS;
+	}
 }
+
+

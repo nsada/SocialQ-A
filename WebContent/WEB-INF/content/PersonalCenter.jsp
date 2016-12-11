@@ -11,6 +11,9 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showPersonalInformation'">
 						个人信息</button>
+						<button class="btn btn-default " type="button"
+						onclick="window.location.href='GroupInsertExam'">
+						工作组出题</button>
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showFriends'">好友列表</a>
 					</button>
@@ -25,7 +28,7 @@
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
 					<button class="btn btn-default " type="button"
-						onclick="window.location.href='FindUserExam'">批改试卷</a>
+						onclick="window.location.href='FindUserExams'">批改试卷</a>
 					</button>
 					
 					<button class="btn btn-default " type="button"

@@ -42,6 +42,13 @@ public class AddQuestoExam implements Action {
 	private List<Exam> Exams =new ArrayList<Exam> ();
 	private Queue <String> textb;
 	private int publish;
+	private int GroupID;
+	public int getGroupID() {
+		return GroupID;
+	}
+	public void setGroupID(int groupID) {
+		GroupID = groupID;
+	}
 	public  List<Exam> getExams() {
 		return Exams;
 	}
@@ -146,7 +153,7 @@ public class AddQuestoExam implements Action {
                 	String everyblank[]= answer.split("/#");
                 	questionID=Integer.parseInt(everyblank[0]);
                 	type=Integer.parseInt(everyblank[1]);
-                      String SQL="insert into exam_question(examID, questionID, type,userID) values ("+ExamID+", "+questionID+","+type+","+userID+")";
+                	String SQL="insert into exam_question(examID, questionID, type,GroupID) values ("+ExamID+", "+questionID+","+type+","+GroupID+")";//This is Group ID
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);  
@@ -166,6 +173,8 @@ public class AddQuestoExam implements Action {
 			  exam =es.getExam(ExamID);
 			  title = exam.getTitle();
 			  description =exam.getDescription();
+			  joiner=exam.getJoiner();
+			  rights=exam.getRights(); 
 			  System.out.println("Title:"+title);
 			  System.out.println("Description:"+description);
 			  
@@ -343,13 +352,5 @@ public class AddQuestoExam implements Action {
 		 return ERROR;
 		}	
 		 return SUCCESS;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

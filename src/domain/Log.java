@@ -23,12 +23,10 @@ public class Log {
 
 	
 	public String translate(){
-		//print();
 		String ans = "";
 		UserService us = new UserService();
 		String user = us.getUserName(userID);
 		String userB = us.getUserName(userIDB);
-		//System.out.println("user: " + user + " " + userB);
 		QuestionBaseService qBs = new QuestionBaseService();
 		String qBase = qBs.getqBaseName(qBaseID);
 		//System.out.println("qBase: " + qBase);
@@ -132,7 +130,7 @@ public class Log {
 	}
 	public void setTime(Date time) {
 		this.time = time;
-	}
+	}	
 	public int getUserIDB() {
 		return userIDB;
 	}

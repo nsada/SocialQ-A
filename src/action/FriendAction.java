@@ -143,11 +143,9 @@ public class FriendAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		if(sess.get("userid")==null) return "needlogin";
 		int B = (int) sess.get("userid");
-		//System.out.println("addFriend " + A + " "+ B);
 		addFriend(A,B);
 		MessageService ms = new MessageService();
 		ms.read(messageID);
-
 		return SUCCESS;
 	}
 	public String refuseAddFriendMessage() {
@@ -319,19 +317,15 @@ public class FriendAction implements Action {
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
 	}
-
 	public List<Event> getEvents() {
 		return events;
 	}
-
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-
 	public int getUserID() {
 		return userID;
 	}
-
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}

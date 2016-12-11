@@ -17,6 +17,7 @@ public class MessageService {
 		String SQL="update social.message set rread = "+1+" where id="+id;
 		Connect cont =new Connect();
 		cont.executeUpdate(SQL); 
+		cont.Close();
 	}
 
 	public List<Usermessage> getUserAllMessage(int userID) {
@@ -42,6 +43,7 @@ public class MessageService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+        cont.Close();
 		return messages;
 	}
 
@@ -66,7 +68,9 @@ public class MessageService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}			
+        cont.Close();
 		return message;
 	}
 
 }
+		

@@ -246,6 +246,4 @@ public class Message implements Action {
 		return SUCCESS;
 	}
 
-
-
 }

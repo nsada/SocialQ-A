@@ -1,22 +1,28 @@
 package action;
-
 import com.opensymphony.xwork2.Action;
+import java.util.*;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
-
 import com.opensymphony.xwork2.ActionContext;
-
 import database.Connect;
 import domain.QuestionBase;
 import service.QuestionBaseService;
 
 public class ShowUserQuestionBasesAction implements Action {
-	private List<QuestionBase> questionBases;	
+	private List<QuestionBase> questionBases = new ArrayList<QuestionBase>();	
 	private int joiner;
 	private int rights;
 	private String title;
 	private String description;
 	private int ExamID;	
+	private int GroupID;
+	public int getGroupID() {
+		return GroupID;
+	}
+	public void setGroupID(int groupID) {
+		GroupID = groupID;
+	}
 	public List<QuestionBase> getQuestionBases() {
 		return questionBases;
 	}
@@ -90,6 +96,34 @@ public class ShowUserQuestionBasesAction implements Action {
 		}
 		return SUCCESS;
 	}
+	public String InsertGroupExamtitle() throws Exception {
+
+		try {	
+			ResultSet result = null;
+			String  SQL="select * from social.group_questionbase where GroupID ="+GroupID+" ";	
+			System.out.println(SQL);
+			Connect  cont=new Connect();
+            result= cont.executeQuery(SQL);
+             while(result.next())
+             {
+            	 QuestionBase qb =new QuestionBase();
+            	 int questionbaseID = result.getInt("questionbaseID");
+            	 QuestionBaseService qs = new QuestionBaseService();
+            	 qb=qs.getQuestionBase(questionbaseID);
+            	 questionBases.add(qb);
+             }
+             cont.Close();
+             cont=new Connect();
+			SQL ="update social.exam set description = '"+description+"', title ='"+title+"', joiner='"+joiner+"',rights ='"+rights+"'  where ID= '"+ExamID+"' ";
+	        cont.executeUpdate(SQL);
+	        cont.Close();		
+		} catch (Exception e) {
+			questionBases = null;
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
 	
 	
 

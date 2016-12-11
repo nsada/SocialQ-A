@@ -18,9 +18,7 @@ public class UserService {
 	private User user;
 	private List<User> users;
 
-	
-
-	public String getUserName(int id){		
+	public String getUserName(int id){
 		String name = "";
 		if (id == 0) return name;
 		cont = new Connect();
@@ -35,6 +33,7 @@ public class UserService {
 		}catch (Exception e) {
 			name = "";
 		}
+		cont.Close();
 		return name;		
 	}
 
@@ -55,6 +54,7 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}
+		cont.Close();
 		return user;
 	}
 	public User loginUserByOpenID(String openid){
@@ -79,6 +79,7 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}
+		cont.Close();
 		System.out.println("login sql:" + sql);
 		return user;
 	}
@@ -89,6 +90,7 @@ public class UserService {
 		System.out.println("addUser sql: "+ sql);
 		int id = cont.executeUpdateID(sql);
 		//System.out.println("LAST_INSERT_ID: " + i);
+		cont.Close();
 		return id;
 	}
 	public int updateUser(User user, int id) {
@@ -111,6 +113,7 @@ public class UserService {
 		sql = sql.substring(0, sql.length()-1);
 		sql = sql + " WHERE id='" + id + "'";
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		//System.out.println("成功更新User "+ i + " sql:"+sql);
 		return i;	
 	}
@@ -126,12 +129,14 @@ public class UserService {
 			result.close();
 		}catch (Exception e) {
 			users = null;
-		}		
+		}	
+		cont.Close();
 		return users;		
 	}
 	public User getUser(int id) {
 		cont = new Connect();
 		String sql = "select * from user where id=" + id;
+		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		try{
 			if (result.next()){
@@ -144,6 +149,7 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}		
+		cont.Close();
 		return user;
 	}
 	public User getUser(String name) {
@@ -162,7 +168,8 @@ public class UserService {
 			result.close();
 		}catch (Exception e) {
 			user = null;
-		}		
+		}	
+		cont.Close();
 		return user;
 	}	
 
@@ -176,7 +183,6 @@ public class UserService {
 			while (result.next()){
 				int friendId = result.getInt("B");
 				idList.add(friendId);
-				//System.out.println("friendID " + friendId);
 			}
 			result.close();
 		}catch (Exception e) {
@@ -204,6 +210,7 @@ public class UserService {
 		}catch (Exception e) {
 			users = null;
 		}	
+		cont.Close();
 		return users;		
 	}
 
@@ -214,14 +221,16 @@ public class UserService {
 	}
 
 	public void delete(int userID) {
-		cont = new Connect();
+		Connect cont = new Connect();
 		String sql = "delete from user where id=" + userID;
-		int i = cont.executeUpdate(sql);				
+		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
 
 	public int getUserIDfromOpen(String openID) {
 		cont = new Connect();
 		String sql = "select id from user where tencentOpenID='" + openID + "'";
+		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		int userid = -1;
 		try{
@@ -232,6 +241,7 @@ public class UserService {
 		}catch (Exception e) {
 			
 		}		
+		cont.Close();
 		return userid;
 	}
 
@@ -248,6 +258,7 @@ public class UserService {
 		}catch (Exception e) {
 			
 		}		
+		cont.Close();
 		return tencentOpenID;
 	}
 
@@ -257,7 +268,6 @@ public class UserService {
 		for (int i = 0; i < searchnames.length; i ++) {
 			sql = sql + " name like '%" + searchnames[i] + "%'";
 		}
-		//System.out.println("searchUser sql:" + sql);
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();
 		try{
@@ -272,8 +282,8 @@ public class UserService {
 			}
 			result.close();
 		}catch (Exception e) {
-			
-		}				
+		}		
+		cont.Close();
 		return users;
 	}
 

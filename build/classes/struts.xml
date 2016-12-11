@@ -11,7 +11,7 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>     
-        
+
         <action name="ShowFriendsEvents" class="action.FriendAction" method="showFriendsEvents">
             <result>/WEB-INF/content//friend/showFriendsEvents.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>    
@@ -138,20 +138,47 @@
             
         </action>
         
-
+        
+        
+        
+        <action name="GroupInsertExam" class="action.InsertExam" method="GroupExam">
+            <result name="success">/WEB-INF/content/exam/GroupExam.jsp</result>
+            <result name="login needed">/WEB-INF/content/user/login.jsp</result>            
+        </action>
+       <action name="FindGroupQbase" class="action.ShowUserQuestionBasesAction" method ="InsertGroupExamtitle">
+            <result name="success">/WEB-INF/content/exam/Groupdisplay.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>    
+        </action>
+        
         <action name="Find" class="action.ShowUserQuestionBasesAction" method ="Inserttitle">
             <result name="success">/WEB-INF/content/exam/display.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>    
         </action>
         <action name="ShowBaseQues" class="action.ShowQuestionBaseAction">
             <result name="success">/WEB-INF/content/exam/showquesbase.jsp</result>
-        </action>            
+        </action>      
+        
+         <action name="ShowGroupBaseQues" class="action.ShowQuestionBaseAction">
+            <result name="success">/WEB-INF/content/exam/Groupshowquesbase.jsp</result>
+        </action>      
+           
         <action name="InsertQuestion" class="action.AddQuestoExam">
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
+        
+          <action name="InsertGroupQuestion" class="action.AddQuestoExam">
+            <result name="success">/WEB-INF/content/exam/GroupnewExam.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        
         <action name="Deletequestion" class="action.AddQuestoExam" method="deletequestion">
             <result name="success">/WEB-INF/content/exam/newexam.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+         <action name="DeleteGroupquestion" class="action.AddQuestoExam" method="deletequestion">
+            <result name="success">/WEB-INF/content/exam/GroupnewExam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="deleteexam" class="action.AddQuestoExam" method="deleteexam">
@@ -227,10 +254,12 @@
             <result name="success">/WEB-INF/content/message/showUserAllMessage.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>        
+
         <action name="showFriendInformation" class="action.UserAction" method="showUserIndex">
             <result name="success">/WEB-INF/content/user/userIndex.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>
+        
         <action name="acceptFriendApply" class="action.FriendAction" method="acceptAddFriendMessage">
             <result type="chain">ShowUserMessage</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
@@ -239,6 +268,7 @@
             <result type ="chain">ShowUserMessage</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action> 
+
         
          <action name="ShowExam" class="action.ShowExamQuestion" >
             <result name="success">/WEB-INF/content/exam/answerExam.jsp</result>
@@ -269,12 +299,22 @@
             <result name="success">/WEB-INF/content/exam/Answeredexamdetail.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        
-       <action name="FindUserExam" class="action.CheckExam" >
+        <action name="FindUserExam" class="action.CheckExam" >
             <result name="success">/WEB-INF/content/exam/UncheckedExam.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
-        <action name="CheckUserExam" class="action.CheckExam" method="UpdateScore" >
+        
+       <action name="FindUserExams" class="action.CheckExam" method="UncheckedExamList">
+            <result name="success">/WEB-INF/content/exam/AllUncheckedExams.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+         <action name="FindUncheckedExam" class="action.CheckExam">
+            <result name="success">/WEB-INF/content/exam/UncheckedExam.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+       <action name="CheckUserExam" class="action.CheckExam"  method="UpdateScore">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>

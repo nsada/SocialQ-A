@@ -5,16 +5,27 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
 import domain.AandQ;
+import domain.Exam;
 public class CheckExam implements Action{
+	private String title;
+	private String description;
 	 private ResultSet result = null;
+	 private ResultSet resultcheck = null;
 	 private Connect cont;
-	 private int ExamID;
+	 private int ExamID ;
 	 private int TesttakerID;
      private List<AandQ> AandQs;	
 	 private String Takename="";
 	 private String scorestr="13#14#";
 	 private Queue<String> scores;
  	 private List<AandQ> UncheckedAandQs =new ArrayList<AandQ>();	
+ 	private List<Exam> Exams =new ArrayList<Exam> ();
+ 	 public List<Exam> getExams() {
+		return Exams;
+	}
+	public void setExams(List<Exam> exams) {
+		Exams = exams;
+	}
 	 public String getScorestr() {
 		return scorestr;
 	}
@@ -184,7 +195,6 @@ public class CheckExam implements Action{
             Message mess =new Message();
             String url = "ShowExamDetail?ExamID="+ExamID+"&TesttakerID="+TesttakerID;
             mess.Systemsendmessage(userID, TesttakerID, "你的题目已经被check完毕了，赶紧快去看", url, 4);//添加是出题人的姓名信息
-	         
 			 
 	 } catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -192,6 +202,59 @@ public class CheckExam implements Action{
 		}				
 		return SUCCESS;
       }
+	public String UncheckedExamList(){		 
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam where userID="+userID+"";
+		     System.out.println(SQL);       
+		       cont =new Connect();
+		      result=  cont.executeQuery(SQL);
+		      int examid;
+		      int check;
+		      Exams = new ArrayList<>();
+		     ShowExamQuestion seq =new ShowExamQuestion();
+		      while (result.next())
+		      {
+		      	examid=result.getInt("ID");
+		      	description=result.getString("description");
+		      	title=result.getString("title");      	
+			      seq.setExamID(examid);
+				  seq.execute();
+				  AandQs=seq.getAandQs();
+				 if(!AandQs.isEmpty())
+				 {
+						SQL="select * from social.exam_user where examID="+examid+"";
+					     System.out.println(SQL);       
+					     
+					     resultcheck=  cont.executeQuery(SQL);
+					      while (resultcheck.next())
+					      { 
+					    	  TesttakerID=resultcheck.getInt("userID");
+					    	  check = resultcheck.getInt("checked");
+					    	  if(check ==0)
+					    	  {
+							    	   Exam exam = new Exam();
+								       exam.setDescription(description);
+								       exam.setTitle(title);
+								       exam.setTesttakerID(TesttakerID);
+								       exam.setId(examid);
+								       System.out.println("exam "+ examid);
+								       Exams.add(exam);	  
+					          }	 		    	 
+				     }  
+
+		      }
+		      	
+		   } 
+		 }catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}				
+		return SUCCESS;
+    }
 	
 	
 	 

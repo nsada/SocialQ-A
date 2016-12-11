@@ -23,6 +23,7 @@ public class QuestionBaseService {
 		}catch (Exception e) {
 			//System.out.println("");
 		}
+		cont.Close();
 		return questionBase;
 	}
 	public int addQuestionBase(QuestionBase qBase) {
@@ -37,6 +38,7 @@ public class QuestionBaseService {
 			qBase.setId(id);
 			in = addUser_QuestionBase(qBase.getUserID(), qBase.getId());			
 		}
+		cont.Close();
 		//System.out.println("LAST_INSERT_ID: " + id);
 		return in;
 	}
@@ -59,6 +61,7 @@ public class QuestionBaseService {
 			e.printStackTrace();
 			questionBases = null;
 		}
+		cont.Close();
 		return questionBases;
 	}
 	public int delQuestionBase(QuestionBase qBase) {
@@ -78,13 +81,15 @@ public class QuestionBaseService {
 		cont = new Connect();
 		String sql = "insert into user_questionbase(userID, questionBaseID) values(" + userID + ", " + qBaseID + ")"; 
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		//System.out.println("insert user_questionbase sql: " + sql + " i: " + i);
 		return i;
 	}
 	public int delUser_QuestionBase(int userID, int qBaseID){
 		cont = new Connect();
 		String sql = "delete from user_questionbase where userID=" + userID + " and questionBaseID=" + qBaseID;
-		int i = cont.executeUpdate(sql);		
+		int i = cont.executeUpdate(sql);
+		cont.Close();
 		return i;
 	}
 	public String getqBaseName(int id) {
@@ -102,6 +107,7 @@ public class QuestionBaseService {
 		}catch (Exception e) {
 			title = "";
 		}
+		cont.Close();
 		return title;	
 	}
 }

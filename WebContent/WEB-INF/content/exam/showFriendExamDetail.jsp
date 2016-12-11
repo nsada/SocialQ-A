@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <rapid:override name="head">
-    <title>答题</title>
+    <title>好友答题情况</title>
 </rapid:override>
 <rapid:override name="content">
         <div>

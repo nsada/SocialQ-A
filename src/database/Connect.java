@@ -7,6 +7,15 @@ public class Connect {
 	Connection con=null;
 	Statement state = null;
 	ResultSet result = null;
+	
+	static{
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}			
+	}
+	
 	public Connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");			
@@ -19,13 +28,25 @@ public class Connect {
 			
 			state = con.createStatement();	
 		} catch (Exception e) {
+			e.printStackTrace();
 			con = null;
 			System.out.println("connect error");
 		}
 	}
 	
+	
+	public void Close() {
+		try {
+			if(con != null &&!con.isClosed())
+			{
+				  con.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ResultSet executeQuery(String sql) {
-		//System.out.println("execute sql" + sql);
 		try {
 			state = con.createStatement();	
 			result = state.executeQuery(sql);
@@ -69,7 +90,6 @@ public class Connect {
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
-				//System.out.println("lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {

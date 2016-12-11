@@ -27,13 +27,13 @@
                         </td>
                     </s:if>      
                     <s:if test="type == 3">
-                        <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="前去批改"/></a>
-                        </td>                        
+                        <td>
+                            已批改
+                        </td>                 
                     </s:if>         
                     <s:if test="type == 4">
                         <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="查看"/></a>
+                            <button><a href="${mes.url}">查看给分</a></button> 
                         </td>                        
                     </s:if> 
                    
@@ -42,5 +42,4 @@
         </tbody>
     </table>
 </rapid:override>
-
 <%@include file="../../../base.jsp"%>

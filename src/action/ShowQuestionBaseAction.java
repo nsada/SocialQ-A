@@ -21,7 +21,13 @@ public class ShowQuestionBaseAction implements Action {
 	private List<TextBlank> textBlanks;
 	private int qBaseID;
 	private List<AandQ> aandQs;
-	
+	private int GroupID;
+	public int getGroupID() {
+		return GroupID;
+	}
+	public void setGroupID(int groupID) {
+		GroupID = groupID;
+	}
 	public int getqBaseID() {
 		return qBaseID;
 	}

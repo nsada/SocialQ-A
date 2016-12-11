@@ -44,6 +44,7 @@ public class QuestionService {
 			e.printStackTrace();
 			selections = null;
 		}
+		cont.Close();
 		return selections;
 	}
 	public List<TextBlank> getQbaseTextBlanks(int qBaseID) {
@@ -62,6 +63,7 @@ public class QuestionService {
 			e.printStackTrace();
 			textBlanks = null;
 		}
+		cont.Close();
 		return textBlanks;
 	}	
 	public List<AandQ> getQbaseAandQs(int qBaseID) {
@@ -80,6 +82,7 @@ public class QuestionService {
 			e.printStackTrace();
 			aandQs = null;
 		}
+		cont.Close();
 		return aandQs;
 	}
 	public List<Multy> getQbaseMultys(int qBaseID) {
@@ -98,6 +101,7 @@ public class QuestionService {
 			e.printStackTrace();
 			multys = null;
 		}
+		cont.Close();
 		return multys;
 	}
 
@@ -117,6 +121,7 @@ public class QuestionService {
 			e.printStackTrace();
 			selections = null;
 		}
+		cont.Close();
 		return selections;
 	}
 
@@ -149,6 +154,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
 		}
+		cont.Close();
 		return selection;
 	}
 	public TextBlank getTextBlank(int id) {
@@ -174,6 +180,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
 		}
+		cont.Close();
 		return textBlank;
 	}	
 	public int addSelection(Selection sel, int qBaseID) {
@@ -184,6 +191,7 @@ public class QuestionService {
 		+ sel.getScoreA() + ", " + sel.getScoreB() + ", " + sel.getScoreC() + ", " + sel.getScoreD() + ", " + sel.getScoreE() + ", " + sel.getScoreF() + ")";
 		
 		int id = cont.executeUpdateID(sql);
+		cont.Close();
 		System.out.println("addSelection sql: "+ sql + "   *id:" + id);
 		int in = 0;
 		if (id > 0) {
@@ -202,6 +210,7 @@ public class QuestionService {
 		blank.getAnalysis() + "', " + blank.getScore() + ")";
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addTextBlanke sql: "+ sql + "   *id:" + id);
+		cont.Close();
 		int in = 0;
 		if (id > 0) {
 			blank.setId(id);
@@ -215,6 +224,7 @@ public class QuestionService {
 		cont = new Connect();
 		String sql = "insert into questionbase_question(questionBaseID, questionID, type) values(" + qBaseID + ", " + id + ", " + type + ")"; 
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		System.out.println("insert questionbase_question sql: " + sql + " i: " + i);
 		return i;
 	}
@@ -222,6 +232,7 @@ public class QuestionService {
 		cont = new Connect();
 		String sql = "delete from questionbase_question where questionBaseID=" + qBaseID + " and questionID=" + id + " and type=" + type; 
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		System.out.println("delete questionbase_question sql: " + sql + " i: " + i);
 		return i;		
 	}
@@ -243,6 +254,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			System.out.println("按id查找AandQ失败 id:"+id);
 		}
+		cont.Close();
 		return aandQ;
 	}
 	public Multy getMulty(int id) {
@@ -268,6 +280,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
 		}
+		cont.Close();
 		return multy;
 	}
 	public int addAandQ(AandQ aandQ, int qBaseID) {
@@ -277,6 +290,7 @@ public class QuestionService {
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addAandQsql: "+ sql + "   *id:" + id);
 		int in = 0;
+		cont.Close();
 		if (id > 0) {
 			aandQ.setId(id);
 			in = addQuestionBase_Question(qBaseID, id, 3);			
@@ -292,6 +306,7 @@ public class QuestionService {
 		
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addMulty sql: "+ sql + "   *id:" + id);
+		cont.Close();
 		int in = 0;
 		if (id > 0) {
 			multy.setId(id);
@@ -325,6 +340,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			context = "";
 		}
+		cont.Close();
 		return context;	
 	}
 
