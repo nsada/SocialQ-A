@@ -99,24 +99,32 @@ public class ShowExamQuestion implements Action {
 			{
 			 	QuestionService qs= new QuestionService();
 			 if( result.getInt("type") ==1 )
-				{
-				 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
+				{ 
+				     if(qs.getSelection(result.getInt("questionID")) != null)
+				     {
+						 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
+				     }
 				}
 			 else if(result.getInt("type") ==2)
 			 {
-				 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
+				 if(qs.getTextBlank(result.getInt("questionID"))!=null)
+				 {
+					 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
+				 }
 			 }
 			 else if(result.getInt("type") ==3)
 			 {
+				 if(qs.getAandQ(result.getInt("questionID")) !=null)
 				  AandQs.add(qs.getAandQ(result.getInt("questionID")));
 			 }
 			 else if(result.getInt("type") ==4)
 			 {
+				 if(qs.getMulty(result.getInt("questionID"))!=null)
 				 multys.add(qs.getMulty(result.getInt("questionID")));
 			 }
 			 
 			}
-	    sql ="select * from social.exam where ID ="+ExamID;
+	       sql ="select * from social.exam where ID ="+ExamID;
 			result =cont.executeQuery(sql);	
 			if(result.next())
 			{

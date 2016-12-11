@@ -20,6 +20,18 @@ public class CheckExam implements Action{
 	 private Queue<String> scores;
  	 private List<AandQ> UncheckedAandQs =new ArrayList<AandQ>();	
  	private List<Exam> Exams =new ArrayList<Exam> ();
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
  	 public List<Exam> getExams() {
 		return Exams;
 	}
@@ -210,7 +222,7 @@ public class CheckExam implements Action{
 	         int userID = (int) sess.get("userid");		       
 		     String  SQL="select * from social.exam where userID="+userID+"";
 		     System.out.println(SQL);       
-		       cont =new Connect();
+		      cont =new Connect();
 		      result=  cont.executeQuery(SQL);
 		      int examid;
 		      int check;
@@ -227,7 +239,6 @@ public class CheckExam implements Action{
 				 {
 						SQL="select * from social.exam_user where examID="+examid+"";
 					     System.out.println(SQL);       
-					     
 					     resultcheck=  cont.executeQuery(SQL);
 					      while (resultcheck.next())
 					      { 
@@ -249,12 +260,91 @@ public class CheckExam implements Action{
 		   } 
 		 }catch (Exception e) {
 			e.printStackTrace();
+			  cont.Close();
 			return ERROR;
-		}				
+		}		
+	     cont.Close();
 		return SUCCESS;
     }
 	
+	public String UserAnsweredExamList(){		 
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam where userID="+userID+"";
+		     System.out.println(SQL);       
+		       cont =new Connect();
+		      result=  cont.executeQuery(SQL);
+		      int examid;
+		     ShowExamQuestion seq =new ShowExamQuestion();
+		      while (result.next())
+		      {
+		      	examid=result.getInt("ID");
+		      	description=result.getString("description");
+		      	title=result.getString("title");      	
+		      	SQL="select * from social.exam_user where examID="+examid+"";
+		      	System.out.println(SQL);        
+				resultcheck=  cont.executeQuery(SQL);
+			     if (resultcheck.next())
+					   { 
+						 Exam exam = new Exam();
+					     exam.setDescription(description);
+						 exam.setTitle(title);
+						 exam.setId(examid);
+						 Exams.add(exam);	  					          	    	 
+				       }  
+		      	
+		   } 
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}
+		  cont.Close();
+		return SUCCESS;
+   }
 	
-	 
+	public String ExamUserList(){	
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam_user where examID="+ExamID+"";
+		      cont =new Connect();
+		     System.out.println(SQL);       
+		      result=  cont.executeQuery(SQL);
+		      String ExamUserName="";
+		      while (result.next())
+		      {
+		    	  TesttakerID=result.getInt("userID");
+				 SQL="select * from social.user where id="+TesttakerID+"";
+				 System.out.println(SQL);       
+				 resultcheck=  cont.executeQuery(SQL);
+				 while (resultcheck.next())
+					      { 
+					         ExamUserName=resultcheck.getString("name");
+							 Exam exam = new Exam();
+						     exam.setDescription(description);
+						     exam.setTitle(title);
+						     exam.setTesttakerID(TesttakerID);
+							 exam.setId(ExamID);
+							 exam.setExamUserName(ExamUserName);
+							 Exams.add(exam);	  
+	    	 
+				        }  
+		       } 
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}		
+	     cont.Close();
+		return SUCCESS;
+     }
+  	
+
 }
 

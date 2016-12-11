@@ -138,7 +138,16 @@
        <action name="FindGroupQbase" class="action.ShowUserQuestionBasesAction" method ="InsertGroupExamtitle">
             <result name="success">/WEB-INF/content/exam/Groupdisplay.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>    
+        </action>    
+            
+            
+        <action name="FindUserAnsweredExams" class="action.CheckExam" method ="UserAnsweredExamList">
+            <result name="success">/WEB-INF/content/exam/UserAnsweredExamList.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>    
         </action>
+        
+        
+        
         
         <action name="Find" class="action.ShowUserQuestionBasesAction" method ="Inserttitle">
             <result name="success">/WEB-INF/content/exam/display.jsp</result>
@@ -250,7 +259,7 @@
         </action>  
         
         <action name="answerExam" class="action.Answerexam">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result type="chain">ShowExamDetail</result>
             <result name="error">/WEB-INF/content/error.jsp</result>            
         </action>     
         
@@ -288,6 +297,22 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
+           <action name="FindUserExamList" class="action.CheckExam"  method="ExamUserList">
+            <result name="success">/WEB-INF/content/exam/UserExamList.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+          <action name="WantedUserExamDetail" class="action.Answerexam"  method="ShowWantedUserExamDetail">
+            <result name="success">/WEB-INF/content/exam/UserExamDetail.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>
+        </action>
+        
+        
+        
+        
+        
+        
+     
 
     </package>
 

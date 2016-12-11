@@ -13,7 +13,7 @@
   
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
-        	<p style="text-align: center;"> 我的排名：<s:property value="rank"/><p>
+        	<p style="text-align: center;"> <s:property value="testername"/>的排名：<s:property value="rank"/><p>
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>
@@ -96,7 +96,7 @@
         		<s:property value="analysis" />	               
 		</s:iterator>
 		
-	      <br> 问答题
+	
 		<s:iterator value="AandQs" >			
 			  <br>
 		   <s:property value="context" />

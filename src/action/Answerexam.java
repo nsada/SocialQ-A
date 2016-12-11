@@ -8,9 +8,11 @@ import domain.AandQ;
 import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
+import domain.Exam;
+import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
-
+     int rank = 0;
 	private String title;
 	private String description;
 	 private ResultSet result = null;
@@ -30,6 +32,26 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
+ 	 private int TesttakerID;
+     String testername="";
+ 	public String getTestername() {
+		return testername;
+	}
+	public void setTestername(String testername) {
+		this.testername = testername;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getTesttakerID() {
+		return TesttakerID;
+	}
+	public void setTesttakerID(int testtakerID) {
+		TesttakerID = testtakerID;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -99,7 +121,7 @@ public class Answerexam  implements Action{
 		}
 	@Override
 	public String execute() throws Exception {  
-		     int flag=1;
+		     int flag=0;
 		    Answerexam ans =new Answerexam();
 		    LogService log= new LogService();
 		    score=0;
@@ -409,17 +431,28 @@ public class Answerexam  implements Action{
            {
            	testername=result.getString("name");
            }
+           cont.Close();
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
            mess.Systemsendmessage(userID,accepterID, message);          
-       }    
+       }  
+ 
           log.OperateExam(userID, userID, 14);
             String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
             cont.executeUpdate(SQL);	
+            cont.Close();  
+           if(flag == 0)
+            {
+         	     SQL="update social.exam_user set checked = "+1+" where examID ="+ExamID+" and userID ="+userID+" ";
+                System.out.println(SQL);
+                cont =new Connect();
+                cont.executeUpdate(SQL);   
+                cont.Close();
+            }
             
-            
+ 
             SQL="select * from social.exam  where ID ="+ExamID+"  ";
             System.out.println(SQL);
             cont =new Connect();
@@ -431,12 +464,14 @@ public class Answerexam  implements Action{
             	people=result.getInt("people");
             	totalscore=result.getInt("totalscore");
             }
+            cont.Close();
             people++;
             totalscore =totalscore+score;             
             SQL="update social.exam set people = "+people+",totalscore="+totalscore+" where ID ="+ExamID+" ";
             System.out.println(SQL);
             cont =new Connect();
-            cont.executeUpdate(SQL);                         
+            cont.executeUpdate(SQL);   
+            cont.Close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			 return ERROR;
@@ -519,6 +554,10 @@ public class Answerexam  implements Action{
 			  textBlanks =seq.getTextBlanks();
 			  multys  =seq.getMultys();
 			  AandQs =seq.getAandQs();
+			  ExamService es = new ExamService();
+			  Exam exam =es.getExam(ExamID);
+			  title = exam.getTitle();
+			  description =exam.getDescription();
             for(Selection sel: selections)	  
             {
            	 int right=0;
@@ -612,10 +651,173 @@ public class Answerexam  implements Action{
        
        
      } 
+     String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
+     System.out.println(SQL);       
+     cont =new Connect();
+     result=  cont.executeQuery(SQL);
+     rank =0;
+     while (result.next())
+     {
+     	 rank++;
+        int	Testtaker =result.getInt("userID");
+     	if(userID==Testtaker)
+     	{
+     		break;
+     	}
+     }	 
+     cont.Close();
 		}
 		catch (Exception e) 
 		{
 			System.out.println(e.getMessage());
+		 return ERROR;
+		}				
+		return SUCCESS;
+   }
+	public String ShowWantedUserExamDetail() throws Exception {  
+		try {
+	          ShowExamQuestion seq =new ShowExamQuestion();
+		      seq.setExamID(ExamID);
+			  seq.execute();
+			     selections =seq.getSelections();
+			     textBlanks =seq.getTextBlanks();
+			      multys  =seq.getMultys();
+			      AandQs =seq.getAandQs();
+			      ExamService es = new ExamService();
+				  Exam exam =es.getExam(ExamID);
+				  title = exam.getTitle();
+				  description =exam.getDescription();
+            for(Selection sel: selections)	  
+            {
+           	 int right=0;
+           	 everyscore=0;
+           	 String answer="";
+             String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+1+" and questionID="+sel.getId()+"";
+             System.out.println(SQL);       
+             cont =new Connect();
+             result=  cont.executeQuery(SQL);             
+             while (result.next())
+             {
+             	answer=result.getString("answer");
+             	right=result.getInt("rightt");
+             	everyscore=result.getInt("score");
+             }	
+             cont.Close();
+             sel.setRight(right);
+             sel.setUseranswer(answer);
+             sel.setUserscore(everyscore);           	          
+           }
+            
+       for(TextBlank tes :textBlanks)
+            {
+    	      int right=0;
+         	 everyscore=0;
+         	 String answer="";
+    	   String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+2+" and questionID="+tes.getId()+"";
+           System.out.println(SQL);       
+           cont =new Connect();
+           result=  cont.executeQuery(SQL);
+           while (result.next())
+           {
+           	answer=result.getString("answer");
+           	right=result.getInt("rightt");
+           	everyscore=result.getInt("score");
+           }
+            cont.Close();
+            tes.setRight(right);
+            tes.setUseranswer(answer);
+            tes.setUserscore(everyscore);    
+           
+            }
+           	
+       for(Multy mul :multys)
+       {
+    	   int right=0;
+       	 everyscore=0;
+       	 String answer="";
+  	     String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+4+" and questionID="+mul.getId()+"";
+         System.out.println(SQL);       
+         cont =new Connect();
+         result=  cont.executeQuery(SQL);
+         while (result.next())
+         {
+         	answer=result.getString("answer");
+         	right=result.getInt("rightt");
+         	everyscore=result.getInt("score");
+         }	 
+          cont.Close();
+          mul.setRight(right);
+          mul.setUseranswer(answer);
+          mul.setUserscore(everyscore);
+      	
+          
+       }  
+     for(AandQ aandq :AandQs)
+       {
+	  int readd=1;       
+	  int right=0;
+    	 everyscore=0;
+    	 String answer="";
+	   String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+3+" and questionID="+aandq.getId()+"";
+      System.out.println(SQL);       
+      cont =new Connect();
+      result=  cont.executeQuery(SQL);
+      while (result.next())
+      {
+      	answer=result.getString("answer");
+      	right=result.getInt("rightt");
+      	 everyscore=result.getInt("score");
+       	readd=result.getInt("rrred");
+      }	 
+       aandq.setRight(right);
+       aandq.setUseranswer(answer);
+       aandq.setUserscore(everyscore);
+       aandq.setReadd(readd);
+       SQL="select * from social.exam where ID ="+ExamID;
+	    result =cont.executeQuery(SQL);	
+		if(result.next())
+		{
+			title=result.getString("title");
+			description=result.getString("description");
+		}
+		cont.Close();
+     } 
+     
+        String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
+        System.out.println(SQL);       
+        cont =new Connect();
+        result=  cont.executeQuery(SQL);
+        rank =0;
+        int judge =0;
+        while (result.next())
+        {
+        	 judge =1;
+        	 rank++;
+        	int userID =result.getInt("userID");
+        	if(userID==TesttakerID)
+        	{
+        		break;
+        	}
+        }	
+        if(judge ==0)
+        {
+        	rank=1;
+        }
+        cont.Close();
+        SQL="select * from social.user where id ="+TesttakerID+"";
+        System.out.println(SQL);
+        cont =new Connect();
+        result=  cont.executeQuery(SQL);
+        if(result.next())
+        {
+        	testername=result.getString("name");
+        }
+        cont.Close();
+        
+   }
+		catch (Exception e) 
+		{
+			e.printStackTrace();
 		 return ERROR;
 		}				
 		return SUCCESS;
