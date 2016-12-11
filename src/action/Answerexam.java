@@ -10,6 +10,7 @@ import domain.Selection;
 import domain.TextBlank;
 import service.ExamService;
 import service.LogService;
+import service.MessageService;
 public class Answerexam  implements Action{
 
 	private String title;
@@ -34,7 +35,15 @@ public class Answerexam  implements Action{
  	
  	private int friendID;
  	private int rank = 0;
+ 	private int messageID;
  	
+ 	
+ 	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
+	}
 	public int getRank() {
 		return rank;
 	}
@@ -432,8 +441,10 @@ public class Answerexam  implements Action{
            {
            	testername=result.getString("name");
            }
+           ExamService es = new ExamService();
+           String exam = es.getExamTitle(ExamID);
            Message mess= new Message();
-           String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
+           String message= testername+"回答了您在试卷“"+exam+"”中的问答题题，请抓紧时间批改哦！";
            String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+userID;
            mess.Systemsendmessage(userID,accepterID, message, url, 3);         
        }    
@@ -533,6 +544,8 @@ public class Answerexam  implements Action{
 	}
 	public String ShowExamDetail() throws Exception {  
 		try {
+			MessageService ms = new MessageService();
+			ms.read(messageID);
 			 ActionContext actCtx = ActionContext.getContext();
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");	
@@ -543,6 +556,8 @@ public class Answerexam  implements Action{
 			  textBlanks =seq.getTextBlanks();
 			  multys  =seq.getMultys();
 			  AandQs =seq.getAandQs();
+			  description = seq.getDescription();
+			  title = seq.getTitle();
             for(Selection sel: selections)	  
             {
            	 int right=0;

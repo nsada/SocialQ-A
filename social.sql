@@ -63,7 +63,7 @@ CREATE TABLE `exam` (
   PRIMARY KEY (`ID`),
   KEY `userID_idx` (`userID`),
   CONSTRAINT `examInx_user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-INSERT INTO `exam` VALUES (0,'null',NULL,0,NULL,NULL,0,0,1,0),(1,'美国兰德公司经典心理测试','简单的心理测试 以及 各种题型都测试一下\r\n						\r\n						\r\n						',1,2,2,3,79,0,0);
+INSERT INTO `exam` VALUES (0,'null',NULL,0,NULL,NULL,0,0,1,0),(1,'美国兰德公司经典心理测试','简单的心理测试 以及 各种题型都测试一下\r\n						\r\n						\r\n						',1,2,2,5,140,0,0),(3,'测试朋友圈','朋友圈显示出了一套试卷\r\n						',1,1,1,1,0,1,0),(4,'测试message','						\r\n						',1,1,1,4,2,1,0);
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `exam_question` (
 
 LOCK TABLES `exam_question` WRITE;
 /*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
-INSERT INTO `exam_question` VALUES (1,1,1,3,3,0,11),(1,2,1,3,3,0,11),(1,4,1,3,3,0,9),(1,1,4,3,1,0,3),(1,1,2,3,1,0,15),(1,1,3,3,3,0,10),(1,2,3,3,3,0,10),(1,2,4,3,1,0,10);
+INSERT INTO `exam_question` VALUES (1,1,1,5,5,0,21),(1,2,1,5,5,0,34),(1,4,1,10,3,0,9),(1,1,4,6,1,0,3),(1,1,2,5,1,0,15),(1,1,3,9,9,0,17),(1,2,3,5,5,0,31),(1,2,4,5,1,0,10),(3,4,1,10,3,0,9),(3,1,4,6,1,0,3),(4,4,1,10,3,0,9),(4,1,3,9,9,0,2);
 /*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `exam_user` (
 
 LOCK TABLES `exam_user` WRITE;
 /*!40000 ALTER TABLE `exam_user` DISABLE KEYS */;
-INSERT INTO `exam_user` VALUES (1,2,58,1),(1,3,9,0);
+INSERT INTO `exam_user` VALUES (3,3,0,0),(4,2,2,1),(1,2,74,1),(1,3,86,1);
 /*!40000 ALTER TABLE `exam_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +165,7 @@ CREATE TABLE `exam_user_answer` (
 
 LOCK TABLES `exam_user_answer` WRITE;
 /*!40000 ALTER TABLE `exam_user_answer` DISABLE KEYS */;
-INSERT INTO `exam_user_answer` VALUES (2,1,1,1,'3',1,0,5),(2,1,2,1,'3',1,0,5),(2,1,4,1,'2',1,0,3),(2,1,1,2,'唐梦研/#1140310522/#',1,0,15),(2,1,1,4,'101000',0,0,0),(2,1,2,4,'111111',1,0,10),(2,1,1,3,'第三方登录审核不过',1,1,10),(2,1,2,3,'不知道',1,1,10),(3,1,1,1,'2',1,0,3),(3,1,2,1,'2',1,0,3),(3,1,4,1,'2',1,0,3),(3,1,1,2,'tmy/#522/#',0,0,0),(3,1,1,4,'010000',0,0,0),(3,1,2,4,'000100',0,0,0),(3,1,1,3,'新浪云',1,0,0),(3,1,2,3,'不知道',1,0,0);
+INSERT INTO `exam_user_answer` VALUES (3,3,4,1,'1',0,0,0),(3,3,1,4,'110000',0,0,0),(2,4,4,1,'1',0,0,0),(2,4,1,3,'你啊',1,1,2),(2,1,1,1,'3',1,0,5),(2,1,2,1,'6',1,0,20),(2,1,4,1,'1',0,0,0),(2,1,1,2,'123/#123123/#',0,0,0),(2,1,1,4,'000100',0,0,0),(2,1,2,4,'100000',0,0,0),(2,1,1,3,'……',1,1,0),(2,1,2,3,'god',1,1,1),(3,1,1,1,'3',1,0,5),(3,1,2,1,'2',1,0,3),(3,1,4,1,'3',0,0,0),(3,1,1,2,'333/#3333/#',0,0,0),(3,1,1,4,'110000',0,0,0),(3,1,2,4,'001000',0,0,0),(3,1,1,3,'哎',1,1,2),(3,1,2,3,'神呗',1,1,10);
 /*!40000 ALTER TABLE `exam_user_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +336,7 @@ CREATE TABLE `log` (
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
-INSERT INTO `log` VALUES (1,0,0,0,0000000000,0000000000,19,'2016/12/12 01:16:30',3),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 01:20:36',0);
+INSERT INTO `log` VALUES (1,0,0,0,0000000000,0000000000,19,'2016/12/12 01:16:30',3),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 01:20:36',0),(1,0,3,0,0000000000,0000000000,9,'2016/12/12 01:38:16',0),(1,0,3,0,0000000004,0000000001,12,'2016/12/12 01:38:16',0),(1,0,3,0,0000000001,0000000004,12,'2016/12/12 01:38:16',0),(1,0,3,0,0000000000,0000000000,9,'2016/12/12 01:38:16',0),(3,0,3,0,0000000000,0000000000,14,'2016/12/12 01:41:06',0),(1,0,4,0,0000000000,0000000000,9,'2016/12/12 01:59:04',0),(1,0,4,0,0000000004,0000000001,12,'2016/12/12 01:59:04',0),(1,0,4,0,0000000001,0000000003,12,'2016/12/12 01:59:04',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:00:12',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:03:12',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:04:06',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:06:53',0),(2,0,1,0,0000000000,0000000000,14,'2016/12/12 02:28:02',0),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 02:32:47',0);
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,7 +362,7 @@ CREATE TABLE `message` (
   KEY `messageInx_accepter_idx` (`accepterID`),
   CONSTRAINT `messageInx_accepter` FOREIGN KEY (`accepterID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `messageInx_sender` FOREIGN KEY (`senderID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +371,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,2,1,NULL,'用户 tmy2 申请您好友','2016/12/11 23:09:52',1,'showFriendInformation?userID=2',1),(2,3,1,NULL,'用户 tmy3 申请您好友','2016/12/11 23:10:17',1,'showFriendInformation?userID=3',1),(3,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:12:03',1,'',2),(4,1,3,NULL,'用户tmy拒绝了您的好友申请','2016/12/12 00:12:06',1,'',6),(5,2,1,NULL,'用户tmy解除了和您的好友关系','2016/12/12 00:52:29',1,'',5),(6,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 00:52:35',1,'showFriendInformation?userID=1',1),(7,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:52:56',1,'',2),(8,1,2,NULL,'用户 tmy 申请您好友','2016/12/12 00:53:36',1,'showFriendInformation?userID=1',1),(9,2,1,NULL,'用户 tmy2 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:56:59',1,'',2),(10,2,1,NULL,'tmy2回答了您的问题，请你抓紧时间批改哦！','2016/12/12 00:58:45',0,'FindUserExam?ExamID=1&TesttakerID=2',3),(11,1,2,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 00:59:49',0,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(12,1,3,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:05:15',1,'',5),(13,1,2,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:06:33',1,'',5),(14,2,1,NULL,'用户 tmy2 申请您好友','2016/12/12 01:11:20',1,'showFriendInformation?userID=2',1),(15,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:11:37',0,'',2),(16,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 01:15:53',1,'showFriendInformation?userID=1',1),(17,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:16:30',0,'',2),(18,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:17:37',0,'FindUserExam?ExamID=1&TesttakerID=3',3),(19,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:20:37',0,'FindUserExam?ExamID=1&TesttakerID=3',3);
+INSERT INTO `message` VALUES (1,2,1,NULL,'用户 tmy2 申请您好友','2016/12/11 23:09:52',1,'showFriendInformation?userID=2',1),(2,3,1,NULL,'用户 tmy3 申请您好友','2016/12/11 23:10:17',1,'showFriendInformation?userID=3',1),(3,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:12:03',1,'',2),(4,1,3,NULL,'用户tmy拒绝了您的好友申请','2016/12/12 00:12:06',1,'',6),(5,2,1,NULL,'用户tmy解除了和您的好友关系','2016/12/12 00:52:29',1,'',5),(6,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 00:52:35',1,'showFriendInformation?userID=1',1),(7,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:52:56',1,'',2),(8,1,2,NULL,'用户 tmy 申请您好友','2016/12/12 00:53:36',1,'showFriendInformation?userID=1',1),(9,2,1,NULL,'用户 tmy2 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:56:59',1,'',2),(10,2,1,NULL,'tmy2回答了您的问题，请你抓紧时间批改哦！','2016/12/12 00:58:45',1,'FindUserExam?ExamID=1&TesttakerID=2',3),(11,1,2,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 00:59:49',1,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(12,1,3,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:05:15',1,'',5),(13,1,2,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:06:33',1,'',5),(14,2,1,NULL,'用户 tmy2 申请您好友','2016/12/12 01:11:20',1,'showFriendInformation?userID=2',1),(15,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:11:37',1,'',2),(16,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 01:15:53',1,'showFriendInformation?userID=1',1),(17,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:16:30',1,'',2),(18,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:17:37',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(19,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:20:37',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(20,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:41:06',1,'FindUserExam?ExamID=3&TesttakerID=3',3),(21,1,3,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 01:50:03',1,'ShowExamDetail?ExamID=1&TesttakerID=3',4),(22,2,1,NULL,'tmy2回答了您在试卷测试message中的问答题题，请抓紧时间批改哦！','2016/12/12 02:06:54',1,'FindUserExam?ExamID=4&TesttakerID=2',3),(23,1,2,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:23:01',1,'ShowExamDetail?ExamID=4&TesttakerID=2',4),(24,2,1,NULL,'tmy2回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 02:28:03',1,'FindUserExam?ExamID=1&TesttakerID=2',3),(25,1,2,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:29:28',0,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(26,3,1,NULL,'tmy3回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 02:32:49',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(27,1,3,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:33:53',1,'ShowExamDetail?ExamID=1&TesttakerID=3',4);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -622,4 +622,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-12  1:28:25
+-- Dump completed on 2016-12-12  2:37:03

@@ -14,6 +14,7 @@ public class MessageService {
 	Usermessage message;
 	
 	public void read(int id) {
+		System.out.println("_______________________________read message: "+id);
 		String SQL="update social.message set rread = "+1+" where id="+id;
 		Connect cont =new Connect();
 		cont.executeUpdate(SQL); 

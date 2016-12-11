@@ -218,8 +218,9 @@ public class Message implements Action {
 	public void Systemsendmessage(int senderID, int accepterID, String message, String url, int type) {
 		 try
 		 {
+//			 url = url + "&messageID=" + getId();
 			 String  SQL= "insert into social.message (senderID, accepterID, rread,message,time,url,type) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+url+"',"+type+")";
-		     //System.out.println("systemsendmessage sql:" + SQL);
+		     System.out.println("systemsendmessage sql:" + SQL);
 		     cont =new Connect();
 	         cont.executeUpdate(SQL); 
 		  }

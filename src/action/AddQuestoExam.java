@@ -236,7 +236,7 @@ public class AddQuestoExam implements Action {
 					}
 			 }
 			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
-			 System.out.println(sql);
+			 //System.out.println(sql);
 			 cont =new Connect();
 			 cont.executeUpdate(sql);
 			 
