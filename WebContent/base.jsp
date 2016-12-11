@@ -32,7 +32,7 @@
         }else{
             username = "";
         }
-        session.setMaxInactiveInterval(18000);
+        session.setMaxInactiveInterval(300*3600);
 %>
     
 
@@ -61,7 +61,7 @@
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
-       				
+       				<s:debug></s:debug>
 					
 					<li class="dropdown" style="margin-top: 5px">
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -115,10 +115,6 @@
 										欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span>
 									</p>
 									
-								</li>
-								<li>
-								            login_result: ${login_result} <br/>
-                                    regist_result: ${regist_result} <br/>
 								</li>
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
@@ -229,8 +225,8 @@
   						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
   						<div style="float: right">
             				<p style="float: left;">第三方登录:</p>  				
-<%--             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a> --%>
-            				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+            				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+<%--             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a> --%>
             			</div>
   					</div>
   					

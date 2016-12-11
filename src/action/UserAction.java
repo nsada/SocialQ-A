@@ -15,8 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;  
 import org.apache.struts2.ServletActionContext;
 
 public class UserAction implements Action {
@@ -30,6 +31,7 @@ public class UserAction implements Action {
 	private List<User> users;
 	private int friendID;
 	private int userID;
+	private int saveLogin;
 	private int login_result=-2;
 	/* login_result :
 	 *  0 -> normal
@@ -41,7 +43,6 @@ public class UserAction implements Action {
 	 *  0 -> normal
 	 *  1 -> username is already exist
 	 */
-	
 	
 	
 	@Override
@@ -63,14 +64,27 @@ public class UserAction implements Action {
 		}
 		try{
 			new_user = us.loginUser(user);
+			System.out.println("userID " + new_user.getId());
 			if (new_user.getId() > 0) {
-				login_result = 0;
+				login_result = 0; 
 				ActionContext actCtx = ActionContext.getContext();
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
 				sess.put("openid", new_user.getTencentOpenID());
-				sess.put("accesstoken", new_user.getTencentToken());		
+				sess.put("accesstoken", new_user.getTencentToken());
+				if (saveLogin == 1) {
+		             Cookie nameCookie = new Cookie("name", new_user.getName()); //可以使用md5或着自己的加密算法保存     
+		             Cookie passwordCookie = new Cookie("password", new_user.getPassword());     
+		             nameCookie.setPath("/socialqanda/"); //cookie路径问题，在我的其他文章里有专门的讲解     
+		             nameCookie.setMaxAge(24*3600);     
+		             passwordCookie.setPath("/webappName/");     
+		             passwordCookie.setMaxAge(24*3600);     
+		             ServletActionContext.getResponse().addCookie(nameCookie);
+		             ServletActionContext.getResponse().addCookie(passwordCookie);
+		             saveLogin = 0;  
+				}
+				return SUCCESS;
 			}
 			login_result = 1;
 			return SUCCESS;	

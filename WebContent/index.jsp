@@ -26,7 +26,7 @@
             </h4>
             <br />
                                 <p>
-                                    login_result: ${login_result}<s:property value="login_result"/></h2> <br/>
+                                    login_result: ${login_result} <br/>
                                     regist_result: ${regist_result} <br/>
                                 </p>
         </ul>
