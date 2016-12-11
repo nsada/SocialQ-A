@@ -40,7 +40,7 @@
         		<br> 参考答案
         		<s:property value="ans" />	
         		<br> 解析
-        		<s:property value="anslysis" />
+        		<s:property value="analysis" />
 		</s:iterator>
 	   <br> 多选题
 		<s:iterator value="multys" >	
@@ -66,7 +66,7 @@
         		<br> 参考答案
         		<s:property value="ans" />		
         		<br> 解析
-        		<s:property value="anslysis" />
+        		<s:property value="analysis" />
 		</s:iterator>
 		
 		 <br> 填空题
@@ -91,7 +91,7 @@
         		<br> 你的答案
         		<s:property value="useranswer" />
         		<br> 解析
-        		<s:property value="anslysis" />	               
+        		<s:property value="analysis" />	               
 		</s:iterator>
 		
 	
@@ -107,7 +107,7 @@
         		<br> 你的答案
         		<s:property value="useranswer" />
         		<br> 解析
-        		<s:property value="anslysis" />	                  
+        		<s:property value="analysis" />	                  
 		</s:iterator>
 		      
 </div>

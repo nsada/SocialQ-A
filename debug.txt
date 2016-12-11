@@ -1,7 +1,8 @@
 12.10
 LSY
 	1. exam类增加属性analysis （心理测试的解析)
-	//2. 回答试题的时候没有title和description
+	//已解决2. 回答试题的时候没有title和description
+	3. Answeredexamdetial.jsp 解析拼写错误
 
 YC
 	1. 添加单选题时，选择了不统一分数后，答案那一行也消失

@@ -8,8 +8,8 @@ import domain.AandQ;
 public class CheckExam implements Action{
 	 private ResultSet result = null;
 	 private Connect cont;
-	 private int ExamID =89;
-	 private int TesttakerID=1;
+	 private int ExamID;
+	 private int TesttakerID;
      private List<AandQ> AandQs;	
 	 private String Takename="";
 	 private String scorestr="13#14#";

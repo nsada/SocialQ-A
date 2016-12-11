@@ -426,7 +426,8 @@ public class Answerexam  implements Action{
            }
            Message mess= new Message();
            String message= testername+"回答了您的问题，请你抓紧时间批改哦！";
-           mess.Systemsendmessage(userID,accepterID, message);          
+           String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+testername;
+           mess.Systemsendmessage(userID,accepterID, message, url, 3);          
        }    
 //          log.OperateExam(userID, userID, 14);
        log.OperateExam(userID, ExamID, 14);
@@ -541,7 +542,7 @@ public class Answerexam  implements Action{
            	 everyscore=0;
            	 String answer="";
              String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+userID+" and questionType="+1+" and questionID="+sel.getId()+"";
-             System.out.println(SQL);       
+             //System.out.println(SQL);       
              cont =new Connect();
              result=  cont.executeQuery(SQL);             
              while (result.next())
