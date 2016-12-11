@@ -61,7 +61,7 @@
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
-       				<s:debug></s:debug>
+       				
 					
 					<li class="dropdown" style="margin-top: 5px">
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -120,6 +120,7 @@
 					<%} %>      		
         		</ul>
     	</div>
+    	<s:debug></s:debug>
     	</div>
 	</nav>
 	

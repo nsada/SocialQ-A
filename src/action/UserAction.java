@@ -97,14 +97,14 @@ public class UserAction implements Action {
 	}
 	
 	public String regist(){
-		System.out.println("UserAction regist redirect_url:" + redirect_url);
+/*		System.out.println("UserAction regist redirect_url:" + redirect_url);
 		char ch = redirect_url.charAt(redirect_url.length()-1); 
 		if (ch == 'm') {
 			redirect_url = redirect_url + "/index";
 		}
 		if (ch == '/') {
 			redirect_url = redirect_url + "index";
-		}
+		}*/
 		UserService us = new UserService();
 		int existID = us.getUserIDfromName(user.getName());
 		if (existID > 0) {

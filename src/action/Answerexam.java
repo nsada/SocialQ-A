@@ -437,7 +437,7 @@ public class Answerexam  implements Action{
            String url = "FindUserExam?ExamID="+ExamID+"&TesttakerID="+userID;
            mess.Systemsendmessage(userID,accepterID, message, url, 3);         
        }    
-          log.OperateExam(userID, userID, 14);
+          log.OperateExam(userID, ExamID, 14);
             String   SQL="insert into social.exam_user ( examID, userID,score) values ("+ExamID+", "+userID+","+score+")";
             System.out.println(SQL);
             cont =new Connect();
