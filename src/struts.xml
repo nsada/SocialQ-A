@@ -116,8 +116,9 @@
             <result>/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="registPro" class="action.UserAction" method="regist">
-            <exception-mapping exception="java.lang.IllegalArgumentException" result="null"></exception-mapping>
-            <result name="success">/WEB-INF/content/user/welcome.jsp</result>
+<!--             <exception-mapping exception="java.lang.IllegalArgumentException" result="null"></exception-mapping> -->
+<!--             <result name="success">/WEB-INF/content/user/welcome.jsp</result> -->
+            <result name="success">/redirectpage.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="regist">

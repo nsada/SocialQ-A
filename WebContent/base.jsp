@@ -45,7 +45,6 @@
 
         </div>
 
-    
 
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
@@ -115,6 +114,11 @@
 									<p class="navbar-text">
 										欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span>
 									</p>
+									
+								</li>
+								<li>
+								            login_result: ${login_result} <br/>
+                                    regist_result: ${regist_result} <br/>
 								</li>
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		

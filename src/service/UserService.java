@@ -287,4 +287,21 @@ public class UserService {
 		return users;
 	}
 
+	public int getUserIDfromName(String name) {
+		cont = new Connect();
+		String sql = "select id from user where name='" + name + "'";
+		ResultSet result = cont.executeQuery(sql);
+		int userID = -1;
+		try{
+			if (result.next()){
+				userID = (int) result.getInt("id");
+			}
+			result.close();
+		}catch (Exception e) {
+			
+		}		
+		cont.Close();
+		return userID;
+	}
+
 }

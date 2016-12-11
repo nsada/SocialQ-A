@@ -30,54 +30,91 @@ public class UserAction implements Action {
 	private List<User> users;
 	private int friendID;
 	private int userID;
+	private int login_result=-2;
+	/* login_result :
+	 *  0 -> normal
+	 *  1 -> password wrong
+	 *  2 -> username is not exist
+	 */
+	private int regist_result=-2;
+	/* regist_result :
+	 *  0 -> normal
+	 *  1 -> username is already exist
+	 */
+	
 	
 	
 	@Override
 	public String execute() throws Exception {	//login in
-		//System.out.println("UserAction login redirect_url:" + redirect_url);
+		char ch = redirect_url.charAt(redirect_url.length()-1); 
+		if (ch == 'm') {
+			redirect_url = redirect_url + "/index";
+		}
+		if (ch == '/') {
+			redirect_url = redirect_url + "index";
+		}
+		System.out.println("UserAction login redirect_url:" + redirect_url);
 		UserService us = new UserService();
 		User new_user= new User();		
+		int existID = us.getUserIDfromName(user.getName());
+		if (existID <= 0) {
+			login_result = 2;
+			return SUCCESS;
+		}
 		try{
 			new_user = us.loginUser(user);
-		}catch (Exception e) {
-			new_user = null;
-		}		
-		if (new_user == null)
-				return ERROR;
-			
-		try{
-			if (new_user.getId() > 0){
+			if (new_user.getId() > 0) {
+				login_result = 0;
 				ActionContext actCtx = ActionContext.getContext();
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
 				sess.put("openid", new_user.getTencentOpenID());
-				sess.put("accesstoken", new_user.getTencentToken());
-				//ls.login(new_user.getId());
-				return SUCCESS;			
+				sess.put("accesstoken", new_user.getTencentToken());		
 			}
-		}catch (Exception e){
-			return ERROR;
+			login_result = 1;
+			return SUCCESS;	
+		}catch (Exception e) {
+			HttpServletRequest request =  ServletActionContext.getRequest();
+			request.setAttribute("LoginFailed","");
+			
 		}
-		HttpServletRequest request =  ServletActionContext.getRequest();
-		request.setAttribute("LoginFailed","");
 		return ERROR;
 	}
 	
 	public String regist(){
+		System.out.println("UserAction regist redirect_url:" + redirect_url);
+		char ch = redirect_url.charAt(redirect_url.length()-1); 
+		if (ch == 'm') {
+			redirect_url = redirect_url + "/index";
+		}
+		if (ch == '/') {
+			redirect_url = redirect_url + "index";
+		}
 		UserService us = new UserService();
+		int existID = us.getUserIDfromName(user.getName());
+		if (existID > 0) {
+			regist_result = 1;
+			return SUCCESS;
+		}
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
-		user.setTencentOpenID((String)sess.get("openid"));
-		user.setTencentToken((String)sess.get("accesstoken"));
-		
-		int id = us.addUser(user);
-		user.setId(id);
-		
-		ls.addUser(id);
-		sess.put("username", user.getName());
-		sess.put("userid", user.getId());
-		return SUCCESS;
+		try {
+			user.setTencentOpenID((String)sess.get("openid"));
+			user.setTencentToken((String)sess.get("accesstoken"));
+			
+			int id = us.addUser(user);
+			user.setId(id);
+			
+			ls.addUser(id);
+			sess.put("username", user.getName());
+			sess.put("userid", user.getId());
+			regist_result = 0;
+			return SUCCESS;
+		} catch (Exception e) {
+			regist_result = -1;
+			return ERROR;
+		}
 	}
 	
 	public String logout(){
@@ -205,6 +242,22 @@ public class UserAction implements Action {
 
 	public void setUserID(int userID) {
 		this.userID = userID;
+	}
+
+	public int getLogin_result() {
+		return login_result;
+	}
+
+	public void setLogin_result(int login_result) {
+		this.login_result = login_result;
+	}
+
+	public int getRegist_result() {
+		return regist_result;
+	}
+
+	public void setRegist_result(int regist_result) {
+		this.regist_result = regist_result;
 	}
 	
 
