@@ -32,6 +32,7 @@
         }else{
             username = "";
         }
+        session.setMaxInactiveInterval(18000);
 %>
     
 
@@ -40,11 +41,10 @@
 
 <body style="margin-top: 50px;">
         <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
-            <img style="opacity:0.4;position:fixed;" src="<%=request.getContextPath()%>/images/background.jpg" height="100%" width="100%" /> 
+            <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
 
-    
 
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
@@ -57,7 +57,7 @@
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
         		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
+       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
@@ -68,12 +68,33 @@
                    		 		个人中心 <b class="caret"></b>
                			 </a>
                			 <ul class="dropdown-menu">
+               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>        
+               			 	<li><a href="<%=request.getContextPath()%>/GroupInsertExam">工作组出题</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+                           <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
+                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
+                             
+                             <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
+                             
+                            <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
+                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                    <li class="dropdown" style="margin-top: 5px">
+               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                   		 		消息<span class="badge">14</span> <b class="caret"></b>
+               			 </a>
+               			 <ul class="dropdown-menu">
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
                     		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
 
            
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>
+                            <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
                             
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
@@ -103,7 +124,6 @@
                         </ul>
                     </li>
 
-
         			
         		</ul>
         		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
@@ -115,6 +135,11 @@
 									<p class="navbar-text">
 										欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span>
 									</p>
+									
+								</li>
+								<li>
+								            login_result: ${login_result} <br/>
+                                    regist_result: ${regist_result} <br/>
 								</li>
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
@@ -224,12 +249,67 @@
   					<div class="col-sm-10">
   						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
   						<div style="float: right">
+<<<<<<< HEAD
             				<p style="float: left;">第三方登录:</p>
+=======
+            				<p style="float: left;">第三方登录:</p>  				
+<%--             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a> --%>
+>>>>>>> remote_master
             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
             			</div>
   					</div>
   					
             		
+<<<<<<< HEAD
+=======
+
+    			</div>
+    		</form>
+    		<form class="form-horizontal" role="form" action="registPro"  id= "registform" method="post">
+    		
+        		<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Name</label>
+   	 				<div class="col-sm-10">
+        				<input id="registName"type="text" class="form-control" id="inputSuccess" name="user.name" placeholder="请输入用户名">
+        			</div>
+  				</div>
+  				
+  				<p><br></p>
+  		
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Password</label>
+   	 				<div class="col-sm-10">
+        				<input id="registPassword"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Repeat</label>
+   	 				<div class="col-sm-10">
+        				<input id="registPasswordAgain"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请再次输入密码">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group  has-success">
+    				<label class="col-sm-2 control-label" for="inputSuccess">Email</label>
+   	 				<div class="col-sm-10">
+        				<input id="registEmail"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
+    				</div>
+  				</div>
+  				
+  				<p><br></p>
+  				
+  				<div class="form-group">
+  					<label class="col-sm-2 control-label" for="inputSuccess"></label>
+  					<div class="col-sm-10">
+  						<a  onclick="RegistSubmit()"class="button button-glow button-border button-rounded button-primary">注册</a>          
+  					</div>
+>>>>>>> remote_master
     			</div>
     		</form>
     		

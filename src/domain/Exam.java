@@ -7,6 +7,21 @@ public class Exam {
 	private String description;	
 	private int joiner;
 	private int rights;
+	private int check;
+	private int TesttakerID;
+	public int getCheck() {
+		return check;
+	}
+	public void setCheck(int check) {
+		this.check = check;
+	}
+	public int getTesttakerID() {
+		return TesttakerID;
+	}
+	public void setTesttakerID(int testtakerID) {
+		TesttakerID = testtakerID;
+	}
+
 	public int getId() {
 		return id;
 	}

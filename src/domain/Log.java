@@ -29,12 +29,16 @@ public class Log {
 		String userB = us.getUserName(userIDB);
 		QuestionBaseService qBs = new QuestionBaseService();
 		String qBase = qBs.getqBaseName(qBaseID);
+		//System.out.println("qBase: " + qBase);
 		QuestionService qs = new QuestionService();
 		String question = qs.getQuestionContext(questionID, questionType);
+		//System.out.println("question: " + question);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
+		//System.out.println("exam: " + exam);
 		GroupService gs = new GroupService();
 		String group = gs.getGroupName(groupID);
+		//System.out.println("group: " + group);
 		ans = "用户"+user;
 		switch (action) {
 		case 1: ans = ans + "注册成功"; break;
@@ -57,7 +61,8 @@ public class Log {
 		case 18: ans = ans + "向用户" + userB + "发送了好友申请"; break;
 		case 19: ans = ans + "和用户" + userB + "成为了社交问答网站好友"; break;
 		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
-		
+		case 21: ans = ans + "解除了和用户"+userB+"的好友关系"; break;
+		case 22: ans = ans + "拒绝了用户"+userB+"的好友申请"; break;
 		}
 		this.trans= ans;
 		return ans;
@@ -72,11 +77,12 @@ public class Log {
 		System.out.print("questionType("+questionType+") ");		
 		System.out.print("action("+action+") ");
 		System.out.print("time("+time+") ");
+		System.out.print("userIDB("+userIDB+") ");
 		System.out.println();
-		System.out.println("trans: " + trans);
+	//	System.out.println("trans: " + trans);
 		
-	} 
-	
+	}
+
 	public int getUserID() {
 		return userID;
 	}
@@ -131,14 +137,13 @@ public class Log {
 	public void setUserIDB(int userIDB) {
 		this.userIDB = userIDB;
 	}
-
 	public String getTrans() {
 		return trans;
 	}
-
 	public void setTrans(String trans) {
 		this.trans = trans;
-	}
+	} 
 	
+
 	
 }

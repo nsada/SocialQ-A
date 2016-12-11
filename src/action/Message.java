@@ -36,7 +36,15 @@ public class Message implements Action {
 	private String url;
 	private int type;
 	private int id;
+	private int messageID;
 	
+	
+	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
+	}
 	public int getId() {
 		return id;
 	}
@@ -192,6 +200,21 @@ public class Message implements Action {
 			System.out.println(e.getMessage());
 		}				 
 	 }
+	 public void Systemsendmessage ( int senderID,int accepterID, String message)
+	 {
+		 try
+		 {
+			 String system = "系统提示您:";
+			 String  SQL= "insert into  social.message (senderID, accepterID, rread,message,time,sendername) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+system+"')";
+		     System.out.println(SQL);
+		     cont =new Connect();
+	         cont.executeUpdate(SQL); 
+		  }
+	   catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}				 
+	 }
 	public void Systemsendmessage(int senderID, int accepterID, String message, String url, int type) {
 		 try
 		 {
@@ -217,7 +240,10 @@ public class Message implements Action {
 		}
 		return SUCCESS;
 	}
-
-
+	public String check() {
+		MessageService ms = new MessageService();
+		ms.read(messageID);
+		return SUCCESS;
+	}
 
 }

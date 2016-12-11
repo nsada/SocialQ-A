@@ -15,8 +15,10 @@
     	<div class="panel panel-primary">
 			<div class="panel-heading">试卷基本信息</div>
   			<div class="panel-body">
-  				<h2>试卷名：${exam.title}</h2>
-        		<p > 试卷描述：${exam.description}<p>
+
+  				<h2>试卷名：<s:property value="title"/></h2>
+        		<p > 试卷描述：<s:property value="description"/><p>
+
   			</div>
   		</div>
     	

@@ -32,6 +32,7 @@ public class ExamService implements Action {
 			//System.out.println("按examID查找exam失败");
 			title = "";
 		}
+		cont.Close();
 		return title;
 	}
 	public Exam getExam(int examID){
@@ -51,6 +52,7 @@ public class ExamService implements Action {
 		}catch (Exception e) {
 			System.out.println("按examID查找exam失败");
 		}
+		cont.Close();
 		return exam;
 	}
 	public int deleteexamquestion (int questionID,int type ,int ExamID)
@@ -59,6 +61,7 @@ public class ExamService implements Action {
 		try {
          String SQL="delete from exam_question where questionID=" + questionID + " and examID=" + ExamID + " and type=" + type;
           cont.executeUpdate(SQL);
+          cont.Close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return -1;
@@ -71,14 +74,31 @@ public class ExamService implements Action {
 		try {
          String SQL="delete from exam_question where  examID=" + ExamID ;
           cont.executeUpdate(SQL);
+          cont.Close();
           cont =new Connect();
           SQL="delete from exam where  ID=" + ExamID ;
           cont.executeUpdate(SQL);
+          cont.Close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return -1;
 		}				
 		return 1;
+	}
+
+	public int getUserExamScore(int userID, int examID) {
+		String sql = "select score from exam_user where examID="+examID+" and userID="+userID;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		int score = -1;
+		try{
+			if (result.next()){
+				score = result.getInt("score");
+			}
+		}catch (Exception e) {
+			System.out.println("按examID&userID查找score失败");
+		}
+		return score;
 	}
 
 

@@ -14,9 +14,11 @@ public class Usermessage {
 	 * type:
 	 * 0 -> normal (senderID to accepterID)
 	 * 1 -> system (senderID want to be accepterID's friend)
-	 * 2 -> system (senderID accepte the friend apply of accepterID)
+	 * 2 -> system (senderID accept the friend apply of accepterID)
 	 * 3 -> system (senderID has done the AandQ, want accepterID to check)
 	 * 4 -> system (senderID has checked the AandQ, the check of the exam is finished) 
+	 * 5 -> system (senderID delete the relationship with accepteID)
+	 * 6 -> system (senderID refuse the friend apply of accepterID)
 	 */
 	public void setRead(int read) {
 		this.read=read;

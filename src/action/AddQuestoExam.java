@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
@@ -21,20 +23,54 @@ import service.ExamService;
 import service.LogService;
 public class AddQuestoExam implements Action {
 	private ResultSet result = null;
+	private ResultSet resultanswer = null;
 	private String title;
 	private String description;
 	private Connect cont;
-	private int ExamID;	
+	private int ExamID=81;	
 	private int questionID;
 	private int type;	
 	private int joiner;
 	private int rights;
 	private Exam exam;
+    private String questionstr="1/#3/$2/#4/#";
 	private List<TextBlank> textBlanks;
 	private ShowExamQuestion seq;
 	private List<Multy> multys;
 	private List<AandQ> AandQs;	
 	private List<Selection> selections =new ArrayList<Selection> ();
+	private List<Exam> Exams =new ArrayList<Exam> ();
+	private Queue <String> textb;
+	private int publish;
+	private int GroupID;
+	public int getGroupID() {
+		return GroupID;
+	}
+	public void setGroupID(int groupID) {
+		GroupID = groupID;
+	}
+	public  List<Exam> getExams() {
+		return Exams;
+	}
+	public void setExams( List<Exam> Exams) {
+		this.Exams = Exams;
+	}	
+	
+	
+	public int getPublish(int publish)
+	{
+		return publish;
+	}
+	public void setPublish(int publish)
+	{
+		this.publish=publish;
+	}
+	public String getQuestionstr(String questionstr) {
+			return questionstr;
+	}
+		public void setQuestionstr(String questionstr) {
+			this.questionstr = questionstr;
+		}
 	public List<Multy> getMultys() {
 		return multys;
 	}
@@ -78,7 +114,6 @@ public class AddQuestoExam implements Action {
 	public void setDescription(String description) {
 		this.description = description;
 	}	
-
 	public int getExamID() {
 		return ExamID;
 	}
@@ -110,9 +145,19 @@ public class AddQuestoExam implements Action {
 				ActionContext actCtx = ActionContext.getContext();
 		    	Map<String, Object> sess = actCtx.getSession();
 		         int userID = (int) sess.get("userid");	
-	         String SQL="insert into exam_question(examID, questionID, type,userID) values ("+ExamID+", "+questionID+","+type+","+userID+")";
-	         System.out.print(SQL);
-	          cont.executeUpdate(SQL);
+		         Answerexam ans = new Answerexam(); 
+		         textb=ans.getTextBlankanswer(questionstr);
+		         while(!textb.isEmpty())
+                 {
+                	 String answer =textb.poll();
+                	String everyblank[]= answer.split("/#");
+                	questionID=Integer.parseInt(everyblank[0]);
+                	type=Integer.parseInt(everyblank[1]);
+                	String SQL="insert into exam_question(examID, questionID, type,GroupID) values ("+ExamID+", "+questionID+","+type+","+GroupID+")";//This is Group ID
+                 System.out.println(SQL);
+                 cont =new Connect();
+                 cont.executeUpdate(SQL);  
+                 }
 	           seq =new ShowExamQuestion();
 		       seq.setExamID(ExamID);
 			   seq.execute();
@@ -128,13 +173,45 @@ public class AddQuestoExam implements Action {
 			  exam =es.getExam(ExamID);
 			  title = exam.getTitle();
 			  description =exam.getDescription();
+			  joiner=exam.getJoiner();
+			  rights=exam.getRights(); 
 			  System.out.println("Title:"+title);
+			  System.out.println("Description:"+description);
 			  
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			 return ERROR;
 			}				
 			return SUCCESS;
+	}
+	public String ShowDrafsContent()
+	{
+		cont =new Connect();
+		try {
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");	
+            seq =new ShowExamQuestion();
+	        seq.setExamID(ExamID);
+		    seq.execute();
+		    selections=seq.getSelections();
+		   textBlanks=seq.getTextBlanks();
+		   multys =seq.getMultys();
+		   AandQs=seq.getAandQs();
+		   for(AandQ k: AandQs)
+		   {
+			  System.out.println(k.getContext());
+		   }
+		  ExamService es = new ExamService();
+		  exam =es.getExam(ExamID);
+		  title = exam.getTitle();
+		  description =exam.getDescription();
+		  System.out.println("Title:"+title);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}				
+		return SUCCESS;
 	}
 	public String submit ()
 	{
@@ -148,15 +225,23 @@ public class AddQuestoExam implements Action {
 			 String sql ="select * from social.exam_question where examID ="+ExamID;
 			 cont =new Connect();
 			 result = cont.executeQuery(sql);
-			 while(result.next())
-				{
-				        
-				        LogService l = new LogService();
-				        //System.out.println("log_____________________________________ exam question");
-					 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
-				}
+			 if(publish==1)
+			 {
+				 while(result.next())
+					{
+					        
+					        LogService l = new LogService();
+					        //System.out.println("log_____________________________________ exam question");
+						 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
+					}
+			 }
+			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
+			 System.out.println(sql);
+			 cont =new Connect();
+			 cont.executeUpdate(sql);
 			 
 	        }
+		
 		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
@@ -199,4 +284,73 @@ public class AddQuestoExam implements Action {
 		}	
 		 return SUCCESS;
 	}
+	
+	public String ShowDrafs()
+	{
+		try{
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	        int userID = (int) sess.get("userid");	
+			
+		 String	SQL="select * from social.exam where userID ="+userID+" and publish="+0+" ";	
+		 cont =new Connect();
+		 result = cont.executeQuery(SQL);
+		 while(result.next())
+			{
+			 
+			      Exam ex =new Exam();
+			      ex.setDescription(result.getString("description"));
+			      ex.setId(result.getInt("ID"));
+			      ex.setJoiner(result.getInt("joiner"));
+			      ex.setRights(result.getInt("rights"));
+			      ex.setTitle(result.getString("title"));
+			      Exams.add(ex);
+			}
+			
+	        }
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}	
+		 return SUCCESS;
+	}
+	
+	
+	public String ShowHaveAnsaweredExam()
+	{
+		try{
+			ActionContext actCtx = ActionContext.getContext();
+	    	Map<String, Object> sess = actCtx.getSession();
+	        int userID = (int) sess.get("userid");	
+		 String	SQL="select * from social.exam_user where userID ="+userID+" ";	
+		 cont =new Connect();
+		 result = cont.executeQuery(SQL);
+		 while(result.next())
+			{
+			      int ID = result.getInt("examID");
+			 SQL="select * from social.exam where ID ="+ID+" ";
+			 cont =new Connect();
+			 resultanswer = cont.executeQuery(SQL);
+			   if(resultanswer.next())
+				 {
+				      Exam ex =new Exam();
+				      ex.setDescription(resultanswer.getString("description"));
+				      ex.setId(resultanswer.getInt("ID"));
+				      ex.setJoiner(resultanswer.getInt("joiner"));
+				      ex.setRights(resultanswer.getInt("rights"));
+				      ex.setTitle(resultanswer.getString("title"));
+				      Exams.add(ex);
+				 }
+			     
+			}
+  
+	   }
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		 return ERROR;
+		}	
+		 return SUCCESS;
+	}	
 }

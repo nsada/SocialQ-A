@@ -17,6 +17,7 @@ public class MessageService {
 		String SQL="update social.message set rread = "+1+" where id="+id;
 		Connect cont =new Connect();
 		cont.executeUpdate(SQL); 
+		cont.Close();
 	}
 
 	public List<Usermessage> getUserAllMessage(int userID) {
@@ -42,7 +43,34 @@ public class MessageService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+        cont.Close();
 		return messages;
 	}
 
+	public Usermessage getMessage(int id) {
+		String sql="select * from social.message where id="+id;
+        System.out.println("Message sql: " + sql);
+        Connect cont =new Connect();
+        message = new Usermessage();
+        try {
+        	ResultSet result=cont.executeQuery(sql);
+			if (result.next()){		
+				message.setId(result.getInt("id"));
+				message.setAccepterID(result.getInt("accepterID"));
+				message.setDate(result.getString("time"));
+				message.setMessage(result.getString("message"));
+				message.setRead(result.getInt("rread"));
+				message.setSenderID(result.getInt("senderID"));
+				message.setSendername(result.getString("sendername"));
+				message.setUrl(result.getString("url"));
+				message.setType(result.getInt("type"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}			
+        cont.Close();
+		return message;
+	}
+
 }
+		

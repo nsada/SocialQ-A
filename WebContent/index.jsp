@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <rapid:override name="head">
     <title>主页</title>
@@ -24,8 +25,11 @@
                 Blog:<span class="text-info">http://blog.csdn.net/tmy0131</span>
             </h4>
             <br />
+                                <p>
+                                    login_result: ${login_result}<s:property value="login_result"/></h2> <br/>
+                                    regist_result: ${regist_result} <br/>
+                                </p>
         </ul>
-
 
 
 </rapid:override>

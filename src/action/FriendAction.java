@@ -16,8 +16,11 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import TencentWeiboAction.Information;
+import domain.Event;
 import domain.Friend;
+import domain.Log;
 import domain.User;
+import domain.Usermessage;
 import domain.WeiboFriend;
 import service.FriendService;
 import service.LogService;
@@ -37,9 +40,10 @@ public class FriendAction implements Action {
 	private String openB;	
 	private int messageID;
 	int userID;
+	private List<Event> events;
 
 	@Override
-	public String execute() throws Exception {
+	public String execute() throws Exception { //show user's all friends(web, weibo)
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		try {
@@ -50,9 +54,9 @@ public class FriendAction implements Action {
 		}
 		try {
 			if (getsetWeicoFriends().equals("success")) {
-				System.out.println("show friends before");
+				//System.out.println("show friends before");
 				friends = getUserFriends(userID);
-				System.out.println("show friends size "+friends.size());
+				//System.out.println("show friends size "+friends.size());
 				return SUCCESS;
 			}
 		} catch (Exception e) {
@@ -80,9 +84,10 @@ public class FriendAction implements Action {
 					"access_token="+sess.get("accesstoken")+"&"+
 					"openid="+sess.get("openid")+"&"+
 					"reqnum=30&startindex=0");
-			System.out.println(str);
+			//System.out.println(str);
 			int ret_index = str.indexOf("ret");
 			String sub = str.substring(ret_index+5);
+			//System.out.println(sub);
 			if (sub.charAt(1) != ',') {
 				System.out.println("fail to get information of user's frends");
 				return ERROR;
@@ -133,16 +138,29 @@ public class FriendAction implements Action {
 		ls.OperateMessage(a,b,18);
 		return SUCCESS;
 	}
-	public String accepteAddFriendMessage() {		
+	public String acceptAddFriendMessage() {		
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		if(sess.get("userid")==null) return "needlogin";
 		int B = (int) sess.get("userid");
-		System.out.println("addFriend " + A + " "+ B);
 		addFriend(A,B);
 		MessageService ms = new MessageService();
 		ms.read(messageID);
-
+		return SUCCESS;
+	}
+	public String refuseAddFriendMessage() {
+		MessageService ms = new MessageService();
+		ms.read(messageID);
+		Usermessage mes = ms.getMessage(messageID);
+		int A = mes.getSenderID();
+		int B = mes.getAccepterID();	
+		UserService us = new UserService();
+		String nameB = us.getUserName(B);		
+		String message = "用户"+nameB+"拒绝了您的好友申请";
+		Message mesAction = new Message();
+		mesAction.Systemsendmessage(B, A, message, "", 6);			
+		LogService ls = new LogService();
+		ls.OperateFriend(A, B, 22);		
 		return SUCCESS;
 	}
 	private void becomeFriend(int a, int b, int type) {		
@@ -193,13 +211,18 @@ public class FriendAction implements Action {
 			fs.updateWeiboFriend(nameA, openB, 2);			
 			delWebFriend(a,b);
 		}
-
+		
+		Message mes = new Message();
+		String message = "用户"+nameA+"解除了和您的好友关系";
+		mes.Systemsendmessage(b, a, message, "", 5);			
+		LogService ls = new LogService();
+		ls.OperateFriend(a, b, 21);
 		return SUCCESS;
 	}
 	
 	private void delWebFriend(int a, int b) {
 		fs.delFriend(a,b);
-		fs.delFriend(b,a);
+		fs.delFriend(b,a);		
 	}
 
 	public List<User> getUserFriends(int userID) {
@@ -215,6 +238,40 @@ public class FriendAction implements Action {
 		sendAddFriendMessage(A, B);
 		return SUCCESS;
 	}	
+	
+	public String showFriendsEvents() {
+		events = new ArrayList<>();
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			 userID = (int) sess.get("userid");
+		} catch (Exception e) {
+			friends = null;
+			return "needlogin";
+		}
+		try {
+			friends = getUserFriends(userID);
+			LogService ls = new LogService();
+			for (int i = 0; i < friends.size(); i++) {
+				List<Log> logs = ls.getUserLogs(friends.get(i).getId());
+				for (int j = 0; j < logs.size(); j++) {
+					
+					Log log = logs.get(j);
+					//log.print();
+					if (log.getAction() == 9 || log.getAction() == 14) { 
+						Event event = new Event(log);
+						//event.print();
+						events.add(event);
+					}
+				}
+			}
+		} catch (Exception e) {
+			events = null;			
+			friends = null;
+			return ERROR;
+		}
+		return SUCCESS;		
+	}
 	
 
 
@@ -259,6 +316,18 @@ public class FriendAction implements Action {
 	}
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
+	}
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 	
 

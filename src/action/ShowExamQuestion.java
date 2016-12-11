@@ -13,6 +13,20 @@ import domain.TextBlank;
 import service.QuestionBaseService;
 import service.QuestionService;
 public class ShowExamQuestion implements Action {
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	private String title;
+	private String description;
 	private int type;
 	private int ExamID;
 	private List<Selection> selections ;///=new ArrayList<Selection> ();
@@ -101,7 +115,15 @@ public class ShowExamQuestion implements Action {
 				 multys.add(qs.getMulty(result.getInt("questionID")));
 			 }
 			 
-			}	
+			}
+	    sql ="select * from social.exam where ID ="+ExamID;
+			result =cont.executeQuery(sql);	
+			if(result.next())
+			{
+				title=result.getString("title");
+				description=result.getString("description");
+			}
+		 cont.Close();
 	}
 	catch (Exception e) {
 		System.out.println(e.getMessage());
@@ -112,4 +134,3 @@ public class ShowExamQuestion implements Action {
 	}
 
 }
-

@@ -29,10 +29,6 @@
                     </s:iterator> 
                 </ul>
             </li>      
-<%--             选择用户添加入工作组
-            <s:iterator value="users" var="u">
-                 <a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a>
-            </s:iterator>      --%>
         </div>
         <table class="table table-bordered table-hover ">
             <caption>工作组成员</caption>

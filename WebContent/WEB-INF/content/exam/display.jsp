@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
@@ -14,7 +15,7 @@
    								   <div class="list-group">
    								   		<s:iterator value="questionBases">
            									<a  class="list-group-item list-group-item-success"
-           										 href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+           										 href='<s:url action="ShowBaseQues"><s:param name="qBaseID" value ="id"/><s:param name="GroupID" value ="GroupID"/><s:param name="ExamID" value ="ExamID"/> </s:url>'>
                         						<s:property value="title" />
                								</a>
        		 							</s:iterator>
@@ -23,4 +24,6 @@
   							</div>
 		</div>
 </rapid:override>
-<%@ include file="../../../../base.jsp"%>
+<%@ include file="../../../base.jsp"%>
+
+
