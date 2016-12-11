@@ -78,7 +78,9 @@
                              <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
                              
                             <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
+                            <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>                            
+                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>查看logs</a></li>
+                            
                         </ul>
                     </li>
                     

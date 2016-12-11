@@ -9,13 +9,13 @@
 
 
 <rapid:override name="head">
-    <title>朋友圈</title>
+    <title>个人动态</title>
 </rapid:override>
 
 <rapid:override name="content">
    
     <div class="panel panel-success">
-        <div class="panel-heading">好友动态</div>
+        <div class="panel-heading">时间轴</div>
         <div class="panel-body">
             <div class="list-group">
 

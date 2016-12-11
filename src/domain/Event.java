@@ -3,12 +3,15 @@ package domain;
 import java.util.Date;
 
 import service.ExamService;
+import service.GroupService;
+import service.QuestionBaseService;
+import service.QuestionService;
 import service.UserService;
 
 public class Event {
 	private int userID;
 	private String event;
-	private String url;
+	private String url="";
 	private int type;
 	private Date time;
 	/*
@@ -20,33 +23,115 @@ public class Event {
 	public Event() {}
 	public Event(Log log) {
 		//log.print();
+		changeLogintoEvent(log, true);
+	}
+	public int changeLogintoEvent(Log log, boolean isFriend) {
 		int action = log.getAction();
 		userID = log.getUserID();
 		time = log.getTime();
 		UserService us = new UserService();
 		String name = us.getUserName(userID);
 		int examID = log.getExamID();
-		//System.out.println("examID " + examID);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
-		if (action == 14) {
-			type = 1;
-			event = name + "回答了试卷:" + exam;
-			url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;			
+		QuestionBaseService qBs = new QuestionBaseService();
+		int qBaseID = log.getqBaseID();
+		String qBase = qBs.getqBaseName(qBaseID);
+		GroupService gs = new GroupService();
+		int groupID = log.getGroupID();
+		String group = gs.getGroupName(groupID);
+		int userBID = log.getUserIDB();
+		String userB = us.getUserName(userBID);
+		switch (action) {		
+			case 9:
+				type = 0;
+				event = name + "发布了试卷:" + exam;
+				url = "ShowExam?ExamID=" + examID;
+				break;
+			case 14:
+				type = 1;
+				
+				if (isFriend) {
+					event = name + "回答了试卷:" + exam;
+					url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;
+				} else {
+					type = 9;
+					event = "回答了试卷:" + exam;
+					url = "ShowExamDetial?ExamID="+examID+"&TesttakerID="+userID;
+				}
+				break;
+			case 1:
+				type = 2;
+				event = "注册成功";
+				break;
+			case 4:
+				type = 3;
+				event = "添加了新题库“"+qBase+"”";
+				url = "showQuestionBase?qBaseID="+qBaseID;
+				break;
+			case 5:
+				type = 4;
+				event = "删除了题库“"+qBase+"”";
+				url = "showQuestionBase?qBaseID="+qBaseID;
+				break;
+			case 6:
+			case 7:
+			case 8:				
+				type = 5;
+				event = "修改了题库“"+qBase+"”的内容";
+				url = "showQuestionBase?qBaseID="+qBaseID;
+				break;
+			case 23:
+				type = 6;
+				event = "添加了新试卷“"+exam+"”";
+				url = "ShowExam?ExamID="+examID;
+				break;
+			case 10:
+				type = 7;
+				event = "删除了草稿箱中的试卷："+exam;
+				break;
+			case 11:
+			case 12:
+			case 13:
+				type = 8;
+				event = "更新了试卷“"+exam+"”";
+				url = "ShowExam?ExamID="+examID;
+				break;
+			case 15:
+				type = 10;
+				event = "添加了工作组“"+group+"”";
+				url = "showGroup?groupID="+groupID;
+				break;
+			case 16:
+				type = 11;
+				event = "退出了工作组“"+group+"”";
+				break;
+			case 17:
+				type = 12;
+				event = "接受了用户" + userB + "的好友申请"; 
+				url = "showFriends";
+				break;
+			case 18: 
+				type = 13;
+				event = "向用户" + userB + "发送了好友申请"; break;
+			case 19: 
+				type = 14;
+				event = "和用户" + userB + "成为了社交问答网站好友"; url = "showFriends"; break;
+				
+			case 20: 
+				type = 15;
+				event = "和用户" + userB + "成为微博和社交问答网站双重好友"; url = "showFriends"; break;
+			case 21: 
+				type = 16;
+				event = "解除了和用户"+userB+"的好友关系"; url = "showFriends"; break;
+			case 22: 
+				type = 17;
+				event = "拒绝了用户"+userB+"的好友申请"; break;
+				
+						
 		}
-		if (action == 9) {
-			type = 0;
-			event = name + "发布了试卷:" + exam;
-			url = "ShowExam?ExamID=" + examID;
-		}
-	}
-	public int changeLogintoEvent(Log log) {
-		int action = log.getAction(); 
-		if (action == 14) {
-		}
-		if (action == 9) {
-		}
-		return -1;
+		System.out.println("type ("+type+") url:"+url);
+		return 1;
 	}
 	
 	

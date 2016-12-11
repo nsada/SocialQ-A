@@ -12,6 +12,12 @@
             <result>/index.jsp</result>
         </action>     
 
+        
+        <action name="showPersonalEvents" class="action.UserAction" method="showPersonalEvents">
+            <result>/WEB-INF/content//user/showPersonalEvents.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>    
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>   
+        </action>         
         <action name="WantAnswerExam">
             <result>/WEB-INF/content//exam/searchExamtoanswer.jsp</result>
         </action>

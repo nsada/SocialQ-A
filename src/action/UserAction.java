@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import action.QuestionBaseAction;
+import domain.Event;
+import domain.Log;
 import domain.QuestionBase;
 import domain.User;
 import service.LogService;
@@ -43,6 +45,7 @@ public class UserAction implements Action {
 	 *  0 -> normal
 	 *  1 -> username is already exist
 	 */
+	private List<Event> events;
 	
 	
 	@Override
@@ -195,6 +198,32 @@ public class UserAction implements Action {
 		return friaction.delFriend(userID, friendID);
 	}
 	
+	public String showPersonalEvents() {
+		events = new ArrayList<>();
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			 userID = (int) sess.get("userid");
+		} catch (Exception e) {
+			userID = 0;
+			return "needlogin";
+		}
+		try {
+			LogService ls = new LogService();
+			List<Log> logs = ls.getUserLogs(userID);
+			for (int j = 0; j < logs.size(); j++) {
+				Log log = logs.get(j);
+				Event event = new Event();
+				event.changeLogintoEvent(log, false);
+				events.add(event);
+			}
+		} catch (Exception e) {
+			events = null;			
+			return ERROR;
+		}
+		return SUCCESS;	
+	}
+	
 
 	public String getCpassword() {
 		return cpassword;
@@ -273,6 +302,11 @@ public class UserAction implements Action {
 	public void setRegist_result(int regist_result) {
 		this.regist_result = regist_result;
 	}
-	
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
 }
