@@ -18,20 +18,24 @@ public class LogService {
 	public void addUser(int userid) {
 		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 1 + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 	public void login(int userid) {
 		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 2 + ", '" + dateFormat.format(now) + "')";
 		System.out.println("login LOG_sql: " + sql);
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 	public void logout(int userid) {
 		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 3 + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 
 	public void OperateQuestionBase(int userID, int qBaseID, int action) {
 		String sql = "insert into log (userID, qBaseID, action, time) values(" + userID + ", " + qBaseID + ", " + action + ", '" + dateFormat.format(now) + "')";
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 
 	public void OperateQuestionBaseQuestion(int userID, int qBaseID, int questionID, int type, int action) {
@@ -39,17 +43,20 @@ public class LogService {
 				", " + qBaseID + ", " + questionID + ", " + type + ", " + action + ", '" + dateFormat.format(now) + "')";
 		//System.out.println("operateqBaseQuestion sql:" + sql);
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 	
 	public void InsertQuesLog(int userID ,int ExamID ,int questionID,int action ,int questionType)
 	{
 		String sql = "insert into log (userID,examID , questionID, questionType , action ,time) values(" + userID + ", " + ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "')";
 		int i= cont.executeUpdate(sql);
+		cont.Close();
 	}
 	public void OperateExam(int userID,int ExamID,int action)
 	{
 		String sql= "insert into log (userID, examID, action, time) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "')";
 		int i= cont.executeUpdate(sql);
+		cont.Close();
 	}
 
 	public List<Log> getUserLogs(int userID) {
@@ -76,6 +83,7 @@ public class LogService {
 			e.printStackTrace();
 			logs = null;
 		}
+		cont.Close();
 		return logs;
 	}
 
@@ -84,16 +92,19 @@ public class LogService {
 				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "')";
 		System.out.println("operateGroup sql:" + sql);
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 	public void OperateFriend(int a, int b, int action) {
 		String sql = "insert into log (userID, action, time, userIDB) values(" + a + ", " + action + ", '" + dateFormat.format(now) + "', " + b + ")";
 		System.out.println("operateFriend sql:" + sql);
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 	public void OperateMessage(int a, int b, int action) {
 		String sql = "insert into log (userID, action, time, userIDB) values(" + a + ", " + action + ", '" + dateFormat.format(now) + "', " + b + ")";
 		System.out.println("operateMessage sql:" + sql);
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 	}
 
 

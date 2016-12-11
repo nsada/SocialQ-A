@@ -46,5 +46,9 @@ public class Friend implements Comparable<Friend>{
             else{  
                 return 0;  
             }  
-    }  
+    }
+
+	public void print() {
+		System.out.println("AB"+A+" "+ B);
+	}  
 }

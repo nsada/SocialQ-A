@@ -1,4 +1,3 @@
-
 package action;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,6 +42,13 @@ public class AddQuestoExam implements Action {
 	private List<Exam> Exams =new ArrayList<Exam> ();
 	private Queue <String> textb;
 	private int publish;
+	private int GroupID;
+	public int getGroupID() {
+		return GroupID;
+	}
+	public void setGroupID(int groupID) {
+		GroupID = groupID;
+	}
 	public  List<Exam> getExams() {
 		return Exams;
 	}
@@ -147,7 +153,7 @@ public class AddQuestoExam implements Action {
                 	String everyblank[]= answer.split("/#");
                 	questionID=Integer.parseInt(everyblank[0]);
                 	type=Integer.parseInt(everyblank[1]);
-                      String SQL="insert into exam_question(examID, questionID, type,userID) values ("+ExamID+", "+questionID+","+type+","+userID+")";
+                	String SQL="insert into exam_question(examID, questionID, type,GroupID) values ("+ExamID+", "+questionID+","+type+","+GroupID+")";//This is Group ID
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);  
@@ -167,7 +173,10 @@ public class AddQuestoExam implements Action {
 			  exam =es.getExam(ExamID);
 			  title = exam.getTitle();
 			  description =exam.getDescription();
+			  joiner=exam.getJoiner();
+			  rights=exam.getRights(); 
 			  System.out.println("Title:"+title);
+			  System.out.println("Description:"+description);
 			  
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -198,7 +207,6 @@ public class AddQuestoExam implements Action {
 		  title = exam.getTitle();
 		  description =exam.getDescription();
 		  System.out.println("Title:"+title);
-		  
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		 return ERROR;
@@ -217,14 +225,17 @@ public class AddQuestoExam implements Action {
 			 String sql ="select * from social.exam_question where examID ="+ExamID;
 			 cont =new Connect();
 			 result = cont.executeQuery(sql);
-			 while(result.next())
-				{
-				        
-				        LogService l = new LogService();
-				        //System.out.println("log_____________________________________ exam question");
-					 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
-				}
-			 sql ="update social.exam set publish = "+publish+"  where ID ="+ExamID+" ";
+			 if(publish==1)
+			 {
+				 while(result.next())
+					{
+					        
+					        LogService l = new LogService();
+					        //System.out.println("log_____________________________________ exam question");
+						 	l.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
+					}
+			 }
+			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
 			 System.out.println(sql);
 			 cont =new Connect();
 			 cont.executeUpdate(sql);

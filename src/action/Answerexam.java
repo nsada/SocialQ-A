@@ -10,6 +10,9 @@ import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
 public class Answerexam  implements Action{
+
+	private String title;
+	private String description;
 	 private ResultSet result = null;
 	 private Connect cont;
 	 private String selection_answer ="1#2#3#4#3#";
@@ -27,6 +30,18 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public List<TextBlank> getTextBlanks() {
 		return textBlanks;
 	}
@@ -587,6 +602,15 @@ public class Answerexam  implements Action{
        aandq.setUseranswer(answer);
        aandq.setUserscore(everyscore);
        aandq.setReadd(readd);
+       SQL="select * from social.exam where ID ="+ExamID;
+	    result =cont.executeQuery(SQL);	
+		if(result.next())
+		{
+			title=result.getString("title");
+			description=result.getString("description");
+		}
+       
+       
      } 
 		}
 		catch (Exception e) 
