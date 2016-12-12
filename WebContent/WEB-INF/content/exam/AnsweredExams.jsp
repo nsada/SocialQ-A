@@ -10,7 +10,6 @@
   							<div class="panel-heading">点击查看具体答题情况哦</div>
   							
 							<div class="panel-body">
-   								 <p>当前试卷的ID<s:property value="ExamID" /></p>
    								   <div class="list-group">
    								   		<s:iterator value="Exams">
            									<a  class="list-group-item list-group-item-success"

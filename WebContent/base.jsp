@@ -81,50 +81,6 @@
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
                         </ul>
                     </li>
-                    
-                    
-                    
-                    <li class="dropdown" style="margin-top: 5px">
-               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                   		 		消息<span class="badge">14</span> <b class="caret"></b>
-               			 </a>
-               			 <ul class="dropdown-menu">
-               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-
-           
-                            <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
-                            
-                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
-                        </ul>
-                    </li>
-                    
-                    
-                    
-                    <li class="dropdown" style="margin-top: 5px">
-               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                   		 		消息<span class="badge">14</span> <b class="caret"></b>
-               			 </a>
-               			 <ul class="dropdown-menu">
-               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-
-           
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>草稿箱</a></li>
-                            
-                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
-                        </ul>
-                    </li>
-
-        			
         		</ul>
         		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
         			<%if (username==null || username==""){%>
@@ -137,10 +93,7 @@
 									</p>
 									
 								</li>
-								<li>
-								            login_result: ${login_result} <br/>
-                                    regist_result: ${regist_result} <br/>
-								</li>
+								
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
         		</ul>
@@ -183,6 +136,7 @@
 			status.className = "button button-pill button-action active";
 			status = document.getElementById("statusRegist");
 			status.className="button button-pill button-action";
+			return ;
 		}
 		function SwitchBoxStatusToRegist(){
 			var registform = document.getElementById("registform");
@@ -193,6 +147,7 @@
 			status.className = "button button-pill button-action";
 			status = document.getElementById("statusRegist");
 			status.className="button button-pill button-action active";
+			return ;
 		}
 	</script>
 	<div id="grayback"style=" display:none;
@@ -249,19 +204,15 @@
   					<div class="col-sm-10">
   						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
   						<div style="float: right">
-<<<<<<< HEAD
-            				<p style="float: left;">第三方登录:</p>
-=======
+
             				<p style="float: left;">第三方登录:</p>  				
 <%--             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a> --%>
->>>>>>> remote_master
+
             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
             			</div>
   					</div>
   					
             		
-<<<<<<< HEAD
-=======
 
     			</div>
     		</form>
@@ -309,65 +260,16 @@
   					<div class="col-sm-10">
   						<a  onclick="RegistSubmit()"class="button button-glow button-border button-rounded button-primary">注册</a>          
   					</div>
->>>>>>> remote_master
     			</div>
     		</form>
-    		
-    		
-    		
-    		
-    		
-    		<form class="form-horizontal" role="form" action="registPro"  id= "registform" method="post">
-    		
-        		<div class="form-group  has-success">
-    				<label class="col-sm-2 control-label" for="inputSuccess">Name</label>
-   	 				<div class="col-sm-10">
-        				<input id="registName"type="text" class="form-control" id="inputSuccess" name="user.name" placeholder="请输入用户名">
-        			</div>
-  				</div>
-  				
-  				<p><br></p>
-  		
-  				
-  				<div class="form-group  has-success">
-    				<label class="col-sm-2 control-label" for="inputSuccess">Password</label>
-   	 				<div class="col-sm-10">
-        				<input id="registPassword"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入密码">
-    				</div>
-  				</div>
-  				
-  				<p><br></p>
-  				
-  				<div class="form-group  has-success">
-    				<label class="col-sm-2 control-label" for="inputSuccess">Repeat</label>
-   	 				<div class="col-sm-10">
-        				<input id="registPasswordAgain"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请再次输入密码">
-    				</div>
-  				</div>
-  				
-  				<p><br></p>
-  				
-  				<div class="form-group  has-success">
-    				<label class="col-sm-2 control-label" for="inputSuccess">Email</label>
-   	 				<div class="col-sm-10">
-        				<input id="registEmail"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
-    				</div>
-  				</div>
-  				
-  				<p><br></p>
-  				
-  				<div class="form-group">
-  					<label class="col-sm-2 control-label" for="inputSuccess"></label>
-  					<div class="col-sm-10">
-  						<a  onclick="RegistSubmit()"class="button button-glow button-border button-rounded button-primary">注册</a>          
-  					</div>
-    			</div>
-    		</form>
-    		
-    		
-    		
     		
     		<script>
+    			$(document).ready(function(){
+    				var login_result= "<%=request.getParameter("login_result")%>" ;
+    				var regist_result="<%=request.getParameter("regist_result")%>" ;
+    				ShowAlert(login_result,regist_result);
+    				
+    			})
     			function LoginSubmit(){
     				var form = document.getElementById("loginform");
 					
@@ -388,7 +290,7 @@
 					
 					var new_input = document.createElement("input");
 					new_input.name="redirect_url";
-					new_input.value = window.location.href;
+					new_input.value = window.location.href.split('?')[0];
 					new_input.style.display="none";
 					form.appendChild(new_input);
 					form.submit();
@@ -423,14 +325,78 @@
 						return ;
 					}
 					form = $("#registform")[0];
+					var new_input = document.createElement("input");
+					new_input.name="redirect_url";
+					new_input.value = window.location.href.split('?')[0];
+					new_input.style.display="none";
+					form.appendChild(new_input);
 					form.submit();
+					return ;
     			}
     		</script>
     </div>
     
-	<div class="well well-lg container table-center" style="opacity: 0.85;">
-		<rapid:block name="content">base_content</rapid:block>
-	</div>
+    <div 	id="alertBox"   
+    		style="z-index: 200;display: none;"
+    		class="alert alert-success" 
+    		role="alert">
+    		<p  style="
+    			text-align: center;
+   			    margin: 0;">
+   			    <span id="alertMessage">你是不是傻</span>
+   			    <span onclick="KillAlert()"class="glyphicon glyphicon-remove" style="float: right;"></span>
+			</p>
+			<script type="text/javascript">
+				function KillAlert(){
+					$("#alertBox").slideUp("slow");
+				}
+				
+				function ShowAlert(login_result,regist_result){
+					var box = $("#alertBox")[0];
+					switch(login_result){
+						case "0":
+							$("#alertMessage")[0].innerHTML="登陆成功";
+							box.className="alert alert-success";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "1":
+							$("#alertMessage")[0].innerHTML="用户名和密码不匹配";
+							box.className="alert alert-danger";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "2":
+							$("#alertMessage")[0].innerHTML="用户名不存在";
+							box.className="alert alert-warning";
+							$("#alertBox").slideDown("slow");
+							break;
+						default:
+					}
+					switch(regist_result){
+						case "0":
+							$("#alertMessage")[0].innerHTML="注册成功";
+							box.className="alert alert-success";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "1":
+							$("#alertMessage")[0].innerHTML="用户名已存在";
+							box.className="alert alert-danger";
+							$("#alertBox").slideDown("slow");
+							break;
+						default:
+							break;
+					}
+					return;
+				}
+				
+			</script>
+    </div>
+    
+    <rapid:block name="contentWithoutWhiteBox">
+    	<div class="well well-lg container table-center" style="opacity: 0.85;position: relative;top: 50px;">
+			<rapid:block name="content">base_content</rapid:block>
+		</div>
+    </rapid:block>
+	
 	
 	
 	

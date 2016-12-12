@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-eclipse.preferences.version=1
-encoding//src/database/Connect.java=UTF-8
-=======
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=remote_master
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/content/user/registCheck.jsp=UTF-8
 encoding//src/database/Connect.java=UTF-8
 encoding/<project>=UTF-8
->>>>>>> remote_master
+encoding/debug12.10.txt=gbk
+encoding/debug12.11.txt=gbk

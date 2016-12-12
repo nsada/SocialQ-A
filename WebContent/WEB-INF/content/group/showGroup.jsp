@@ -13,33 +13,51 @@
 
 
 <rapid:override name="contentText">
+    <div class="col-md-9 column">
+    	<div class="panel panel-primary">
+  				<div class="panel-heading">
+    					<h1 class="panel-title">工作组</h1>
+ 			 	</div>
+  				<div class="panel-body">
+  					<div class="panel panel-info">
+  						<div class="panel-heading">
+    						工作组基本信息
+ 			 			</div>
+ 			 			<div class="panel-body">
+ 			 				工作组名：${group.name}<br>
+    						工作组描述：${group.description}
+ 			 			</div>
+ 			 		</div>
+ 			 		<div class="panel panel-info">
+  						<div class="panel-heading">
+    						工作组成员
+ 			 			</div>
+ 			 			<div class="panel-body">
+ 			 				<ul class="list-group">
+  								<s:iterator value="groupusers" var="guser">
+                        			<li class="list-group-item">${guser.name}</li>
+               	 				</s:iterator>
+							</ul>
+							<div style="float: right;"class="btn-group">
+  								<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    								选择用户添加入工作组 <span class="caret"></span>
+  								</button>
+  								<ul class="dropdown-menu" role="menu">
+    								<s:iterator value="users" var="u">
+                       	 				<li>
+                       	 					<a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a>
+                       	 				</li>
+                    				</s:iterator> 
+  								</ul>
+							</div>
+ 			 			</div>
+ 			 		</div>
+  				</div>
+		</div>  
+         		
+         
 
-    <div class="col-md-10 column">
-        <h1>${group.name}</h1>
-        ${group.description}
-
-        <div class="text-align:right">
-            <li class="dropdown" style="margin-top: 5px">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        选择用户添加入工作组<b class="caret"></b>
-                 </a>
-                 <ul class="dropdown-menu">
-                    <s:iterator value="users" var="u">
-                        <button><a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a></button>
-                    </s:iterator> 
-                </ul>
-            </li>      
-        </div>
-        <table class="table table-bordered table-hover ">
-            <caption>工作组成员</caption>
-            <tbody>
-                <s:iterator value="groupusers" var="guser">
-                    <tr>
-                        <td>${guser.name}</td>
-                    </tr>
-                </s:iterator>
-            </tbody>
-        </table>
+       
     </div>
 </rapid:override>
 
