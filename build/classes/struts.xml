@@ -363,7 +363,7 @@
         </action>
         
         <action name="AllTakerRank" class="action.Rank" method="AllPeopleRank">
-            <result name="success">/WEB-INF/content/user/FriendsRank.jsp</result>
+            <result name="success">/WEB-INF/content/user/AllPeopleRank.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
