@@ -34,6 +34,9 @@
 	                    <s:if test="type == 4">
 	                            <button><a href="${mes.url}&messageID=${mes.id}">查看给分</a></button> 
 	                    </s:if> 
+	                    <s:if test="type ==7">
+	                       <button><a href="${mes.url}&messageID=${mes.id}">查看工作组</a></button>
+	                    </s:if>
                     </td>                      
                 </tr>           
             </s:iterator>

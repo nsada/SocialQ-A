@@ -19,6 +19,7 @@ public class Usermessage {
 	 * 4 -> system (senderID has checked the AandQ, the check of the exam is finished) 
 	 * 5 -> system (senderID delete the relationship with accepteID)
 	 * 6 -> system (senderID refuse the friend apply of accepterID)
+	 * 7 -> system (senderID add accepterID to a group)
 	 */
 	public void setRead(int read) {
 		this.read=read;

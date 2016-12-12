@@ -11,6 +11,7 @@ import domain.Group;
 import domain.User;
 import service.GroupService;
 import service.LogService;
+import service.MessageService;
 import service.QuestionBaseService;
 import service.UserService;
 
@@ -23,10 +24,13 @@ public class GroupAction implements Action {
 	private List<User> users;
 	private List<User> groupusers;
 	LogService ls = new LogService();
+	private int messageID;
 
 	@Override
 	public String execute() throws Exception { //show group
 		try {
+			MessageService ms = new MessageService();
+			ms.read(messageID);
 			group = gs.getGroup(groupID);
 			groupusers = gs.getGroupUsers(groupID);
 			users = new ArrayList<>();
@@ -98,10 +102,17 @@ public class GroupAction implements Action {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		try {
-			int userID = (int) sess.get("userid");	
+			int userID = (int) sess.get("userid");
+			String name = sess.get("username").toString();
 			if (!gs.findUser_in_Group(adduserID, groupID)) {
 				gs.addGroup_User(adduserID,groupID);				
 				ls.OperateGroupUser(userID,adduserID,groupID,25);
+				Message mes = new Message();
+				GroupService gs = new GroupService();
+				String group = gs.getGroupName(groupID);
+				String message = name + "将您加入了工作组“"+group+"”";
+				String url = "showGroup?groupID="+groupID;
+				mes.Systemsendmessage(userID, adduserID, message, url, 7);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -145,6 +156,12 @@ public class GroupAction implements Action {
 	}
 	public void setGroupusers(List<User> groupusers) {
 		this.groupusers = groupusers;
+	}
+	public int getMessageID() {
+		return messageID;
+	}
+	public void setMessageID(int messageID) {
+		this.messageID = messageID;
 	}
 	
 	
