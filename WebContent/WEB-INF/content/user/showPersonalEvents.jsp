@@ -20,7 +20,7 @@
             <div class="list-group">
 
                  <s:iterator value="events" var="e">     
-                    <button><a class="list-group-item list-group-item-success" href="${e.url}">${e.event}</a></button> 
+                    <button><a class="list-group-item list-group-item-success" href="${e.url}">${e.event} ${e.url }</a></button> 
                  </s:iterator>
                 
             </div>

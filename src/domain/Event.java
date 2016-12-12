@@ -144,10 +144,12 @@ public class Event {
 			case 24:
 				type = 18;
 				event = "被用户“"+userB+"”加入了工作组“"+group+"”";
+				url = "showGroup?groupID="+groupID;
 				break;
 			case 25:
 				type = 19;
 				event = "将用户“"+userB+"”加入了工作组“"+group+"”";
+				url = "showGroup?groupID="+groupID;
 				break;
 						
 		}

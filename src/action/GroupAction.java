@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import domain.Group;
+import domain.QuestionBase;
 import domain.User;
 import service.GroupService;
 import service.LogService;
@@ -25,6 +26,8 @@ public class GroupAction implements Action {
 	private List<User> groupusers;
 	LogService ls = new LogService();
 	private int messageID;
+	private List<QuestionBase> questionBases;
+	private List<QuestionBase> userqBases;
 
 	@Override
 	public String execute() throws Exception { //show group
@@ -43,6 +46,13 @@ public class GroupAction implements Action {
 				User u = friends.get(i); 
 				if (!gs.findUser_in_Group(u.getId(), groupID)) users.add(u);
 			}
+			QuestionBaseService qbs = new QuestionBaseService();			
+			questionBases = qbs.getGroupQuestionBases(groupID);
+			userqBases = qbs.getUser_without_GroupQuestionBases(userID, groupID);
+			for (int i = 0; i < questionBases.size(); i++) {
+				System.out.println("user qBase id: "+questionBases.get(i).getId());
+			}
+			
 		} catch (Exception e) {
 			group = null;
 			groupusers = null;
@@ -162,6 +172,18 @@ public class GroupAction implements Action {
 	}
 	public void setMessageID(int messageID) {
 		this.messageID = messageID;
+	}
+	public List<QuestionBase> getQuestionBases() {
+		return questionBases;
+	}
+	public void setQuestionBases(List<QuestionBase> questionBases) {
+		this.questionBases = questionBases;
+	}
+	public List<QuestionBase> getUserqBases() {
+		return userqBases;
+	}
+	public void setUserqBases(List<QuestionBase> userqBases) {
+		this.userqBases = userqBases;
 	}
 	
 	
