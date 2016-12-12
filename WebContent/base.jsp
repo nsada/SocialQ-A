@@ -39,7 +39,7 @@
 
 
 
-<body style="margin-top: 50px;">
+<body style="margin-top: 55px;">
         <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
             <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
@@ -47,22 +47,19 @@
 
 
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100;margin: 0;height: 55px;" >
     		<div class="container-fluid">
   				  <div class="navbar-header">
        				
        				 <a class=" navbar-brand" href="<%=request.getContextPath()%>" style="font-size: 40px" >SocialQ-A</a>
    				 </div>
   		  	<div>
+  		  	<%if ( !( username==null || username.equals("") ) ){%>
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
-        		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
-       				
-       				
-					
 					<li class="dropdown" style="margin-top: 5px">
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                    		 		个人中心 <b class="caret"></b>
@@ -82,8 +79,9 @@
                         </ul>
                     </li>
         		</ul>
+        	<%} %>
         		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
-        			<%if (username==null || username==""){%>
+        			<%if (username==null || username.equals("")){%>
 								<li><a onclick = "showbox('regist')"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
 								<li><a onclick="showbox('login')"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
 					<%}else{%>
@@ -336,7 +334,7 @@
     </div>
     
     <div 	id="alertBox"   
-    		style="display: none;position: relative;top: 15px;"
+    		style="display: none;"
     		class="alert alert-success" 
     		role="alert">
     		<p  style="
