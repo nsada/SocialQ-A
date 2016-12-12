@@ -39,7 +39,7 @@ public class ShowExamQuestion implements Action {
      private Connect cont;
      
  	private String searchstr;
- 	private int searchtype=1;
+ 	private int searchtype;
   	
  	
   	
@@ -106,20 +106,23 @@ public class ShowExamQuestion implements Action {
 	}
 	@Override
 	public String execute() throws Exception {
-		ExamID = -1;
-		if (searchtype == 0) { // by id
-			ExamID = Integer.valueOf(searchstr).intValue();
-		} else if (searchtype == 1){
-			ExamService es = new ExamService();
-			ExamID = es.getExamIDfromTitle(searchstr);
+		if (searchstr == null || searchstr.length() <= 0) {
+			
 		} else {
-			return ERROR;
+			if (searchtype == 0) { // by id
+				ExamID = Integer.valueOf(searchstr).intValue();
+			} else if (searchtype == 1){
+				ExamService es = new ExamService();
+				ExamID = es.getExamIDfromTitle(searchstr);
+			} else {
+				return ERROR;
+			}
 		}
 		selections =new ArrayList<Selection> ();
 		textBlanks =new ArrayList<TextBlank>();	
 		    AandQs = new ArrayList<AandQ>();	
 		    multys= new ArrayList<Multy>();	
-		    System.out.println("searchExamWithID showExanQuestion ExamID:" + ExamID);
+		   // System.out.println("searchExamWithID showExanQuestion ExamID:" + ExamID + "searchstr:"+searchstr + "searchtype:"+searchtype);
 	try{	
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();

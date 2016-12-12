@@ -45,13 +45,15 @@ public class Event {
 		switch (action) {		
 			case 9:
 				type = 0;
-				event = name + "发布了试卷:" + exam;
+				event = "发布了试卷:" + exam;
+				if (isFriend) {
+					event = name + event;
+				}
 				url = "ShowExam?ExamID=" + examID;
 				break;
-			case 14:
-				type = 1;
-				
+			case 14:				
 				if (isFriend) {
+					type = 1;
 					event = name + "回答了试卷:" + exam;
 					url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;
 				} else {
