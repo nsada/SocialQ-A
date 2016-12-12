@@ -74,9 +74,9 @@
                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
                            <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                             
-                             <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
-                             
+                             <li><a href="<%= request.getContextPath()%>/FindUserAnsweredExams">查看小伙伴答题情况</a></li>    
+                             <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li> 
+                             <li><a href="<%= request.getContextPath()%>/PublishedExam">发布过的试卷</a></li>            
                             <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
                             <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>                            
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>查看logs</a></li>
@@ -94,10 +94,7 @@
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
                     		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-
-           
                             <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
-                            
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
                             <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>

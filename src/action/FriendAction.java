@@ -280,8 +280,6 @@ public class FriendAction implements Action {
 		return SUCCESS;		
 	}
 	
-
-
 	public List<User> getFriends() {
 		return friends;
 	}

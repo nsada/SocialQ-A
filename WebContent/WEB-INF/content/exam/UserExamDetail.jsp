@@ -13,8 +13,7 @@
   
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
-        	<p style="text-align: center;"> 我的排名：<s:property value="rank"/><p>
-        	<p style="text-align: center;"> ExamID：<s:property value="ExamID"/><p>
+        	<p style="text-align: center;"> <s:property value="testername"/>的排名：<s:property value="rank"/><p>
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>
@@ -97,7 +96,7 @@
         		<s:property value="analysis" />	               
 		</s:iterator>
 		
-	      <br> 问答题
+	
 		<s:iterator value="AandQs" >			
 			  <br>
 		   <s:property value="context" />
@@ -112,13 +111,8 @@
         		<br> 解析
         		<s:property value="analysis" />	                  
 		</s:iterator>
-		<br>
-		<p> 查看我的小伙伴的排名 :<p>
-		<a  class="list-group-item list-group-item-success"
-           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        			
-               								</a>
 		      
 </div>
 </rapid:override>   
 <%@ include file="../../../../base.jsp"%>
+

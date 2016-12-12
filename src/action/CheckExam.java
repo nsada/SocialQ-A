@@ -6,8 +6,13 @@ import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
 import domain.AandQ;
 import domain.Exam;
+import service.ExamService;
 import service.MessageService;
 import service.UserService;
+import domain.Multy;
+import domain.Selection;
+import domain.TextBlank;
+
 public class CheckExam implements Action{
 	private String title;
 	private String description;
@@ -22,10 +27,68 @@ public class CheckExam implements Action{
 	 private Queue<String> scores;
  	 private List<AandQ> UncheckedAandQs =new ArrayList<AandQ>();	
  	private List<Exam> Exams =new ArrayList<Exam> ();
- 	
  	private int messageID;
  	
- 	public String getTitle() {
+ 	private  int people=0;
+	private int peopleR =0;
+	private int totalscore=0;
+	private int score=0;
+	private int totalpeople=0;
+	public int getTotalpeople() {
+		return totalpeople;
+	}
+	public void setTotalpeople(int totalpeople) {
+		this.totalpeople = totalpeople;
+	}
+
+	private List<TextBlank> textBlanks;
+	public List<AandQ> getAandQs() {
+		return AandQs;
+	}
+	public void setAandQs(List<AandQ> aandQs) {
+		AandQs = aandQs;
+	}
+	public List<TextBlank> getTextBlanks() {
+		return textBlanks;
+	}
+	public void setTextBlanks(List<TextBlank> textBlanks) {
+		this.textBlanks = textBlanks;
+	}
+	public List<Multy> getMultys() {
+		return multys;
+	}
+	public void setMultys(List<Multy> multys) {
+		this.multys = multys;
+	}
+	public List<Selection> getSelections() {
+		return selections;
+	}
+	public void setSelections(List<Selection> selections) {
+		this.selections = selections;
+	}
+
+	private ShowExamQuestion seq;
+	private List<Multy> multys;
+	private List<Selection> selections ;
+ 	public int getTotalscore() {
+		return totalscore;
+	}
+	public void setTotalscore(int totalscore) {
+		this.totalscore = totalscore;
+	}
+	public int getPeople() {
+		return people;
+	}
+	public void setPeople(int people) {
+		this.people = people;
+	}
+	public int getPeopleR() {
+		return peopleR;
+	}
+	public void setPeopleR(int peopleR) {
+		this.peopleR = peopleR;
+	}
+	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
@@ -255,7 +318,6 @@ public class CheckExam implements Action{
 				 {
 						SQL="select * from social.exam_user where examID="+examid+"";
 				//	     System.out.println(SQL);       
-					     
 					     resultcheck=  cont.executeQuery(SQL);
 					      while (resultcheck.next())
 					      { 
@@ -278,13 +340,223 @@ public class CheckExam implements Action{
 		   } 
 		 }catch (Exception e) {
 			e.printStackTrace();
+			  cont.Close();
 			return ERROR;
-		}				
+		}		
+	     cont.Close();
 		return SUCCESS;
     }
 	
+	public String UserAnsweredExamList(){		 
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam where userID="+userID+"";
+		     System.out.println(SQL);       
+		       cont =new Connect();
+		      result=  cont.executeQuery(SQL);
+		      int examid;
+		     ShowExamQuestion seq =new ShowExamQuestion();
+		      while (result.next())
+		      {
+		      	examid=result.getInt("ID");
+		      	description=result.getString("description");
+		      	title=result.getString("title");      	
+		      	SQL="select * from social.exam_user where examID="+examid+"";
+		      	System.out.println(SQL);        
+				resultcheck=  cont.executeQuery(SQL);
+			     if (resultcheck.next())
+					   { 
+						 Exam exam = new Exam();
+					     exam.setDescription(description);
+						 exam.setTitle(title);
+						 exam.setId(examid);
+						 Exams.add(exam);	  					          	    	 
+				       }  
+		      	
+		   } 
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}
+		  cont.Close();
+		return SUCCESS;
+   }
 	
-	 
+	public String MyPublishedExamList(){		 
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam where userID="+userID+"";
+		     System.out.println(SQL);       
+		       cont =new Connect();
+		      result=  cont.executeQuery(SQL);
+		      int examid;
+		     ShowExamQuestion seq =new ShowExamQuestion();
+		      while (result.next())
+		      {
+		      	examid=result.getInt("ID");   	
+			    ExamService exam = new ExamService();
+				Exams.add(exam.getExam(examid));	  					          	    	 
+			  }		      	
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}
+		  cont.Close();
+		return SUCCESS;
+  }
+	
+	public String ExamUserList(){	
+		 try
+		 {
+			 ActionContext actCtx = ActionContext.getContext();
+	    	 Map<String, Object> sess = actCtx.getSession();
+	         int userID = (int) sess.get("userid");		       
+		     String  SQL="select * from social.exam_user where examID="+ExamID+"";
+		      cont =new Connect();
+		     System.out.println(SQL);       
+		      result=  cont.executeQuery(SQL);
+		      String ExamUserName="";
+		      while (result.next())
+		      {
+		    	  TesttakerID=result.getInt("userID");
+				 SQL="select * from social.user where id="+TesttakerID+"";
+				 System.out.println(SQL);       
+				 resultcheck=  cont.executeQuery(SQL);
+				 while (resultcheck.next())
+					      { 
+					         ExamUserName=resultcheck.getString("name");
+							 Exam exam = new Exam();
+						     exam.setDescription(description);
+						     exam.setTitle(title);
+						     exam.setTesttakerID(TesttakerID);
+							 exam.setId(ExamID);
+							 exam.setExamUserName(ExamUserName);
+							 Exams.add(exam);	  
+
+				        }  
+		       } 
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}		
+	     cont.Close();
+		return SUCCESS;
+     }
+	
+	public String ExamDetailInfor(){	
+		 try
+		 {	       
+		     String  SQL="select * from social.exam where ID="+ExamID+"";
+		      cont =new Connect();
+		      System.out.println(SQL);       
+		      result=  cont.executeQuery(SQL);
+		      if (result.next())
+		      {
+				   totalpeople = result.getInt("people");
+				   totalscore = result.getInt("totalscore");
+		       } 
+		       seq =new ShowExamQuestion();
+		       seq.setExamID(ExamID);
+			   seq.execute();
+			  selections=seq.getSelections();
+			  textBlanks=seq.getTextBlanks();
+			  multys =seq.getMultys();
+			  AandQs=seq.getAandQs();
+			  
+			  for(Selection sel: selections)	  
+	            {
+	             SQL="select * from social.exam_question where examID ="+ExamID+" and questionID="+sel.getId()+" and type="+1+" ";
+	             System.out.println(SQL);       
+	             cont =new Connect();
+	             result=  cont.executeQuery(SQL);             
+	             while (result.next())
+	             {
+	             	people =result.getInt("people");
+	             	peopleR=result.getInt("peopleR");
+	             	score=result.getInt("score");
+	             }	
+	             cont.Close();
+	             sel.setPeople(people);
+	             sel.setPeopleR(peopleR);
+	             sel.setTotalscore(score);           	          
+	           }
+	            
+	       for(TextBlank tes :textBlanks)
+	            {
+
+	    	   SQL="select * from social.exam_question where examID ="+ExamID+"  and type="+2+" and questionID="+tes.getId()+"";
+	           System.out.println(SQL);       
+	           cont =new Connect();
+	           result=  cont.executeQuery(SQL);
+	           while (result.next())
+	           {
+	        	    people =result.getInt("people");
+	             	peopleR=result.getInt("peopleR");
+	             	score=result.getInt("score");
+	           }
+	            cont.Close();
+	            tes.setPeople(people);;
+	            tes.setPeopleR(peopleR);;
+	            tes.setTotalscore(score);    	           
+	            }
+	           	
+	       for(Multy mul :multys)
+	       {
+
+	  	    SQL="select * from social.exam_question where examID ="+ExamID+" and type="+4+" and questionID="+mul.getId()+"";
+	         System.out.println(SQL);       
+	         cont =new Connect();
+	         result=  cont.executeQuery(SQL);
+	         while (result.next())
+	         {
+	        	    people =result.getInt("people");
+	             	peopleR=result.getInt("peopleR");
+	             	score=result.getInt("score");
+	         }	 
+	          cont.Close();
+	          mul.setPeople(people);
+	          mul.setPeopleR(peopleR);
+	          mul.setTotalscore(score);
+	       }  
+	     for(AandQ aandq :AandQs)
+	       {
+
+           SQL="select * from social.exam_question where examID ="+ExamID+" and type="+3+" and questionID="+aandq.getId()+"";
+	      System.out.println(SQL);       
+	      cont =new Connect();
+	      result=  cont.executeQuery(SQL);
+	      while (result.next())
+	      {
+	    	  people =result.getInt("people");
+           	 peopleR=result.getInt("peopleR");
+           	  score=result.getInt("score");
+	      }	 
+	       aandq.setPeople(people);
+	       aandq.setPeopleR(peopleR);
+	       aandq.setTotalscore(score);
+			cont.Close();
+	        } 
+			  
+		 }catch (Exception e) {
+			e.printStackTrace();
+			  cont.Close();
+			return ERROR;
+		}		
+	     cont.Close();
+		return SUCCESS;
+    }
+ 	
+  	
+
 }
 
 

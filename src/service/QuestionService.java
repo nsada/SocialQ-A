@@ -11,7 +11,6 @@ import domain.Multy;
 import domain.Selection;
 
 public class QuestionService {
-	private Connect cont;
 	private List<Selection> selections;
 	private Selection selection;
 	private List<TextBlank> textBlanks;
@@ -29,7 +28,7 @@ public class QuestionService {
 		return name;
 	}
 	public List<Selection> getQbaseSelections(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
 		//System.out.println("questionbase_selections sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -48,7 +47,7 @@ public class QuestionService {
 		return selections;
 	}
 	public List<TextBlank> getQbaseTextBlanks(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=2";
 		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -67,7 +66,7 @@ public class QuestionService {
 		return textBlanks;
 	}	
 	public List<AandQ> getQbaseAandQs(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=3";
 		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -86,7 +85,7 @@ public class QuestionService {
 		return aandQs;
 	}
 	public List<Multy> getQbaseMultys(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=4";
 		//System.out.println("questionbase_multys sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -106,7 +105,7 @@ public class QuestionService {
 	}
 
 	public List<Selection> getExamSelections(int examID) {
-		cont = new Connect();
+		Connect cont = new Connect();
 		String sql = "select questionID from exam_question where examID=" + examID + " and type=1";
 		System.out.println("exam_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -127,7 +126,7 @@ public class QuestionService {
 
 	public Selection getSelection(int id) {
 		String sql = "select * from selection where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -153,13 +152,14 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
 		cont.Close();
 		return selection;
 	}
 	public TextBlank getTextBlank(int id) {
 		String sql = "select * from textblank where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -179,19 +179,19 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
 		cont.Close();
 		return textBlank;
 	}	
 	public int addSelection(Selection sel, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into selection(id, context, A, B, C, D, E, F, ans, analysis, score, scoreA, scoreB, scoreC, scoreD, scoreE, scoreF) values("
 		+ sel.getId() + ", '" + sel.getContext() + "', '"+ sel.getA() + "', '" + sel.getB() + "', '" + sel.getC() + "', '"
 		+ sel.getD() + "', '" + sel.getE() + "', '" + sel.getF() + "', '" + sel.getAns() + "', '" + sel.getAnalysis() + "', " + sel.getScore() + ", "
 		+ sel.getScoreA() + ", " + sel.getScoreB() + ", " + sel.getScoreC() + ", " + sel.getScoreD() + ", " + sel.getScoreE() + ", " + sel.getScoreF() + ")";
 		
 		int id = cont.executeUpdateID(sql);
-		cont.Close();
 		System.out.println("addSelection sql: "+ sql + "   *id:" + id);
 		int in = 0;
 		if (id > 0) {
@@ -200,17 +200,17 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public int addTextBlank(TextBlank blank, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into textblank(id, context, num, A, B, C, D, E, F, analysis, score) values("
 		+ blank.getId() + ", '" + blank.getContext() + "', " + blank.getNum() + ", '" + 
 		blank.getA() + "', '" + blank.getB() + "', '" + blank.getC() + "', '" + blank.getD() + "', '" + blank.getE() + "', '" + blank.getF() + "', '" + 
 		blank.getAnalysis() + "', " + blank.getScore() + ")";
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addTextBlanke sql: "+ sql + "   *id:" + id);
-		cont.Close();
 		int in = 0;
 		if (id > 0) {
 			blank.setId(id);
@@ -218,10 +218,11 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	private int addQuestionBase_Question(int qBaseID, int id, int type) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into questionbase_question(questionBaseID, questionID, type) values(" + qBaseID + ", " + id + ", " + type + ")"; 
 		int i = cont.executeUpdate(sql);
 		cont.Close();
@@ -229,7 +230,7 @@ public class QuestionService {
 		return i;
 	}
 	public int delQuestionBase_Question(int qBaseID, int id, int type) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "delete from questionbase_question where questionBaseID=" + qBaseID + " and questionID=" + id + " and type=" + type; 
 		int i = cont.executeUpdate(sql);
 		cont.Close();
@@ -239,7 +240,7 @@ public class QuestionService {
 
 	public AandQ getAandQ(int id) {
 		String sql = "select * from aandq where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -253,13 +254,14 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找AandQ失败 id:"+id);
+			return null;
 		}
 		cont.Close();
 		return aandQ;
 	}
 	public Multy getMulty(int id) {
 		String sql = "select * from multy where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -279,34 +281,34 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
 		cont.Close();
 		return multy;
 	}
 	public int addAandQ(AandQ aandQ, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into aandq(id, context, ans, analysis, score) values("
 		+ aandQ.getId() + ", '" + aandQ.getContext() + "', '" + aandQ.getAns() + "', '" + aandQ.getAnalysis() + "', " + aandQ.getScore() + ")";
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addAandQsql: "+ sql + "   *id:" + id);
 		int in = 0;
-		cont.Close();
 		if (id > 0) {
 			aandQ.setId(id);
 			in = addQuestionBase_Question(qBaseID, id, 3);			
 		}
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public int addMulty(Multy multy, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into multy(id, context, A, B, C, D, E, F, ans, analysis, score) values("
 		+ multy.getId() + ", '" + multy.getContext() + "', '"+ multy.getA() + "', '" + multy.getB() + "', '" + multy.getC() + "', '"
 		+ multy.getD() + "', '" + multy.getE() + "', '" + multy.getF() + "', '" + multy.getAns() + "', '" + multy.getAnalysis() + "', " + multy.getScore() + ")";
 		
 		int id = cont.executeUpdateID(sql);
 		System.out.println("addMulty sql: "+ sql + "   *id:" + id);
-		cont.Close();
 		int in = 0;
 		if (id > 0) {
 			multy.setId(id);
@@ -314,12 +316,13 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public String getQuestionContext(int id, int type) {
 		String sql = "";
 		if (id <= 0 || type <= 0) return sql;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		sql = "select context from ";
 		switch (type) {
 		case 1: sql = sql + "selection"; break;
