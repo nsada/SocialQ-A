@@ -107,8 +107,8 @@ public class LogService {
 
 	public void OperateGroup(int userID, int groupID, int action) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, groupID, action, time, groupID, examID, qBaseID) values(" + userID + 
-				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "',0,0,0)";
+		String sql = "insert into log (userID, groupID, action, time, examID, qBaseID) values(" + userID + 
+				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
 		//System.out.println("operateGroup sql:" + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
@@ -128,9 +128,23 @@ public class LogService {
 		String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", " + 
 		action + ", '" + dateFormat.format(now) + "', " + b + ",0,0,0)";
 		//System.out.println("operateMessage sql:" + sql);
-		//int i = cont.executeUpdate(sql);
+		int i = cont.executeUpdate(sql);
 		cont.Close();
 		//System.out.println("log "+sql);
+	}
+	public void OperateGroupUser(int a, int b, int groupID, int action) {
+		Connect cont = new Connect();
+		if (action == 25) {
+			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", "+
+					action+", '" + dateFormat.format(now) + "', " + b + ", " + groupID + ",0,0)";
+			System.out.println("OperateGroupUser sql1:" + sql);
+			int i = cont.executeUpdate(sql);			
+			sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + b +
+				", 24, '" + dateFormat.format(now) + "', " + a + ", " + groupID + ",0,0)";
+			i = cont.executeUpdate(sql);
+			
+		}
+		cont.Close();
 	}
 
 

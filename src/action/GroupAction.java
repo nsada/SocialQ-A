@@ -22,6 +22,7 @@ public class GroupAction implements Action {
 	private GroupService gs = new GroupService();
 	private List<User> users;
 	private List<User> groupusers;
+	LogService ls = new LogService();
 
 	@Override
 	public String execute() throws Exception { //show group
@@ -94,9 +95,14 @@ public class GroupAction implements Action {
 		}				
 	}
 	public String addGroupUser() {
-		try{
-			if (!gs.findUser_in_Group(adduserID, groupID)) 
-				gs.addGroup_User(adduserID,groupID);
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");	
+			if (!gs.findUser_in_Group(adduserID, groupID)) {
+				gs.addGroup_User(adduserID,groupID);				
+				ls.OperateGroupUser(userID,adduserID,groupID,25);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return ERROR;

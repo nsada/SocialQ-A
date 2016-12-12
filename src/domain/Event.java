@@ -46,19 +46,18 @@ public class Event {
 			case 9:
 				type = 0;
 				event = "发布了试卷:" + exam;
-				if (isFriend) {
-					event = name + event;
+				if (groupID > 0) {
+					event = "用工作组“"+"”"+group+"中的题库"+event;
 				}
 				url = "ShowExam?ExamID=" + examID;
 				break;
-			case 14:				
+			case 14:	
+				event = "回答了试卷:" + exam;
 				if (isFriend) {
 					type = 1;
-					event = name + "回答了试卷:" + exam;
 					url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;
 				} else {
-					type = 9;
-					event = "回答了试卷:" + exam;
+					type = 9;					
 					url = "ShowExamDetial?ExamID="+examID+"&TesttakerID="+userID;
 				}
 				break;
@@ -67,14 +66,24 @@ public class Event {
 				event = "注册成功";
 				break;
 			case 4:
-				type = 3;
-				event = "添加了新题库“"+qBase+"”";
-				url = "showQuestionBase?qBaseID="+qBaseID;
+				type = 3;				
+				if (groupID > 0) {
+					event = "向工作组“"+group+"”开放了题库“"+qBase+"”的权限";
+					url = "showGroup?groupID="+groupID;
+				} else {
+					event = "添加了新题库:"+qBase;
+					url = "showQuestionBase?qBaseID="+qBaseID;
+				}
 				break;
 			case 5:
 				type = 4;
-				event = "删除了题库“"+qBase+"”";
-				url = "showQuestionBase?qBaseID="+qBaseID;
+				if (groupID > 0) {
+					event = "收回了工作组“"+group+"”对题库“"+qBase+"”的权限";
+					url = "showGroup?groupID="+groupID;
+				} else {
+					event = "删除了新题库:"+qBase;
+					url = "showQuestionBase?qBaseID="+qBaseID;
+				}
 				break;
 			case 6:
 			case 7:
@@ -86,6 +95,9 @@ public class Event {
 			case 23:
 				type = 6;
 				event = "添加了新试卷“"+exam+"”";
+				if (groupID > 0) {
+					event = "使用工作组“"+group+"”的题库"+event;
+				}
 				url = "ShowExam?ExamID="+examID;
 				break;
 			case 10:
@@ -129,8 +141,18 @@ public class Event {
 			case 22: 
 				type = 17;
 				event = "拒绝了用户"+userB+"的好友申请"; break;
-				
+			case 24:
+				type = 18;
+				event = "被用户“"+userB+"”加入了工作组“"+group+"”";
+				break;
+			case 25:
+				type = 19;
+				event = "将用户“"+userB+"”加入了工作组“"+group+"”";
+				break;
 						
+		}
+		if (isFriend) {
+			event = name + event;
 		}
 		System.out.println("type ("+type+") url:"+url);
 		return 1;

@@ -235,7 +235,7 @@ public class FriendAction implements Action {
 	public List<User> getUserFriends(int userID) {
 		UserService us = new UserService();
 		friends = us.getAllFriends(userID);		
-		System.out.println("getUserFriends size "+friends.size());
+		//System.out.println("getUserFriends size "+friends.size());
 		return friends;
 	}
 	
