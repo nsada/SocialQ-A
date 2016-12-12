@@ -114,8 +114,8 @@
 				<div class="form-group">
 					<label for="ans" class="col-sm-2 control-label">答案</label>
 					<div class="col-sm-8">
-						<input name="selection.ans" type="radio" value="1" checked/>A &nbsp;  
-						<input name="selection.ans" type="radio" value="2" />B &nbsp; 
+						<input id="a1" name="selection.ans" type="radio" value="1" checked/>A &nbsp;  
+						<input id="a2" name="selection.ans" type="radio" value="2" />B &nbsp; 
 						<input  id = "a3"disabled="disabled" name="selection.ans" type="radio" value="3" />C &nbsp; 
 						<input  id = "a4"disabled="disabled"name="selection.ans" type="radio" value="4" />D &nbsp; 
 						<input id = "a5" disabled="disabled"name="selection.ans" type="radio" value="5" />E &nbsp; 
@@ -148,8 +148,23 @@
 						var temp = document.getElementById("ctotal");
 						temp.disabled=null;
 						temp.value ="";
-					}
+						var num = document.getElementById("num").value;
+						switch(num){
+						case "6":
+							document.getElementById("a6").disabled = false;
+						case "5":
+							document.getElementById("a5").disabled = false;
+						case "4":
+							document.getElementById("a4").disabled = false;
+						case "3":
+							document.getElementById("a3").disabled = false;
+						case "2":
+							document.getElementById("a2").disabled = false;
+						default:
+							document.getElementById("a1").disabled = false;
+						}
 						
+					}
 					else{
 						for(var i =1;i <=6;i++){
 							var temp = document.getElementById("c"+i);
@@ -158,6 +173,10 @@
 						var temp = document.getElementById("ctotal");
 						temp.disabled="disabled";
 						temp.value ="";
+						var list = document.getElementsByName("selection.ans");
+						for(var i =0;i <list.length;i++){
+							list[i].disabled="disabled";
+						}
 					}
 						
 					return ;

@@ -11,7 +11,7 @@
 
 <rapid:override name="contentText"> 
 
-<div class="col-md-10 column">
+<div class="col-md-9 column">
 
     <div class="text-align:right">
 	    <button class="btn btn-default" type="button" onclick="window.location.href='addQuestionBase'">

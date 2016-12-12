@@ -117,7 +117,6 @@
 					SwitchBoxStatusToLogin();
 					break;
 			}
-			
 			return ;
 		}
 		function killbox(){
@@ -337,7 +336,7 @@
     </div>
     
     <div 	id="alertBox"   
-    		style="z-index: 200;display: none;"
+    		style="display: none;position: relative;top: 15px;"
     		class="alert alert-success" 
     		role="alert">
     		<p  style="
