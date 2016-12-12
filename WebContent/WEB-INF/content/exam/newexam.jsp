@@ -107,9 +107,8 @@
 
 
 						<textarea id="examDescription"name="description" placeholder="试卷的描述" size="50"
-
-							style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" />
-						</textarea>
+							style="height: 50px; width: 60%; position: relative; left: 20%"
+							><s:property value="description" /></textarea>
 						<br>
 		
 						<div align="center"
