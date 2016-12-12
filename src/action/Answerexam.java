@@ -37,8 +37,15 @@ public class Answerexam  implements Action{
      
      private int friendID;
   	private int messageID;
-
- 	public int getMessageID() {
+  	
+  	
+ 	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getMessageID() {
  		return messageID;
  	}
  	public void setMessageID(int messageID) {
@@ -842,4 +849,10 @@ public class Answerexam  implements Action{
 		}				
 		return SUCCESS;
    }
+	
+	public String showFriendExamDetail() {
+		ExamService es = new ExamService();
+		score = es.getUserExamScore(friendID, ExamID);
+		return SUCCESS;
+	}
 }

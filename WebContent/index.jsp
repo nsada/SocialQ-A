@@ -25,10 +25,20 @@
                 Blog:<span class="text-info">http://blog.csdn.net/tmy0131</span>
             </h4>
             <br />
-                                <p>
-                                    login_result: ${login_result} <br/>
-                                    regist_result: ${regist_result} <br/>
-                                </p>
+<p>
+<%
+if(session.getAttribute("userid")==null)
+{
+System.out.println("session" + session.getId());
+out.print("空session");
+}
+else{
+out.print("sessionid: " + session.getId());
+System.out.println(session.getId());
+//out.println(session.getAttribute("username"));
+}
+%>
+</p>
         </ul>
 
 

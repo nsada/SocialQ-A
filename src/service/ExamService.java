@@ -91,7 +91,9 @@ public class ExamService implements Action {
 	}
 
 	public int getUserExamScore(int userID, int examID) {
-		String sql = "select score from exam_user where examID="+examID+" and userID="+userID;
+		
+		String sql = "select score from social.exam_user where examID="+examID+" and userID="+userID;
+		System.out.println("getUserExamScore sql " + sql );
 		cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		int score = -1;
@@ -102,6 +104,7 @@ public class ExamService implements Action {
 		}catch (Exception e) {
 			System.out.println("按examID&userID查找score失败");
 		}
+		System.out.println("score "+score);
 		cont.Close();
 		return score;
 	}

@@ -354,7 +354,9 @@
         
           <action name="WantedUserExamDetail" class="action.Answerexam"  method="ShowWantedUserExamDetail">
             <result name="success">/WEB-INF/content/exam/UserExamDetail.jsp</result>
-            <result name="error">/WEB-INF/content/user/error.jsp</result>
+            <result name="error">
+            
+            /WEB-INF/content/user/error.jsp</result>
         </action>
         
         <action name="MyFriendRank" class="action.Rank">
