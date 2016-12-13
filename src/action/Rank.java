@@ -8,9 +8,6 @@ import domain.Exam;
 import domain.User;
 import service.UserService;
 import java.text.Collator;  
-import java.util.ArrayList;  
-import java.util.Collections;  
-import java.util.Comparator;  
 public class Rank implements Action{
 	private String title;
 	private String description;
@@ -68,128 +65,82 @@ public class Rank implements Action{
 		TesttakerID = testtakerID;
 	}
 	@Override
-		public String execute() throws Exception {		 
-		 try
-		 {
-	            String  SQL="select * from social.exam where ID ="+ExamID+" ";
-	             System.out.println(SQL);       
-	             cont =new Connect();
-	             result=  cont.executeQuery(SQL);
-	             if (result.next()&&result.getInt("rights")==1)
-	             {
-	            	 Rank rk =new Rank();
-	            	friends=rk.GetFriends(ExamID); 
-	             }	
-	             else
-	             {
-	            	 Rank rk =new Rank();
-		             friends=rk.AllPeopleRanking(ExamID); 
-	             } 
-	 } catch (Exception e) {
+	public String execute() throws Exception {		 
+		try{
+	        String  SQL="select rights from social.exam where ID ="+ExamID+" ";
+	        System.out.println(SQL);       
+			cont =new Connect();
+			result=  cont.executeQuery(SQL);
+			if (result.getInt("rights") == 1) {
+				friends=getFriendsRanks(ExamID);
+			} else {
+				friends=getAllPeopleRanks(ExamID);
+			}
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		 return ERROR;
+			return ERROR;
 		}				
+		if (friends==null || friends.isEmpty()) return ERROR;
 		return SUCCESS;
-       }
+	}
 
 	
-	public String AllPeopleRank() throws Exception {		 
-		 try
-		 {
-
-                friends= new ArrayList<User>();
-	           String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
-	             System.out.println(SQL);       
-	             cont =new Connect();
-	             result=  cont.executeQuery(SQL);
-	             int  rank =0;
-	             while (result.next())
-	             {
-	            	 rank++;
-	            	 UserService us =new UserService();
-	            	 TesttakerID = result.getInt("userID");
-	            	 User user = us.getUser(TesttakerID);
-	            	 int score =result.getInt("score");
-	            	 user.setExamscore(score);
-	            	 user.setRank(rank);
-	                 friends.add(user); 	             	 
-	             }		                   
-	        
-	 } catch (Exception e) {
+	private List<User> getAllPeopleRanks(int ExamID) {
+		List<User> peoples = new ArrayList<>();
+		try{
+			peoples= new ArrayList<User>();
+			String sql = "select t3.name,t3.id,t2.score from exam t1, exam_user t2, user t3 where t2.examID=t1.ID"
+					+ " and t2.examID="+ExamID+" and t2.userID=t3.id and t2.checked=1 order by t2.score DESC";
+			cont =new Connect();
+			result=  cont.executeQuery(sql);
+			int  rank =0;
+			while (result.next()) {
+				rank++;
+				User user = new User();			 	
+			 	TesttakerID = result.getInt("userID");
+			 	user.setId(result.getInt("id"));
+			 	user.setName(result.getString("name"));
+			 	user.setExamscore(result.getInt("score"));
+			 	user.setRank(rank);
+			 	peoples.add(user);
+			}
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		 return ERROR;
+			peoples = null;
 		}				
-		return SUCCESS;
-      }
-
-	public List<User> GetFriends(int ExamID) throws Exception {		 
-		 try
-		 {
-			 ActionContext actCtx = ActionContext.getContext();
-	    	 Map<String, Object> sess = actCtx.getSession();
-	         int userID = (int) sess.get("userid");	
-	         UserService us  =new UserService();
-	         friends=us.getAllFriends(userID);
-	         for(User f : friends )
-	         {
-	           String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
-	             System.out.println(SQL);       
-	             cont =new Connect();
-	             result=  cont.executeQuery(SQL);
-	             int  rank =0;
-	             while (result.next())
-	             {
-	            	 rank++;
-	            	 if( f.getId() ==result.getInt("userID"))
-	            	 {
-	            		 int score =result.getInt("score");
-	            		 f.setExamscore(score);
-	            		 f.setRank(rank);
-	            		 break;
-	            	 }
-	             	 
-	             }	
-	             cont.Close();
-	         }
-	         UserRank ur =new UserRank ();
-	         Collections.sort(friends,ur);
-	         
-	        
-	 } catch (Exception e) {
-			System.out.println(e.getMessage());
-		 return null;
-		}				
-		return friends;
-      }
-
-	public List<User> AllPeopleRanking(int ExamID) throws Exception {		 
-		 try
-		 {
-
-               friends= new ArrayList<User>();
-	           String  SQL="select * from social.exam_user where examID ="+ExamID+" and checked ="+1+"  order by score DESC ";
-	             System.out.println(SQL);       
-	             cont =new Connect();
-	             result=  cont.executeQuery(SQL);
-	             int  rank =0;
-	             while (result.next())
-	             {
-	            	 rank++;
-	            	 UserService us =new UserService();
-	            	 TesttakerID = result.getInt("userID");
-	            	 User user = us.getUser(TesttakerID);
-	            	 int score =result.getInt("score");
-	            	 user.setExamscore(score);
-	            	 user.setRank(rank);
-	                 friends.add(user); 	             	 
-	             }		                   
-	        
-	 } catch (Exception e) {
-			System.out.println(e.getMessage());
-		 return null;
-		}				
-		return friends;
+		return peoples;
      }
+	public String GetAllPeopleRanks() throws Exception {
+		friends = getAllPeopleRanks(ExamID);
+		if (friends == null ||friends.isEmpty()) return ERROR;
+		return SUCCESS;
+	}
+
+	public List<User> getFriendsRanks(int ExamID) throws Exception {		 
+		List<User> peoples = new ArrayList<>();
+		try{
+			peoples= new ArrayList<User>();
+			String sql = "select t3.name,t3.id,t2.score from exam t1, exam_user t2, user t3 where t2.examID=t1.ID"
+					+ " and t2.examID="+ExamID+" and t2.userID=t3.id and t2.checked=1 order by t2.score DESC";
+			cont =new Connect();
+			result=  cont.executeQuery(sql);
+			int  rank =0;
+			while (result.next()) {
+				rank++;
+				User user = new User();			 	
+			 	TesttakerID = result.getInt("userID");
+			 	user.setId(result.getInt("id"));
+			 	user.setName(result.getString("name"));
+			 	user.setExamscore(result.getInt("score"));
+			 	user.setRank(rank);
+			 	peoples.add(user);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			peoples = null;
+		}				
+		return peoples;
+	}
 	
 	
 	

@@ -9,7 +9,7 @@
 </rapid:override>  
 
 
-<rapid:override name="contentText"> 
+<rapid:override name="content"> 
 
 <div class="col-md-10 column">
 
@@ -34,6 +34,9 @@
                     <td style="text-align:center;"><a href='<s:url action="showGroup"><s:param name="groupID" value="#group.id"/></s:url>'>${group.name}</a></td>                    
                     <td style="text-align:center;">${group.description}</td>                     
                     <td style="text-align:center;">
+			            <button class="btn btn-default" type="button" onclick="window.location.href='GroupInsertExam?groupID=${group.id}'">
+			                   出题
+			            </button> 
                         <a href='<s:url action="quitGroup"><s:param name="groupID" value="#group.id"/></s:url>'><input type="button" value="退出"/></a>
                     </td>
                 </tr>           
@@ -47,4 +50,4 @@
 
 
 
-<%@include file="../PersonalCenter.jsp"%>
+<%@include file="../../../base.jsp"%>

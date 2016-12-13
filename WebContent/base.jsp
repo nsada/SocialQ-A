@@ -57,9 +57,10 @@
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
         		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/WantAnswerExam">我要答题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
+       				<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+                    <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
+                    <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
        				
 					
@@ -69,17 +70,15 @@
                			 </a>
                			 <ul class="dropdown-menu">
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>        
-               			 	<li><a href="<%=request.getContextPath()%>/GroupInsertExam">工作组出题</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+               			 	<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+<%--                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li> --%>
                            <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
                             <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                             <li><a href="<%= request.getContextPath()%>/FindUserAnsweredExams">查看小伙伴答题情况</a></li>    
+<%--                              <li><a href="<%= request.getContextPath()%>/FindUserAnsweredExams">查看小伙伴答题情况</a></li>     --%>
                              <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li> 
                              <li><a href="<%= request.getContextPath()%>/PublishedExam">发布过的试卷</a></li>            
                             <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
-                            <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>                            
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>查看logs</a></li>
+                            <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>      
                             
                         </ul>
                     </li>           
@@ -89,16 +88,6 @@
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                    		 		消息<span class="badge">14</span> <b class="caret"></b>
                			 </a>
-               			 <ul class="dropdown-menu">
-               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-                            <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
-                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
-                        </ul>
                     </li>
 
         			

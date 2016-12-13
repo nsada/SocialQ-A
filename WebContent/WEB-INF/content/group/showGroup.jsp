@@ -24,11 +24,7 @@
     <div class="col-md-10 column">
         <h1>${group.name}</h1>
         ${group.description}
-         <div class="text-align:right">
-	        <button class="btn btn-default" type="button" onclick="window.location.href='GroupInsertExam?groupID=${group.id}'">
-	               工作组出题
-	        </button> 
-        </div>
+
         <div class="text-align:right">
             <button class="btn btn-default" type="button" onclick="window.location.href='showGroupEvents?groupID=${group.id}'">
                    查看工作组日志

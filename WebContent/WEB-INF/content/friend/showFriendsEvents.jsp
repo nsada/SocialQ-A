@@ -15,6 +15,11 @@
 <rapid:override name="content">
    
     <div class="panel panel-success">
+        <div class="text-align:right">
+	        <button class="btn btn-default" type="button" onclick="window.location.href='showFriends'">
+	                我的好友
+	        </button> 
+	    </div>
         <div class="panel-heading">好友动态</div>
         <div class="panel-body">
             <div class="list-group">

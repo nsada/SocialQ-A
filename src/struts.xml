@@ -376,7 +376,7 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
-        <action name="AllTakerRank" class="action.Rank" method="AllPeopleRank">
+        <action name="AllTakerRank" class="action.Rank" method="GetAllPeopleRanks">
             <result name="success">/WEB-INF/content/user/AllPeopleRank.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
