@@ -26,21 +26,25 @@
                             <button><a href="${mes.url}">查看用户详细信息</a></button>
                         </td>
                     </s:if>      
-                    <s:if test="type == 3">
+                    <s:elseif  test="type == 3">
+                        <td>
+                            已批改
+                        </td>
+                    </s:elseif >       
+                    <s:elseif  test="type == 4">
                         <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="前去批改"/></a>
-                        </td>                        
-                    </s:if>         
-                    <s:if test="type == 4">
-                        <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="查看"/></a>
-                        </td>                        
-                    </s:if> 
-                   
+                            <button><a href="${mes.url}">查看给分</a></button> 
+                        </td>
+                    </s:elseif >                        
+                    <s:else>
+                       <td>
+                       已读
+                       </td>
+                    </s:else> 
+                    
                 </tr>           
             </s:iterator>
         </tbody>
     </table>
 </rapid:override>
-
 <%@include file="../../../base.jsp"%>

@@ -32,6 +32,7 @@
         }else{
             username = "";
         }
+        session.setMaxInactiveInterval(300*3600);
 %>
     
 
@@ -44,7 +45,6 @@
 
         </div>
 
-    
 
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
@@ -57,9 +57,10 @@
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
         		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriends.action">朋友圈</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="https://proofy.io/#features">我要答题</a></li>
-       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
+       				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/WantAnswerExam">我要答题</a></li>
+       				<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
+                    <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
+                    <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
        				
 					
@@ -68,6 +69,7 @@
                    		 		个人中心 <b class="caret"></b>
                			 </a>
                			 <ul class="dropdown-menu">
+<<<<<<< HEAD
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>     
                			 		<li><a href="<%=request.getContextPath()%>/GroupInsertExam">工作组出题</a></li>           
                     		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
@@ -79,30 +81,28 @@
                              
                             <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
+=======
+               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>        
+               			 	<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
+<%--                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li> --%>
+                           <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
+                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
+<%--                              <li><a href="<%= request.getContextPath()%>/FindUserAnsweredExams">查看小伙伴答题情况</a></li>     --%>
+                             <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li> 
+                             <li><a href="<%= request.getContextPath()%>/PublishedExam">发布过的试卷</a></li>            
+                            <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
+                            <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>      
+                            
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
                         </ul>
-                    </li>
-                    
+                    </li>           
                     
                     
                     <li class="dropdown" style="margin-top: 5px">
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                    		 		消息<span class="badge">14</span> <b class="caret"></b>
                			 </a>
-               			 <ul class="dropdown-menu">
-               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>                    		
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-
-           
-                            <li><a href="<%=request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
-                            
-                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>发布的试卷</a></li>
-                            <li><a href='<s:url action="showPersonalInformation"></s:url>'>答过的试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
-                        </ul>
                     </li>
-
 
         			
         		</ul>
@@ -115,12 +115,11 @@
 									<p class="navbar-text">
 										欢迎你&nbsp;&nbsp;<span id="base_name">${sessionScope.username}</span>
 									</p>
+									
 								</li>
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
         		</ul>
-    	</div>
-    	</div>
 	</nav>
 	
 	
@@ -224,7 +223,8 @@
   					<div class="col-sm-10">
   						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
   						<div style="float: right">
-            				<p style="float: left;">第三方登录:</p>
+            				<p style="float: left;">第三方登录:</p>  				
+<%--             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a> --%>
             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101366334&amp;redirect_uri=http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
             			</div>
   					</div>

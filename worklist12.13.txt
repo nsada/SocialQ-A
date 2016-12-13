@@ -1,0 +1,11 @@
+YC:
+	分享失败后提示页面weiboerror.jsp
+	工作组页面多了“查看工作组日志”
+	查看工作组日志页面showGroupEvents.jsp
+	查询答题结果时，如果没有check，则显示等待批改
+	注册时，邮箱也是password
+	提交试卷时，两个权限没有跟随数据库记录的变化，每次都默认为1
+	编辑试卷左侧的总分统计错误
+	我要答题页面向后台传递searchtype(0:id,1:title),searchstr(用户输入的内容)
+
+	

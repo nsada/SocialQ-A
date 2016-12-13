@@ -13,6 +13,11 @@
   
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
+<<<<<<< HEAD
+=======
+        	<p style="text-align: center;"> 我的排名：<s:property value="rank"/><p>
+        	<p style="text-align: center;"> ExamID：<s:property value="ExamID"/><p>
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
     </div>
         <div class="col-md-12 column">
         <%int i = 0; %>
@@ -41,7 +46,7 @@
         		<br> 参考答案
         		<s:property value="ans" />	
         		<br> 解析
-        		<s:property value="anslysis" />
+        		<s:property value="analysis" />
 		</s:iterator>
 	   <br> 多选题
 		<s:iterator value="multys" >	
@@ -67,7 +72,7 @@
         		<br> 参考答案
         		<s:property value="ans" />		
         		<br> 解析
-        		<s:property value="anslysis" />
+        		<s:property value="analysis" />
 		</s:iterator>
 		
 		 <br> 填空题
@@ -92,10 +97,10 @@
         		<br> 你的答案
         		<s:property value="useranswer" />
         		<br> 解析
-        		<s:property value="anslysis" />	               
+        		<s:property value="analysis" />	               
 		</s:iterator>
 		
-	
+	      <br> 问答题
 		<s:iterator value="AandQs" >			
 			  <br>
 		   <s:property value="context" />
@@ -108,10 +113,15 @@
         		<br> 你的答案
         		<s:property value="useranswer" />
         		<br> 解析
-        		<s:property value="anslysis" />	                  
+        		<s:property value="analysis" />	                  
 		</s:iterator>
+		<br>
+		<p> 查看我的小伙伴的排名 :<p>
+		<a  class="list-group-item list-group-item-success"
+           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+                        			
+               								</a>
 		      
 </div>
 </rapid:override>   
 <%@ include file="../../../../base.jsp"%>
-

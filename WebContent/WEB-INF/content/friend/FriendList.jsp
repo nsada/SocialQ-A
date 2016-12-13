@@ -7,11 +7,11 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-
-
+<rapid:override name="head">
+    <title>好友列表</title>
+</rapid:override>
 
 <rapid:override name="content">
-
 		<form action="searchUser" method="POST" class="form-horizontal" role="form">
                 <div class="form-group">
                     <div class="col-sm-6">

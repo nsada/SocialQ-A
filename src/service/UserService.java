@@ -14,17 +14,17 @@ import domain.User;
 
 
 public class UserService {
-	private Connect cont = new Connect();
+	private Connect cont;
 	private User user;
 	private List<User> users;
-
-	
 
 	public String getUserName(int id){
 		String name = "";
 		if (id == 0) return name;
+		cont = new Connect();
 		String sql = "select name from user where id=" + id;
-		ResultSet result = cont.executeQuery(sql);		
+		//System.out.println("getUserName sql " + sql);
+		ResultSet result = cont.executeQuery(sql);			
 		try{
 			if (result.next()){				
 				name = result.getString("name");
@@ -33,10 +33,12 @@ public class UserService {
 		}catch (Exception e) {
 			name = "";
 		}
+		cont.Close();
 		return name;		
 	}
 
 	public User loginUser(User user) {
+		cont = new Connect();
 		String sql = "select * from user where name='" + user.getName() + "' and password='" + user.getPassword() + "'";
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
@@ -52,9 +54,11 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}
+		cont.Close();
 		return user;
 	}
 	public User loginUserByOpenID(String openid){
+		cont = new Connect();
 		String sql = "select * from user where tencentOpenID='" + openid + "'" ;
 		ResultSet result = cont.executeQuery(sql);
 		user = new User();
@@ -75,19 +79,22 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}
+		cont.Close();
 		System.out.println("login sql:" + sql);
 		return user;
 	}
 	public int addUser(User user) {		
-		
+		cont = new Connect();
 		String sql = "insert into user(id, name, password,tencentOpenID,tencentToken) values(" + user.getId() + ",'" +
 				user.getName() + "','" + user.getPassword() + "','" + user.getTencentOpenID() + "','"+user.getTencentToken()+"')";
 		System.out.println("addUser sql: "+ sql);
 		int id = cont.executeUpdateID(sql);
 		//System.out.println("LAST_INSERT_ID: " + i);
+		cont.Close();
 		return id;
 	}
 	public int updateUser(User user, int id) {
+		cont = new Connect();
 		String sql = "UPDATE user SET"; 
 		if (user.getName() != null && user.getName().length() > 0){
 			sql = sql + " name='" + user.getName() + "',"; 
@@ -106,10 +113,12 @@ public class UserService {
 		sql = sql.substring(0, sql.length()-1);
 		sql = sql + " WHERE id='" + id + "'";
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		//System.out.println("成功更新User "+ i + " sql:"+sql);
 		return i;	
 	}
 	public List<User> getAllUsers() {
+		cont = new Connect();
 		String sql = "select * from user";
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();		
@@ -120,11 +129,14 @@ public class UserService {
 			result.close();
 		}catch (Exception e) {
 			users = null;
-		}		
+		}	
+		cont.Close();
 		return users;		
 	}
 	public User getUser(int id) {
+		cont = new Connect();
 		String sql = "select * from user where id=" + id;
+		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		try{
 			if (result.next()){
@@ -137,9 +149,11 @@ public class UserService {
 		}catch (Exception e) {
 			user = null;
 		}		
+		cont.Close();
 		return user;
 	}
 	public User getUser(String name) {
+		cont = new Connect();
 		String sql = "select * from user where name=" + name;
 		ResultSet result = cont.executeQuery(sql);
 		try{
@@ -154,11 +168,13 @@ public class UserService {
 			result.close();
 		}catch (Exception e) {
 			user = null;
-		}		
+		}	
+		cont.Close();
 		return user;
 	}	
 
 	public List<User> getAllFriends(int id) {		
+		cont = new Connect();
 		String sql = "select * from friend where A="+id;
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();		
@@ -167,7 +183,6 @@ public class UserService {
 			while (result.next()){
 				int friendId = result.getInt("B");
 				idList.add(friendId);
-				System.out.println("friendID " + friendId);
 			}
 			result.close();
 		}catch (Exception e) {
@@ -195,6 +210,7 @@ public class UserService {
 		}catch (Exception e) {
 			users = null;
 		}	
+		cont.Close();
 		return users;		
 	}
 
@@ -205,13 +221,16 @@ public class UserService {
 	}
 
 	public void delete(int userID) {
-		cont = new Connect();
+		Connect cont = new Connect();
 		String sql = "delete from user where id=" + userID;
-		int i = cont.executeUpdate(sql);				
+		int i = cont.executeUpdate(sql);	
+		cont.Close();
 	}
 
 	public int getUserIDfromOpen(String openID) {
+		cont = new Connect();
 		String sql = "select id from user where tencentOpenID='" + openID + "'";
+		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		int userid = -1;
 		try{
@@ -222,10 +241,12 @@ public class UserService {
 		}catch (Exception e) {
 			
 		}		
+		cont.Close();
 		return userid;
 	}
 
 	public String getUserOpenfromID(int id) {
+		cont = new Connect();
 		String sql = "select tencentOpenID from user where id=" + id;
 		ResultSet result = cont.executeQuery(sql);
 		String tencentOpenID = "";
@@ -237,15 +258,16 @@ public class UserService {
 		}catch (Exception e) {
 			
 		}		
+		cont.Close();
 		return tencentOpenID;
 	}
 
 	public List<User> getSearchUsers(String[] searchnames) {
+		cont = new Connect();
 		String sql = "select * from user where";
 		for (int i = 0; i < searchnames.length; i ++) {
 			sql = sql + " name like '%" + searchnames[i] + "%'";
 		}
-		System.out.println("searchUser sql:" + sql);
 		ResultSet result = cont.executeQuery(sql);
 		users = new ArrayList<>();
 		try{
@@ -260,9 +282,37 @@ public class UserService {
 			}
 			result.close();
 		}catch (Exception e) {
-			
-		}				
+		}		
+		cont.Close();
 		return users;
+	}
+
+	public int getUserIDfromName(String name) {
+		cont = new Connect();
+		String sql = "select id from user where name='" + name + "'";
+		ResultSet result = cont.executeQuery(sql);
+		int userID = -1;
+		try{
+			if (result.next()){
+				userID = (int) result.getInt("id");
+			}
+			result.close();
+		}catch (Exception e) {
+			
+		}		
+		cont.Close();
+		return userID;
+	}
+
+	public int updateUser(int id, String openid, String access_token) {
+		cont = new Connect();
+		String sql = "UPDATE user SET tencentOpenID='"+openid+"', tencentToken='"+access_token+"'";
+		sql = sql + " WHERE id=" + id;
+		System.out.println("成功更新User "+ " sql:"+sql);
+		int i = cont.executeUpdate(sql);
+		cont.Close();
+		//System.out.println("成功更新User "+ i + " sql:"+sql);
+		return i;	
 	}
 
 }

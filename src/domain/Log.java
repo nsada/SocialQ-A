@@ -29,12 +29,16 @@ public class Log {
 		String userB = us.getUserName(userIDB);
 		QuestionBaseService qBs = new QuestionBaseService();
 		String qBase = qBs.getqBaseName(qBaseID);
+		//System.out.println("qBase: " + qBase);
 		QuestionService qs = new QuestionService();
 		String question = qs.getQuestionContext(questionID, questionType);
+		//System.out.println("question: " + question);
 		ExamService es = new ExamService();
 		String exam = es.getExamTitle(examID);
+		//System.out.println("exam: " + exam);
 		GroupService gs = new GroupService();
 		String group = gs.getGroupName(groupID);
+		//System.out.println("group: " + group);
 		ans = "用户"+user;
 		switch (action) {
 		case 1: ans = ans + "注册成功"; break;
@@ -45,11 +49,11 @@ public class Log {
 		case 6: ans = ans + "更新了题库"+qBase+"的基本信息"; break;
 		case 7: ans = ans + "向题库"+qBase+"添加一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 8: ans = ans + "向题库"+qBase+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
-		case 9: ans = ans + "添加了新试卷："+exam; break;
-		case 10: ans = ans + "删除了试卷："+exam; break;
+		case 9: ans = ans + "发布了新试卷："+exam; break;
+		case 10: ans = ans + "删除了草稿箱中的试卷："+exam; break;
 		case 11: ans = ans + "更新了试卷"+qBase+"的基本信息"; break;
 		case 12: ans = ans + "向试卷"+exam+"添加一个"+qs.getQuestionType(questionType)+":"+question; break;
-		case 13: ans = ans + "向题库"+exam+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
+		case 13: ans = ans + "向试卷"+exam+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 14: ans = ans + "答试卷"+exam; break;
 		case 15: ans = ans + "新建了工作组: " + group; break;
 		case 16: ans = ans + "退出了工作组: " + group; break;
@@ -57,7 +61,13 @@ public class Log {
 		case 18: ans = ans + "向用户" + userB + "发送了好友申请"; break;
 		case 19: ans = ans + "和用户" + userB + "成为了社交问答网站好友"; break;
 		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
-		
+		case 21: ans = ans + "解除了和用户"+userB+"的好友关系"; break;
+		case 22: ans = ans + "拒绝了用户"+userB+"的好友申请"; break;
+		case 23: ans = "新建试卷保存到草稿箱";
+		case 24: ans = "被加入了工作组";
+		case 25: ans = "添加用户到工作组";
+		case 26: ans = "添加题库权限到工作组";
+		case 27: ans = "删除题库权限到工作组";
 		}
 		this.trans= ans;
 		return ans;
@@ -72,11 +82,12 @@ public class Log {
 		System.out.print("questionType("+questionType+") ");		
 		System.out.print("action("+action+") ");
 		System.out.print("time("+time+") ");
+		System.out.print("userIDB("+userIDB+") ");
 		System.out.println();
-		System.out.println("trans: " + trans);
+	//	System.out.println("trans: " + trans);
 		
-	} 
-	
+	}
+
 	public int getUserID() {
 		return userID;
 	}
@@ -131,14 +142,13 @@ public class Log {
 	public void setUserIDB(int userIDB) {
 		this.userIDB = userIDB;
 	}
-
 	public String getTrans() {
 		return trans;
 	}
-
 	public void setTrans(String trans) {
 		this.trans = trans;
-	}
+	} 
 	
+
 	
 }

@@ -10,6 +10,7 @@ import domain.Multy;
 import domain.QuestionBase;
 import domain.Selection;
 import domain.TextBlank;
+import service.ExamService;
 import service.QuestionBaseService;
 import service.QuestionService;
 public class ShowExamQuestion implements Action {
@@ -36,6 +37,24 @@ public class ShowExamQuestion implements Action {
 	private int qBaseID;
      private ResultSet result;
      private Connect cont;
+     
+ 	private String searchstr;
+ 	private int searchtype;
+  	
+ 	
+  	
+  	public String getSearchstr() {
+ 		return searchstr;
+ 	}
+ 	public void setSearchstr(String searchstr) {
+ 		this.searchstr = searchstr;
+ 	} 	
+	public int getSearchtype() {
+		return searchtype;
+	}
+	public void setSearchtype(int searchtype) {
+		this.searchtype = searchtype;
+	}
 	public int getType()
 	{
 		return type;
@@ -87,10 +106,23 @@ public class ShowExamQuestion implements Action {
 	}
 	@Override
 	public String execute() throws Exception {
+		if (searchstr == null || searchstr.length() <= 0) {
+			
+		} else {
+			if (searchtype == 0) { // by id
+				ExamID = Integer.valueOf(searchstr).intValue();
+			} else if (searchtype == 1){
+				ExamService es = new ExamService();
+				ExamID = es.getExamIDfromTitle(searchstr);
+			} else {
+				return ERROR;
+			}
+		}
 		selections =new ArrayList<Selection> ();
 		textBlanks =new ArrayList<TextBlank>();	
 		    AandQs = new ArrayList<AandQ>();	
 		    multys= new ArrayList<Multy>();	
+		   // System.out.println("searchExamWithID showExanQuestion ExamID:" + ExamID + "searchstr:"+searchstr + "searchtype:"+searchtype);
 	try{	
 		String sql ="select * from social.exam_question where examID ="+ExamID;
 		cont=new Connect();
@@ -99,28 +131,54 @@ public class ShowExamQuestion implements Action {
 			{
 			 	QuestionService qs= new QuestionService();
 			 if( result.getInt("type") ==1 )
-				{
-				 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
+				{ 
+				     if(qs.getSelection(result.getInt("questionID")) != null)
+				     {
+						 	selections.add(qs.getSelection(result.getInt("questionID")))   ;
+				     }
 				}
 			 else if(result.getInt("type") ==2)
 			 {
+<<<<<<< HEAD
 				 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
 			 }
 			 else if(result.getInt("type") ==3)
 			 {
+=======
+				 if(qs.getTextBlank(result.getInt("questionID"))!=null)
+				 {
+					 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
+				 }
+			 }
+			 else if(result.getInt("type") ==3)
+			 {
+				 if(qs.getAandQ(result.getInt("questionID")) !=null)
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				  AandQs.add(qs.getAandQ(result.getInt("questionID")));
 			 }
 			 else if(result.getInt("type") ==4)
 			 {
+<<<<<<< HEAD
+=======
+				 if(qs.getMulty(result.getInt("questionID"))!=null)
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				 multys.add(qs.getMulty(result.getInt("questionID")));
 			 }
 			 
 			}
+<<<<<<< HEAD
 	    sql ="select * from social.exam where ID ="+ExamID;
+=======
+	       sql ="select * from social.exam where ID ="+ExamID;
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 			result =cont.executeQuery(sql);	
 			if(result.next())
 			{
 				title=result.getString("title");
+<<<<<<< HEAD
+=======
+				System.out.println("title" + title);
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				description=result.getString("description");
 			}
 		 cont.Close();

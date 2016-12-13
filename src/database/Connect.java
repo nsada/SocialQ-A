@@ -18,18 +18,35 @@ public class Connect {
 	
 	public Connect() {
 		try {
+<<<<<<< HEAD
 			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
+=======
+			Class.forName("com.mysql.jdbc.Driver");			
+
+			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
-			//con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
+//			con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
 			
 			state = con.createStatement();	
-			//System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挻鍨氶崝锟�");
 		} catch (Exception e) {
 			e.printStackTrace();
 			con = null;
-			System.out.println("鏉╃偞甯撮弫鐗堝祦鎼存挸銇戠拹锟�");
+			System.out.println("connect error");
+		}
+	}
+	
+	
+	public void Close() {
+		try {
+			if(con != null &&!con.isClosed())
+			{
+				  con.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -47,7 +64,11 @@ public class Connect {
 	
 	public ResultSet executeQuery(String sql) {
 		try {
+<<<<<<< HEAD
 			state = con.createStatement();
+=======
+			state = con.createStatement();	
+>>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +84,7 @@ public class Connect {
 		try{
 			id = result.getInt(0);
 		}catch (Exception e) {
-			System.out.println("閼惧嘲褰囬張锟介弬鐗堝絻閸忣檹D婢惰精瑙�");
+			System.out.println("getLastInsertId error");
 		}
 		return id;
 	}
@@ -71,11 +92,11 @@ public class Connect {
 	public int executeUpdate(String sql) {
 		//System.out.println("connect: " + sql);
 		try {
+			state = con.createStatement();	
 			state.executeUpdate(sql);
 			state.close();
-		//	System.out.println("閺囧瓨鏌婇幋鎰");
 		} catch (Exception e) {
-			System.out.println("閺囧瓨鏌婃径杈Е");
+			System.out.println("executeUpdate error");
 			e.printStackTrace();
 			return -1;
 		}
@@ -84,16 +105,16 @@ public class Connect {
 	public int executeUpdateID(String sql) {
 		int id = -1;
 		try {
+			state = con.createStatement();	
 			state.executeUpdate(sql);
 			ResultSet result = executeQuery("select LAST_INSERT_ID()");
 			if (result.next()) {
 				id = result.getInt(1);
-				System.out.println("lastid: "+id);
 			}			
 			state.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("鏌ユ壘骞惰繑鍥炴渶鏂版彃鍏D澶辫触");
+			System.out.println("executeUpdateID error");
 
 		}
 		return id;

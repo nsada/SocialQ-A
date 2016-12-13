@@ -20,24 +20,24 @@
         <tbody>
             <s:iterator value="messages" var="mes">
                 <tr>
-                    <td style="text-align:center;">${mes.message}</td>      
-                    <s:if test="type == 1">
-                        <td style="text-align:center;">                            
-                            <button><a href="${mes.url}">查看用户详细信息</a></button>
-                            <a href='<s:url action="acceptFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="通过申请"/></a>
-                        </td>
-                    </s:if>      
-                    <s:if test="type == 3">
-                        <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="前去批改"/></a>
-                        </td>                        
-                    </s:if>         
-                    <s:if test="type == 4">
-                        <td style="text-align:center;">
-                            <a href='<s:url action="#mes.url"></s:url>'><input type="button" value="查看"/></a>
-                        </td>                        
-                    </s:if> 
-                   
+                    <td style="text-align:center;">${mes.message}</td>   
+                    <td style="text-align:center;">  
+                        <button><a href="checkMessage?messageID=${mes.id}">确认已读</a></button>
+                        <s:if test="type == 1"> 
+	                            <button><a href="${mes.url}">查看用户详细信息</a></button>
+	                            <a href='<s:url action="acceptFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="通过申请"/></a>
+	                            <a href='<s:url action="refuseFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="拒绝申请"/></a>
+	                    </s:if>      
+	                    <s:if test="type == 3">
+	                            <button><a href="${mes.url}&messageID=${mes.id}">前去批改</a></button>	                                       
+	                    </s:if>         
+	                    <s:if test="type == 4">
+	                            <button><a href="${mes.url}&messageID=${mes.id}">查看给分</a></button> 
+	                    </s:if> 
+	                    <s:if test="type ==7">
+	                       <button><a href="${mes.url}&messageID=${mes.id}">查看工作组</a></button>
+	                    </s:if>
+                    </td>                      
                 </tr>           
             </s:iterator>
         </tbody>

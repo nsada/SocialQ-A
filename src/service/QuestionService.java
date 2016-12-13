@@ -11,7 +11,6 @@ import domain.Multy;
 import domain.Selection;
 
 public class QuestionService {
-	private Connect cont;
 	private List<Selection> selections;
 	private Selection selection;
 	private List<TextBlank> textBlanks;
@@ -29,7 +28,7 @@ public class QuestionService {
 		return name;
 	}
 	public List<Selection> getQbaseSelections(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=1";
 		//System.out.println("questionbase_selections sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -44,10 +43,11 @@ public class QuestionService {
 			e.printStackTrace();
 			selections = null;
 		}
+		cont.Close();
 		return selections;
 	}
 	public List<TextBlank> getQbaseTextBlanks(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=2";
 		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -62,10 +62,11 @@ public class QuestionService {
 			e.printStackTrace();
 			textBlanks = null;
 		}
+		cont.Close();
 		return textBlanks;
 	}	
 	public List<AandQ> getQbaseAandQs(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=3";
 		//System.out.println("questionbase_textblanks sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -80,10 +81,11 @@ public class QuestionService {
 			e.printStackTrace();
 			aandQs = null;
 		}
+		cont.Close();
 		return aandQs;
 	}
 	public List<Multy> getQbaseMultys(int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "select questionID from questionbase_question where questionBaseID=" + qBaseID + " and type=4";
 		//System.out.println("questionbase_multys sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -98,11 +100,12 @@ public class QuestionService {
 			e.printStackTrace();
 			multys = null;
 		}
+		cont.Close();
 		return multys;
 	}
 
 	public List<Selection> getExamSelections(int examID) {
-		cont = new Connect();
+		Connect cont = new Connect();
 		String sql = "select questionID from exam_question where examID=" + examID + " and type=1";
 		System.out.println("exam_question sql: " + sql);
 		ResultSet result = cont.executeQuery(sql);	
@@ -117,12 +120,13 @@ public class QuestionService {
 			e.printStackTrace();
 			selections = null;
 		}
+		cont.Close();
 		return selections;
 	}
 
 	public Selection getSelection(int id) {
 		String sql = "select * from selection where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -148,12 +152,14 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
+		cont.Close();
 		return selection;
 	}
 	public TextBlank getTextBlank(int id) {
 		String sql = "select * from textblank where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -173,11 +179,13 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
+		cont.Close();
 		return textBlank;
 	}	
 	public int addSelection(Selection sel, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into selection(id, context, A, B, C, D, E, F, ans, analysis, score, scoreA, scoreB, scoreC, scoreD, scoreE, scoreF) values("
 		+ sel.getId() + ", '" + sel.getContext() + "', '"+ sel.getA() + "', '" + sel.getB() + "', '" + sel.getC() + "', '"
 		+ sel.getD() + "', '" + sel.getE() + "', '" + sel.getF() + "', '" + sel.getAns() + "', '" + sel.getAnalysis() + "', " + sel.getScore() + ", "
@@ -192,10 +200,11 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public int addTextBlank(TextBlank blank, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into textblank(id, context, num, A, B, C, D, E, F, analysis, score) values("
 		+ blank.getId() + ", '" + blank.getContext() + "', " + blank.getNum() + ", '" + 
 		blank.getA() + "', '" + blank.getB() + "', '" + blank.getC() + "', '" + blank.getD() + "', '" + blank.getE() + "', '" + blank.getF() + "', '" + 
@@ -209,26 +218,29 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	private int addQuestionBase_Question(int qBaseID, int id, int type) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into questionbase_question(questionBaseID, questionID, type) values(" + qBaseID + ", " + id + ", " + type + ")"; 
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		System.out.println("insert questionbase_question sql: " + sql + " i: " + i);
 		return i;
 	}
 	public int delQuestionBase_Question(int qBaseID, int id, int type) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "delete from questionbase_question where questionBaseID=" + qBaseID + " and questionID=" + id + " and type=" + type; 
 		int i = cont.executeUpdate(sql);
+		cont.Close();
 		System.out.println("delete questionbase_question sql: " + sql + " i: " + i);
 		return i;		
 	}
 
 	public AandQ getAandQ(int id) {
 		String sql = "select * from aandq where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -242,12 +254,14 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找AandQ失败 id:"+id);
+			return null;
 		}
+		cont.Close();
 		return aandQ;
 	}
 	public Multy getMulty(int id) {
 		String sql = "select * from multy where id=" + id;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		
 		try{
@@ -267,11 +281,13 @@ public class QuestionService {
 			}
 		}catch (Exception e) {
 			System.out.println("按id查找Selection失败");
+			return null;
 		}
+		cont.Close();
 		return multy;
 	}
 	public int addAandQ(AandQ aandQ, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into aandq(id, context, ans, analysis, score) values("
 		+ aandQ.getId() + ", '" + aandQ.getContext() + "', '" + aandQ.getAns() + "', '" + aandQ.getAnalysis() + "', " + aandQ.getScore() + ")";
 		int id = cont.executeUpdateID(sql);
@@ -282,10 +298,11 @@ public class QuestionService {
 			in = addQuestionBase_Question(qBaseID, id, 3);			
 		}
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public int addMulty(Multy multy, int qBaseID) {
-		cont = new Connect();
+		Connect	cont = new Connect();
 		String sql = "insert into multy(id, context, A, B, C, D, E, F, ans, analysis, score) values("
 		+ multy.getId() + ", '" + multy.getContext() + "', '"+ multy.getA() + "', '" + multy.getB() + "', '" + multy.getC() + "', '"
 		+ multy.getD() + "', '" + multy.getE() + "', '" + multy.getF() + "', '" + multy.getAns() + "', '" + multy.getAnalysis() + "', " + multy.getScore() + ")";
@@ -299,17 +316,19 @@ public class QuestionService {
 		}
 		//System.out.println("LAST_INSERT_ID: " + id);
 		if (in < 0) id = -1;
+		cont.Close();
 		return id;
 	}
 	public String getQuestionContext(int id, int type) {
 		String sql = "";
 		if (id <= 0 || type <= 0) return sql;
-		cont = new Connect();
+		Connect	cont = new Connect();
 		sql = "select context from ";
 		switch (type) {
 		case 1: sql = sql + "selection"; break;
 		case 2: sql = sql + "textblank"; break;
-		case 3: sql = sql + "answerquestion"; break;
+		case 3: sql = sql + "aandq"; break;
+		case 4: sql = sql + "multy"; break;
 		}		
 		sql = sql + " where id=" + id;
 		//System.out.println("getQuestionContext sql________________ ");
@@ -324,6 +343,7 @@ public class QuestionService {
 		}catch (Exception e) {
 			context = "";
 		}
+		cont.Close();
 		return context;	
 	}
 
