@@ -54,6 +54,7 @@ public class Connect {
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 			result = null;
 		}
 		return result;

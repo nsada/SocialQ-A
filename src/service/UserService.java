@@ -315,4 +315,25 @@ public class UserService {
 		return i;	
 	}
 
+	public boolean isFriend(int a, int b) {
+		return isFriendAB(a,b)&isFriendAB(b,a);
+	}
+
+	private boolean isFriendAB(int a, int b) {
+		cont = new Connect();
+		String sql = "select * from friend where A="+a+" and B="+b;
+		ResultSet result = cont.executeQuery(sql);
+		cont.Close();
+		try{
+			if (result.next()){
+				return true;
+			}
+			result.close();
+		}catch (Exception e) {
+			return false;
+		}	
+		return false;
+	}
+	
+
 }
