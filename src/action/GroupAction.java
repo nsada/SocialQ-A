@@ -8,8 +8,10 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import domain.Group;
+import domain.Log;
 import domain.QuestionBase;
 import domain.User;
+import domain.Event;
 import service.GroupService;
 import service.LogService;
 import service.MessageService;
@@ -29,6 +31,7 @@ public class GroupAction implements Action {
 	private List<QuestionBase> questionBases;
 	private List<QuestionBase> userqBases;
 	private int qBaseID;
+	private List<Event> events;
 
 	@Override
 	public String execute() throws Exception { //show group
@@ -180,6 +183,32 @@ public class GroupAction implements Action {
 		return SUCCESS;		
 	}	
 	
+	public String showGroupEvents() {		
+		events = new ArrayList<>();
+		try {
+			LogService ls = new LogService();
+			List<Log> logs = ls.getGroupLogs(groupID);
+			for (int j = 0; j < logs.size(); j++) {				
+				Log log = logs.get(j);
+				Event event = new Event();
+				event.changeLogintoEvent(log, false, true);
+				events.add(event);
+			}
+		} catch (Exception e) {
+			events = null;		
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	
+	
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 	public Group getGroup() {
 		return group;
 	}

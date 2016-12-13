@@ -12,6 +12,11 @@
             <result>/index.jsp</result>
         </action>     
         
+        
+        <action name="showGroupEvents" class="action.GroupAction" method="showGroupEvents">
+            <result>/WEB-INF/content//group/showGroupEvents.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>
         <action name="addGroupQuestionBase" class="action.GroupAction" method="addGroupQuestionBase">
             <result type="chain">showGroup</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            

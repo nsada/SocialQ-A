@@ -1,3 +1,4 @@
 YC:
-	1. 分享失败后提示页面weiboerror.jsp
-	2. 
+	分享失败后提示页面weiboerror.jsp
+	工作组页面多了“查看工作组日志”
+	查看工作组日志页面showGroupEvents.jsp

@@ -66,10 +66,10 @@ public class LogService {
 		cont.Close();
 		//System.out.println("log "+sql);
 	}
-	public void OperateExam(int userID,int ExamID,int action)
+	public void OperateExam(int userID,int ExamID,int action,int GroupID)
 	{
 		Connect cont = new Connect();
-		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
+		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',"+GroupID+",0)";
 		//System.out.println("log "+sql);
 		int i= cont.executeUpdate(sql);
 		cont.Close();
@@ -154,6 +154,34 @@ public class LogService {
 			int i = cont.executeUpdate(sql);			
 
 		cont.Close();
+	}
+	public List<Log> getGroupLogs(int groupID) {
+		String sql = "select * from log where groupID=" + groupID;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		List<Log> logs = new ArrayList<>();
+		try{
+			while (result.next()){
+				Log log = new Log();
+				log.setUserID(result.getInt("userID"));
+				log.setGroupID(result.getInt("groupID"));
+				log.setExamID(result.getInt("examID"));
+				log.setqBaseID(result.getInt("qBaseID"));
+				log.setQuestionID(result.getInt("questionID"));
+				log.setQuestionType(result.getInt("questionType"));
+				log.setAction(result.getInt("action"));
+				String time = result.getString("time");
+				log.setTime(dateFormat.parse(time));
+				log.setUserIDB(result.getInt("userIDB"));
+				log.translate();
+				logs.add(log);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			logs = null;
+		}
+		cont.Close();
+		return logs;
 	}
 
 

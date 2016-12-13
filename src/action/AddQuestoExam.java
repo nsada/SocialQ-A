@@ -232,7 +232,7 @@ public class AddQuestoExam implements Action {
 			 result = cont.executeQuery(sql);
 			 if(publish==1)
 			 {
-				 ls.OperateExam(userID, ExamID, 9);
+				 ls.OperateExam(userID, ExamID, 9, GroupID);
 				 while(result.next())
 					{
 					        
@@ -241,7 +241,7 @@ public class AddQuestoExam implements Action {
 						 	ls.InsertQuesLog(userID, ExamID, result.getInt("questionID"),12, result.getInt("type"));
 					}
 			 } else if (publish==0) {//save to draft
-				 ls.OperateExam(userID, ExamID, 23);
+				 ls.OperateExam(userID, ExamID, 23, GroupID);
 			 }
 			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
 			 //System.out.println(sql);

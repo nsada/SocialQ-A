@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.Connect;
+import domain.Event;
 import domain.Group;
 import domain.QuestionBase;
 import domain.User;
@@ -197,6 +198,6 @@ public class GroupService {
 		cont.Close();
 		return i;
 	}
-	
+
 	
 }

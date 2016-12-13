@@ -21,11 +21,8 @@ public class Event {
 	 */
 	
 	public Event() {}
-	public Event(Log log) {
-		//log.print();
-		changeLogintoEvent(log, true);
-	}
-	public int changeLogintoEvent(Log log, boolean isFriend) {
+
+	public int changeLogintoEvent(Log log, boolean isFriend, boolean isGroup) {
 		int action = log.getAction();
 		userID = log.getUserID();
 		time = log.getTime();
@@ -47,7 +44,11 @@ public class Event {
 				type = 0;
 				event = "发布了试卷:" + exam;
 				if (groupID > 0) {
-					event = "用工作组“"+"”"+group+"中的题库"+event;
+					if (isGroup) {
+						event = "使用本工作组中的题库，"+event;
+					} else {
+						event = "使用工作组“"+"”"+group+"中的题库"+event;
+					}
 				}
 				url = "ShowExam?ExamID=" + examID;
 				break;
@@ -96,8 +97,13 @@ public class Event {
 				type = 6;
 				event = "添加了新试卷到草稿箱中“"+exam+"”";
 				if (groupID > 0) {
-					event = "使用工作组“"+group+"”的题库"+event;
+					if (isGroup) {
+						event = "使用本工作组中的题库，"+event;
+					} else {
+						event = "使用工作组“"+group+"”的题库"+event;
+					}					
 				}
+				
 				url = "ShowExam?ExamID="+examID;
 				break;
 			case 10:
@@ -164,6 +170,9 @@ public class Event {
 		}
 		if (isFriend) {
 			event = name + event;
+		}
+		if (isGroup & groupID > 0) {
+			event = "成员“"+name+"”" + event;
 		}
 		System.out.println("type ("+type+") url:"+url);
 		return 1;

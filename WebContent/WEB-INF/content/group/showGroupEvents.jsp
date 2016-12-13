@@ -9,22 +9,28 @@
 
 
 <rapid:override name="head">
-    <title>个人动态</title>
+    <title>工作组日志</title>
 </rapid:override>
 
 <rapid:override name="content">
    
     <div class="panel panel-success">
-        <div class="panel-heading">时间轴</div>
+        <div class="panel-heading">工作组动态</div>
+        <div class="text-align:right">
+            <button class="btn btn-default" type="button" onclick="window.location.href='showGroup?groupID=${groupID}'">
+                   返回工作组页面
+            </button> 
+        </div>
         <div class="panel-body">
             <div class="list-group">
 
                  <s:iterator value="events" var="e">     
-                    <button><a class="list-group-item list-group-item-success" href="${e.url}">${e.event}</a></button> 
+                    <li class="list-group-item">${e.event}</li>
                  </s:iterator>
                 
             </div>
         </div>
+
     </div>   
 
 

@@ -214,7 +214,7 @@ public class UserAction implements Action {
 			for (int j = 0; j < logs.size(); j++) {
 				Log log = logs.get(j);
 				Event event = new Event();
-				event.changeLogintoEvent(log, false);
+				event.changeLogintoEvent(log, false, false);
 				events.add(event);
 			}
 		} catch (Exception e) {
