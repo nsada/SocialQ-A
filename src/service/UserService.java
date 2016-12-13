@@ -304,4 +304,15 @@ public class UserService {
 		return userID;
 	}
 
+	public int updateUser(int id, String openid, String access_token) {
+		cont = new Connect();
+		String sql = "UPDATE user SET tencentOpenID='"+openid+"', tencentToken='"+access_token+"'";
+		sql = sql + " WHERE id=" + id;
+		System.out.println("成功更新User "+ " sql:"+sql);
+		int i = cont.executeUpdate(sql);
+		cont.Close();
+		//System.out.println("成功更新User "+ i + " sql:"+sql);
+		return i;	
+	}
+
 }

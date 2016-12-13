@@ -57,10 +57,11 @@ public class AfterLoginAction implements Action {
 		access_token = access_token.substring(13);
 		str = HttpRequest.sendGet("https://graph.qq.com/oauth2.0/me", "access_token="+access_token);
 		str = str.substring(10, str.length()-3);
-		Object openid = tencentApi.convention.ConvertStrToMap(str).get("openid");
+		String openid = tencentApi.convention.ConvertStrToMap(str).get("openid").toString();
 		
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
+
 		sess.put("openid", openid);
 		sess.put("accesstoken",access_token);
 		
@@ -73,16 +74,27 @@ public class AfterLoginAction implements Action {
 			ls.login(new_user.getId());
 		}catch (Exception e) {
 			new_user = null;
-			return "error";
 		}		
 		if(new_user==null)
 		{
-			System.out.println("not sign");
-			return "notSigned";
+			int userid = 0;
+			try {
+				userid = (int) sess.get("userid");
+				System.out.println("userid "+userid);
+				new_user = us.getUser(userid);
+			} catch (Exception e) {
+				return "notSigned";
+			}
+			us.updateUser(userid, openid, access_token);
 		}
 		sess.put("username", new_user.getName());
 		sess.put("userid", new_user.getId());
 		
 		return "success";
+	}
+
+	private void addNewUser(String openid, String access_token) {
+		// TODO Auto-generated method stub
+		
 	}
 }

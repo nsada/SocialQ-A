@@ -12,7 +12,7 @@
 </rapid:override>
 
 
-<rapid:override name="contentText">
+<rapid:override name="content">
 <%
         int userid;
         if (session.getAttribute("userid")!=null){
@@ -97,4 +97,4 @@
 
 
 
-<%@include file="../PersonalCenter.jsp"%>
+<%@include file="../../../base.jsp"%>
