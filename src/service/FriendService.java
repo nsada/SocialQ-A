@@ -51,6 +51,9 @@ public class FriendService {
 			friends = null;
 		}
 		
+		sql = "union all";
+		cont.executeUpdate(sql);
+		
 		sql = "select * from friend where B="+userID;
 		result = cont.executeQuery(sql);
 		try{

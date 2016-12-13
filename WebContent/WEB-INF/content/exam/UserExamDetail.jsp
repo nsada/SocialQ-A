@@ -9,92 +9,18 @@
 </rapid:override>
 <rapid:override name="content">
 		<div>
-
+        
+  
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
-    	</div>
-        <div class="panel panel-info">
- 			<div class="panel-heading">
-    			<h3 class="panel-title">单选题</h3>
-  			</div>
-  			<div class="panel-body">
-    		
-    			<ul class="list-group">
-  						
-									<%int i = 1; %>
-        				<s:iterator value="selections" >
-              				
-              				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
-        					<%i++; %>
-        					<br>
-        					<s:property value="A" />
-        					<br>
-        					<s:property value="B" />
-      		  				<br>
-     		   				<s:property value="C" />
-   		     				<br>
-      		  				<s:property value="D" />
-        					<br>
-		        			<s:property value="E" />
-		 			       	<br>
-        					<s:property value="F" />
-        					<br> 题目总分
-        					<s:property value="score" />
-        					<br> 你的得分
-        					<s:property value="userscore" />
-        					<br> 你的答案
-        					<s:property value="useranswer" />
-        					<br> 参考答案
-        					<s:property value="ans" />	
-        					<br> 解析
-        					<s:property value="analysis" />
-        					</li>
-						</s:iterator>
-					
-				</ul>
-  					
-			
-  			</div>
-		</div>
-		<div class="panel panel-info">
- 			<div class="panel-heading">
-    			<h3 class="panel-title">多选题</h3>
-  			</div>
-  			<div class="panel-body">
-    			<ul class="list-group">
-  					<li class="list-group-item">Vestibulum at eros</li>
-				</ul>
-  			</div>
-		</div>
-		<div class="panel panel-info">
- 			<div class="panel-heading">
-    			<h3 class="panel-title">填空题</h3>
-  			</div>
-  			<div class="panel-body">
-    			<ul class="list-group">
-  					<li class="list-group-item">Vestibulum at eros</li>
-				</ul>
-  			</div>
-		</div>
-		<div class="panel panel-info">
- 			<div class="panel-heading">
-    			<h3 class="panel-title">问答题</h3>
-  			</div>
-  			<div class="panel-body">
-    			
-  			</div>
-		</div>
-        
-        
-        
-        
-        <% i = 1; %>
+        	<p style="text-align: center;"> <s:property value="testername"/>的排名：<s:property value="rank"/><p>
+    </div>
+        <div class="col-md-12 column">
+        <%int i = 0; %>
           单选题：
         <s:iterator value="selections" >
               <br>
-        		<%=i %><s:property value="context" />
-        		<%i++; %>
+        		<s:property value="context" />
         		<br>
         		<s:property value="A" />
         		<br>
@@ -170,9 +96,7 @@
         		<s:property value="analysis" />	               
 		</s:iterator>
 		
-
-	      <br> 问答题
-
+	
 		<s:iterator value="AandQs" >			
 			  <br>
 		   <s:property value="context" />
@@ -187,15 +111,8 @@
         		<br> 解析
         		<s:property value="analysis" />	                  
 		</s:iterator>
-
-		<br>
-		<p> 查看我的小伙伴的排名 :<p>
-		<a  class="list-group-item list-group-item-success"
-           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        			
-               								</a>
 		      
 </div>
-
 </rapid:override>   
 <%@ include file="../../../../base.jsp"%>
+

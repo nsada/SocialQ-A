@@ -29,7 +29,7 @@ CREATE TABLE `aandq` (
   `score` int(10) DEFAULT NULL,
   `analysis` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `aandq` (
 
 LOCK TABLES `aandq` WRITE;
 /*!40000 ALTER TABLE `aandq` DISABLE KEYS */;
-INSERT INTO `aandq` VALUES (1,'开发过程中遇到的最坑的是什么？','第三方登录审核不过',50,'这个真心坑'),(2,'session为什么在部署到云平台后就一跳转就失效啊？','不知道',10,'你问我我确实不知道啊');
+INSERT INTO `aandq` VALUES (1,'hhhhhhhh','null',0,'哈哈'),(2,'hhhhhhhh','红红火火恍恍惚惚',10,'哈哈哈哈'),(3,'软工的老师叫什么？','null',10,'这个都不知道就等着挂科吧'),(4,'软工的老师叫什么？ ','王忠杰',100,'这个都不知道就等着挂科吧 '),(5,'现在merge到什么程度了','刚和LSY合并完，正在测试功能是否完善',10,'rt');
 /*!40000 ALTER TABLE `aandq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,13 +61,11 @@ CREATE TABLE `exam` (
   `publish` int(11) DEFAULT '1',
   `groupID` int(11) DEFAULT '0',
   PRIMARY KEY (`ID`),
+  KEY `groupID_idx` (`groupID`),
   KEY `userID_idx` (`userID`),
+  CONSTRAINT `examInx_group` FOREIGN KEY (`groupID`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `examInx_user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,11 +74,6 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `exam` VALUES (0,'null',NULL,0,NULL,NULL,0,0,1,0),(1,'美国兰德公司经典心理测试','简单的心理测试 以及 各种题型都测试一下\r\n						\r\n						\r\n						',1,2,2,3,79,0,0);
-=======
-INSERT INTO `exam` VALUES (0,'null',NULL,0,NULL,NULL,0,0,1,0),(1,'美国兰德公司经典心理测试','简单的心理测试 以及 各种题型都测试一下\r\n						\r\n						\r\n						',1,2,2,8,149,0,0),(3,'测试朋友圈','朋友圈显示出了一套试卷\r\n						',1,1,1,1,0,1,0),(4,'测试message','						\r\n						',1,1,1,4,2,1,0),(8,'测试工作组','测试工作组出题链接是否正确\r\n						\r\n						',0,1,1,0,0,1,3);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,11 +104,6 @@ CREATE TABLE `exam_question` (
 
 LOCK TABLES `exam_question` WRITE;
 /*!40000 ALTER TABLE `exam_question` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `exam_question` VALUES (1,1,1,3,3,0,11),(1,2,1,3,3,0,11),(1,4,1,3,3,0,9),(1,1,4,3,1,0,3),(1,1,2,3,1,0,15),(1,1,3,3,3,0,10),(1,2,3,3,3,0,10),(1,2,4,3,1,0,10);
-=======
-INSERT INTO `exam_question` VALUES (1,1,1,8,8,0,21),(1,2,1,8,8,0,43),(1,4,1,13,3,0,9),(1,1,4,9,1,0,3),(1,1,2,8,1,0,15),(1,1,3,12,12,0,17),(1,2,3,8,8,0,31),(1,2,4,8,1,0,10),(3,4,1,13,3,0,9),(3,1,4,9,1,0,3),(4,4,1,13,3,0,9),(4,1,3,12,12,0,2),(8,4,1,0,0,3,0),(8,1,4,0,0,3,0),(8,2,4,0,0,3,0),(8,1,3,0,0,3,0),(8,1,1,0,0,3,0);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `exam_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,11 +132,6 @@ CREATE TABLE `exam_user` (
 
 LOCK TABLES `exam_user` WRITE;
 /*!40000 ALTER TABLE `exam_user` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `exam_user` VALUES (1,2,58,1),(1,3,9,0);
-=======
-INSERT INTO `exam_user` VALUES (3,3,0,0),(4,2,2,1),(1,2,74,1),(1,3,3,0);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `exam_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,11 +164,6 @@ CREATE TABLE `exam_user_answer` (
 
 LOCK TABLES `exam_user_answer` WRITE;
 /*!40000 ALTER TABLE `exam_user_answer` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `exam_user_answer` VALUES (2,1,1,1,'3',1,0,5),(2,1,2,1,'3',1,0,5),(2,1,4,1,'2',1,0,3),(2,1,1,2,'唐梦研/#1140310522/#',1,0,15),(2,1,1,4,'101000',0,0,0),(2,1,2,4,'111111',1,0,10),(2,1,1,3,'第三方登录审核不过',1,1,10),(2,1,2,3,'不知道',1,1,10),(3,1,1,1,'2',1,0,3),(3,1,2,1,'2',1,0,3),(3,1,4,1,'2',1,0,3),(3,1,1,2,'tmy/#522/#',0,0,0),(3,1,1,4,'010000',0,0,0),(3,1,2,4,'000100',0,0,0),(3,1,1,3,'新浪云',1,0,0),(3,1,2,3,'不知道',1,0,0);
-=======
-INSERT INTO `exam_user_answer` VALUES (3,3,4,1,'1',0,0,0),(3,3,1,4,'110000',0,0,0),(2,4,4,1,'1',0,0,0),(2,4,1,3,'你啊',1,1,2),(2,1,1,1,'3',1,0,5),(2,1,2,1,'6',1,0,20),(2,1,4,1,'1',0,0,0),(2,1,1,2,'123/#123123/#',0,0,0),(2,1,1,4,'000100',0,0,0),(2,1,2,4,'100000',0,0,0),(2,1,1,3,'……',1,1,0),(2,1,2,3,'god',1,1,1),(3,1,1,1,'1',1,0,0),(3,1,2,1,'2',1,0,3),(3,1,4,1,'3',0,0,0),(3,1,1,2,'111/#212/#333',0,0,0),(3,1,1,4,'010010',0,0,0),(3,1,2,4,'010100',0,0,0),(3,1,1,3,'第一个问答题的答案',1,0,0),(3,1,2,3,'第二题的问答题的答案',1,0,0);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `exam_user_answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +191,6 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
-INSERT INTO `friend` VALUES (2,1,1),(1,3,1);
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,11 +206,7 @@ CREATE TABLE `group` (
   `name` varchar(45) NOT NULL,
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,11 +215,6 @@ CREATE TABLE `group` (
 
 LOCK TABLES `group` WRITE;
 /*!40000 ALTER TABLE `group` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `group` VALUES (0,'null',NULL);
-=======
-INSERT INTO `group` VALUES (0,'null',NULL),(2,'group1','测试和链接工作组出题'),(3,'group2','测试工作组'),(4,'测试个人动态','测试个人动态在添加工作组后是否更新正常');
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,10 +267,6 @@ CREATE TABLE `group_questionbase` (
 
 LOCK TABLES `group_questionbase` WRITE;
 /*!40000 ALTER TABLE `group_questionbase` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `group_questionbase` VALUES (3,1),(3,2);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `group_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,10 +293,6 @@ CREATE TABLE `group_user` (
 
 LOCK TABLES `group_user` WRITE;
 /*!40000 ALTER TABLE `group_user` DISABLE KEYS */;
-<<<<<<< HEAD
-=======
-INSERT INTO `group_user` VALUES (2,2),(3,2),(3,3),(3,1);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `group_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,11 +332,6 @@ CREATE TABLE `log` (
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `log` VALUES (1,0,0,0,0000000000,0000000000,19,'2016/12/12 01:16:30',3),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 01:20:36',0);
-=======
-INSERT INTO `log` VALUES (1,0,0,0,0000000000,0000000000,19,'2016/12/12 01:16:30',3),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 01:20:36',0),(1,0,3,0,0000000000,0000000000,9,'2016/12/12 01:38:16',0),(1,0,3,0,0000000004,0000000001,12,'2016/12/12 01:38:16',0),(1,0,3,0,0000000001,0000000004,12,'2016/12/12 01:38:16',0),(1,0,3,0,0000000000,0000000000,9,'2016/12/12 01:38:16',0),(3,0,3,0,0000000000,0000000000,14,'2016/12/12 01:41:06',0),(1,0,4,0,0000000000,0000000000,9,'2016/12/12 01:59:04',0),(1,0,4,0,0000000004,0000000001,12,'2016/12/12 01:59:04',0),(1,0,4,0,0000000001,0000000003,12,'2016/12/12 01:59:04',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:00:12',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:03:12',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:04:06',0),(2,0,4,0,0000000000,0000000000,14,'2016/12/12 02:06:53',0),(2,0,1,0,0000000000,0000000000,14,'2016/12/12 02:28:02',0),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 02:32:47',0),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 03:11:10',0),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 03:12:21',0),(3,0,1,0,0000000000,0000000000,14,'2016/12/12 03:15:24',0),(1,2,0,0,0000000000,0000000000,16,'2016/12/12 14:47:13',0),(1,3,0,0,0000000000,0000000000,15,'2016/12/12 14:48:05',0),(1,0,8,0,0000000000,0000000000,9,'2016/12/12 14:59:39',0),(1,0,8,0,0000000004,0000000001,12,'2016/12/12 14:59:39',0),(1,0,8,0,0000000001,0000000004,12,'2016/12/12 14:59:39',0),(1,0,8,0,0000000002,0000000004,12,'2016/12/12 14:59:39',0),(1,0,8,0,0000000001,0000000003,12,'2016/12/12 14:59:39',0),(1,0,8,0,0000000001,0000000001,12,'2016/12/12 14:59:39',0),(3,3,0,0,0000000000,0000000000,16,'2016/12/12 15:30:45',0),(1,3,0,0,0000000000,0000000000,25,'2016/12/12 15:31:57',3),(3,3,0,0,0000000000,0000000000,24,'2016/12/12 15:31:57',1),(1,4,0,0,0000000000,0000000000,15,'2016/12/12 15:35:24',0),(1,4,0,0,0000000000,0000000000,16,'2016/12/12 15:36:00',0),(1,3,0,0,0000000000,0000000000,16,'2016/12/12 15:50:38',0),(2,3,0,0,0000000000,0000000000,25,'2016/12/12 15:50:55',1),(1,3,0,0,0000000000,0000000000,24,'2016/12/12 15:50:55',2);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,11 +357,7 @@ CREATE TABLE `message` (
   KEY `messageInx_accepter_idx` (`accepterID`),
   CONSTRAINT `messageInx_accepter` FOREIGN KEY (`accepterID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `messageInx_sender` FOREIGN KEY (`senderID`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,11 +366,6 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-<<<<<<< HEAD
-INSERT INTO `message` VALUES (1,2,1,NULL,'用户 tmy2 申请您好友','2016/12/11 23:09:52',1,'showFriendInformation?userID=2',1),(2,3,1,NULL,'用户 tmy3 申请您好友','2016/12/11 23:10:17',1,'showFriendInformation?userID=3',1),(3,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:12:03',1,'',2),(4,1,3,NULL,'用户tmy拒绝了您的好友申请','2016/12/12 00:12:06',1,'',6),(5,2,1,NULL,'用户tmy解除了和您的好友关系','2016/12/12 00:52:29',1,'',5),(6,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 00:52:35',1,'showFriendInformation?userID=1',1),(7,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:52:56',1,'',2),(8,1,2,NULL,'用户 tmy 申请您好友','2016/12/12 00:53:36',1,'showFriendInformation?userID=1',1),(9,2,1,NULL,'用户 tmy2 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:56:59',1,'',2),(10,2,1,NULL,'tmy2回答了您的问题，请你抓紧时间批改哦！','2016/12/12 00:58:45',0,'FindUserExam?ExamID=1&TesttakerID=2',3),(11,1,2,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 00:59:49',0,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(12,1,3,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:05:15',1,'',5),(13,1,2,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:06:33',1,'',5),(14,2,1,NULL,'用户 tmy2 申请您好友','2016/12/12 01:11:20',1,'showFriendInformation?userID=2',1),(15,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:11:37',0,'',2),(16,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 01:15:53',1,'showFriendInformation?userID=1',1),(17,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:16:30',0,'',2),(18,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:17:37',0,'FindUserExam?ExamID=1&TesttakerID=3',3),(19,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:20:37',0,'FindUserExam?ExamID=1&TesttakerID=3',3);
-=======
-INSERT INTO `message` VALUES (1,2,1,NULL,'用户 tmy2 申请您好友','2016/12/11 23:09:52',1,'showFriendInformation?userID=2',1),(2,3,1,NULL,'用户 tmy3 申请您好友','2016/12/11 23:10:17',1,'showFriendInformation?userID=3',1),(3,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:12:03',1,'',2),(4,1,3,NULL,'用户tmy拒绝了您的好友申请','2016/12/12 00:12:06',1,'',6),(5,2,1,NULL,'用户tmy解除了和您的好友关系','2016/12/12 00:52:29',1,'',5),(6,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 00:52:35',1,'showFriendInformation?userID=1',1),(7,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:52:56',1,'',2),(8,1,2,NULL,'用户 tmy 申请您好友','2016/12/12 00:53:36',1,'showFriendInformation?userID=1',1),(9,2,1,NULL,'用户 tmy2 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 00:56:59',1,'',2),(10,2,1,NULL,'tmy2回答了您的问题，请你抓紧时间批改哦！','2016/12/12 00:58:45',1,'FindUserExam?ExamID=1&TesttakerID=2',3),(11,1,2,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 00:59:49',1,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(12,1,3,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:05:15',1,'',5),(13,1,2,NULL,'用户tmy解除了和您的好友关系','2016/12/12 01:06:33',1,'',5),(14,2,1,NULL,'用户 tmy2 申请您好友','2016/12/12 01:11:20',1,'showFriendInformation?userID=2',1),(15,1,2,NULL,'用户 tmy 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:11:37',1,'',2),(16,1,3,NULL,'用户 tmy 申请您好友','2016/12/12 01:15:53',1,'showFriendInformation?userID=1',1),(17,3,1,NULL,'用户 tmy3 接受了您的好友申请, 恭喜你们已成为社交问答网站好友','2016/12/12 01:16:30',1,'',2),(18,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:17:37',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(19,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:20:37',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(20,3,1,NULL,'tmy3回答了您的问题，请你抓紧时间批改哦！','2016/12/12 01:41:06',1,'FindUserExam?ExamID=3&TesttakerID=3',3),(21,1,3,NULL,'你的题目已经被check完毕了，赶紧快去看','2016/12/12 01:50:03',1,'ShowExamDetail?ExamID=1&TesttakerID=3',4),(22,2,1,NULL,'tmy2回答了您在试卷测试message中的问答题题，请抓紧时间批改哦！','2016/12/12 02:06:54',1,'FindUserExam?ExamID=4&TesttakerID=2',3),(23,1,2,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:23:01',1,'ShowExamDetail?ExamID=4&TesttakerID=2',4),(24,2,1,NULL,'tmy2回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 02:28:03',1,'FindUserExam?ExamID=1&TesttakerID=2',3),(25,1,2,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:29:28',0,'ShowExamDetail?ExamID=1&TesttakerID=2',4),(26,3,1,NULL,'tmy3回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 02:32:49',1,'FindUserExam?ExamID=1&TesttakerID=3',3),(27,1,3,NULL,'你的题目已经被 tmy check完毕了，赶紧快去看','2016/12/12 02:33:53',1,'ShowExamDetail?ExamID=1&TesttakerID=3',4),(28,3,1,NULL,'tmy3回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 03:11:12',0,'FindUserExam?ExamID=1&TesttakerID=3',3),(29,3,1,NULL,'tmy3回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 03:12:23',0,'FindUserExam?ExamID=1&TesttakerID=3',3),(30,3,1,NULL,'tmy3回答了您在试卷“美国兰德公司经典心理测试”中的问答题题，请抓紧时间批改哦！','2016/12/12 03:15:25',0,'FindUserExam?ExamID=1&TesttakerID=3',3),(31,2,1,NULL,'tmy2将您加入了工作组“group2”','2016/12/12 15:50:56',1,'showGroup?groupID=3',7);
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,7 +389,7 @@ CREATE TABLE `multy` (
   `analysis` varchar(45) DEFAULT NULL,
   `score` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,7 +398,6 @@ CREATE TABLE `multy` (
 
 LOCK TABLES `multy` WRITE;
 /*!40000 ALTER TABLE `multy` DISABLE KEYS */;
-INSERT INTO `multy` VALUES (1,'我们小组有哪些成员？','tmy','lsy','yc','xxx','','','111000','三个人~',3),(2,'我们的主要功能有','新建、删除、编辑题目','新建、删除、编辑题库','新建、编辑试卷','添加、删除好友','新建、退出工作组','向工作组中添加成员','111111','很棒！！',10);
 /*!40000 ALTER TABLE `multy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -469,7 +414,7 @@ CREATE TABLE `questionbase` (
   `title` varchar(45) DEFAULT NULL,
   `description` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -478,7 +423,6 @@ CREATE TABLE `questionbase` (
 
 LOCK TABLES `questionbase` WRITE;
 /*!40000 ALTER TABLE `questionbase` DISABLE KEYS */;
-INSERT INTO `questionbase` VALUES (0,NULL,NULL,NULL),(1,1,'心理测试','美国兰德公司经典心理测试'),(2,1,'测试题库','各种题型都有');
 /*!40000 ALTER TABLE `questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +448,6 @@ CREATE TABLE `questionbase_question` (
 
 LOCK TABLES `questionbase_question` WRITE;
 /*!40000 ALTER TABLE `questionbase_question` DISABLE KEYS */;
-INSERT INTO `questionbase_question` VALUES (1,1,1),(1,2,1),(2,4,1),(2,1,4),(2,2,4),(2,1,2),(2,1,3),(2,2,3);
 /*!40000 ALTER TABLE `questionbase_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,7 +477,7 @@ CREATE TABLE `selection` (
   `scoreE` int(10) DEFAULT NULL,
   `scoreF` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -543,7 +486,6 @@ CREATE TABLE `selection` (
 
 LOCK TABLES `selection` WRITE;
 /*!40000 ALTER TABLE `selection` DISABLE KEYS */;
-INSERT INTO `selection` VALUES (1,'你更喜欢吃的水果？','草莓','苹果 ','西瓜 ','菠萝 ','橘子 ','','1','',0,2,3,5,10,15,0),(2,'你平时休闲经常去的地方','郊外','电影院','公园','商场','酒吧 ','练歌房','1','无',0,2,3,5,10,15,20),(3,'你认为容易吸引你的人是？','有才气的人','依赖你的人','优雅的人','','','','1','',0,2,3,5,0,0,0),(4,'软工项目的截止时间是','周二晚上','周三中午','周三晚上','','','','2','周三中午12点',3,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `selection` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,7 +509,7 @@ CREATE TABLE `textblank` (
   `analysis` varchar(45) DEFAULT '无',
   `score` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -576,7 +518,6 @@ CREATE TABLE `textblank` (
 
 LOCK TABLES `textblank` WRITE;
 /*!40000 ALTER TABLE `textblank` DISABLE KEYS */;
-INSERT INTO `textblank` VALUES (1,'tmy的名字和学号是？',2,'唐梦研','1140310522','','','','','~不需要解释吧',15);
 /*!40000 ALTER TABLE `textblank` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,7 +538,7 @@ CREATE TABLE `user` (
   `tencentToken` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,7 +547,6 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (0,NULL,NULL,NULL,NULL,NULL,NULL),(1,'tmy','1015','hitnstmy@163.com',NULL,'null','null'),(2,'tmy2','1015','1015@qq.com',NULL,'null','null'),(3,'tmy3','1015','1015@qq.com',NULL,'null','null');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,7 +573,6 @@ CREATE TABLE `user_questionbase` (
 
 LOCK TABLES `user_questionbase` WRITE;
 /*!40000 ALTER TABLE `user_questionbase` DISABLE KEYS */;
-INSERT INTO `user_questionbase` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `user_questionbase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -670,8 +609,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2016-12-12  1:28:25
-=======
--- Dump completed on 2016-12-12 15:54:10
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
+-- Dump completed on 2016-12-11 22:51:55

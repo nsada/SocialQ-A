@@ -29,11 +29,14 @@
 	                            <a href='<s:url action="refuseFriendApply"><s:param name="A" value ="#mes.senderID"/><s:param name="messageID" value ="#mes.id"/></s:url>'><input type="button" value="拒绝申请"/></a>
 	                    </s:if>      
 	                    <s:if test="type == 3">
-	                            <button><a href="${mes.url}">前去批改</a></button>	                                       
+	                            <button><a href="${mes.url}&messageID=${mes.id}">前去批改</a></button>	                                       
 	                    </s:if>         
 	                    <s:if test="type == 4">
-	                            <button><a href="${mes.url}">查看给分</a></button> 
+	                            <button><a href="${mes.url}&messageID=${mes.id}">查看给分</a></button> 
 	                    </s:if> 
+	                    <s:if test="type ==7">
+	                       <button><a href="${mes.url}&messageID=${mes.id}">查看工作组</a></button>
+	                    </s:if>
                     </td>                      
                 </tr>           
             </s:iterator>

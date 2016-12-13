@@ -146,7 +146,11 @@ public class AddQuestoExam implements Action {
 		    	Map<String, Object> sess = actCtx.getSession();
 		         int userID = (int) sess.get("userid");	
 		         Answerexam ans = new Answerexam(); 
-		         textb=ans.getTextBlankanswer(questionstr);
+		         if(!questionstr.equals(""))
+		         {
+		        	   textb=ans.getTextBlankanswer(questionstr);
+		         }
+		      
 		         while(!textb.isEmpty())
                  {
                 	 String answer =textb.poll();
@@ -157,6 +161,7 @@ public class AddQuestoExam implements Action {
                  System.out.println(SQL);
                  cont =new Connect();
                  cont.executeUpdate(SQL);  
+                 cont.Close();
                  }
 	           seq =new ShowExamQuestion();
 		       seq.setExamID(ExamID);
@@ -179,7 +184,7 @@ public class AddQuestoExam implements Action {
 			  System.out.println("Description:"+description);
 			  
 			} catch (Exception e) {
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 			 return ERROR;
 			}				
 			return SUCCESS;
@@ -236,7 +241,7 @@ public class AddQuestoExam implements Action {
 					}
 			 }
 			 sql ="update social.exam set publish = "+publish+" , description = '"+description+"', title = '"+title+"', rights ="+rights+" ,joiner ="+joiner+" where ID ="+ExamID+" ";
-			 System.out.println(sql);
+			 //System.out.println(sql);
 			 cont =new Connect();
 			 cont.executeUpdate(sql);
 			 
@@ -263,6 +268,9 @@ public class AddQuestoExam implements Action {
 			textBlanks=seq.getTextBlanks();
 			multys =seq.getMultys();
 			AandQs=seq.getAandQs();
+			exam =es.getExam(ExamID);
+			joiner=exam.getJoiner();
+			rights=exam.getRights(); 
 	        }
 		catch (Exception e)
 		{

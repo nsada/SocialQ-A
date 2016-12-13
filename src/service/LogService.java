@@ -17,51 +17,60 @@ public class LogService {
 	
 	public void addUser(int userid) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 1 + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, action, time, groupID, examID, qBaseID) values(" + userid + ", " + 1 + ", '" + 
+		dateFormat.format(now) + "',0,0,0)";
 		int i = cont.executeUpdate(sql);
 		cont.Close();
 	}
 	public void login(int userid) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 2 + ", '" + dateFormat.format(now) + "')";
-		System.out.println("login LOG_sql: " + sql);
+		String sql = "insert into log (userID, action, time, groupID, examID, qBaseID) values(" + userid + ", " + 2 + ", '" + 
+		dateFormat.format(now) + "',0,0,0)";
+		//System.out.println("login LOG_sql: " + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
 	}
 	public void logout(int userid) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, action, time) values(" + userid + ", " + 3 + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, action, time, groupID, examID, qBaseID) values(" + userid + ", " + 3 + ", '" + 
+		dateFormat.format(now) + "',0,0,0)";
 		int i = cont.executeUpdate(sql);
 		cont.Close();
 	}
 
 	public void OperateQuestionBase(int userID, int qBaseID, int action) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, qBaseID, action, time) values(" + userID + ", " + qBaseID + ", " + action + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, qBaseID, action, time, groupID, examID) values(" + userID + ", " + qBaseID + ", " + 
+		action + ", '" + dateFormat.format(now) + ",0,0)";
 		int i = cont.executeUpdate(sql);
 		cont.Close();
+		//System.out.println("log "+sql);
 	}
 
 	public void OperateQuestionBaseQuestion(int userID, int qBaseID, int questionID, int type, int action) {
-		String sql = "insert into log (userID, qBaseID, questionID, questionType, action, time) values(" + userID + 
-				", " + qBaseID + ", " + questionID + ", " + type + ", " + action + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, qBaseID, questionID, questionType, action, time, groupID, examID) values(" + userID + 
+				", " + qBaseID + ", " + questionID + ", " + type + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
 		//System.out.println("operateqBaseQuestion sql:" + sql);
 		Connect cont = new Connect();
 		int i = cont.executeUpdate(sql);
 		cont.Close();
+		//System.out.println("log "+sql);
 	}
 	
 	public void InsertQuesLog(int userID ,int ExamID ,int questionID,int action ,int questionType)
 	{
 		Connect cont = new Connect();
-		String sql = "insert into log (userID,examID , questionID, questionType , action ,time) values(" + userID + ", " + ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID,examID , questionID, questionType , action ,time,groupID, qBaseID) values(" + userID + ", " + 
+		ExamID + ", " + questionID + ", " + questionType + " , " + action + " , '" + dateFormat.format(now) + "',0,0)";
 		int i= cont.executeUpdate(sql);
 		cont.Close();
+		//System.out.println("log "+sql);
 	}
 	public void OperateExam(int userID,int ExamID,int action)
 	{
 		Connect cont = new Connect();
-		String sql= "insert into log (userID, examID, action, time) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "')";
+		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
+		//System.out.println("log "+sql);
 		int i= cont.executeUpdate(sql);
 		cont.Close();
 	}
@@ -98,24 +107,43 @@ public class LogService {
 
 	public void OperateGroup(int userID, int groupID, int action) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, groupID, action, time) values(" + userID + 
-				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "')";
+		String sql = "insert into log (userID, groupID, action, time, examID, qBaseID) values(" + userID + 
+				", " + groupID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
 		//System.out.println("operateGroup sql:" + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
+		//System.out.println("log "+sql);
 	}
 	public void OperateFriend(int a, int b, int action) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, action, time, userIDB) values(" + a + ", " + action + ", '" + dateFormat.format(now) + "', " + b + ")";
+		String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", " + 
+		action + ", '" + dateFormat.format(now) + "', " + b + ",0,0,0)";
 		//System.out.println("operateFriend sql:" + sql);
 		int i = cont.executeUpdate(sql);
 		cont.Close();
+		//System.out.println("log "+sql);
 	}
 	public void OperateMessage(int a, int b, int action) {
 		Connect cont = new Connect();
-		String sql = "insert into log (userID, action, time, userIDB) values(" + a + ", " + action + ", '" + dateFormat.format(now) + "', " + b + ")";
-		System.out.println("operateMessage sql:" + sql);
-		//int i = cont.executeUpdate(sql);
+		String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", " + 
+		action + ", '" + dateFormat.format(now) + "', " + b + ",0,0,0)";
+		//System.out.println("operateMessage sql:" + sql);
+		int i = cont.executeUpdate(sql);
+		cont.Close();
+		//System.out.println("log "+sql);
+	}
+	public void OperateGroupUser(int a, int b, int groupID, int action) {
+		Connect cont = new Connect();
+		if (action == 25) {
+			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", "+
+					action+", '" + dateFormat.format(now) + "', " + b + ", " + groupID + ",0,0)";
+			System.out.println("OperateGroupUser sql1:" + sql);
+			int i = cont.executeUpdate(sql);			
+			sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + b +
+				", 24, '" + dateFormat.format(now) + "', " + a + ", " + groupID + ",0,0)";
+			i = cont.executeUpdate(sql);
+			
+		}
 		cont.Close();
 	}
 

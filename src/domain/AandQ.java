@@ -10,6 +10,27 @@ public class AandQ {
 	private int userscore;
 	private String useranswer;
 	private int readd;
+	private int totalscore;
+	public int getTotalscore() {
+		return totalscore;
+	}
+	public void setTotalscore(int totalscore) {
+		this.totalscore = totalscore;
+	}
+	public int getPeople() {
+		return people;
+	}
+	public void setPeople(int people) {
+		this.people = people;
+	}
+	public int getPeopleR() {
+		return peopleR;
+	}
+	public void setPeopleR(int peopleR) {
+		this.peopleR = peopleR;
+	}
+	private int people =0;
+	private int peopleR=0;
 	public int getReadd() {
 		return readd;
 	}

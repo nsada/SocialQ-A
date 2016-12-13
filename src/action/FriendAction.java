@@ -48,6 +48,7 @@ public class FriendAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		try {
 			 userID = (int) sess.get("userid");
+			 //System.out.println("userID " +userID);
 		} catch (Exception e) {
 			friends = null;
 			return "needlogin";
@@ -71,9 +72,15 @@ public class FriendAction implements Action {
 		Map<String, Object> sess = actCtx.getSession();
 		String username = sess.get("username").toString();
 		weibofriends = new ArrayList<>();
+		String openid;
 		try {
-			String openid = sess.get("openid").toString();
+			openid = sess.get("openid").toString();
+			//System.out.println("openid "+openid);
 		} catch (Exception e) {
+			weibofriends = null;
+			return SUCCESS;
+		}
+		if (openid == null || openid.length() <= 0 || openid.equals("null")) {
 			weibofriends = null;
 			return SUCCESS;
 		}
@@ -214,7 +221,7 @@ public class FriendAction implements Action {
 		
 		Message mes = new Message();
 		String message = "用户"+nameA+"解除了和您的好友关系";
-		mes.Systemsendmessage(b, a, message, "", 5);			
+		mes.Systemsendmessage(a, b, message, "", 5);			
 		LogService ls = new LogService();
 		ls.OperateFriend(a, b, 21);
 		return SUCCESS;
@@ -228,7 +235,7 @@ public class FriendAction implements Action {
 	public List<User> getUserFriends(int userID) {
 		UserService us = new UserService();
 		friends = us.getAllFriends(userID);		
-		System.out.println("getUserFriends size "+friends.size());
+		//System.out.println("getUserFriends size "+friends.size());
 		return friends;
 	}
 	
@@ -257,7 +264,7 @@ public class FriendAction implements Action {
 				for (int j = 0; j < logs.size(); j++) {
 					
 					Log log = logs.get(j);
-					//log.print();
+					log.print();
 					if (log.getAction() == 9 || log.getAction() == 14) { 
 						Event event = new Event(log);
 						//event.print();
@@ -273,8 +280,6 @@ public class FriendAction implements Action {
 		return SUCCESS;		
 	}
 	
-
-
 	public List<User> getFriends() {
 		return friends;
 	}

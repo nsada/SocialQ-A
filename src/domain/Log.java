@@ -49,11 +49,11 @@ public class Log {
 		case 6: ans = ans + "更新了题库"+qBase+"的基本信息"; break;
 		case 7: ans = ans + "向题库"+qBase+"添加一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 8: ans = ans + "向题库"+qBase+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
-		case 9: ans = ans + "添加了新试卷："+exam; break;
-		case 10: ans = ans + "删除了试卷："+exam; break;
+		case 9: ans = ans + "发布了新试卷："+exam; break;
+		case 10: ans = ans + "删除了草稿箱中的试卷："+exam; break;
 		case 11: ans = ans + "更新了试卷"+qBase+"的基本信息"; break;
 		case 12: ans = ans + "向试卷"+exam+"添加一个"+qs.getQuestionType(questionType)+":"+question; break;
-		case 13: ans = ans + "向题库"+exam+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
+		case 13: ans = ans + "向试卷"+exam+"删除一个"+qs.getQuestionType(questionType)+":"+question; break;
 		case 14: ans = ans + "答试卷"+exam; break;
 		case 15: ans = ans + "新建了工作组: " + group; break;
 		case 16: ans = ans + "退出了工作组: " + group; break;
@@ -63,6 +63,9 @@ public class Log {
 		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
 		case 21: ans = ans + "解除了和用户"+userB+"的好友关系"; break;
 		case 22: ans = ans + "拒绝了用户"+userB+"的好友申请"; break;
+		case 23: ans = "新建了试卷";
+		case 24: ans = "被加入了工作组";
+		case 25: ans = "添加用户到工作组";
 		}
 		this.trans= ans;
 		return ans;

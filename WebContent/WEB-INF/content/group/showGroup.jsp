@@ -57,7 +57,75 @@
          		
          
 
+<<<<<<< HEAD
        
+=======
+    <div class="col-md-10 column">
+        <h1>${group.name}</h1>
+        ${group.description}
+         <div class="text-align:right">
+	        <button class="btn btn-default" type="button" onclick="window.location.href='GroupInsertExam?groupID=${group.id}'">
+	               工作组出题
+	        </button> 
+        </div>
+
+        <div class="text-align:right">
+            <li class="dropdown" style="margin-top: 5px">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        选择用户添加入工作组<b class="caret"></b>
+                 </a>
+                 <ul class="dropdown-menu">
+                    <s:iterator value="users" var="u">
+                        <button><a href='<s:url action="addGroupUser"><s:param name="groupID" value="group.id"/><s:param name="adduserID" value="#u.id"/></s:url>'>${u.name}</a></button>
+                    </s:iterator> 
+                </ul>
+            </li>      
+        </div>
+        <table class="table table-bordered table-hover ">
+            <caption>工作组成员</caption>
+            <tbody>
+                <s:iterator value="groupusers" var="guser">
+                    <tr>
+                        <td>${guser.name}</td>
+                    </tr>
+                </s:iterator>
+            </tbody>
+        </table>
+	    <table class="table table-bordered table-hover ">
+	        <caption><h1>工作组题库</h1></caption>
+		    <div class="text-align:right">
+	            <li class="dropdown" style="margin-top: 5px">
+	                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	                        选择题库添加入工作组<b class="caret"></b>
+	                 </a>
+	                 <ul class="dropdown-menu">
+	                    <s:iterator value="userqBases" var="uqBase">
+	                        <button><a href='<s:url action="addGroupQuestionBase"><s:param name="groupID" value="group.id"/><s:param name="qBaseID" value="#uqBase.id"/></s:url>'>${uqBase.title}</a></button>
+	                    </s:iterator> 
+	                </ul>
+	            </li>      
+	        </div>
+	        <thead>
+	            <tr>
+	                <th style="text-align:center;">题库名称</th>
+	                <th style="text-align:center;">题库描述</th>
+	                <th style="text-align:center;">操作</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <s:iterator value="questionBases" var="qBase">
+	                <tr>
+	                    <td style="text-align:center;"><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
+	                    <td style="text-align:center;">${qBase.description}</td>                     
+	             <%--        <td style="text-align:center;">
+	                        <a href='<s:url action="delGroupQuestionBase?groupID=${groupID}&qBaseID=${qBase.id}">
+	                        </s:url>'><input type="button" value="删除"/></a>
+	                    </td> --%>
+	                </tr>           
+	            </s:iterator>
+	        </tbody>
+	    </table>     
+>>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
     </div>
 </rapid:override>
 

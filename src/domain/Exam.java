@@ -9,6 +9,13 @@ public class Exam {
 	private int rights;
 	private int check;
 	private int TesttakerID;
+	private String  ExamUserName;
+	public String getExamUserName() {
+		return ExamUserName;
+	}
+	public void setExamUserName(String examUserName) {
+		ExamUserName = examUserName;
+	}
 	public int getCheck() {
 		return check;
 	}

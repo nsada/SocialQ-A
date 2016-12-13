@@ -26,17 +26,22 @@
                             <button><a href="${mes.url}">查看用户详细信息</a></button>
                         </td>
                     </s:if>      
-                    <s:if test="type == 3">
+                    <s:elif test="type == 3">
                         <td>
                             已批改
-                        </td>                 
-                    </s:if>         
-                    <s:if test="type == 4">
+                        </td>
+                    </s:elif>       
+                    <s:elif test="type == 4">
                         <td style="text-align:center;">
                             <button><a href="${mes.url}">查看给分</a></button> 
-                        </td>                        
-                    </s:if> 
-                   
+                        </td>
+                    </s:elif>                        
+                    <s:else>
+                       <td>
+                       已读
+                       </td>
+                    </s:else> 
+                    
                 </tr>           
             </s:iterator>
         </tbody>

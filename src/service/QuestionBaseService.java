@@ -110,4 +110,51 @@ public class QuestionBaseService {
 		cont.Close();
 		return title;	
 	}
+	public List<QuestionBase> getGroupQuestionBases(int groupID) {
+		cont = new Connect();
+		String sql = "select * from group_questionbase t1, questionbase t2 where t1.questionbaseID=t2.id and t1.groupID=" + groupID;
+		ResultSet result = cont.executeQuery(sql);	
+		questionBases = new ArrayList<>();
+		try{
+			while (result.next()){
+				questionBase = new QuestionBase();
+				questionBase.setId(result.getInt("id"));
+				questionBase.setTitle(result.getString("title"));
+				questionBase.setUserID(result.getInt("userID"));
+				questionBase.setDescription(result.getString("description"));
+				questionBases.add(questionBase);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			questionBases = null;
+		}
+		cont.Close();
+		return questionBases;
+	}
+	public List<QuestionBase> getUser_without_GroupQuestionBases(int userID, int groupID) {
+		cont = new Connect();
+		String sql = "select t3.id,t3.title from user_questionbase t1, questionbase t3 "
+				+ "where t1.questionBaseID=t3.id "
+				+ "and t1.userID=1 "
+				+ "and t1.questionBaseID not in "
+				+ "(select t2.questionbaseID from group_questionbase t2 where t2.groupID=" + groupID+")";
+		System.out.println("getUser_without_GroupQuestionBases sql:"+sql);
+		ResultSet result = cont.executeQuery(sql);	
+		questionBases = new ArrayList<>();
+		try{
+			while (result.next()){
+				questionBase = new QuestionBase();
+				questionBase.setId(result.getInt("id"));
+				questionBase.setTitle(result.getString("title"));
+				questionBase.setUserID(result.getInt("userID"));
+				questionBase.setDescription(result.getString("description"));
+				questionBases.add(questionBase);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			questionBases = null;
+		}
+		cont.Close();
+		return questionBases;
+	}
 }

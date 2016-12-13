@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import action.QuestionBaseAction;
+import domain.Event;
+import domain.Log;
 import domain.QuestionBase;
 import domain.User;
 import service.LogService;
@@ -15,8 +17,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;  
 import org.apache.struts2.ServletActionContext;
 
 public class UserAction implements Action {
@@ -30,6 +33,7 @@ public class UserAction implements Action {
 	private List<User> users;
 	private int friendID;
 	private int userID;
+	private int saveLogin;
 	private int login_result=-2;
 	/* login_result :
 	 *  0 -> normal
@@ -41,7 +45,7 @@ public class UserAction implements Action {
 	 *  0 -> normal
 	 *  1 -> username is already exist
 	 */
-	
+	private List<Event> events;
 	
 	
 	@Override
@@ -63,14 +67,27 @@ public class UserAction implements Action {
 		}
 		try{
 			new_user = us.loginUser(user);
+			System.out.println("userID " + new_user.getId());
 			if (new_user.getId() > 0) {
-				login_result = 0;
+				login_result = 0; 
 				ActionContext actCtx = ActionContext.getContext();
 				Map<String, Object> sess = actCtx.getSession();
 				sess.put("username", new_user.getName());
 				sess.put("userid", new_user.getId());
 				sess.put("openid", new_user.getTencentOpenID());
-				sess.put("accesstoken", new_user.getTencentToken());		
+				sess.put("accesstoken", new_user.getTencentToken());
+				if (saveLogin == 1) {
+		             Cookie nameCookie = new Cookie("name", new_user.getName()); //可以使用md5或着自己的加密算法保存     
+		             Cookie passwordCookie = new Cookie("password", new_user.getPassword());     
+		             nameCookie.setPath("/socialqanda/"); //cookie路径问题，在我的其他文章里有专门的讲解     
+		             nameCookie.setMaxAge(24*3600);     
+		             passwordCookie.setPath("/webappName/");     
+		             passwordCookie.setMaxAge(24*3600);     
+		             ServletActionContext.getResponse().addCookie(nameCookie);
+		             ServletActionContext.getResponse().addCookie(passwordCookie);
+		             saveLogin = 0;  
+				}
+				return SUCCESS;
 			}
 			login_result = 1;
 			return SUCCESS;	
@@ -83,14 +100,14 @@ public class UserAction implements Action {
 	}
 	
 	public String regist(){
-		System.out.println("UserAction regist redirect_url:" + redirect_url);
+/*		System.out.println("UserAction regist redirect_url:" + redirect_url);
 		char ch = redirect_url.charAt(redirect_url.length()-1); 
 		if (ch == 'm') {
 			redirect_url = redirect_url + "/index";
 		}
 		if (ch == '/') {
 			redirect_url = redirect_url + "index";
-		}
+		}*/
 		UserService us = new UserService();
 		int existID = us.getUserIDfromName(user.getName());
 		if (existID > 0) {
@@ -181,6 +198,32 @@ public class UserAction implements Action {
 		return friaction.delFriend(userID, friendID);
 	}
 	
+	public String showPersonalEvents() {
+		events = new ArrayList<>();
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			 userID = (int) sess.get("userid");
+		} catch (Exception e) {
+			userID = 0;
+			return "needlogin";
+		}
+		try {
+			LogService ls = new LogService();
+			List<Log> logs = ls.getUserLogs(userID);
+			for (int j = 0; j < logs.size(); j++) {
+				Log log = logs.get(j);
+				Event event = new Event();
+				event.changeLogintoEvent(log, false);
+				events.add(event);
+			}
+		} catch (Exception e) {
+			events = null;			
+			return ERROR;
+		}
+		return SUCCESS;	
+	}
+	
 
 	public String getCpassword() {
 		return cpassword;
@@ -259,6 +302,11 @@ public class UserAction implements Action {
 	public void setRegist_result(int regist_result) {
 		this.regist_result = regist_result;
 	}
-	
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
 }

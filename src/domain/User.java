@@ -8,7 +8,22 @@ public class User {
 	private int questionBaseID;
 	private String tencentOpenID;
 	private String tencentToken;
-	
+	private int Examscore;
+	 private int rank ;
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getExamscore() {
+		return Examscore;
+	}
+
+	public void setExamscore(int examscore) {
+		Examscore = examscore;
+	}
+
 	public String getTencentOpenID() {
 		return tencentOpenID;
 	}

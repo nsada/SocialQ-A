@@ -27,6 +27,16 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
+					
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='FindUserAnsweredExams'">查看小伙伴答题情况
+					</button>
+					
+					
+					<button class="btn btn-default " type="button"
+						onclick="window.location.href='PublishedExam'">发布过的试卷
+					</button>
+					
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='FindUserExams'">批改试卷</a>
 					</button>
