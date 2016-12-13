@@ -82,8 +82,7 @@
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>查看logs</a></li>
                             
                         </ul>
-                    </li>
-                    
+                    </li>           
                     
                     
                     <li class="dropdown" style="margin-top: 5px">
