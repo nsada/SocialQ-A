@@ -5,8 +5,8 @@ public class globalVar {
 	public static String AppID = "101327272";
 	public static String AppKey = "7626574409328b7464c8c336b67ebfbd";
 //	public static String AppKey = "f48ed4d0d491ba2db077c71e3a5b1f3b";//ours
-//	public static String redirect_URI = "http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2f";//需要修改
-	public static String redirect_URI = "http%3a%2f%2fsocialqanda.applinzi.com%2f";
+//	public static String redirect_URI = "http%3a%2f%2f127.0.0.1%3a8080%2fSocialQ-A%2fAfterLoginAction.action";//需要修改
+	public static String redirect_URI = "http%3a%2f%2fsocialqanda.applinzi.com%2fAfterLoginAction.action";
 	public static String scope = "get_user_info,add_t,get_fanslist";
 	public static String getAppID() {
 		return AppID;
