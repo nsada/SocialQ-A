@@ -79,6 +79,7 @@
                             <li><a href='<%=request.getContextPath()%>/showUserLogs'>查看logs</a></li>
                             
                         </ul>
+
                     </li>
         		</ul>
         	<%} %>
@@ -97,9 +98,11 @@
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
         		</ul>
+
     	</div>
 
     	</div>
+
 	</nav>
 	
 	

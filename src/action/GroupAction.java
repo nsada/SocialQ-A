@@ -8,8 +8,10 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 import domain.Group;
+import domain.Log;
 import domain.QuestionBase;
 import domain.User;
+import domain.Event;
 import service.GroupService;
 import service.LogService;
 import service.MessageService;
@@ -28,6 +30,8 @@ public class GroupAction implements Action {
 	private int messageID;
 	private List<QuestionBase> questionBases;
 	private List<QuestionBase> userqBases;
+	private int qBaseID;
+	private List<Event> events;
 
 	@Override
 	public String execute() throws Exception { //show group
@@ -130,7 +134,81 @@ public class GroupAction implements Action {
 		}				
 		return SUCCESS;
 	}
+	public String addGroupQuestionBase() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");
+			String name = sess.get("username").toString();
+			
+			if (!gs.findqBase_in_Group(qBaseID, groupID)) {
+				gs.addGroup_qBase(qBaseID,groupID);				
+				ls.OperateGroupqBase(userID,qBaseID,groupID,26);
+				Message mes = new Message();
+				GroupService gs = new GroupService();
+				String group = gs.getGroupName(groupID);
+				QuestionBaseService qbs = new QuestionBaseService();
+				String qBase = qbs.getqBaseName(qBaseID);
+				String message = name + "向工作组“"+group+"”开放了题库“"+qBase+"”的权限";
+				String url = "showGroup?groupID="+groupID;
+				mes.SystemsendmessageGroup(userID, groupID, message, url, 8);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ERROR;
+		}				
+		return SUCCESS;		
+	}
+	public String delGroupQuestionBase() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");
+			String name = sess.get("username").toString();
+			gs.delGroup_qBase(qBaseID,groupID);				
+			ls.OperateGroupqBase(userID,qBaseID,groupID,27);
+			Message mes = new Message();
+			GroupService gs = new GroupService();
+			String group = gs.getGroupName(groupID);
+			QuestionBaseService qbs = new QuestionBaseService();
+			String qBase = qbs.getqBaseName(qBaseID);
+			String message = name + "收回了工作组“"+group+"”对题库“"+qBase+"”的权限";
+			String url = "showGroup?groupID="+groupID;
+			mes.SystemsendmessageGroup(userID, groupID, message, url, 9);
+		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ERROR;
+		}				
+		return SUCCESS;		
+	}	
 	
+	public String showGroupEvents() {		
+		events = new ArrayList<>();
+		try {
+			LogService ls = new LogService();
+			List<Log> logs = ls.getGroupLogs(groupID);
+			for (int j = 0; j < logs.size(); j++) {				
+				Log log = logs.get(j);
+				Event event = new Event();
+				event.changeLogintoEvent(log, false, true);
+				events.add(event);
+			}
+		} catch (Exception e) {
+			events = null;		
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
+	
+	
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 	public Group getGroup() {
 		return group;
 	}
@@ -184,6 +262,12 @@ public class GroupAction implements Action {
 	}
 	public void setUserqBases(List<QuestionBase> userqBases) {
 		this.userqBases = userqBases;
+	}
+	public int getqBaseID() {
+		return qBaseID;
+	}
+	public void setqBaseID(int qBaseID) {
+		this.qBaseID = qBaseID;
 	}
 	
 	

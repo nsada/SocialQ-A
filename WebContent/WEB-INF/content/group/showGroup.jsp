@@ -13,6 +13,7 @@
 
 
 <rapid:override name="contentText">
+
     <div class="col-md-9 column">
     	<div class="panel panel-primary">
   				<div class="panel-heading">
@@ -58,13 +59,28 @@
          
 
 
-    <div class="col-md-10 column">
+
+<%
+        int userid;
+        if (session.getAttribute("userid")!=null){
+            userid = (int)session.getAttribute("userid");
+        }else{
+            userid = 0;
+        }
+%>
+
+    <div class="col-md-9 column">
         <h1>${group.name}</h1>
         ${group.description}
          <div class="text-align:right">
 	        <button class="btn btn-default" type="button" onclick="window.location.href='GroupInsertExam?groupID=${group.id}'">
 	               工作组出题
 	        </button> 
+        </div>
+        <div class="text-align:right">
+            <button class="btn btn-default" type="button" onclick="window.location.href='showGroupEvents?groupID=${group.id}'">
+                   查看工作组日志
+            </button> 
         </div>
 
         <div class="text-align:right">
@@ -115,10 +131,14 @@
 	                <tr>
 	                    <td style="text-align:center;"><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
 	                    <td style="text-align:center;">${qBase.description}</td>                     
-	             <%--        <td style="text-align:center;">
-	                        <a href='<s:url action="delGroupQuestionBase?groupID=${groupID}&qBaseID=${qBase.id}">
-	                        </s:url>'><input type="button" value="删除"/></a>
-	                    </td> --%>
+	                    <td style="text-align:center;">
+	                    <%out.print("userid:"+userid + " qBase.userID:"); %>
+	                    ${qBase.userID }   
+                            <s:if test="#qBase.userID=1">
+                            <a href='<s:url action="delGroupQuestionBase"><s:param name="qBaseID" value="#qBase.id"/><s:param name="groupID" value="groupID"/></s:url>'><input type="button" value="删除"/></a>
+
+                            </s:if>
+	                    </td> 
 	                </tr>           
 	            </s:iterator>
 	        </tbody>

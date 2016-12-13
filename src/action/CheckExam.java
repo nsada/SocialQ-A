@@ -402,24 +402,12 @@ public class CheckExam implements Action{
 			 ActionContext actCtx = ActionContext.getContext();
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");		       
-		     String  SQL="select * from social.exam where userID="+userID+"";
-		     System.out.println(SQL);       
-		       cont =new Connect();
-		      result=  cont.executeQuery(SQL);
-		      int examid;
-		     ShowExamQuestion seq =new ShowExamQuestion();
-		      while (result.next())
-		      {
-		      	examid=result.getInt("ID");   	
-			    ExamService exam = new ExamService();
-				Exams.add(exam.getExam(examid));	  					          	    	 
-			  }		      	
+	         ExamService es = new ExamService();
+	         Exams = es.getUserPublishedExams();	         
 		 }catch (Exception e) {
 			e.printStackTrace();
-			  cont.Close();
 			return ERROR;
 		}
-		  cont.Close();
 		return SUCCESS;
   }
 	

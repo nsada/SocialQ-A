@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/timeline.css" />
 </rapid:override>
 
+
 <rapid:override name="contentWithoutWhiteBox">  
 
 
@@ -34,6 +35,7 @@
         </s:iterator>
 	</section>
 </div>
+
 </rapid:override>
 
 

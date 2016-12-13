@@ -1,6 +1,8 @@
 
 package service;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.opensymphony.xwork2.Action;
 import database.Connect;
@@ -123,6 +125,27 @@ public class ExamService implements Action {
 		}
 		cont.Close();
 		return id;
+	}
+
+	public List<Exam> getUserPublishedExams() {
+		String sql = "SELECT * FROM exam t1 where t1.publish=1 and t1.userID=1";
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		List<Exam> exams = new ArrayList<>();
+		try{
+			while (result.next()){
+				exam = new Exam();
+				exam.setId(result.getInt("ID"));
+				exam.setTitle(result.getString("title"));
+				exam.setUserID(result.getInt("userID"));
+				exam.setDescription(result.getString("description"));
+				exams.add(exam);
+			}
+		}catch (Exception e) {
+			System.out.println("按查找发布过的试卷失败");
+		}
+		cont.Close();
+		return exams;
 	}
 
 

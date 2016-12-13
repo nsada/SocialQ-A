@@ -66,10 +66,10 @@ public class LogService {
 		cont.Close();
 		//System.out.println("log "+sql);
 	}
-	public void OperateExam(int userID,int ExamID,int action)
+	public void OperateExam(int userID,int ExamID,int action,int GroupID)
 	{
 		Connect cont = new Connect();
-		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',0,0)";
+		String sql= "insert into log (userID, examID, action, time, groupID, qBaseID) values(" + userID + ", " + ExamID + ", " + action + ", '" + dateFormat.format(now) + "',"+GroupID+",0)";
 		//System.out.println("log "+sql);
 		int i= cont.executeUpdate(sql);
 		cont.Close();
@@ -137,7 +137,7 @@ public class LogService {
 		if (action == 25) {
 			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", "+
 					action+", '" + dateFormat.format(now) + "', " + b + ", " + groupID + ",0,0)";
-			System.out.println("OperateGroupUser sql1:" + sql);
+			System.out.println("OperateGroupUser sql:" + sql);
 			int i = cont.executeUpdate(sql);			
 			sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + b +
 				", 24, '" + dateFormat.format(now) + "', " + a + ", " + groupID + ",0,0)";
@@ -145,6 +145,43 @@ public class LogService {
 			
 		}
 		cont.Close();
+	}
+	public void OperateGroupqBase(int userID, int qBaseID, int groupID, int action) {
+		Connect cont = new Connect();
+			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + userID + ", "+
+					action+", '" + dateFormat.format(now) + "', " + 0 + ", " + groupID + ",0," + qBaseID + ")";
+			System.out.println("OperateGroupqBase sql:" + sql);
+			int i = cont.executeUpdate(sql);			
+
+		cont.Close();
+	}
+	public List<Log> getGroupLogs(int groupID) {
+		String sql = "select * from log where groupID=" + groupID;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		List<Log> logs = new ArrayList<>();
+		try{
+			while (result.next()){
+				Log log = new Log();
+				log.setUserID(result.getInt("userID"));
+				log.setGroupID(result.getInt("groupID"));
+				log.setExamID(result.getInt("examID"));
+				log.setqBaseID(result.getInt("qBaseID"));
+				log.setQuestionID(result.getInt("questionID"));
+				log.setQuestionType(result.getInt("questionType"));
+				log.setAction(result.getInt("action"));
+				String time = result.getString("time");
+				log.setTime(dateFormat.parse(time));
+				log.setUserIDB(result.getInt("userIDB"));
+				log.translate();
+				logs.add(log);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			logs = null;
+		}
+		cont.Close();
+		return logs;
 	}
 
 

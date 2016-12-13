@@ -4,12 +4,12 @@ public class Usermessage {
 	private int id;
 	private int senderID;
 	private int accepterID;
-	private String sendername;
 	private String message;
 	private String date;
 	private int read;
 	private String url;
 	private int type;
+	private int groupID;
 	/*
 	 * type:
 	 * 0 -> normal (senderID to accepterID)
@@ -20,9 +20,19 @@ public class Usermessage {
 	 * 5 -> system (senderID delete the relationship with accepteID)
 	 * 6 -> system (senderID refuse the friend apply of accepterID)
 	 * 7 -> system (senderID add accepterID to a group)
+	 * 8 -> system (senderID add a qBase to a group)
+	 * 9 -> system (senderID delete a qBase from a group)
 	 */
+	
+	
 	public void setRead(int read) {
 		this.read=read;
+	}
+	public int getGroupID() {
+		return groupID;
+	}
+	public void setGroupID(int groupID) {
+		this.groupID = groupID;
 	}
 	public int getRead() {
 		return read;
@@ -34,12 +44,6 @@ public class Usermessage {
 	public void setDate(String date)
 	{
 		this.date=date;
-	}
-	public String getSendername() {
-		return sendername;
-	}
-	public void setSendername(String sendername) {
-		this.sendername = sendername;
 	}
 	public String getMessage() {
 		return message ;

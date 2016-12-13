@@ -11,8 +11,20 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>     
-
         
+        
+        <action name="showGroupEvents" class="action.GroupAction" method="showGroupEvents">
+            <result>/WEB-INF/content//group/showGroupEvents.jsp</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>
+        <action name="addGroupQuestionBase" class="action.GroupAction" method="addGroupQuestionBase">
+            <result type="chain">showGroup</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>
+        <action name="delGroupQuestionBase" class="action.GroupAction" method="delGroupQuestionBase">
+            <result type="chain">showGroup</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>          
         <action name="showPersonalEvents" class="action.UserAction" method="showPersonalEvents">
             <result>/WEB-INF/content//user/showPersonalEvents.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>    
@@ -369,8 +381,11 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
+         <action name="ShareToWeibo" class="action.ExamAction" method="shareExamtoWeibo">
+            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="error">/WEB-INF/content/weiboerror.jsp</result>       
+        </action>       
         
-       
         
      
 
