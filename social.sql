@@ -5,17 +5,6 @@
 -- Server version	5.7.15-log
 
 
---
--- Table structure for table `aandq`
---
-
-DROP TABLE IF EXISTS `aandq`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `aandq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `context` longtext,
-  `ans` longtext,
   `score` int(10) DEFAULT NULL,
   `analysis` longtext,
   PRIMARY KEY (`id`)
