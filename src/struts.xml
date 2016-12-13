@@ -135,15 +135,15 @@
         </action>      
 
        <action name="loginPro" class="action.UserAction">
-            <result name="success">/index.jsp</result>
+            <result name="success">/redirectpage.jsp</result> 
             <result name="error">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="login">
             <result>/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="registPro" class="action.UserAction" method="regist">
-<!--             <result name="success">/redirectpage.jsp</result> -->
-            <result name="success">/index.jsp</result>
+            <result name="success">/redirectpage.jsp</result>
+<!--             <result name="success">/index.jsp</result> -->
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="regist">
@@ -384,7 +384,7 @@
         </action>
         
          <action name="ShareToWeibo" class="action.ExamAction" method="shareExamtoWeibo">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result name="success">/WEB-INF/content/weibosuccessful.jsp</result>
             <result name="error">/WEB-INF/content/weiboerror.jsp</result>       
         </action>       
         

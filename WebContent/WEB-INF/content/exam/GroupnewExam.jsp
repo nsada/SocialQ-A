@@ -30,8 +30,13 @@
             form.submit();
         }
         $(document).ready(function(){
-            var list = document.getElementsByClassName("insertedQuestion");
+        	var list = document.getElementsByClassName("insertedQuestion");
             document.getElementById("numofQuestions").innerHTML=list.length;
+            var totalScore = 0;
+            for(var i =0; i <list.length;i++){
+                totalScore+=parseInt(list[i].id);
+            }
+            document.getElementById("scoreofQuestions").innerHTML=totalScore.toString();
         })
     </script>
 </rapid:override>
@@ -58,6 +63,10 @@
                                 class="button button-block button-rounded button-primary button-small">
                                 插入题目
                         </a>
+                        <a    onclick = "SaveToDraft()"
+                                class="button button-block button-rounded button-highlight button-small">
+                                保存到草稿箱
+                         </a>
                         
                          <a     onclick ="SubmitExam()"
                                 class="button button-block button-rounded button-action button-small">
@@ -68,10 +77,7 @@
                                 class="button button-block button-rounded button-caution button-small">
                                 取消编辑试卷
                          </a>
-                          <a    onclick = "SaveToDraft()"
-                                class="button button-block button-rounded button-caution button-small">
-                                保存到草稿箱
-                         </a>
+                          
 
                     </div>
                 </div>
@@ -92,8 +98,7 @@
                         <br> <br>
 
                         <textarea id="examDescription"name="description" placeholder="试卷的描述" size="50"
-                            style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" />
-                        </textarea>
+                            style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" /></textarea>
                         <br>
         
                         <div align="center"
@@ -127,7 +132,7 @@
                     <div class="panel-body">
                                 <%int i =1; %>
                                 <s:iterator value="selections" >
-                                    <p class="insertedQuestion"><%=i %>.
+                                    <p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
                                     
                                     <s:property value="context" />
                                     <a style="float: right;" class="button button-tiny button-glow button-rounded button-caution"
@@ -147,7 +152,7 @@
                     <div class="panel-body">
                                     <% i=1;%>
                                     <s:iterator value="multys">
-                                        <p class="insertedQuestion"><%=i %>.
+                                        <p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
                                             <s:property value="context" />
                                             <a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
                                                 href='<s:url action="DeleteGroupquestion"><s:param name="title" value ="title"/><s:param name="GroupID" value ="GroupID"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="4"/><s:param name="questionID" value ="id"/></s:url>'>
@@ -165,7 +170,7 @@
                     <div class="panel-body">
                                 <% i=1;%>
                                 <s:iterator value="textBlanks">
-                                    <p class="insertedQuestion"><%=i %>.
+                                    <p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
                                         <s:property value="context" />
                                         <a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
                                             href='<s:url action="DeleteGroupquestion"><s:param name="title" value ="title"/><s:param name="GroupID" value ="GroupID"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="2"/><s:param name="questionID" value ="id"/></s:url>'>
@@ -184,7 +189,7 @@
                     <div class="panel-body">
                                 <% i=1;%>
                                 <s:iterator value="AandQs">
-                                    <p class="insertedQuestion"><%=i %>.
+                                    <p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
                                         <s:property value="context" />
                                         <a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
                                             href='<s:url action="DeleteGroupquestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="3"/><s:param name="GroupID" value ="GroupID"/><s:param name="questionID" value ="id"/></s:url>'>

@@ -39,31 +39,33 @@
 
 
 
-<body style="margin-top: 50px;">
-        <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
+<body style="margin-top: 55px;">
+        <div  style="position:absolute; width:100%; height:100%; z-index:0"> 
             <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
 
 
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100" >
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "z-index: 100;margin: 0;height: 55px;" >
     		<div class="container-fluid">
   				  <div class="navbar-header">
        				
        				 <a class=" navbar-brand" href="<%=request.getContextPath()%>" style="font-size: 40px" >SocialQ-A</a>
    				 </div>
   		  	<div>
+  		  	<%if ( !( username==null || username.equals("") ) ){%>
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
-        		
         			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/WantAnswerExam">我要答题</a></li>
+
        				<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
        				
        				
 					
+
 					<li class="dropdown" style="margin-top: 5px">
                			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                    		 		个人中心 <b class="caret"></b>
@@ -81,19 +83,11 @@
                             <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>      
                             
                         </ul>
-                    </li>           
-                    
-                    
-                    <li class="dropdown" style="margin-top: 5px">
-               			 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                   		 		消息<span class="badge">14</span> <b class="caret"></b>
-               			 </a>
                     </li>
-
-        			
         		</ul>
+        	<%} %>
         		<ul class="nav navbar-nav navbar-right" style="font-size: 18px">
-        			<%if (username==null || username==""){%>
+        			<%if (username==null || username.equals("")){%>
 								<li><a onclick = "showbox('regist')"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
 								<li><a onclick="showbox('login')"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
 					<%}else{%>
@@ -103,9 +97,15 @@
 									</p>
 									
 								</li>
+
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
         		</ul>
+
+    	</div>
+
+    	</div>
+
 	</nav>
 	
 	
@@ -124,7 +124,6 @@
 					SwitchBoxStatusToLogin();
 					break;
 			}
-			
 			return ;
 		}
 		function killbox(){
@@ -140,9 +139,10 @@
 			var loginform =  document.getElementById("loginform");
 			loginform.style.display = "block";
 			var status = document.getElementById("statusLogin");
-			status.className = "button button-pill button-action active";
+			status.className = "button button-pill button-primary active";
 			status = document.getElementById("statusRegist");
-			status.className="button button-pill button-action";
+			status.className="button button-pill button-primary";
+			return ;
 		}
 		function SwitchBoxStatusToRegist(){
 			var registform = document.getElementById("registform");
@@ -150,9 +150,10 @@
 			var loginform =  document.getElementById("loginform");
 			loginform.style.display = "none";
 			var status = document.getElementById("statusLogin");
-			status.className = "button button-pill button-action";
+			status.className = "button button-pill button-primary";
 			status = document.getElementById("statusRegist");
-			status.className="button button-pill button-action active";
+			status.className="button button-pill button-primary active";
+			return ;
 		}
 	</script>
 	<div id="grayback"style=" display:none;
@@ -172,8 +173,8 @@
 												">    	
 												
 		<div class="button-group">
-    		<button onclick="SwitchBoxStatusToLogin()"type="button" id="statusLogin" class="button button-pill button-action ">登录</button>
-    		<button onclick="SwitchBoxStatusToRegist()"type="button" id="statusRegist" class="button button-pill button-action">注册</button>
+    		<button onclick="SwitchBoxStatusToLogin()"type="button" id="statusLogin" class="button button-pill button-primary ">登录</button>
+    		<button onclick="SwitchBoxStatusToRegist()"type="button" id="statusRegist" class="button button-pill button-primary">注册</button>
   		</div>
   		<a class="button  button-tiny button-caution button-circle button-jumbo" style = "float: right;" onclick="killbox()">
 			<span class="glyphicon glyphicon-remove"></span>
@@ -212,6 +213,7 @@
             				<p style="float: left;">第三方登录:</p>  	
             				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=<%=globalVar.AppID %>&amp;redirect_uri=<%=globalVar.redirect_URI %>&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
           				
+
             			</div>
   					</div>
   					
@@ -252,7 +254,7 @@
   				<div class="form-group  has-success">
     				<label class="col-sm-2 control-label" for="inputSuccess">Email</label>
    	 				<div class="col-sm-10">
-        				<input id="registEmail"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
+        				<input id="registEmail"type="text" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
     				</div>
   				</div>
   				
@@ -265,7 +267,14 @@
   					</div>
     			</div>
     		</form>
+    		
     		<script>
+    			$(document).ready(function(){
+    				var login_result= "<%=request.getParameter("login_result")%>" ;
+    				var regist_result="<%=request.getParameter("regist_result")%>" ;
+    				ShowAlert(login_result,regist_result);
+    				
+    			})
     			function LoginSubmit(){
     				var form = document.getElementById("loginform");
 					
@@ -286,7 +295,11 @@
 					
 					var new_input = document.createElement("input");
 					new_input.name="redirect_url";
-					new_input.value = window.location.href;
+					var url = window.location.href.split('?');
+					new_input.value = url[0];
+					var a =new_input.value.indexOf("ShowExam");
+					if(a>=0);
+					   new_input.value+="?"+url[1];
 					new_input.style.display="none";
 					form.appendChild(new_input);
 					form.submit();
@@ -321,14 +334,78 @@
 						return ;
 					}
 					form = $("#registform")[0];
+					var new_input = document.createElement("input");
+					new_input.name="redirect_url";
+					new_input.value = window.location.href.split('?')[0];
+					new_input.style.display="none";
+					form.appendChild(new_input);
 					form.submit();
+					return ;
     			}
     		</script>
     </div>
     
-	<div class="well well-lg container table-center" style="opacity: 0.85;">
-		<rapid:block name="content">base_content</rapid:block>
-	</div>
+    <div 	id="alertBox"   
+    		style="display: none;"
+    		class="alert alert-success" 
+    		role="alert">
+    		<p  style="
+    			text-align: center;
+   			    margin: 0;">
+   			    <span id="alertMessage">你是不是傻</span>
+   			    <span onclick="KillAlert()"class="glyphicon glyphicon-remove" style="float: right;"></span>
+			</p>
+			<script type="text/javascript">
+				function KillAlert(){
+					$("#alertBox").slideUp("slow");
+				}
+				
+				function ShowAlert(login_result,regist_result){
+					var box = $("#alertBox")[0];
+					switch(login_result){
+						case "0":
+							$("#alertMessage")[0].innerHTML="登陆成功";
+							box.className="alert alert-success";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "1":
+							$("#alertMessage")[0].innerHTML="用户名和密码不匹配";
+							box.className="alert alert-danger";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "2":
+							$("#alertMessage")[0].innerHTML="用户名不存在";
+							box.className="alert alert-warning";
+							$("#alertBox").slideDown("slow");
+							break;
+						default:
+					}
+					switch(regist_result){
+						case "0":
+							$("#alertMessage")[0].innerHTML="注册成功";
+							box.className="alert alert-success";
+							$("#alertBox").slideDown("slow");
+							break;
+						case "1":
+							$("#alertMessage")[0].innerHTML="用户名已存在";
+							box.className="alert alert-danger";
+							$("#alertBox").slideDown("slow");
+							break;
+						default:
+							break;
+					}
+					return;
+				}
+				
+			</script>
+    </div>
+    
+    <rapid:block name="contentWithoutWhiteBox">
+    	<div class="well well-lg container table-center" style="opacity: 0.85;position: relative;top: 50px;">
+			<rapid:block name="content">base_content</rapid:block>
+		</div>
+    </rapid:block>
+	
 	
 	
 	

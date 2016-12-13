@@ -18,7 +18,7 @@
 				role="form">
 				<input type="hidden" name="type" value="2" /> 
 				<input type="hidden"name="qBaseID" value="<%=qBaseID%>" />
-				<input type="hidden" name="textBlank.num" id="textBlankNum" value ="2"/>
+				<input type="hidden" name="textBlank.num" id="textBlankNum" value ="1"/>
 					
 					
 				<div class="form-group">
@@ -38,7 +38,7 @@
 						<input type="text" class="form-control" name="textBlank.A" />
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" style="display: none;" id="t2">
 					<label for="choose" class="col-sm-2 control-label">空2</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="textBlank.B" />
@@ -93,6 +93,10 @@
 				function AddSelect(){
 					var num = document.getElementById("textBlankNum").value;
 					switch(num){
+						case "1":
+							document.getElementById("t2").style.display = "block";
+							document.getElementById("textBlankNum").value="2";
+							break;
 						case "2":
 							document.getElementById("t3").style.display = "block";
 							document.getElementById("textBlankNum").value="3";

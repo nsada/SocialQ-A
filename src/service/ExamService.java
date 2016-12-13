@@ -127,8 +127,8 @@ public class ExamService implements Action {
 		return id;
 	}
 
-	public List<Exam> getUserPublishedExams() {
-		String sql = "SELECT * FROM exam t1 where t1.publish=1 and t1.userID=1";
+	public List<Exam> getUserPublishedExams(int userID) {
+		String sql = "SELECT * FROM exam t1 where t1.publish=1 and t1.userID="+userID;
 		cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);	
 		List<Exam> exams = new ArrayList<>();

@@ -6,29 +6,31 @@
 <rapid:override name="head">
     <title>主页</title>
 </rapid:override>
-<rapid:override name="content">
-    
-        <ul class="row">
+<rapid:override name="contentWithoutWhiteBox">
+    <div class="container" style="
+    												color: white;
+    												position: relative;
+    												top: 200px;">
+
+		<ul class="row">
             <h2 class="text-center">Hello! Here is the index of SocialQ-A~</h2>
-            <br />
+            <br>
             <h2 class="text-center">If you have any question, please contact with us!</h2>
-            <br />
+            <br>
             <h4 class="text-center">
                 Email:<span class="text-info">hitnstmy@163.com</span>
             </h4>
-            <br />
+            <br>
             <h4 class="text-center">
                 Github:<span class="text-info">https://github.com/nsada</span>
             </h4>
-            <br />
+            <br>
             <h4 class="text-center">
                 Blog:<span class="text-info">http://blog.csdn.net/tmy0131</span>
             </h4>
-            <br />
-
+            <br>
         </ul>
-
-
+	</div>
 </rapid:override>
 
 <%@ include file="base.jsp"%>

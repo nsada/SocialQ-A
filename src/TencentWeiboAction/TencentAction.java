@@ -1,5 +1,6 @@
 package TencentWeiboAction;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import com.opensymphony.xwork2.Action;
@@ -31,12 +32,11 @@ public class TencentAction implements Action {
 			String access_token = sess.get("accesstoken").toString();
 			String openid = sess.get("openid").toString();
 			if (isNULL(openid) || isNULL(access_token)) return ERROR;
-			
 			System.out.println("openid: "+openid);
 			String url = "https://graph.qq.com/t/add_t";
 			String param = "oauth_consumer_key="+globalVar.AppID+"&access_token="+access_token+"&openid="+openid+"&content="+content;
 			HttpRequest request = new HttpRequest();
-			request.sendPost(url, param);
+			String str = request.sendPost(url, param);
 			return SUCCESS;		
 		} catch (Exception e) {
 			return ERROR;

@@ -14,7 +14,11 @@
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				window.location.href = "<%=request.getContextPath()%>/<%=request.getAttribute("redirect_url")%>?login_result=<%=request.getAttribute("login_result")%>&regist_result=<%=request.getAttribute("regist_result")%>";
+				var a = "<%=request.getAttribute("redirect_url")%>";
+				if(a.indexOf("?")>=0)
+					window.location.href = "<%=request.getAttribute("redirect_url")%>&login_result=<%=request.getAttribute("login_result")%>&regist_result=<%=request.getAttribute("regist_result")%>";
+				else
+					window.location.href = "<%=request.getAttribute("redirect_url")%>?login_result=<%=request.getAttribute("login_result")%>&regist_result=<%=request.getAttribute("regist_result")%>";
 			})	
 		</script>
 

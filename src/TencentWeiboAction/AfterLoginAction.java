@@ -14,6 +14,8 @@ import tencentApi.globalVar;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.core.net.server.SecureTcpSocketServer;
+
 public class AfterLoginAction implements Action {
 	private String code;
 	private String state;
@@ -61,13 +63,16 @@ public class AfterLoginAction implements Action {
 		
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
-
 		sess.put("openid", openid);
 		sess.put("accesstoken",access_token);
 		
 		UserService us = new UserService();
 		User new_user= new User();
 		new_user = null;
+		
+		sess.put("openid", openid);
+		sess.put("accesstoken",access_token);
+		
 		try{
 			new_user = us.loginUserByOpenID((String)openid);
 			LogService ls = new LogService();
@@ -96,8 +101,4 @@ public class AfterLoginAction implements Action {
 		return "success";
 	}
 
-	private void addNewUser(String openid, String access_token) {
-		// TODO Auto-generated method stub
-		
-	}
 }

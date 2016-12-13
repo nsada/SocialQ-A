@@ -14,7 +14,12 @@
 		}
 		$(document).ready(function(){
 			var list = document.getElementsByClassName("insertedQuestion");
-			document.getElementById("numofQuestions").innerHTML=list.length;
+            document.getElementById("numofQuestions").innerHTML=list.length;
+            var totalScore = 0;
+            for(var i =0; i <list.length;i++){
+                totalScore+=parseInt(list[i].id);
+            }
+            document.getElementById("scoreofQuestions").innerHTML=totalScore.toString();
 		})
 	</script>
 </rapid:override>
@@ -39,7 +44,10 @@
 								class="button button-block button-rounded button-primary button-small">
 								插入题目
 						</a>
-						
+						<a    onclick = "SaveToDraft()"
+                                class="button button-block button-rounded button-highlight button-small">
+                                保存到草稿箱
+                         </a>
 						 <a 	href='<s:url action="updateexam"><s:param name="ExamID" value ="ExamID"/> </s:url>'
 						 		class="button button-block button-rounded button-action button-small">
 						 		提交生成我的试卷
@@ -68,8 +76,7 @@
 						<br> <br>
 
 						<textarea name="description" placeholder="试卷的描述" size="50"
-							style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" />
-						</textarea>
+							style="height: 50px; width: 60%; position: relative; left: 20%"><s:property value="description" /></textarea>
 						<br>
 		
 						<div align="center"
@@ -103,7 +110,7 @@
 					<div class="panel-body">
    								<%int i =1; %>
 								<s:iterator value="selections" >
-									<p class="insertedQuestion"><%=i %>.
+									<p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
 									
 									<s:property value="context" />
 						 			<a style="float: right;" class="button button-tiny button-glow button-rounded button-caution"
@@ -123,7 +130,7 @@
 					<div class="panel-body">
    									<% i=1;%>
 									<s:iterator value="multys">
-										<p class="insertedQuestion"><%=i %>.
+										<p class="insertedQuestion"id="<s:property value = 'score'/>"><%=i %>.
 											<s:property value="context" />
 											<a style="float:right;" class="button button-tiny button-glow button-rounded button-caution"
 												href='<s:url action="Deletequestion"><s:param name="title" value ="title"/><s:param name="description" value ="description"/><s:param name="ExamID" value ="ExamID"/> <s:param name="type" value ="4"/><s:param name="questionID" value ="id"/></s:url>'>
@@ -136,7 +143,7 @@
 				</div>
 				
 				<div class="panel panel-info">
-  					<div class="panel-heading">填空题</div>
+  					<div class="panel-heading"id="<s:property value = 'score'/>">填空题</div>
   							
 					<div class="panel-body">
    								<% i=1;%>
@@ -155,7 +162,7 @@
 				
 				
 				<div class="panel panel-info">
-  					<div class="panel-heading">问答题</div>
+  					<div class="panel-heading"id="<s:property value = 'score'/>">问答题</div>
   							
 					<div class="panel-body">
    								<% i=1;%>

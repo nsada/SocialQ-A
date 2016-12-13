@@ -6,12 +6,14 @@ import com.opensymphony.xwork2.ActionContext;
 import database.Connect;
 import domain.AandQ;
 import domain.Exam;
+
 import service.ExamService;
 import service.MessageService;
 import service.UserService;
 import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
+
 
 public class CheckExam implements Action{
 	private String title;
@@ -107,6 +109,7 @@ public class CheckExam implements Action{
 		this.messageID = messageID;
 	}
 	public List<Exam> getExams() {
+
 		return Exams;
 	}
 	public void setExams(List<Exam> exams) {
@@ -151,8 +154,10 @@ public class CheckExam implements Action{
 		public String execute() throws Exception {		 
 		 try
 		 {
+
 			 MessageService ms = new MessageService();
 			 ms.read(messageID);
+
 	         ShowExamQuestion seq =new ShowExamQuestion();
 		      seq.setExamID(ExamID);
 			  seq.execute();
@@ -162,7 +167,7 @@ public class CheckExam implements Action{
 			    int readd=1;       
 		        String answer="";
 			    String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+3+" and questionID="+aandq.getId()+"";
-		       // System.out.println(SQL);       
+
 		         cont =new Connect();
 		        result=  cont.executeQuery(SQL);
 		       if (result.next())
@@ -178,7 +183,8 @@ public class CheckExam implements Action{
 		       }
 		     } 
 			   String  SQL="select * from social.user where id ="+TesttakerID+"";
-		      //  System.out.println(SQL);       
+
+
 		         cont =new Connect();
 		        result=  cont.executeQuery(SQL);
 		       if (result.next())
@@ -204,7 +210,7 @@ public class CheckExam implements Action{
 			    int readd=1;       
 		        String answer="";
 			    String  SQL="select * from social.exam_user_answer where examID ="+ExamID+" and userID="+TesttakerID+" and questionType="+3+" and questionID="+aandq.getId()+"";
-		    //    System.out.println(SQL);       
+
 		         cont =new Connect();
 		        result=  cont.executeQuery(SQL);
 		       if (result.next())
@@ -232,13 +238,13 @@ public class CheckExam implements Action{
 	        	 int score =Integer.parseInt(userscore);
 	        	 totalscore=totalscore+score;
 	             String SQL="update social.exam_user_answer set rrred = "+1+",score="+score+" where examID ="+ExamID+" and questionID ="+as.getId()+" and questionType="+3+" and userID="+TesttakerID+" ";
-	            // System.out.println(SQL);
+
 	             cont =new Connect();
 	             cont.executeUpdate(SQL); 
 	             
 	             int ques_totalscore=0;
 	             SQL="select * from social.exam_question where examID ="+ExamID+" and questionID ="+as.getId()+" and type="+3+"";
-			     //   System.out.println(SQL);       
+
 			         cont =new Connect();
 			        result=  cont.executeQuery(SQL);
 			       if (result.next())
@@ -253,7 +259,7 @@ public class CheckExam implements Action{
 	         }
 	         int ques_totalscore=0;
               String SQL="select * from social.exam where ID ="+ExamID+"";
-		    //    System.out.println(SQL);       
+
 		         cont =new Connect();
 		        result=  cont.executeQuery(SQL);
 		       if (result.next())
@@ -262,13 +268,13 @@ public class CheckExam implements Action{
 		       }	   
              ques_totalscore=ques_totalscore+totalscore;      
              SQL="update social.exam set totalscore="+ques_totalscore+" where ID ="+ExamID+" ";
-           //  System.out.println(SQL);
+
              cont =new Connect();
              cont.executeUpdate(SQL);  
              
               ques_totalscore=0;
               SQL="select * from social.exam_user where examID ="+ExamID+"";
-		  //      System.out.println(SQL);       
+
 		         cont =new Connect();
 		        result=  cont.executeQuery(SQL);
 		       if (result.next())
@@ -277,14 +283,16 @@ public class CheckExam implements Action{
 		       }	   
             ques_totalscore=ques_totalscore+totalscore;      
             SQL="update social.exam_user set score="+ques_totalscore+",checked="+1+" where examID ="+ExamID+" and userID ="+TesttakerID+"";
-         //   System.out.println(SQL);
+
             cont =new Connect();
             cont.executeUpdate(SQL);  
             Message mess =new Message();
             String url = "ShowExamDetail?ExamID="+ExamID+"&TesttakerID="+TesttakerID;
+
             UserService us = new UserService();
             String username = us.getUserName(userID);
             mess.Systemsendmessage(userID, TesttakerID, "你的题目已经被 "+username+" check完毕了，赶紧快去看", url, 4);//添加是出题人的姓名信息
+
 			 
 	 } catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -299,7 +307,8 @@ public class CheckExam implements Action{
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");		       
 		     String  SQL="select * from social.exam where userID="+userID+"";
-		  //   System.out.println(SQL);       
+
+
 		       cont =new Connect();
 		      result=  cont.executeQuery(SQL);
 		      int examid;
@@ -317,7 +326,7 @@ public class CheckExam implements Action{
 				 if(!AandQs.isEmpty())
 				 {
 						SQL="select * from social.exam_user where examID="+examid+"";
-				//	     System.out.println(SQL);       
+
 					     resultcheck=  cont.executeQuery(SQL);
 					      while (resultcheck.next())
 					      { 
@@ -330,7 +339,7 @@ public class CheckExam implements Action{
 								       exam.setTitle(title);
 								       exam.setTesttakerID(TesttakerID);
 								       exam.setId(examid);
-				//				       System.out.println("exam "+ examid);
+
 								       Exams.add(exam);	  
 					          }	 		    	 
 				     }  
@@ -340,6 +349,7 @@ public class CheckExam implements Action{
 		   } 
 		 }catch (Exception e) {
 			e.printStackTrace();
+
 			  cont.Close();
 			return ERROR;
 		}		
@@ -393,7 +403,7 @@ public class CheckExam implements Action{
 	    	 Map<String, Object> sess = actCtx.getSession();
 	         int userID = (int) sess.get("userid");		       
 	         ExamService es = new ExamService();
-	         Exams = es.getUserPublishedExams();	         
+	         Exams = es.getUserPublishedExams(userID);	         
 		 }catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
@@ -543,8 +553,6 @@ public class CheckExam implements Action{
 		return SUCCESS;
     }
  	
-  	
-
 }
 
 
