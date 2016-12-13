@@ -369,7 +369,7 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
-        <action name="ShareToWeibo" class="action.TencentAction" method="share">
+        <action name="ShareToWeibo" class="TencentWeiboAction.TencentAction" method="share">
             <result name="success">/WEB-INF/content/exam/successful.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>       
         </action>

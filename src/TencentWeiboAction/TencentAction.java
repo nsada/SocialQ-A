@@ -1,4 +1,4 @@
-package action;
+package TencentWeiboAction;
 
 import java.util.Map;
 
