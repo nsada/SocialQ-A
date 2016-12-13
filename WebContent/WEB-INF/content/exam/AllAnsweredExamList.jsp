@@ -4,9 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <rapid:override name="content">
-
         <div class="panel panel-info">
-  							<div class="panel-heading">点击查看具体试卷的回答情况哦</div>
+  							<div class="panel-heading">发布过的所有测试</div>
   							
 							<div class="panel-body">
    								   <div class="list-group">

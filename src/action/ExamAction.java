@@ -30,7 +30,7 @@ public class ExamAction implements Action {
 	}
 	public String shareExamtoWeibo() {
 		String url = "http://socialqanda.applinzi.com/ShowExam?ExamID="+ExamID;
-		String content = "我刚刚在Funny QandA网站出了一套测试，复制这个链接: "+url+" 到地址栏，马上来答答吧！";
+		String content = "I've just published a test on Funny QandA网站出了一套测试，复制这个链接: "+url+" 到地址栏，马上来答答吧！";
 		TencentAction tencent = new TencentAction();
 		return tencent.share(content);
 	}
