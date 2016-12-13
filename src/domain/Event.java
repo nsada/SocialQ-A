@@ -94,7 +94,7 @@ public class Event {
 				break;
 			case 23:
 				type = 6;
-				event = "添加了新试卷“"+exam+"”";
+				event = "添加了新试卷到草稿箱中“"+exam+"”";
 				if (groupID > 0) {
 					event = "使用工作组“"+group+"”的题库"+event;
 				}

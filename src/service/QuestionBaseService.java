@@ -135,7 +135,7 @@ public class QuestionBaseService {
 		cont = new Connect();
 		String sql = "select t3.id,t3.title,t3.description from user_questionbase t1, questionbase t3 "
 				+ "where t1.questionBaseID=t3.id "
-				+ "and t1.userID=1 "
+				+ "and t1.userID=" + userID + " "
 				+ "and t1.questionBaseID not in "
 				+ "(select t2.questionbaseID from group_questionbase t2 where t2.groupID=" + groupID+")";
 		System.out.println("getUser_without_GroupQuestionBases sql:"+sql);
