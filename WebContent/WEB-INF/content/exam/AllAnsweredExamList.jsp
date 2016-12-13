@@ -10,8 +10,10 @@
   							
 							<div class="panel-body">
    								   <div class="list-group">
-   								   		<s:iterator value="Exams">
+   								   		<s:iterator value="Exams" var="Exam">
    								   	ExamID	<s:property value ="id"/> 
+<%--    								   	<a href='<s:url action="showGroup"><s:param name="groupID" value="#group.id"/></s:url>'>${group.name}</a> --%>
+   								   	<li><a href="<%=request.getContextPath()%>/ShareToWeibo?ExamID=${Exam.id}">分享到微博</a></li>  
    								   		<br>
            									<a  class="list-group-item list-group-item-success"
            									    

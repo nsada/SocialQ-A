@@ -130,6 +130,29 @@ public class GroupAction implements Action {
 		}				
 		return SUCCESS;
 	}
+	public String addGroupQuestionBase() {
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		try {
+			int userID = (int) sess.get("userid");
+			String name = sess.get("username").toString();
+			
+			if (!gs.findUser_in_Group(adduserID, groupID)) {
+				gs.addGroup_User(adduserID,groupID);				
+				ls.OperateGroupUser(userID,adduserID,groupID,25);
+				Message mes = new Message();
+				GroupService gs = new GroupService();
+				String group = gs.getGroupName(groupID);
+				String message = name + "将您加入了工作组“"+group+"”";
+				String url = "showGroup?groupID="+groupID;
+				mes.Systemsendmessage(userID, adduserID, message, url, 7);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ERROR;
+		}				
+		return SUCCESS;		
+	}
 	
 	public Group getGroup() {
 		return group;

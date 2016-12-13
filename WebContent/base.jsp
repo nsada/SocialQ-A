@@ -117,9 +117,6 @@
 								<li><a href="<%=request.getContextPath()%>/user/logout"><span class="btn btn-login btn-primary hidden-sm hidden-xs f-right">Sign Out</span></a></li>
 					<%} %>      		
         		</ul>
-    	</div>
-    	<s:debug></s:debug>
-    	</div>
 	</nav>
 	
 	

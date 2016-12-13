@@ -133,7 +133,7 @@ public class QuestionBaseService {
 	}
 	public List<QuestionBase> getUser_without_GroupQuestionBases(int userID, int groupID) {
 		cont = new Connect();
-		String sql = "select t3.id,t3.title from user_questionbase t1, questionbase t3 "
+		String sql = "select t3.id,t3.title,t3.description from user_questionbase t1, questionbase t3 "
 				+ "where t1.questionBaseID=t3.id "
 				+ "and t1.userID=1 "
 				+ "and t1.questionBaseID not in "
@@ -146,7 +146,6 @@ public class QuestionBaseService {
 				questionBase = new QuestionBase();
 				questionBase.setId(result.getInt("id"));
 				questionBase.setTitle(result.getString("title"));
-				questionBase.setUserID(result.getInt("userID"));
 				questionBase.setDescription(result.getString("description"));
 				questionBases.add(questionBase);
 			}
