@@ -80,10 +80,13 @@ public class AfterLoginAction implements Action {
 			int userid = 0;
 			try {
 				userid = (int) sess.get("userid");
-				System.out.println("userid "+userid);
+			} catch (Exception e) {
+				return "needlogin";
+			}
+			try {
 				new_user = us.getUser(userid);
 			} catch (Exception e) {
-				return "notSigned";
+				return "notSign";				
 			}
 			us.updateUser(userid, openid, access_token);
 		}

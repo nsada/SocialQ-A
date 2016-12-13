@@ -253,12 +253,14 @@
         <action name="AfterLoginAction" class="TencentWeiboAction.AfterLoginAction" >
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
-            <result name="notSigned">/WEB-INF/content/user/regist.jsp</result>
+            <result type="chain" name="notSigned">showPersonalInformation</result>
+             <result name="needlogin">/WEB-INF/content/user/login.jsp</result>
         </action>
         <action name="AfterLogin" class="TencentWeiboAction.AfterLoginAction" >
             <result name="success">/WEB-INF/content/user/welcome.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
-            <result name="notSigned">/WEB-INF/content/user/regist.jsp</result>
+            
+            <result name="needlogin">/WEB-INF/content/user/regist.jsp</result>
         </action>
         <action name="showFriends" class="action.FriendAction" >
             <result name="success">/WEB-INF/content/friend/FriendList.jsp</result>
