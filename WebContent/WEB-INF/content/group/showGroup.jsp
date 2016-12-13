@@ -13,7 +13,14 @@
 
 
 <rapid:override name="contentText">
-
+<%
+        int userid;
+        if (session.getAttribute("userid")!=null){
+            userid = (int)session.getAttribute("userid");
+        }else{
+            userid = 0;
+        }
+%>
     <div class="col-md-10 column">
         <h1>${group.name}</h1>
         ${group.description}
@@ -71,10 +78,14 @@
 	                <tr>
 	                    <td style="text-align:center;"><a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'>${qBase.title}</a></td>                    
 	                    <td style="text-align:center;">${qBase.description}</td>                     
-	             <%--        <td style="text-align:center;">
-	                        <a href='<s:url action="delGroupQuestionBase?groupID=${groupID}&qBaseID=${qBase.id}">
-	                        </s:url>'><input type="button" value="删除"/></a>
-	                    </td> --%>
+	                    <td style="text-align:center;">
+	                    <%out.print("userid:"+userid + " qBase.userID:"); %>
+	                    ${qBase.userID }   
+                            <s:if test="#qBase.userID=1">
+                            <a href='<s:url action="delGroupQuestionBase"><s:param name="qBaseID" value="#qBase.id"/><s:param name="groupID" value="groupID"/></s:url>'><input type="button" value="删除"/></a>
+
+                            </s:if>
+	                    </td> 
 	                </tr>           
 	            </s:iterator>
 	        </tbody>

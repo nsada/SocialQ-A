@@ -63,9 +63,11 @@ public class Log {
 		case 20: ans = ans + "和用户" + userB + "成为微博和社交问答网站双重好友"; break;
 		case 21: ans = ans + "解除了和用户"+userB+"的好友关系"; break;
 		case 22: ans = ans + "拒绝了用户"+userB+"的好友申请"; break;
-		case 23: ans = "新建了试卷";
+		case 23: ans = "新建试卷保存到草稿箱";
 		case 24: ans = "被加入了工作组";
 		case 25: ans = "添加用户到工作组";
+		case 26: ans = "添加题库权限到工作组";
+		case 27: ans = "删除题库权限到工作组";
 		}
 		this.trans= ans;
 		return ans;

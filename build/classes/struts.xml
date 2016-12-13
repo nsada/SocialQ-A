@@ -11,11 +11,15 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>     
-
+        
         <action name="addGroupQuestionBase" class="action.GroupAction" method="addGroupQuestionBase">
             <result type="chain">showGroup</result>
             <result name="error">/WEB-INF/content//error.jsp</result>            
-        </action>     
+        </action>
+        <action name="delGroupQuestionBase" class="action.GroupAction" method="delGroupQuestionBase">
+            <result type="chain">showGroup</result>
+            <result name="error">/WEB-INF/content//error.jsp</result>            
+        </action>          
         <action name="showPersonalEvents" class="action.UserAction" method="showPersonalEvents">
             <result>/WEB-INF/content//user/showPersonalEvents.jsp</result>
             <result name="error">/WEB-INF/content//error.jsp</result>    

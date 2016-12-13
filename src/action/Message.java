@@ -149,7 +149,7 @@ public class Message implements Action {
 				um.setMessage(result.getString("message"));
 				um.setRead(result.getInt("rread"));
 				um.setSenderID(result.getInt("senderID"));
-				um.setSendername(result.getString("sendername"));
+				um.setGroupID(result.getInt("groupID"));
 				um.setUrl(result.getString("url"));
 				um.setType(result.getInt("type"));
 				messages.add(um);
@@ -218,9 +218,8 @@ public class Message implements Action {
 	public void Systemsendmessage(int senderID, int accepterID, String message, String url, int type) {
 		 try
 		 {
-//			 url = url + "&messageID=" + getId();
 			 String  SQL= "insert into social.message (senderID, accepterID, rread,message,time,url,type) values ("+senderID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+url+"',"+type+")";
-		     System.out.println("systemsendmessage sql:" + SQL);
+		    // System.out.println("systemsendmessage sql:" + SQL);
 		     cont =new Connect();
 	         cont.executeUpdate(SQL); 
 		  }
@@ -245,6 +244,20 @@ public class Message implements Action {
 		MessageService ms = new MessageService();
 		ms.read(messageID);
 		return SUCCESS;
+	}
+	public void SystemsendmessageGroup(int userID, int groupID, String message, String url, int type) {
+		 try
+		 {
+			 String  SQL= "insert into social.message (senderID, accepterID, rread,message,time,url,type,groupID) values ("
+					 +userID+", "+accepterID+","+0+",'"+message+"','"+ dateFormat.format(date)+"','"+url+"',"+type+","+groupID+")";
+		     System.out.println("SystemsendmessageGroup sql:" + SQL);
+		     cont =new Connect();
+	         cont.executeUpdate(SQL); 
+		  }
+	   catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

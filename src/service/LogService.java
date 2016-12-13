@@ -137,13 +137,22 @@ public class LogService {
 		if (action == 25) {
 			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + a + ", "+
 					action+", '" + dateFormat.format(now) + "', " + b + ", " + groupID + ",0,0)";
-			System.out.println("OperateGroupUser sql1:" + sql);
+			System.out.println("OperateGroupUser sql:" + sql);
 			int i = cont.executeUpdate(sql);			
 			sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + b +
 				", 24, '" + dateFormat.format(now) + "', " + a + ", " + groupID + ",0,0)";
 			i = cont.executeUpdate(sql);
 			
 		}
+		cont.Close();
+	}
+	public void OperateGroupqBase(int userID, int qBaseID, int groupID, int action) {
+		Connect cont = new Connect();
+			String sql = "insert into log (userID, action, time, userIDB, groupID, examID, qBaseID) values(" + userID + ", "+
+					action+", '" + dateFormat.format(now) + "', " + 0 + ", " + groupID + ",0," + qBaseID + ")";
+			System.out.println("OperateGroupqBase sql:" + sql);
+			int i = cont.executeUpdate(sql);			
+
 		cont.Close();
 	}
 

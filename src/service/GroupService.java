@@ -149,7 +149,7 @@ public class GroupService {
 	}
 
 	public boolean findUser_in_Group(int userID, int groupID) {
-		String sql = "select * from social.group_user where groupID=" + groupID + " and userID="+userID;
+		String sql = "select userID from social.group_user where groupID=" + groupID + " and userID="+userID;
 		Connect cont = new Connect();
 		ResultSet result = cont.executeQuery(sql);
 		String groupname = "";
@@ -163,6 +163,39 @@ public class GroupService {
 		}		
 		cont.Close();
 		return false;
+	}
+
+	public boolean findqBase_in_Group(int qBaseID, int groupID) {
+		String sql = "select questionbaseID from social.group_questionbase where groupID=" + groupID + " and questionbaseID="+qBaseID;
+		Connect cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);
+		try{
+			if (result.next()){
+				return true;
+			}
+			result.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		
+		cont.Close();
+		return false;
+	}
+
+	public int addGroup_qBase(int qBaseID, int groupID) {
+		Connect cont = new Connect();
+		String sql = "insert into group_questionbase(groupID, questionbaseID) values(" + groupID+ ", " + qBaseID + ")";
+		int i = cont.executeUpdate(sql);
+		System.out.println("insert group_questionbase sql: " + sql + " i: " + i);
+		cont.Close();
+		return i;
+	}
+
+	public int delGroup_qBase(int qBaseID, int groupID) {
+		Connect cont = new Connect();
+		String sql = "delete from group_questionbase where groupID=" + groupID + " and questionBaseID=" + qBaseID;
+		int i = cont.executeUpdate(sql);
+		cont.Close();
+		return i;
 	}
 	
 	

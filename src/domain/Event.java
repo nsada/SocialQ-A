@@ -151,7 +151,16 @@ public class Event {
 				event = "将用户“"+userB+"”加入了工作组“"+group+"”";
 				url = "showGroup?groupID="+groupID;
 				break;
-						
+			case 26:
+				type = 20;
+				event = "向工作组“"+group+"”开放了题库“"+qBase+"”的权限";
+				url = "showGroup?groupID="+groupID;
+				break;
+			case 27:
+				type = 21;
+				event = "收回了工作组“"+group+"”对题库“"+qBase+"”的权限";
+				url = "showGroup?groupID="+groupID;
+				break;
 		}
 		if (isFriend) {
 			event = name + event;

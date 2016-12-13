@@ -36,7 +36,7 @@ public class MessageService {
 					message.setMessage(result.getString("message"));
 					message.setRead(result.getInt("rread"));
 					message.setSenderID(result.getInt("senderID"));
-					message.setSendername(result.getString("sendername"));
+					message.setGroupID(result.getInt("groupID"));
 					message.setUrl(result.getString("url"));
 					message.setType(result.getInt("type"));
 					messages.add(message);
@@ -62,7 +62,7 @@ public class MessageService {
 				message.setMessage(result.getString("message"));
 				message.setRead(result.getInt("rread"));
 				message.setSenderID(result.getInt("senderID"));
-				message.setSendername(result.getString("sendername"));
+				message.setGroupID(result.getInt("groupID"));
 				message.setUrl(result.getString("url"));
 				message.setType(result.getInt("type"));
 			}
