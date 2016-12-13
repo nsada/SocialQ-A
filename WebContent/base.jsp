@@ -40,7 +40,7 @@
 
 
 <body style="margin-top: 55px;">
-        <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
+        <div  style="position:absolute; width:100%; height:100%; z-index:0"> 
             <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
@@ -98,7 +98,7 @@
 					<%} %>      		
         		</ul>
     	</div>
-    	<s:debug></s:debug>
+
     	</div>
 	</nav>
 	
@@ -133,9 +133,9 @@
 			var loginform =  document.getElementById("loginform");
 			loginform.style.display = "block";
 			var status = document.getElementById("statusLogin");
-			status.className = "button button-pill button-action active";
+			status.className = "button button-pill button-primary active";
 			status = document.getElementById("statusRegist");
-			status.className="button button-pill button-action";
+			status.className="button button-pill button-primary";
 			return ;
 		}
 		function SwitchBoxStatusToRegist(){
@@ -144,9 +144,9 @@
 			var loginform =  document.getElementById("loginform");
 			loginform.style.display = "none";
 			var status = document.getElementById("statusLogin");
-			status.className = "button button-pill button-action";
+			status.className = "button button-pill button-primary";
 			status = document.getElementById("statusRegist");
-			status.className="button button-pill button-action active";
+			status.className="button button-pill button-primary active";
 			return ;
 		}
 	</script>
@@ -167,8 +167,8 @@
 												">    	
 												
 		<div class="button-group">
-    		<button onclick="SwitchBoxStatusToLogin()"type="button" id="statusLogin" class="button button-pill button-action ">登录</button>
-    		<button onclick="SwitchBoxStatusToRegist()"type="button" id="statusRegist" class="button button-pill button-action">注册</button>
+    		<button onclick="SwitchBoxStatusToLogin()"type="button" id="statusLogin" class="button button-pill button-primary ">登录</button>
+    		<button onclick="SwitchBoxStatusToRegist()"type="button" id="statusRegist" class="button button-pill button-primary">注册</button>
   		</div>
   		<a class="button  button-tiny button-caution button-circle button-jumbo" style = "float: right;" onclick="killbox()">
 			<span class="glyphicon glyphicon-remove"></span>

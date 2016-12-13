@@ -11,16 +11,13 @@
 
 
 <rapid:override name="contentText">
-    <div class="text-align:right">
-        <button class="btn btn-default" type="button" onclick="window.location.href='delUser">
+	<div class="col-md-9 column" style = "margin-left: 24px;">
+		<button class="btn btn-default" type="button" onclick="window.location.href='delUser">
                删除此用户
         </button> 
-    </div>
-	<div class="col-md-10 column">
 		<table class="table table-bordered table-hover ">
 			<caption>操作记录</caption>
 			<thead>
-
 			</thead>
 			<tbody>
 				<s:iterator value="logs" var="log">

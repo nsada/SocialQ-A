@@ -21,10 +21,10 @@ public class Connect {
 			Class.forName("com.mysql.jdbc.Driver");			
 
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
-			con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
+			//con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
 			
 			state = con.createStatement();	
 		} catch (Exception e) {

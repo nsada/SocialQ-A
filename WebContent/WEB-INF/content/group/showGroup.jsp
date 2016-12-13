@@ -57,9 +57,7 @@
          		
          
 
-<<<<<<< HEAD
-       
-=======
+
     <div class="col-md-10 column">
         <h1>${group.name}</h1>
         ${group.description}
@@ -125,7 +123,7 @@
 	            </s:iterator>
 	        </tbody>
 	    </table>     
->>>>>>> 9a93c686730d2f844b3b14fdd7f936177a9ab3c9
+
     </div>
 </rapid:override>
 
