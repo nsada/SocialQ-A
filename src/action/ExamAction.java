@@ -23,7 +23,14 @@ public class ExamAction implements Action {
 	private String searchstr;
 	private int type=0;
 	private int ExamID;
+	private String str;
 	
+	public String getStr() {
+		return str;
+	}
+	public void setStr(String str) {
+		this.str = str;
+	}
 	@Override
 	public String execute() throws Exception { //get questions of this exam
 		return SUCCESS;
@@ -32,7 +39,8 @@ public class ExamAction implements Action {
 		String url = "http://socialqanda.applinzi.com/ShowExam?ExamID="+ExamID;
 		String content = "我刚刚在Funny QandA网站出了一套测试，复制这个链接: "+url+" 到地址栏，马上来答答吧！";
 		TencentAction tencent = new TencentAction();
-		return tencent.share(content);
+		this.setStr(tencent.share(content));
+		return SUCCESS;
 	}
 	public String searchExamtoanswer(){
 		System.out.println("ExamAction searchExamtoanswer searchstr=" + searchstr);

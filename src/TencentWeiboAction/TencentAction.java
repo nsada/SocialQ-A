@@ -37,7 +37,7 @@ public class TencentAction implements Action {
 			String param = "oauth_consumer_key="+globalVar.AppID+"&access_token="+access_token+"&openid="+openid+"&content="+content;
 			HttpRequest request = new HttpRequest();
 			String str = request.sendPost(url, param);
-			return SUCCESS;		
+			return str;		
 		} catch (Exception e) {
 			return ERROR;
 		}

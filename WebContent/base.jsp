@@ -211,7 +211,7 @@
   						<a  onclick="LoginSubmit()"class="button button-glow button-border button-rounded button-primary">登录</a>          
   						<div style="float: right">
             				<p style="float: left;">第三方登录:</p>  	
-            				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=<%=globalVar.AppID %>&amp;redirect_uri=<%=globalVar.redirect_URI %>&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+            				<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=<%=globalVar.AppID %>&redirect_uri=<%=globalVar.redirect_URI %>&state=tst&scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
           				
 
             			</div>
@@ -245,7 +245,7 @@
   				<div class="form-group  has-success">
     				<label class="col-sm-2 control-label" for="inputSuccess">Repeat</label>
    	 				<div class="col-sm-10">
-        				<input id="registPasswordAgain"type="password" class="form-control" id="inputSuccess" name="user.password" placeholder="请再次输入密码">
+        				<input id="registPasswordAgain"type="password" class="form-control" id="inputSuccess" placeholder="请再次输入密码">
     				</div>
   				</div>
   				
@@ -254,7 +254,7 @@
   				<div class="form-group  has-success">
     				<label class="col-sm-2 control-label" for="inputSuccess">Email</label>
    	 				<div class="col-sm-10">
-        				<input id="registEmail"type="text" class="form-control" id="inputSuccess" name="user.password" placeholder="请输入电子邮箱">
+        				<input id="registEmail"type="text" class="form-control" id="inputSuccess" name="user.mail" placeholder="请输入电子邮箱">
     				</div>
   				</div>
   				
