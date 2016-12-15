@@ -3,12 +3,11 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
 <rapid:override name="content">
-
         <div class="panel panel-info">
-  							<div class="panel-heading">点击选择我要插入的题库</div>
-  							
+  							<div class="panel-heading">
+  								<h3>草稿箱</h3>
+  							</div>
 							<div class="panel-body">
    								   <div class="list-group">
    								   		<s:iterator value="Exams">
@@ -19,7 +18,6 @@
                         						描述：<s:property value="description" />
                								</a>
        		 							</s:iterator>
-
 									</div>
   							</div>
 		</div>

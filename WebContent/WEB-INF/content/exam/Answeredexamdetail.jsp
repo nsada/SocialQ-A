@@ -3,9 +3,10 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page import = "java.util.List" %>
 
 <rapid:override name="head">
-	<title>答题</title>
+	<title>答题详情</title>
 </rapid:override>
 <rapid:override name="content">
 		<div>
@@ -13,6 +14,9 @@
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
     	</div>
+    	<%
+          	int i = 1; 
+         	if(request.getAttribute("selections")!=null&&((List<Object>)request.getAttribute("selections")).size()!=0){%>
         <div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">单选题</h3>
@@ -20,11 +24,17 @@
   			<div class="panel-body">
     			<ul class="list-group">
   						
-									<%int i = 1; %>
+					
         				<s:iterator value="selections" >
-              				
-              				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+              				<script>
+              					if(<s:property value="ans" /> == 0 )
+              						document.write("<li class='list-group-item'>")
+              					else if(<s:property value="useranswer" />!=<s:property value="ans" />)
+              						document.write("<li class='list-group-item list-group-item-danger'>")
+              					else
+              						document.write(" <li class='list-group-item list-group-item-success'>")
+              				</script>
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -51,9 +61,22 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        						var ans ="<s:property value="useranswer" />";
+        						i= parseInt(ans);
+        						ll =  String.fromCharCode("A".charCodeAt() + i-1);
+								document.write(ll);
+        					</script>
+        		
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        						var ans ="<s:property value="ans" />";
+        						i= parseInt(ans);
+        						ll =  String.fromCharCode("A".charCodeAt() + i-1);
+								document.write(ll);
+        					</script>
+        						
+        						
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -61,16 +84,26 @@
 				</ul>
   			</div>
 		</div>
+		<%}
+          	i = 1; 
+         	if(request.getAttribute("multys")!=null&&((List<Object>)request.getAttribute("multys")).size()!=0){%>
+         	
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">多选题</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
-						<% i = 1; %>
+				
         				<s:iterator value="multys" >
-              				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<script>
+              					if("<s:property value='useranswer' />"!='<s:property value="ans" />')
+              						document.write("<li class='list-group-item list-group-item-danger'>")
+              					else
+              						document.write(" <li class='list-group-item list-group-item-success'>")
+              				</script>
+              			
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -97,9 +130,27 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        							var ans ="<s:property value="useranswer" />";
+        							for(var i = 0 ; i <6;i++){
+        								if(ans.charAt(i)=="1"){
+        									ll =  String.fromCharCode("A".charCodeAt() + i);
+        									document.write(ll);
+        								}
+        							}
+        					</script>
+        					
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        							var ans ="<s:property value="ans" />";
+        							for(var i = 0 ; i <6;i++){
+        								if(ans.charAt(i)=="1"){
+        									ll =  String.fromCharCode("A".charCodeAt() + i);
+        									document.write(ll);
+        								}
+        							}
+        					</script>
+        					
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -107,16 +158,26 @@
 				</ul>
   			</div>
 		</div>
+		
+		<%}
+          	 i = 1; 
+         	if(request.getAttribute("textBlanks")!=null&&((List<Object>)request.getAttribute("textBlanks")).size()!=0){%>
+         	
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">填空题</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
-						<% i = 1; %>
+		
         				<s:iterator value="textBlanks" >
-              				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<script>
+              					if("<s:property value='useranswer' />"!='<s:property value="ans" />')
+              						document.write("<li class='list-group-item list-group-item-danger'>")
+              					else
+              						document.write(" <li class='list-group-item list-group-item-success'>")
+              				</script>
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -143,9 +204,28 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        						str = "<s:property value="useranswer" />"
+        						str=str.split("/#")
+        						if(str.length!=0){
+        							document.write(str[0]);
+            						for( i =1 ; i <str.length;i++)
+            							if(str[i]!="")
+            								document.write(", "+str[i])
+        						}
+        					</script>
+        					
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        						str = "<s:property value='ans' />"
+        						str=str.split("/#")
+        						if(str.length!=0){
+        							document.write(str[0]);
+            						for( i =1 ; i <str.length;i++)
+            							if(str[i]!="")
+            								document.write(", "+str[i])
+        						}
+        					</script>
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -153,6 +233,9 @@
 				</ul>
   			</div>
 		</div>
+		<%}
+          	i = 1; 
+         	if(request.getAttribute("AandQs")!=null&&((List<Object>)request.getAttribute("AandQs")).size()!=0){%>
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">问答题</h3>
@@ -162,7 +245,7 @@
 						<% i = 1; %>
         				<s:iterator value="AandQs" >
               				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					<br> 题目总分:
         					<s:property value="score" />
@@ -179,11 +262,15 @@
 				</ul>
   			</div>
 		</div>
-	
-		<a  class="button button-block button-rounded button-action button-large"
-           	 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                  查看我的小伙伴的排名	
-        </a>
+		<%}%>
+		<a  	class='button button-block button-rounded button-action button-large'
+				id = "checkRank"
+				href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+				查看我的小伙伴的排名	
+		</a>
+
+		
+		
 		      
 
 

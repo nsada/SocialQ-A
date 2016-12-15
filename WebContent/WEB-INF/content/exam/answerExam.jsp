@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page import = "java.util.List" %>
 
 <rapid:override name="head">
     <title>答题</title>
@@ -20,10 +21,12 @@
             </div>
         </div>
         
+         <%int i = 0; %>
+         <%if(request.getAttribute("selections")!=null&&((List<Object>)request.getAttribute("selections")).size()!=0){ %>
         <div class="panel panel-success">
             <div class="panel-heading">单选题</div>
             <div class="panel-body">
-                 <%int i = 0; %>
+                
         <s:iterator value="selections" >
                     <%i++; %>
                     <div>
@@ -75,11 +78,14 @@
         </s:iterator>
             </div>
         </div>
+        <%}
+          	int j = 0; 
+         	if(request.getAttribute("multys")!=null&&((List<Object>)request.getAttribute("multys")).size()!=0){%>
         
         <div class="panel panel-info">
             <div class="panel-heading">多选题</div>
             <div class="panel-body">
-             <% int j = 0; %>
+            
         <s:iterator value="multys" >            
             <%j++; %>
                     <div>
@@ -133,11 +139,13 @@
         
             </div>
         </div>
-        
+        <%}
+          	int k = 0; 
+         	if(request.getAttribute("textBlanks")!=null&&((List<Object>)request.getAttribute("textBlanks")).size()!=0){%>
         <div class="panel panel-warning">
             <div class="panel-heading">填空题</div>
             <div class="panel-body">
-             <% int  k = 0; %>
+           
         <s:iterator value="textBlanks" >            
             <%k++; %>
                     <div>
@@ -180,11 +188,13 @@
         </s:iterator>
             </div>
         </div>
-        
+        <%}
+          	int l = 0; 
+         	if(request.getAttribute("AandQs")!=null&&((List<Object>)request.getAttribute("AandQs")).size()!=0){%>
         <div class="panel panel-danger">
             <div class="panel-heading">问答题</div>
             <div class="panel-body">
-            <% int l = 0; %>
+      
         <s:iterator value="AandQs" >            
             <%l++; %>
                     <div>
@@ -192,13 +202,14 @@
                     </div>
                     <div style="position: relative;left: 15px;">
                         <span>
-                                <textarea  id ="AandQs<%=l %>"></textarea>
+                                <textarea  id ="AandQs<%=l %>" style = "width: 80%;height:100px;"></textarea>
                         </span>
                     </div>
                             
         </s:iterator>
             </div>
         </div>
+        <%} %>
         
         <div class="col-md-12 column">
        
@@ -216,7 +227,11 @@
         </div>
               
     <script>
-        
+        	$(document).ready(function(){
+        		var username = "<%=session.getAttribute("username") %>";
+        		if(username == "null" || username == "")
+        			showbox("");
+        	})
        
            function SubmitResult(){
                 var selection_result = ""; 

@@ -10,41 +10,39 @@
 
 
 <rapid:override name="content"> 
-
-<div class="col-md-9 column">
-
-    <div class="text-align:right">
-        <button class="btn btn-default" type="button" onclick="window.location.href='addGroup'">
-               创建工作组
+	<ul class="list-group">
+		<s:iterator value="groups" var="group">
+  			<li class="list-group-item list-group-item-warning">
+  				
+  				<h2 style="position:relative;left: 10%">工作组名：${group.name}</h2>
+  				<p style="position:relative;left: 10%">工作组描述：${group.description}</p>
+  				<div style="width: 35%;position: relative;left: 65%;">
+  					<p>
+  						操作：
+  						<a href="/SocialQ-A/showGroup.action?groupID=${group.id}"class="button button-glow button-rounded button-highlight button-small">工作组详情</a>
+  						<button class="button button-glow button-rounded button-royal button-small" type="button" 
+  						onclick="
+  							if(confirm('请确定您的题库已编辑完善，否则请点击“取消”，继续完善题库。')==true)
+  								window.location.href='GroupInsertExam?groupID=${group.id}'
+  								">
+			    			出题
+			    		</button> 
+                		<a href="/SocialQ-A/quitGroup.action?groupID=${group.id}"class="button button-glow button-rounded button-caution button-small">退出</a>
+                	</p>
+  					
+  				</div>
+  				
+  			</li>
+  		</s:iterator>
+	</ul>
+	 <div class="text-align:right" >
+        <button class="button button-glow button-circle button-action button-jumbo button-big" 
+        			 	type="button"
+						onclick="window.location.href='addGroup'"
+						style="position: relative;left: 50%;">
+               <span class="glyphicon glyphicon-plus"></span>
         </button> 
     </div>
-
-    <table class="table table-bordered table-hover ">
-        <caption><h1>我的工作组</h1></caption>
-        <thead>
-            <tr>
-                <th style="text-align:center;">工作组名称</th>
-                <th style="text-align:center;">工作组描述</th>
-                <th style="text-align:center;">操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            <s:iterator value="groups" var="group">
-                <tr>
-                    <td style="text-align:center;"><a href='<s:url action="showGroup"><s:param name="groupID" value="#group.id"/></s:url>'>${group.name}</a></td>                    
-                    <td style="text-align:center;">${group.description}</td>                     
-                    <td style="text-align:center;">
-			            <button class="btn btn-default" type="button" onclick="window.location.href='GroupInsertExam?groupID=${group.id}'">
-			                   出题
-			            </button> 
-                        <a href='<s:url action="quitGroup"><s:param name="groupID" value="#group.id"/></s:url>'><input type="button" value="退出"/></a>
-                    </td>
-                </tr>           
-            </s:iterator>
-        </tbody>
-    </table>
-    
-</div>
 </rapid:override>
 
 

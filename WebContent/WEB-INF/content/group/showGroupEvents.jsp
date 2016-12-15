@@ -12,26 +12,37 @@
     <title>工作组日志</title>
 </rapid:override>
 
-<rapid:override name="content">
-   
-    <div class="panel panel-success">
+<rapid:override name="contentWithoutWhiteBox">
+<div class = "container table-center"style="position: relative;top:20px;">
+	<div class="panel panel-primary" >
         <div class="panel-heading">工作组动态</div>
-        <div class="text-align:right">
-            <button class="btn btn-default" type="button" onclick="window.location.href='showGroup?groupID=${groupID}'">
-                   返回工作组页面
-            </button> 
-        </div>
+        
         <div class="panel-body">
             <div class="list-group">
 
                  <s:iterator value="events" var="e">     
-                    <li class="list-group-item">${e.event}</li>
+                    <li class="list-group-item list-group-item-warning">
+                    		<p>
+                    				${e.event}
+                    				<span style="float:right;">${ e.time}</span>
+                    		</p>
+                    </li>
                  </s:iterator>
                 
             </div>
+            <div class="text-align:right">
+            <button class="button button-glow button-rounded button-raised button-primary" 
+            				type="button" 
+            				style="float:right;"
+            				onclick="window.location.href='showGroup?groupID=${groupID}'">
+                   返回工作组页面
+            </button> 
+        </div>
         </div>
 
     </div>   
+</div>   
+    
 
 
 </rapid:override>

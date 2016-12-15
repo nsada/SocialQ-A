@@ -1,6 +1,6 @@
 
 <%@page import="tencentApi.globalVar"%>
-
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
@@ -55,12 +55,11 @@
 	<div class="panel panel-success">
 		<div class="panel-heading">本地好友</div>
   		<div class="panel-body">
+  		
+  			<%if( ( (List<Object>) request.getAttribute("friends")).size() > 0 ){ %>
     		<div class="list-group">
-
     			 <s:iterator value="friends" var="fri">        
-                      
                           <li  class="list-group-item">
-                          
     							<s:property value="name"/>
                             	<a 	href='<s:url action="delFriend"><s:param name="friendID" value ="#fri.id"/></s:url>'  
                             			style="float:right;"
@@ -69,8 +68,12 @@
                                  </a>
   						  </li>
                     </s:iterator>
-  				
 			</div>
+			<%} 
+				else{%>
+					<p style="text-align: center;color: orange;">您还没有好友，在上方搜索好友添加吧！</p>
+			<%} %>
+			
   		</div>
 	</div>
 	<div class="panel panel-warning">

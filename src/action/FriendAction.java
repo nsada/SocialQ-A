@@ -92,6 +92,7 @@ public class FriendAction implements Action {
 					"openid="+sess.get("openid")+"&"+
 					"reqnum=30&startindex=0");
 			//System.out.println(str);
+			
 			int ret_index = str.indexOf("ret");
 			String sub = str.substring(ret_index+5);
 			//System.out.println(sub);

@@ -3,6 +3,9 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<<rapid:override name="head">
+	<title>回答过的试题</title>
+</rapid:override>
 <rapid:override name="content">
         <div class="panel panel-info">
   							<div class="panel-heading">发布过的所有测试</div>

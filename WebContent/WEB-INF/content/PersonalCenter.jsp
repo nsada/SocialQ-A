@@ -11,15 +11,11 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showPersonalInformation'">
 						个人信息</button>
-						<button class="btn btn-default " type="button"
-						onclick="window.location.href='GroupInsertExam'">
-						工作组出题</button>
+				
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showFriends'">好友列表</a>
 					</button>
-					<button class="btn btn-default " type="button"
-                        onclick="window.location.href='showUserGroups'">工作组</a>
-					</button>
+					
 					
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='ShowUncomExam'">草稿箱</a>
@@ -33,12 +29,8 @@
 					</button>
 					 -->
 					
-					<button class="btn btn-default " type="button"
-						onclick="window.location.href='PublishedExam'">发布过的试卷
-					</button>
-					<button class="btn btn-default " type="button"
-                        onclick="window.location.href='ShowAnsweredExams' ">答过的试卷</a>
-                    </button>
+					
+					
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='FindUserExams'">批改试卷</a>
 					</button>				

@@ -40,7 +40,7 @@
 
 
 <body style="margin-top: 55px;">
-        <div  style="position:absolute; width:100%; height:100%; z-index:0"> 
+        <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
             <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
@@ -56,9 +56,15 @@
   		  	<div>
   		  	<%if ( !( username==null || username.equals("") ) ){%>
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
-        			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
+        			<li style="margin-top: 5px"><a class="color-w link1" onclick = "ConfirmToInsertExam()">我要出题</a></li>
+        				<script>
+        					function ConfirmToInsertExam(){
+        						if(confirm("请确定您的题库已编辑完善，否则请点击“取消”，继续完善题库。")==true)
+        							window.location.href = "<%=request.getContextPath()%>/InsertExam"
+        					}
+        				</script>
+        				
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/WantAnswerExam">我要答题</a></li>
-
        				<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
@@ -294,13 +300,32 @@
 				
 					
 					var new_input = document.createElement("input");
+					new_input.style.display = "none";
 					new_input.name="redirect_url";
 					var url = window.location.href.split('?');
-					new_input.value = url[0];
-					var a =new_input.value.indexOf("ShowExam");
-					if(a>=0);
-					   new_input.value+="?"+url[1];
-					new_input.style.display="none";
+					if(url.length ==1){
+						new_input.value = url[0];
+						form.appendChild(new_input);
+						form.submit();
+						return ;
+					}
+					p = url[1].split("&");
+					url = url[0];
+					wenhao = false;
+					for(i = 0;i < p.length;i++){
+						if(p[i].indexOf("login_result")>=0||p[i].indexOf("regist_result")>=0)
+							continue;
+						else{
+							if(wenhao ==false){
+								wenhao = true;
+								url += '?'+p[i];
+							}
+							else{
+								url += "&"+p[i];
+							}
+						}
+					}
+					new_input.value = url;
 					form.appendChild(new_input);
 					form.submit();
 					return ;
