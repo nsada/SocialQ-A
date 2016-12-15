@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <rapid:override name="head">
-    <title>主页</title>
+    <title>Funny Q-A</title>
 </rapid:override>
 <rapid:override name="contentWithoutWhiteBox">
     <div class="container" style="

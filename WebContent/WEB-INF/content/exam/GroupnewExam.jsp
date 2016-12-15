@@ -7,6 +7,7 @@
 
 
 <rapid:override name="head">
+	<title>工作组出题</title>
     <script type="text/javascript">
         function insertQ(){
             document.myform.action="FindGroupQbase";

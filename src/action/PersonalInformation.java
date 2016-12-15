@@ -20,7 +20,7 @@ public class PersonalInformation implements Action {
 	private int FriendNum=0;
 	private int userID;
 	private int friendID;
-	
+	private int isFriend=0;
 	
 
 	@Override
@@ -36,13 +36,25 @@ public class PersonalInformation implements Action {
 		getUserIndex(userID);
 		
 		return SUCCESS;
-	}
+	}	
 	public String showUserIndex() {
 		getUserIndex(userID);
 		return SUCCESS;
 	}
 	public String showFriendIndex() {
 		getUserIndex(friendID);
+		ActionContext actCtx = ActionContext.getContext();
+		Map<String, Object> sess = actCtx.getSession();
+		int userID = -1;
+		try {
+			 userID = (int) sess.get("userid");
+		} catch (Exception e) {
+			return "needlogin";
+		}				
+		UserService us = new UserService();
+		System.out.println("userID friendID: "+userID+" "+friendID);
+		if (us.isFriend(userID, friendID)) isFriend=1;
+		else isFriend=0;
 		return SUCCESS;
 	}
 	
@@ -93,6 +105,12 @@ public class PersonalInformation implements Action {
 	}
 	public void setFriendID(int friendID) {
 		this.friendID = friendID;
+	}
+	public int getIsFriend() {
+		return isFriend;
+	}
+	public void setIsFriend(int isFriend) {
+		this.isFriend = isFriend;
 	}
 	
 	

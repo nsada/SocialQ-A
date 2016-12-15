@@ -3,8 +3,11 @@ package service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
+
 import database.Connect;
 import domain.Exam;
 import domain.Exam_User;
@@ -224,6 +227,11 @@ public class ExamService implements Action {
 		}		
 		cont.Close();
 		return exams;
+	}
+
+	private List<User> getAllfriends(int userID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

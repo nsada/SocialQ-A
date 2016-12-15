@@ -7,6 +7,7 @@
 
 
 <rapid:override name="head">
+	<title>出题</title>
 	<script type="text/javascript">
 		function insertQ(){
 			document.myform.action="Find"; 
@@ -100,7 +101,7 @@
 		
 						<div align="center"
 							style="width: 60%; position: relative; left: 20%;">
-							试卷可见性： 
+<!-- 							试卷可见性： 
 							<label class="checkbox-inline"> 
 								<input type="radio"name="joiner" id="optionsRadios3" value="1" checked="">
 								试卷仅好友可见
@@ -108,7 +109,7 @@
 							<label class="checkbox-inline"> 
 								<input type="radio"name="joiner" id="optionsRadios4" value="2"> 试卷所有人可见
 							</label>
-							 <br> 
+							 <br>  -->
 							 排名可见性： 
 							 <label class="checkbox-inline"> 
 							 		<input type="radio" name="rights" id="optionsRadios3" value="1" checked="">

@@ -331,15 +331,16 @@ public class UserService {
 		cont = new Connect();
 		String sql = "select * from friend where A="+a+" and B="+b;
 		ResultSet result = cont.executeQuery(sql);
-		cont.Close();
+		
 		try{
 			if (result.next()){
+				cont.Close();
 				return true;
 			}
 			result.close();
 		}catch (Exception e) {
-			return false;
 		}	
+		cont.Close();
 		return false;
 	}
 

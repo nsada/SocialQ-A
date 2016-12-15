@@ -3,8 +3,10 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<rapid:override name="head">
+	<title>回答过的试卷</title>
+</rapid:override>
 <rapid:override name="content">
-
         <div class="panel panel-info">
   							<div class="panel-heading">点击查看具体试卷的所有信息哦</div>
   							
@@ -16,7 +18,7 @@
            									<a  class="list-group-item list-group-item-success"
            									    
            										 href='<s:url action="FindUserExamList"><s:param name="ExamID" value ="id"/><s:param name="description" value ="description"/><s:param name="title" value ="title"/></s:url>'>
-                        						题目：<s:property value="title" /> 
+                        						标题：<s:property value="title" /> 
                         						<br>
                         						描述：<s:property value="description" />
                								</a>

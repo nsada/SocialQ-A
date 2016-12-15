@@ -19,6 +19,14 @@ public class Rank implements Action{
 	 private String Takename="";
  	 private List<Exam> Exams =new ArrayList<Exam> ();
  	 private List<User> friends ;
+ 	 private int num;
+ 	 
+ 	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public List<User> getFriends() {
 		return friends;
 	}
@@ -129,29 +137,32 @@ public class Rank implements Action{
 
 	private List<User> getFriendsRanks(int ExamID){		 
 		List<User> friends = new ArrayList<>();
+		int  rank =0;
 		try{
 			List<User> peoples= getAllPeopleRanks(ExamID);
 			System.out.println("get peoples");
-			int  rank =0;
+			
+			UserService us = new UserService();
+			ActionContext actCtx = ActionContext.getContext();
+			Map<String, Object> sess = actCtx.getSession();
+			int userID = (int) sess.get("userid");
+			
 			for (int i = 0; i < peoples.size(); i ++){
-				User peo = peoples.get(i);
-				UserService us = new UserService();
-				ActionContext actCtx = ActionContext.getContext();
-				Map<String, Object> sess = actCtx.getSession();
-				int userID = (int) sess.get("userid");	
+				User peo = peoples.get(i);	
 				System.out.println("userID peoID: "+userID+" "+peo.getId());
 				if (!us.isFriend(userID, peo.getId())) continue;
-				rank++;
-				User user = new User();			 	
+				rank++; 	
 			 	TesttakerID = peo.getId();
 			 	friends.add(peo);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			friends = null;
-		}				
+		}			
+		if (rank==0) num = 0;
 		return friends;
 	}
+
 	
 	
 	

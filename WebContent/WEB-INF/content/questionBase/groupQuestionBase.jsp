@@ -17,42 +17,6 @@
 	<div class="col-md-9 column">
 		<h1>${qBase.title}</h1>
 		${qBase.description}
-
-		<div class="text-align:right">
-			<select id = "ChooseType">
- 				 <option value="danxuan">单选题</option>
- 				 <option value ="duoxuan">多选题</option>
-  				 <option value="tiankong">填空题</option>
-  				 <option value="wenda">问答题</option>	
-			</select>
-			<button id = "AddQuestion">添加题目</button>
-			<%
-				QuestionBase qb = (QuestionBase)request.getAttribute("qBase");
-				int i = qb.getId();
-			%>
-			<script src="<%=request.getContextPath()%>/js/jquery-3.1.1.js"></script>
-			<script>
-				$("#AddQuestion").click(function(){
-					var choose = $("#ChooseType").val();
-					switch(choose){
-						case "danxuan":
-								window.location.href = "<%=request.getContextPath()%>/addSelection?qBaseID=<%= i%>";
-								break;
-						case "tiankong":
-							window.location.href = "<%=request.getContextPath()%>/addTextBlank?qBaseID=<%= i%>";
-							break;
-						case "wenda":
-							window.location.href = "<%=request.getContextPath()%>/addAandQ?qBaseID=<%= i%>";
-							break;
-						case "duoxuan":
-							window.location.href= "<%=request.getContextPath()%>/addMulty?qBaseID=<%= i%>";
-						default:
-							
-					}
-					
-				})
-			</script>
-		</div>
 		<%List<Object> a ; %>
 		<% a = (List<Object>)request.getAttribute("selections");%>
 		 <% if(a!=null && a.size()!=0){ %>
@@ -72,8 +36,7 @@
 						<td>
 						  <a href='<s:url action="showQuestion"><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input
 								type="button" value="展开" /></a>
-                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#sel.id"/><s:param name="type" value="1"/></s:url>'><input
-                                type="button" value="删除" /></a>
+                         
 						</td>
 					</tr>
 				</s:iterator>
@@ -97,8 +60,7 @@
 						<td>
 						  <a href='<s:url action="showQuestion"><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input
 								type="button" value="展开" /></a>
-						  <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#blank.id"/><s:param name="type" value="2"/></s:url>'><input
-                                type="button" value="删除" /></a>
+						  
 						</td>
 					</tr>
 				</s:iterator>
@@ -123,8 +85,7 @@
                         <td>
                             <a href='<s:url action="showQuestion"><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
                                 type="button" value="展开" /></a>
-                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
-                                type="button" value="删除" /></a>
+                         
                         </td>
                     </tr>
                 </s:iterator>
@@ -148,8 +109,7 @@
                         <td>
                             <a href='<s:url action="showQuestion"><s:param name="questionID" value="#multy.id"/><s:param name="type" value="4"/></s:url>'><input
                                 type="button" value="展开" /></a>
-                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#multy.id"/><s:param name="type" value="4"/></s:url>'><input
-                                type="button" value="删除" /></a>
+                         
                         </td>
                     </tr>
                 </s:iterator>

@@ -141,9 +141,11 @@
 					var tongyi = document.getElementById("tongyi");
 					if(tongyi.checked){
 						for(var i =1;i <=6;i++){
-							var temp = document.getElementById("c"+i);
+							temp = document.getElementById("c"+i);
 							temp.disabled = "disabled";
 							temp.value = "";
+							temp = document.getElementById("a"+i);
+							temp.value = i.toString(); 
 						}
 						var temp = document.getElementById("ctotal");
 						temp.disabled=null;
@@ -169,6 +171,8 @@
 						for(var i =1;i <=6;i++){
 							var temp = document.getElementById("c"+i);
 							temp.disabled = null;
+							temp = document.getElementById("a"+i);
+							temp.value = "0"; 
 						}
 						var temp = document.getElementById("ctotal");
 						temp.disabled="disabled";

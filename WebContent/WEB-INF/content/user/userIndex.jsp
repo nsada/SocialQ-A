@@ -18,7 +18,7 @@
         <p>用户名: ${user.name}</p>
         <p>邮箱：${user.mail}</p>
         <p>题库数量：${user.questionBaseNUM}</p>
-        
+        <p>isFriend=${isFriend }</p>
         <a href='<s:url action="addFriend"><s:param name="friendID" value ="user.id"/></s:url>'
                                         class="button button-glow button-circle button-action button-tiny"
                                         style="float: right;">

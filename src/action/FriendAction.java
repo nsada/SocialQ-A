@@ -194,6 +194,7 @@ public class FriendAction implements Action {
 	}
 	public String addFriend(int a, int b) {
 		UserService us = new UserService();	
+		if (us.isFriend(a,b)) return SUCCESS;
 		String openB = us.getUserOpenfromID(b);
 		String nameA = us.getUserName(a);
 		WeiboFriend weibofriend = fs.getWeiboFriendOpen(nameA, openB);

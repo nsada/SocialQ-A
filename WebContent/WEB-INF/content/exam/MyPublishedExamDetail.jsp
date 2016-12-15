@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@page import = "java.util.List" %>
 <rapid:override name="head">
-	<title>答题</title>
+	<title>回答详情</title>
 </rapid:override>
 <rapid:override name="content">
 		<div>
@@ -166,11 +166,21 @@
   								</div>
 						</div>
 			<%}%>
-        <a  class="list-group-item list-group-item-success"
-           	 href='<s:url action="AllTakerRank"><s:param name="ExamID" value ="ExamID"/></s:url>'>
+        <button  class="button button-block button-rounded button-action button-large" id="checkRank"
+           	 onclick = "window.location.href='<s:url action="AllTakerRank"><s:param name="ExamID" value ="ExamID"/></s:url>'"
+           	 style="float: right;">
            	 查看所有用户回答的排名情况
-		</a>
-		      
+		</button>
+		<script>
+			$(document).ready(function(){
+				var a = <s:property value="totalpeople"/>;
+				if(a==0){
+					$("#checkRank")[0].disabled = "disabled";
+					$("#checkRank")[0].innerHTML = "您的小伙伴们还没有答过这套测试";
+				}
+					
+			})
+		</script>
 
 </rapid:override>   
 <%@ include file="../../../../base.jsp"%>

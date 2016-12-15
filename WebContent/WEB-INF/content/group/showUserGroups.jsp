@@ -19,11 +19,15 @@
   				<div style="width: 35%;position: relative;left: 65%;">
   					<p>
   						操作：
-  						<a href="/SocialQ-A/showGroup.action?groupID=3"class="button button-glow button-rounded button-highlight button-small">工作组详情</a>
-  						<button class="button button-glow button-rounded button-royal button-small" type="button" onclick="window.location.href='GroupInsertExam?groupID=3'">
+  						<a href="/SocialQ-A/showGroup.action?groupID=${group.id}"class="button button-glow button-rounded button-highlight button-small">工作组详情</a>
+  						<button class="button button-glow button-rounded button-royal button-small" type="button" 
+  						onclick="
+  							if(confirm('请确定您的题库已编辑完善，否则请点击“取消”，继续完善题库。')==true)
+  								window.location.href='GroupInsertExam?groupID=${group.id}'
+  								">
 			    			出题
 			    		</button> 
-                		<a href="/SocialQ-A/quitGroup.action?groupID=3"class="button button-glow button-rounded button-caution button-small">退出</a>
+                		<a href="/SocialQ-A/quitGroup.action?groupID=${group.id}"class="button button-glow button-rounded button-caution button-small">退出</a>
                 	</p>
   					
   				</div>
@@ -31,8 +35,11 @@
   			</li>
   		</s:iterator>
 	</ul>
-	 <div class="text-align:right" style="float:right;">
-        <button class="button button-glow button-circle button-action button-jumbo button-small" type="button" onclick="window.location.href='addGroup'">
+	 <div class="text-align:right" >
+        <button class="button button-glow button-circle button-action button-jumbo button-big" 
+        			 	type="button"
+						onclick="window.location.href='addGroup'"
+						style="position: relative;left: 50%;">
                <span class="glyphicon glyphicon-plus"></span>
         </button> 
     </div>

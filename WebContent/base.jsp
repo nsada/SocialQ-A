@@ -56,9 +56,15 @@
   		  	<div>
   		  	<%if ( !( username==null || username.equals("") ) ){%>
         		<ul class="nav navbar-nav navbar-left" style="font-size: 18px">
-        			<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/InsertExam">我要出题</a></li>
+        			<li style="margin-top: 5px"><a class="color-w link1" onclick = "ConfirmToInsertExam()">我要出题</a></li>
+        				<script>
+        					function ConfirmToInsertExam(){
+        						if(confirm("请确定您的题库已编辑完善，否则请点击“取消”，继续完善题库。")==true)
+        							window.location.href = "<%=request.getContextPath()%>/InsertExam"
+        					}
+        				</script>
+        				
        				<li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/WantAnswerExam">我要答题</a></li>
-
        				<li style="margin-top: 5px"><a class="color-w link1" href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowFriendsEvents">朋友圈</a></li>
                     <li style="margin-top: 5px"><a class="color-w link2" href="<%=request.getContextPath()%>/ShowUserMessage.action">我的消息</a></li>
