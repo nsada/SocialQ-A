@@ -18,6 +18,8 @@ public class PersonalInformation implements Action {
 //	private int PublishedNum=0;
 //	private int AnsweredNum=0;
 	private int FriendNum=0;
+	private int userID;
+	private int friendID;
 	
 	
 
@@ -31,15 +33,27 @@ public class PersonalInformation implements Action {
 		} catch (Exception e) {
 			return "needlogin";
 		}		
+		getUserIndex(userID);
 		
+		return SUCCESS;
+	}
+	public String showUserIndex() {
+		getUserIndex(userID);
+		return SUCCESS;
+	}
+	public String showFriendIndex() {
+		getUserIndex(friendID);
+		return SUCCESS;
+	}
+	
+	private int getUserIndex(int userID) {
 		UserService us = new UserService();
 		user = us.getUser(userID);
 		ExamService es = new ExamService();
 		PublishedExams = es.getUserPublishedExams(userID);	  
 		AnsweredExams = es.getUserAnsweredExams(userID);
-		FriendNum = us.getFriendNum(userID);
-		
-		return SUCCESS;
+		FriendNum = us.getFriendNum(userID);	
+		return 1;
 	}
 
 
@@ -67,6 +81,18 @@ public class PersonalInformation implements Action {
 	}
 	public void setFriendNum(int friendNum) {
 		FriendNum = friendNum;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	public int getFriendID() {
+		return friendID;
+	}
+	public void setFriendID(int friendID) {
+		this.friendID = friendID;
 	}
 	
 	

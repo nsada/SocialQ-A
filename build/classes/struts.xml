@@ -277,9 +277,13 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         <action name="addFriend" class="action.UserAction" method="addFriend">
-            <result type="redirect">showFriends</result>
+            <result type="chain">showFriendInformation</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>  
+        <action name="showFriendInformation" class="action.PersonalInformation" method="showFriendIndex">
+            <result name="success">/WEB-INF/content/user/userIndex.jsp</result>
+            <result name="error">/WEB-INF/content/user/error.jsp</result>        
+        </action>
         <action name="delFriend" class="action.UserAction" method="delFriend">
             <result type="redirect">showFriends</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
@@ -298,11 +302,11 @@
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>        
 
-        <action name="showFriendInformation" class="action.UserAction" method="showUserIndex">
+<!--         <action name="showUserInformation" class="action.PersonalInformation" method="showUserIndex">
             <result name="success">/WEB-INF/content/user/userIndex.jsp</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        
         </action>
-        
+         -->
         <action name="acceptFriendApply" class="action.FriendAction" method="acceptAddFriendMessage">
             <result type="chain">ShowUserMessage</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>        

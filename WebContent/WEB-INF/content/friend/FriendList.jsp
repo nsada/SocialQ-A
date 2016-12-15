@@ -35,10 +35,10 @@
     						<s:iterator value="users" var="u">        
                     			<li class = "searchuser list-group-item"> 
                         			<s:property value="name"/>
-                        			<a href='<s:url action="addFriend"><s:param name="friendID" value ="#u.id"/></s:url>'
+                        			<a href='<s:url action="showFriendInformation"><s:param name="friendID" value ="#u.id"/></s:url>'
                         				class="button button-glow button-circle button-action button-tiny"
                         				style="float: right;">
-                                            <span class = "glyphicon glyphicon-plus"></span>
+            查看用户信息
                         			</a>
                     			</li>               
                 			</s:iterator>

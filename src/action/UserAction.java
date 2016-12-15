@@ -182,8 +182,11 @@ public class UserAction implements Action {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
 		int userID = (int)sess.get("userid");
+		//System.out.println("addFriend "+userID+friendID);
 		FriendAction friaction = new FriendAction();
-		return friaction.sendAddFriendMessage(userID, friendID);
+		String result = friaction.sendAddFriendMessage(userID, friendID); 
+		userID = friendID;
+		return result;
 	}
 	public String showUserIndex() {
 		UserService us = new UserService();

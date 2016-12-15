@@ -141,7 +141,7 @@ public class FriendAction implements Action {
 		String nameA = us.getUserName(a);
 		String message = "用户 " + nameA + " 申请您好友"; 
 		Message mes = new Message();
-		String url = "showFriendInformation?userID=" + a;
+		String url = "showFriendInformation?friendID=" + a;
 		mes.Systemsendmessage(a, b, message, url, 1);	
 		ls.OperateMessage(a,b,18);
 		return SUCCESS;
