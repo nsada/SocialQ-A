@@ -1,5 +1,6 @@
 package domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import service.ExamService;
@@ -181,7 +182,7 @@ public class Event {
 		if (isGroup & groupID > 0) {
 			event = "成员“"+name+"”" + event;
 		}
-		System.out.println("type ("+type+") url:"+url);
+		//System.out.println("type ("+type+") url:"+url);
 		return 1;
 	}
 	
@@ -226,7 +227,9 @@ public class Event {
 		this.type = type;
 	}
 	public void print() {
-		System.out.println("event: "+userID+" " +event + " type(" +type+")" + " url(" +url+") "+time);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		//String a = ;
+		System.out.println("event: "+userID+" " +event + " type(" +type+")" + " url(" +url+") "+dateFormat.format(time));
 	}
 	
 	

@@ -211,7 +211,8 @@ public class UserAction implements Action {
 		try {
 			LogService ls = new LogService();
 			List<Log> logs = ls.getUserLogs(userID);
-			for (int j = 0; j < logs.size(); j++) {
+			//for (int j = 0; j < logs.size(); j++) {
+			for (int j = logs.size()-1; j>=0; j--) {
 				Log log = logs.get(j);
 				Event event = new Event();
 				event.changeLogintoEvent(log, false, false);

@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+
 import domain.Log;
 import domain.Selection;
 import domain.User;
@@ -182,6 +185,18 @@ public class LogService {
 		}
 		cont.Close();
 		return logs;
+	}
+	public void sortLogs(List<Log> logs) {
+        Collections.sort(logs,new Comparator<Log>(){  
+            @Override  
+            public int compare(Log log1, Log log2) {  
+        		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        		String a = dateFormat.format(log1.getTime());
+        		String b = dateFormat.format(log2.getTime());
+        		return a.compareTo(b);
+            }  
+              
+        });  
 	}
 
 

@@ -1,5 +1,6 @@
 package domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import service.ExamService;
@@ -73,6 +74,16 @@ public class Log {
 		return ans;
 	}
 	
+    public int compareTo(Log log) { 
+        return cmpTime(this.time, log.time);
+    }
+	
+	private int cmpTime(Date time1, Date time2) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String a = dateFormat.format(time1);
+		String b = dateFormat.format(time2);
+		return a.compareTo(b);
+	}
 	public void print() {
 		System.out.print("userID("+userID+") ");
 		System.out.print("groupID("+groupID+") ");

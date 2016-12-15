@@ -1,5 +1,6 @@
 package action;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -259,20 +260,23 @@ public class FriendAction implements Action {
 		try {
 			friends = getUserFriends(userID);
 			LogService ls = new LogService();
+			List<Log> friendlogs = new ArrayList<>();
 			for (int i = 0; i < friends.size(); i++) {
 				List<Log> logs = ls.getUserLogs(friends.get(i).getId());
 				for (int j = 0; j < logs.size(); j++) {
-					
 					Log log = logs.get(j);
-					//log.print();
-					if (log.getAction() == 9 || log.getAction() == 14) { 
-						Event event = new Event();
-						event.changeLogintoEvent(log, true, false);
-						//event.print();
-						events.add(event);
+					if (log.getAction() == 9 || log.getAction() == 14) {
+						friendlogs.add(log);
 					}
 				}
 			}
+			ls.sortLogs(friendlogs);
+	        for (int j = friendlogs.size()-1; j >= 0; j--) {
+				Event event = new Event();
+				event.changeLogintoEvent(friendlogs.get(j), true, false);
+				//event.print();
+				events.add(event);
+	        }
 		} catch (Exception e) {
 			events = null;			
 			friends = null;
