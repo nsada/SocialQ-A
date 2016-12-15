@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <<rapid:override name="head">
-	<title>回答过的试题</title>
+	<title>发布过的测试</title>
 </rapid:override>
 <rapid:override name="content">
         <div class="panel panel-info">

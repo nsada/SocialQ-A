@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <rapid:override name="head">
-    <title>待批改的试卷</title>
+    <title>待批改的测试</title>
 </rapid:override>
 
 <rapid:override name="content">

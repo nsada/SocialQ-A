@@ -7,6 +7,7 @@
 
 
 <rapid:override name="head">
+	<title>出题</title>
 	<script type="text/javascript">
 		function insertQ(){
 			document.myform.action="Find"; 

@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
+<rapid:override name="head">
+	<title>出题</title>
+</rapid:override>
 
 <rapid:override name="head">
 	<script type="text/javascript">

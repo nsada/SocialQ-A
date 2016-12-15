@@ -10,36 +10,23 @@
                             <div class="panel-heading">点击查看具体详情哦</div>
                             
                             <div class="panel-body">
-                                   <div class="list-group">
+                                   <ul class="list-group">
                                         <s:iterator value="friends">
-                                  <br>  ExamID  <s:property value ="ExamID"/> 
-                                                <br>                                            
-                                                Name：<s:property value="name" /> 
-                                                <br>
-                                                Score ：<s:property value="Examscore" />
-                                                <br>
-                                                Rank : <s:property value="rank" />
-                                                <br> : 显示该用户的答题详情
-                                                                     
-                                                <a  class="list-group-item list-group-item-success"
-                                                
-                                                 href='<s:url action="WantedUserExamDetail"><s:param name="ExamID" value ="ExamID"/> <s:param name="TesttakerID" value ="id"/></s:url>'>
-                                                                 
-                                            </a>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                WantedUserExamDetail
-                                                
-                                                
+                                        			<li class="list-group-item">
+                                        				<span class="badge"style="float:none;"><s:property value="rank" /></span>
+                                        				<div style="position: relative;left: 10%;" >
+		                                        						<h4>Name：<s:property value="name" /> </h4>
+		                                                				<p>Score ：<s:property value="Examscore" /></p>
+																		<a  class="button button-raised button-highlight button-pill button-jumbo button-small"
+																			 style="position: relative;left: 65%;"
+				                                                 			 href='<s:url action="WantedUserExamDetail"><s:param name="ExamID" value ="ExamID"/> <s:param name="TesttakerID" value ="id"/></s:url>'>
+				                                                                 显示该用户的答题详情
+				                                            			</a>
+                                            			</div>
+													</li>
                                         </s:iterator>
 
-                                    </div>
+                                    </ul>
                             </div>
         </div>
 </rapid:override>

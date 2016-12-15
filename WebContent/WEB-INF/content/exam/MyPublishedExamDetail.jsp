@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@page import = "java.util.List" %>
 <rapid:override name="head">
-	<title>答题</title>
+	<title>回答详情</title>
 </rapid:override>
 <rapid:override name="content">
 		<div>

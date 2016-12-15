@@ -3,7 +3,9 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<rapid:override name="head">
+	<title>工作组题库</title>
+</rapid:override>
 <rapid:override name="content">
 
         <div class="panel panel-info">
