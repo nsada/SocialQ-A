@@ -9,7 +9,7 @@
 <rapid:override name="content">
         <div class="panel panel-info">
   							<div class="panel-heading">输入你就能评分了哦</div>
-  							
+  							<p>checked=${checked }</p>
 							<div class="panel-body">
    								   <div class="list-group">
    								  		当前题目的EXAMID <s:property value="ExamID" /> <br>		

@@ -324,7 +324,7 @@ public class UserService {
 	}
 
 	public boolean isFriend(int a, int b) {
-		return isFriendAB(a,b)&isFriendAB(b,a);
+		return isFriendAB(a,b)||isFriendAB(b,a);
 	}
 
 	private boolean isFriendAB(int a, int b) {

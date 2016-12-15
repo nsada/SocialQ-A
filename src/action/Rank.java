@@ -160,6 +160,7 @@ public class Rank implements Action{
 			friends = null;
 		}			
 		if (rank==0) num = 0;
+		else num=friends.size();
 		return friends;
 	}
 

@@ -16,6 +16,7 @@
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
         	<p style="text-align: center;"> <s:property value="testername"/>的排名：<s:property value="rank"/><p>
+        	<p>checked=${checked}</p>
     	</div>
     	
     	

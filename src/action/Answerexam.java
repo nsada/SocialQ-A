@@ -726,6 +726,9 @@ public class Answerexam  implements Action{
 				  Exam exam =es.getExam(ExamID);
 				  title = exam.getTitle();
 				  description =exam.getDescription();
+				  Exam_User examuser = es.getExam_User(TesttakerID, ExamID);
+				  checked = examuser.getChecked();
+				  if (checked != 1) return SUCCESS;
             for(Selection sel: selections)	  
             {
            	 int right=0;

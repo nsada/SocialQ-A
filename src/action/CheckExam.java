@@ -36,6 +36,16 @@ public class CheckExam implements Action{
 	private int totalscore=0;
 	private int score=0;
 	private int totalpeople=0;
+	
+	
+	private int checked=0;
+	
+	public int getChecked() {
+		return checked;
+	}
+	public void setChecked(int checked) {
+		this.checked = checked;
+	}
 	public int getTotalpeople() {
 		return totalpeople;
 	}
@@ -154,11 +164,11 @@ public class CheckExam implements Action{
 		public String execute() throws Exception {		 
 		 try
 		 {
-
-			 MessageService ms = new MessageService();
-			 ms.read(messageID);
-
+			 ExamService es = new ExamService();
+	         setChecked(es.getExam_User(TesttakerID, ExamID).getChecked());
+	         
 	         ShowExamQuestion seq =new ShowExamQuestion();
+	         
 		      seq.setExamID(ExamID);
 			  seq.execute();
 			  AandQs=seq.getAandQs();
@@ -552,7 +562,7 @@ public class CheckExam implements Action{
 	     cont.Close();
 		return SUCCESS;
     }
- 	
+
 }
 
 
