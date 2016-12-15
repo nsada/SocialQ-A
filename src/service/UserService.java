@@ -105,8 +105,8 @@ public class UserService {
 		if (user.getMail() != null && user.getMail().length() > 0){
 			sql = sql + " mail=" + user.getMail() + ",";
 		}
-		if (user.getQuestionBaseID() > 0) {
-			sql = sql + " questionBaseID=" + user.getQuestionBaseID() + ",";
+		if (user.getQuestionBaseNUM() > 0) {
+			sql = sql + " questionBaseNUM=" + user.getQuestionBaseNUM() + ",";
 		}
 		if (sql.length() <= 17)
 			return 1;
@@ -144,6 +144,10 @@ public class UserService {
 				user.setId(result.getInt("id"));
 				user.setName(result.getString("name"));
 				user.setPassword(result.getString("password"));
+				user.setTencentOpenID(result.getString("tencentOpenID"));
+				user.setTencentToken(result.getString("tencentToken"));
+				user.setMail(result.getString("mail"));
+				user.setQuestionBaseNUM(result.getInt("questionBaseNUM"));
 			}
 			result.close();
 		}catch (Exception e) {
@@ -164,6 +168,8 @@ public class UserService {
 				user.setPassword(result.getString("password"));
 				user.setTencentOpenID(result.getString("tencentOpenID"));
 				user.setTencentToken(result.getString("tencentToken"));
+				user.setMail(result.getString("mail"));
+				user.setQuestionBaseNUM(result.getInt("questionBaseNUM"));
 			}
 			result.close();
 		}catch (Exception e) {
@@ -278,6 +284,8 @@ public class UserService {
 				user.setPassword(result.getString("password"));
 				user.setTencentOpenID(result.getString("tencentOpenID"));
 				user.setTencentToken(result.getString("tencentToken"));
+				user.setMail(result.getString("mail"));
+				user.setQuestionBaseNUM(result.getInt("questionBaseNUM"));
 				users.add(user);
 			}
 			result.close();
@@ -333,6 +341,34 @@ public class UserService {
 			return false;
 		}	
 		return false;
+	}
+
+	public int getFriendNum(int id) {
+		cont = new Connect();
+		String sql = "select * from friend where A="+id;
+		ResultSet result = cont.executeQuery(sql);
+		int num = 0;
+		try{
+			while (result.next()){
+				num++;
+			}
+			result.close();
+		}catch (Exception e) {
+			users = null;
+		}	
+		
+		sql = "select * from friend where B="+id;
+		result = cont.executeQuery(sql);
+		try{
+			while (result.next()){
+				num++;
+			}
+			result.close();
+		}catch (Exception e) {
+		}	
+		
+		cont.Close();
+		return num;		
 	}
 	
 

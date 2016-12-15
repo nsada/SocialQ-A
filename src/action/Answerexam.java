@@ -9,6 +9,7 @@ import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 import domain.Exam;
+import domain.Exam_User;
 import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
@@ -38,7 +39,14 @@ public class Answerexam  implements Action{
      private int friendID;
   	private int messageID;
   	
+  	private int checked;
   	
+	public int getChecked() {
+		return checked;
+	}
+	public void setChecked(int checked) {
+		this.checked = checked;
+	} 	
  	public int getScore() {
 		return score;
 	}
@@ -153,10 +161,10 @@ public class Answerexam  implements Action{
 				 ActionContext actCtx = ActionContext.getContext();
 		    	 Map<String, Object> sess = actCtx.getSession();
 		         int userID = (int) sess.get("userid");	
-		         System.out.println(selection_answer);
+		  /*       System.out.println(selection_answer);
 		         System.out.println(textblank_answer);
 		         System.out.println(multy_answer);
-		         System.out.println(AandQ_answer);
+		         System.out.println(AandQ_answer);*/
 		          sels=ans.getSelectionanswer(selection_answer);
 		          textb=ans.getTextBlankanswer(textblank_answer);
 		          muls=ans.getMultyanswer(multy_answer); 
@@ -586,6 +594,9 @@ public class Answerexam  implements Action{
 			  Exam exam =es.getExam(ExamID);
 			  title = exam.getTitle();
 			  description =exam.getDescription();
+			  Exam_User examuser = es.getExam_User(userID, ExamID);
+			  checked = examuser.getChecked();
+			  if (checked != 1) return SUCCESS;
             for(Selection sel: selections)	  
             {
            	 int right=0;
@@ -853,7 +864,10 @@ public class Answerexam  implements Action{
 	
 	public String showFriendExamDetail() {
 		ExamService es = new ExamService();
-		score = es.getUserExamScore(friendID, ExamID);
+		Exam_User examuser = es.getExam_User(friendID, ExamID);
+		score = examuser.getScore();
+		checked = examuser.getChecked();
 		return SUCCESS;
 	}
+
 }

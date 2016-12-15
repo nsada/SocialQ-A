@@ -5,11 +5,12 @@ public class User {
 	private String name;
 	private String password;
 	private String mail;
-	private int questionBaseID;
 	private String tencentOpenID;
 	private String tencentToken;
 	private int Examscore;
-	 private int rank ;
+	private int rank ;
+	private int questionBaseNUM;
+	
 	public int getRank() {
 		return rank;
 	}
@@ -61,12 +62,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}	
-	public int getQuestionBaseID() {
-		return questionBaseID;
-	}
-	public void setQuestionBaseID(int questionbaseID) {
-		this.questionBaseID = questionbaseID;
-	}
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -104,6 +99,12 @@ public class User {
 		} else if (!password.equals(other.password))
 			return false;
 		return true;
+	}
+	public int getQuestionBaseNUM() {
+		return questionBaseNUM;
+	}
+	public void setQuestionBaseNUM(int questionBaseNUM) {
+		this.questionBaseNUM = questionBaseNUM;
 	}	
 	
 }

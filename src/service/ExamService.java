@@ -7,6 +7,7 @@ import java.util.List;
 import com.opensymphony.xwork2.Action;
 import database.Connect;
 import domain.Exam;
+import domain.Exam_User;
 import domain.Selection;
 
 
@@ -92,24 +93,7 @@ public class ExamService implements Action {
 		return 1;
 	}
 
-	public int getUserExamScore(int userID, int examID) {
-		
-		String sql = "select score from social.exam_user where examID="+examID+" and userID="+userID;
-		System.out.println("getUserExamScore sql " + sql );
-		cont = new Connect();
-		ResultSet result = cont.executeQuery(sql);	
-		int score = -1;
-		try{
-			if (result.next()){
-				score = result.getInt("score");
-			}
-		}catch (Exception e) {
-			System.out.println("按examID&userID查找score失败");
-		}
-		System.out.println("score "+score);
-		cont.Close();
-		return score;
-	}
+
 
 	public int getExamIDfromTitle(String title) {
 		String sql = "select ID from exam where title='"+title+"'";
@@ -122,6 +106,7 @@ public class ExamService implements Action {
 			}
 		}catch (Exception e) {
 			System.out.println("按examtitle查找id失败");
+			e.printStackTrace();
 		}
 		cont.Close();
 		return id;
@@ -143,11 +128,69 @@ public class ExamService implements Action {
 			}
 		}catch (Exception e) {
 			System.out.println("按查找发布过的试卷失败");
+			e.printStackTrace();
 		}
 		cont.Close();
 		return exams;
 	}
 
+	public Exam_User getExam_User(int userID, int examID) {
+		String sql = "select score,checked from social.exam_user where examID="+examID+" and userID="+userID;
+		System.out.println("getUserExamScore sql " + sql );
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		Exam_User examuser = new Exam_User();
+		try{
+			if (result.next()){
+				examuser.setScore(result.getInt("score"));
+				examuser.setChecked(result.getInt("checked"));
+			}
+		}catch (Exception e) {
+			examuser = null;
+			e.printStackTrace();
+		}
+		cont.Close();
+		return examuser;
+	}
+
+	public int getExam_UserScore(int userID, int examID) {
+		String sql = "select score from social.exam_user where examID="+examID+" and userID="+userID;
+		System.out.println("getUserExamScore sql " + sql );
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		int score = -1;
+		try{
+			if (result.next()){
+				score = result.getInt("score");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		cont.Close();
+		return score;
+	}
+
+	public List<Exam> getUserAnsweredExams(int userID) {
+		String sql = "SELECT t1.ID,t1.title,t1.userID,t1.description,t1.rights FROM exam t1, exam_user t2 where t1.ID=t2.examID and t2.userID="+userID;
+		cont = new Connect();
+		ResultSet result = cont.executeQuery(sql);	
+		List<Exam> exams = new ArrayList<>();
+		try{
+			while (result.next()){
+				exam = new Exam();
+				exam.setId(result.getInt("ID"));
+				exam.setTitle(result.getString("title"));
+				exam.setUserID(result.getInt("userID"));
+				exam.setDescription(result.getString("description"));
+				exam.setRights(result.getInt("rights"));
+				exams.add(exam);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		cont.Close();
+		return exams;
+	}
 
 }
 

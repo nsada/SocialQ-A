@@ -56,7 +56,14 @@ public class Event {
 				event = "回答了试卷:" + exam;
 				if (isFriend) {
 					type = 1;
-					url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;
+//					url = "ShowFriendAnsweredExamDetail?friendID=" + userID + "&ExamID=" + examID;
+					Exam_User examuser = es.getExam_User(userID, examID);
+					if (examuser.getChecked() == 1) {
+						event = event + ", 得分为: " + examuser.getScore();
+					} else {
+						event = event + ", 还在等待批改。";
+					}					
+					url = "ShowExam?ExamID=" + examID;
 				} else {
 					type = 9;					
 					url = "ShowExamDetial?ExamID="+examID+"&TesttakerID="+userID;
