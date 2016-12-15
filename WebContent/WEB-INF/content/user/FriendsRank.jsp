@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <rapid:override name="content">
-
+	<%if((int)request.getAttribute("num")!=0){ %>
         <div class="panel panel-info">
                             <div class="panel-heading">点击查看具体详情哦</div>
                             
@@ -29,5 +29,9 @@
                                     </ul>
                             </div>
         </div>
+        <%}
+			else{%>
+				<h4 style = "text-align: center;">对不起，您的小伙伴还没有答过这套测试</h4>
+			<%} %>
 </rapid:override>
 <%@ include file="../../../../base.jsp"%>
