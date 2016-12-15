@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@page import = "java.util.List" %>
 
 <rapid:override name="head">
 	<title>答题</title>
@@ -12,8 +13,10 @@
 
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
-<<<<<<< HEAD
     	</div>
+    	<%
+          	int i = 1; 
+         	if(request.getAttribute("selections")!=null&&((List<Object>)request.getAttribute("selections")).size()!=0){%>
         <div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">单选题</h3>
@@ -21,11 +24,11 @@
   			<div class="panel-body">
     			<ul class="list-group">
   						
-									<%int i = 1; %>
+					
         				<s:iterator value="selections" >
               				
               				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -52,9 +55,22 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        						var ans ="<s:property value="useranswer" />";
+        						i= parseInt(ans);
+        						ll =  String.fromCharCode("A".charCodeAt() + i-1);
+								document.write(ll);
+        					</script>
+        		
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        						var ans ="<s:property value="ans" />";
+        						i= parseInt(ans);
+        						ll =  String.fromCharCode("A".charCodeAt() + i-1);
+								document.write(ll);
+        					</script>
+        						
+        						
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -62,16 +78,20 @@
 				</ul>
   			</div>
 		</div>
+		<%}
+          	i = 1; 
+         	if(request.getAttribute("multys")!=null&&((List<Object>)request.getAttribute("multys")).size()!=0){%>
+         	
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">多选题</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
-						<% i = 1; %>
+				
         				<s:iterator value="multys" >
               				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -98,9 +118,27 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        							var ans ="<s:property value="useranswer" />";
+        							for(var i = 0 ; i <6;i++){
+        								if(ans.charAt(i)=="1"){
+        									ll =  String.fromCharCode("A".charCodeAt() + i);
+        									document.write(ll);
+        								}
+        							}
+        					</script>
+        					
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        							var ans ="<s:property value="ans" />";
+        							for(var i = 0 ; i <6;i++){
+        								if(ans.charAt(i)=="1"){
+        									ll =  String.fromCharCode("A".charCodeAt() + i);
+        									document.write(ll);
+        								}
+        							}
+        					</script>
+        					
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -108,16 +146,21 @@
 				</ul>
   			</div>
 		</div>
+		
+		<%}
+          	 i = 1; 
+         	if(request.getAttribute("textBlanks")!=null&&((List<Object>)request.getAttribute("textBlanks")).size()!=0){%>
+         	
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">填空题</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
-						<% i = 1; %>
+		
         				<s:iterator value="textBlanks" >
               				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					 <div style="position: relative;left: 15px;">
 		            			<s:if test="A.length()>0">
@@ -144,9 +187,28 @@
         					<br> 你的得分:
         					<s:property value="userscore" />
         					<br> 你的答案:
-        					<s:property value="useranswer" />
+        					<script>
+        						str = "<s:property value="useranswer" />"
+        						str=str.split("/#")
+        						if(str.length!=0){
+        							document.write(str[0]);
+            						for( i =1 ; i <str.length;i++)
+            							if(str[i]!="")
+            								document.write(", "+str[i])
+        						}
+        					</script>
+        					
         					<br> 参考答案:
-        					<s:property value="ans" />	
+        					<script>
+        						str = "<s:property value="ans" />"
+        						str=str.split("/#")
+        						if(str.length!=0){
+        							document.write(str[0]);
+            						for( i =1 ; i <str.length;i++)
+            							if(str[i]!="")
+            								document.write(", "+str[i])
+        						}
+        					</script>
         					<br> 解析:
         					<s:property value="analysis" />
         					</li>
@@ -154,6 +216,9 @@
 				</ul>
   			</div>
 		</div>
+		<%}
+          	i = 1; 
+         	if(request.getAttribute("AandQs")!=null&&((List<Object>)request.getAttribute("AandQs")).size()!=0){%>
 		<div class="panel panel-info">
  			<div class="panel-heading">
     			<h3 class="panel-title">问答题</h3>
@@ -163,7 +228,7 @@
 						<% i = 1; %>
         				<s:iterator value="AandQs" >
               				<li class="list-group-item">
-        					<%=i %><s:property value="context" />
+        					<%=i %>.<s:property value="context" />
         					<%i++; %>
         					<br> 题目总分:
         					<s:property value="score" />
@@ -180,121 +245,11 @@
 				</ul>
   			</div>
 		</div>
-	
+		<%}%>
 		<a  class="button button-block button-rounded button-action button-large"
            	 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
                   查看我的小伙伴的排名	
         </a>
-=======
-<<<<<<< HEAD
-=======
-        	<p style="text-align: center;"> 我的排名：<s:property value="rank"/><p>
-        	<p style="text-align: center;"> ExamID：<s:property value="ExamID"/><p>
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
-    </div>
-        <div class="col-md-12 column">
-        <%int i = 0; %>
-          单选题：
-        <s:iterator value="selections" >
-              <br>
-        		<s:property value="context" />
-        		<br>
-        		<s:property value="A" />
-        		<br>
-        		<s:property value="B" />
-        		<br>
-        		<s:property value="C" />
-        		<br>
-        		<s:property value="D" />
-        		<br>
-        		<s:property value="E" />
-        		<br>
-        		<s:property value="F" />
-        		<br> 题目总分
-        		<s:property value="score" />
-        		<br> 你的得分
-        		<s:property value="userscore" />
-        		<br> 你的答案
-        		<s:property value="useranswer" />
-        		<br> 参考答案
-        		<s:property value="ans" />	
-        		<br> 解析
-        		<s:property value="analysis" />
-		</s:iterator>
-	   <br> 多选题
-		<s:iterator value="multys" >	
-		       <s:property value="context" />
-        		<br>
-        		<s:property value="A" />
-        		<br>
-        		<s:property value="B" />
-        		<br>
-        		<s:property value="C" />
-        		<br>
-        		<s:property value="D" />
-        		<br>
-        		<s:property value="E" />
-        		<br>
-        		<s:property value="F" />
-        		<br> 题目总分
-        		<s:property value="score" />
-        		<br> 你的得分
-        		<s:property value="userscore" />
-        		<br> 你的答案
-        		<s:property value="useranswer" />
-        		<br> 参考答案
-        		<s:property value="ans" />		
-        		<br> 解析
-        		<s:property value="analysis" />
-		</s:iterator>
-		
-		 <br> 填空题
-		<s:iterator value="textBlanks" >	
-			 <s:property value="context" />
-        		<br><br> 参考答案	
-        		<s:property value="A" />
-        		<br>
-        		<s:property value="B" />
-        		<br>
-        		<s:property value="C" />
-        		<br>
-        		<s:property value="D" />
-        		<br>
-        		<s:property value="E" />
-        		<br>
-        		<s:property value="F" />
-        		<br> 题目总分
-        		<s:property value="score" />
-        		<br> 你的得分
-        		<s:property value="userscore" />
-        		<br> 你的答案
-        		<s:property value="useranswer" />
-        		<br> 解析
-        		<s:property value="analysis" />	               
-		</s:iterator>
-		
-	      <br> 问答题
-		<s:iterator value="AandQs" >			
-			  <br>
-		   <s:property value="context" />
-			<br> 参考答案	
-        		<s:property value="ans" />
-        		<br> 题目总分
-        		<s:property value="score" />
-        		<br> 你的得分
-        		<s:property value="userscore" />
-        		<br> 你的答案
-        		<s:property value="useranswer" />
-        		<br> 解析
-        		<s:property value="analysis" />	                  
-		</s:iterator>
-		<br>
-		<p> 查看我的小伙伴的排名 :<p>
-		<a  class="list-group-item list-group-item-success"
-           		 href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
-                        			
-               								</a>
->>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
 		      
 
 

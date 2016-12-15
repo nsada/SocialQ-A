@@ -40,7 +40,7 @@
 
 
 <body style="margin-top: 55px;">
-        <div  style="position:absolute; width:100%; height:100%; z-index:0"> 
+        <div  style="position:absolute; width:100%; height:100%; z-index:-1"> 
             <img style="opacity:1.0;position:fixed;" src="<%=request.getContextPath()%>/images/34.jpg" height="100%" width="100%" /> 
 
         </div>
@@ -71,19 +71,6 @@
                    		 		个人中心 <b class="caret"></b>
                			 </a>
                			 <ul class="dropdown-menu">
-<<<<<<< HEAD
-               			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>     
-               			 		<li><a href="<%=request.getContextPath()%>/GroupInsertExam">工作组出题</a></li>           
-                    		<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
-                    		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li>
-                           <li><a href="<%= request.getContextPath()%>/ShowUncomExam">草稿箱</a></li>
-                            <li><a href="<%= request.getContextPath()%>/showUserQuestionBases">题库</a></li>
-                             
-                             <li><a href="<%= request.getContextPath()%>/ShowAnsweredExams">答过的试卷</a></li>
-                             
-                            <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
-                            <li><a href='<%=request.getContextPath()%>/showUserLogs'>个人动态</a></li>
-=======
                			 	<li><a href="<%=request.getContextPath()%>/showPersonalInformation">个人信息</a></li>        
                			 	<li><a href="<%=request.getContextPath()%>/showFriends">好友列表</a></li>
 <%--                     		<li><a href="<%=request.getContextPath()%>/showUserGroups">工作组</a></li> --%>
@@ -95,7 +82,6 @@
                             <li><a href="<%= request.getContextPath()%>/FindUserExams">批改试卷</a></li>
                             <li><a href="<%= request.getContextPath()%>/showPersonalEvents">个人动态</a></li>      
                             
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
                         </ul>
                     </li>
         		</ul>
@@ -308,13 +294,32 @@
 				
 					
 					var new_input = document.createElement("input");
+					new_input.style.display = "none";
 					new_input.name="redirect_url";
 					var url = window.location.href.split('?');
-					new_input.value = url[0];
-					var a =new_input.value.indexOf("ShowExam");
-					if(a>=0);
-					   new_input.value+="?"+url[1];
-					new_input.style.display="none";
+					if(url.length ==1){
+						new_input.value = url[0];
+						form.appendChild(new_input);
+						form.submit();
+						return ;
+					}
+					p = url[1].split("&");
+					url = url[0];
+					wenhao = false;
+					for(i = 0;i < p.length;i++){
+						if(p[i].indexOf("login_result")>=0||p[i].indexOf("regist_result")>=0)
+							continue;
+						else{
+							if(wenhao ==false){
+								wenhao = true;
+								url += '?'+p[i];
+							}
+							else{
+								url += "&"+p[i];
+							}
+						}
+					}
+					new_input.value = url;
 					form.appendChild(new_input);
 					form.submit();
 					return ;

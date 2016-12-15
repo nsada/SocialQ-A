@@ -12,11 +12,7 @@ import domain.Exam;
 import service.ExamService;
 import service.LogService;
 public class Answerexam  implements Action{
-<<<<<<< HEAD
-
-=======
      int rank = 0;
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 	private String title;
 	private String description;
 	 private ResultSet result = null;
@@ -36,8 +32,6 @@ public class Answerexam  implements Action{
  	 private Queue<String> sels;
  	 private Queue<String> muls;
  	private Queue<String> aands;
-<<<<<<< HEAD
-=======
  	 private int TesttakerID;
      String testername="";
      
@@ -82,7 +76,6 @@ public class Answerexam  implements Action{
 	public void setTesttakerID(int testtakerID) {
 		TesttakerID = testtakerID;
 	}
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 	public String getTitle() {
 		return title;
 	}

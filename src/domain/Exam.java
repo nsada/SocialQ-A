@@ -9,8 +9,6 @@ public class Exam {
 	private int rights;
 	private int check;
 	private int TesttakerID;
-<<<<<<< HEAD
-=======
 	private String  ExamUserName;
 	public String getExamUserName() {
 		return ExamUserName;
@@ -18,7 +16,6 @@ public class Exam {
 	public void setExamUserName(String examUserName) {
 		ExamUserName = examUserName;
 	}
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 	public int getCheck() {
 		return check;
 	}

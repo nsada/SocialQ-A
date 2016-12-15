@@ -18,21 +18,14 @@ public class Connect {
 	
 	public Connect() {
 		try {
-<<<<<<< HEAD
-			  con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
-=======
 			Class.forName("com.mysql.jdbc.Driver");			
 
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "19961217.lsy"); //LSY
-<<<<<<< HEAD
 
-=======
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
->>>>>>> 6e51335d1720cd1116e9bce6ae1400b1a3660ac9
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "sonofab1tch"); //YC
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/social?useSSL=false", "root", "SQL15984608166"); //TMY
 			
-			con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
+//			con = DriverManager.getConnection("jdbc:mysql://ycbjpqlwywue.mysql.sae.sina.com.cn:10152/social?useSSL=false", "root", "socialqanda");
 
 			
 			state = con.createStatement();	
@@ -55,25 +48,9 @@ public class Connect {
 		}
 	}
 	
-	
-	public void Close() {
-		try {
-			if(con != null &&!con.isClosed())
-			{
-				  con.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public ResultSet executeQuery(String sql) {
 		try {
-<<<<<<< HEAD
-			state = con.createStatement();
-=======
 			state = con.createStatement();	
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 			result = state.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

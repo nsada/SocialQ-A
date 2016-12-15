@@ -27,14 +27,9 @@
 					<button class="btn btn-default " type="button"
 						onclick="window.location.href='showUserQuestionBases'">题库
 					</button>
-<<<<<<< HEAD
-					<button class="btn btn-default " type="button"
-						onclick="window.location.href='FindUserExams'">批改试卷</a>
-=======
 					
 		<!-- 			<button class="btn btn-default " type="button"
 						onclick="window.location.href='FindUserAnsweredExams'">查看小伙伴答题情况
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 					</button>
 					 -->
 					

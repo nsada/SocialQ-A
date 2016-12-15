@@ -12,19 +12,48 @@
 </rapid:override>
 
 <rapid:override name="content">
-        <form action="ShowExam" method="POST" class="form-horizontal" role="form">
-                <div class="form-group">
-                    <div class="col-sm-6">
+
+					<div class="col-sm-1"></div>
+					<div class="col-sm-7">
                         <input type="text" class="form-control" name="searchstr" />
-                    </div>
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-default">按题目搜索</button>
-                        <button type="submit" class="btn btn-default">按编号搜索</button>                        
-                    </div>
-                    <div class="col-sm-2"></div>
-                </div>
-            </form>     
-            
+            		</div>
+            		<div class="col-sm-4">
+            						<button  class="btn btn-default" onclick="SearchExamByName()">按题目搜索</button>
+            						<button  class="btn btn-default" onclick = "SearchExamByNum()">按编号搜索</button>       
+            		</div>   
+
+	<script>
+			function SearchExamByName(){
+				form = document.createElement("form");
+				form.action = "ShowExam";
+				form.method = "post";
+				form.style.display = "none";
+				var input = document.getElementsByName("searchstr")[0];
+				form.appendChild(input);
+				input = document.createElement("input");
+				input.name = "searchtype";
+				input.value = 1;
+				form.appendChild(input);
+		
+				form.submit();
+				
+			}
+			function SearchExamByNum(){
+				form = document.createElement("form");
+				form.action = "ShowExam";
+				form.method = "post";
+				form.style.display = "none";
+				var input = document.getElementsByName("searchstr")[0];
+				form.appendChild(input);
+				input = document.createElement("input");
+				input.name = "searchtype";
+				input.value = 0;
+				form.appendChild(input);
+				form.submit();
+				
+			}
+	</script>
+
 </rapid:override>
 
 

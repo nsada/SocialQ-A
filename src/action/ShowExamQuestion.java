@@ -139,12 +139,6 @@ public class ShowExamQuestion implements Action {
 				}
 			 else if(result.getInt("type") ==2)
 			 {
-<<<<<<< HEAD
-				 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
-			 }
-			 else if(result.getInt("type") ==3)
-			 {
-=======
 				 if(qs.getTextBlank(result.getInt("questionID"))!=null)
 				 {
 					 textBlanks.add(qs.getTextBlank(result.getInt("questionID")));
@@ -153,32 +147,21 @@ public class ShowExamQuestion implements Action {
 			 else if(result.getInt("type") ==3)
 			 {
 				 if(qs.getAandQ(result.getInt("questionID")) !=null)
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				  AandQs.add(qs.getAandQ(result.getInt("questionID")));
 			 }
 			 else if(result.getInt("type") ==4)
 			 {
-<<<<<<< HEAD
-=======
 				 if(qs.getMulty(result.getInt("questionID"))!=null)
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				 multys.add(qs.getMulty(result.getInt("questionID")));
 			 }
 			 
 			}
-<<<<<<< HEAD
-	    sql ="select * from social.exam where ID ="+ExamID;
-=======
 	       sql ="select * from social.exam where ID ="+ExamID;
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 			result =cont.executeQuery(sql);	
 			if(result.next())
 			{
 				title=result.getString("title");
-<<<<<<< HEAD
-=======
 				System.out.println("title" + title);
->>>>>>> 101c3307f94547830b4e1bae04d684b274e53c87
 				description=result.getString("description");
 			}
 		 cont.Close();
