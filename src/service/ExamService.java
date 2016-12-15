@@ -9,11 +9,13 @@ import database.Connect;
 import domain.Exam;
 import domain.Exam_User;
 import domain.Selection;
+import domain.User;
 
 
 public class ExamService implements Action {
 	private Connect cont;
 	private Exam exam;
+
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -51,6 +53,9 @@ public class ExamService implements Action {
 				exam.setDescription(result.getString("description"));
 				exam.setJoiner(result.getInt("joiner"));
 				exam.setRights(result.getInt("rights"));
+				exam.setTotalscore(result.getInt("totalscore"));
+				exam.setPublish(result.getInt("publish"));
+				exam.setGroupID(result.getInt("groupID"));
 			}
 		}catch (Exception e) {
 			System.out.println("按examID查找exam失败");
@@ -188,6 +193,35 @@ public class ExamService implements Action {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		cont.Close();
+		return exams;
+	}
+
+	public List<Exam> getSearchExams(String[] searchtitles) {
+		cont = new Connect();
+		String sql = "select * from exam where";
+		for (int i = 0; i < searchtitles.length; i ++) {
+			sql = sql + " title like '%" + searchtitles[i] + "%'";
+		}
+		ResultSet result = cont.executeQuery(sql);
+		List<Exam> exams = new ArrayList<>();
+		try{
+			while (result.next()){
+				exam = new Exam();
+				exam.setId(result.getInt("ID"));
+				exam.setTitle(result.getString("title"));
+				exam.setUserID(result.getInt("userID"));
+				exam.setDescription(result.getString("description"));
+				exam.setJoiner(result.getInt("joiner"));
+				exam.setRights(result.getInt("rights"));
+				exam.setTotalscore(result.getInt("totalscore"));
+				exam.setPublish(result.getInt("publish"));
+				exam.setGroupID(result.getInt("groupID"));
+				exams.add(exam);
+			}
+			result.close();
+		}catch (Exception e) {
+		}		
 		cont.Close();
 		return exams;
 	}

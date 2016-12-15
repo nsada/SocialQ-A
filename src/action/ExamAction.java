@@ -1,6 +1,10 @@
 package action;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
 
 import TencentWeiboAction.TencentAction;
 import domain.AandQ;
@@ -8,8 +12,10 @@ import domain.Exam;
 import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
+import domain.User;
 import service.ExamService;
 import service.QuestionService;
+import service.UserService;
 
 public class ExamAction implements Action {
 	private Exam exam;
@@ -21,9 +27,11 @@ public class ExamAction implements Action {
 	private int score;
 	private char[] right;
 	private String searchstr;
+	private int searchtype=1;
 	private int type=0;
 	private int ExamID;
 	private String str;
+	private List<Exam> exams;
 	
 	public String getStr() {
 		return str;
@@ -57,6 +65,17 @@ public class ExamAction implements Action {
 		return SUCCESS;
 	} 
 	
+	public String searchExam() {
+		ExamService es = new ExamService();
+		String[] searchstrs = searchstr.split(" ");
+		for (int i = 0; i < searchstrs.length; i ++) {
+			System.out.println("searchstrs: "+searchstrs[i]);
+		}
+		exams = es.getSearchExams(searchstrs);
+		for (int i = 0; i < exams.size(); i++)
+			exams.get(i).print();
+		return SUCCESS;
+	}
 	
 	
 
@@ -129,6 +148,18 @@ public class ExamAction implements Action {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public int getSearchtype() {
+		return searchtype;
+	}
+	public void setSearchtype(int searchtype) {
+		this.searchtype = searchtype;
+	}
+	public List<Exam> getExams() {
+		return exams;
+	}
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
 	}
 	
 	

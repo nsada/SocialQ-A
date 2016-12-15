@@ -34,7 +34,7 @@
 	                                                描述：<s:property value="description" />
 	                        </p>
                             <a  class="button button-primary button-rounded button-small" 
-                            href='<s:url action="FindExamInfor"><s:param name="ExamID" value ="id"/><s:param name="description" value ="description"/><s:param name="title" value ="title"/></s:url>'>
+                            href='<s:url action="FindExamInfor"><s:param name="ExamID" value ="id"/></s:url>'>
                                                     查看详情
                             </a>
                             <a href="<%=request.getContextPath()%>/ShareToWeibo?ExamID=${id}" 

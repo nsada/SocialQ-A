@@ -388,8 +388,12 @@
             <result name="error">/WEB-INF/content/weiboerror.jsp</result>       
         </action>       
         
+        <action name="SearchExam" class="action.ExamAction" method="searchExam">
+            <result>/WEB-INF/content//exam/searchExamtoanswer.jsp</result>
+            <result name="error">/WEB-INF/content/weiboerror.jsp</result>       
+        </action>    
         
-     
+        
 
     </package>
 

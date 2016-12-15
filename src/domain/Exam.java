@@ -9,6 +9,27 @@ public class Exam {
 	private int rights;
 	private int TesttakerID;
 	private String  ExamUserName;
+	private int totalscore;
+	private int publish;
+	private int groupID;
+	
+	
+	public void print() {
+		System.out.println("exam: "+title+", "+description);
+	}
+	
+	public int getPublish() {
+		return publish;
+	}
+	public void setPublish(int publish) {
+		this.publish = publish;
+	}
+	public int getGroupID() {
+		return groupID;
+	}
+	public void setGroupID(int groupID) {
+		this.groupID = groupID;
+	}
 	public String getExamUserName() {
 		return ExamUserName;
 	}
@@ -57,6 +78,12 @@ public class Exam {
 	}
 	public void setRights(int rights) {
 		this.rights = rights;
+	}
+	public int getTotalscore() {
+		return totalscore;
+	}
+	public void setTotalscore(int totalscore) {
+		this.totalscore = totalscore;
 	}
 	
 }
