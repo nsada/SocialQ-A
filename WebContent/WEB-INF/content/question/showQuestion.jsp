@@ -9,11 +9,6 @@
 
 <rapid:override name="content">
 
-	<div class="text-align:right">
-		<a
-			href='<s:url action="updateQuestion"><s:param name="questionID" value="questionID"/></s:url>'><input
-			type="button" value="编辑" /></a>
-	</div>
 
 	<s:if test="type==1">
 		<!-- show selection -->

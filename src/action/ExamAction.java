@@ -3,9 +3,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
+import TencentWeiboAction.Information;
 import TencentWeiboAction.TencentAction;
 import domain.AandQ;
 import domain.Exam;
@@ -47,9 +50,23 @@ public class ExamAction implements Action {
 		String url = "http://socialqanda.applinzi.com/ShowExam?ExamID="+ExamID;
 		String content = "我刚刚在Funny QandA网站出了一套测试，复制这个链接: "+url+" 到地址栏，马上来答答吧！";
 		TencentAction tencent = new TencentAction();
-		this.setStr(tencent.share(content));
-		return SUCCESS;
+		int num=0;
+		while (true) {
+			this.setStr(tencent.share(content));
+			int ret_index = str.indexOf("ret");
+			String sub = str.substring(ret_index+5);
+			num++;
+			//System.out.println(sub);
+			if (sub.charAt(0) != '0') {
+				//System.out.println("fail to get information of user's frends");
+				//return ERROR;
+			} else {
+				System.out.println("num: "+num);
+				return SUCCESS;
+			}
+		}
 	}
+	
 	public String searchExamtoanswer(){
 		System.out.println("ExamAction searchExamtoanswer searchstr=" + searchstr);
 		

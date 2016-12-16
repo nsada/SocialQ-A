@@ -7,7 +7,7 @@
 
 
 <rapid:override name="head">
-	<title>工作组出题</title>
+    <title>工作组出题</title>
     <script type="text/javascript">
         function insertQ(){
             document.myform.action="FindGroupQbase";
@@ -31,7 +31,7 @@
             form.submit();
         }
         $(document).ready(function(){
-        	var list = document.getElementsByClassName("insertedQuestion");
+            var list = document.getElementsByClassName("insertedQuestion");
             document.getElementById("numofQuestions").innerHTML=list.length;
             var totalScore = 0;
             for(var i =0; i <list.length;i++){

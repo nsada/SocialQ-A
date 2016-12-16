@@ -1,9 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 
+<%@page import="tencentApi.globalVar"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <rapid:override name="head">
-	<title>添加题目</title>
+	<title>添加问答题</title>
 </rapid:override>
 
 <rapid:override name="content">
@@ -12,6 +16,7 @@
         int qBaseID = Integer.parseInt(idstr);
         out.println("添加题目到"+qBaseID+"号题库");
     %>
+    <h3>添加题目到"<s:property value = "qbaseName"/>"</h3>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<form action="addQuestionPro" method="POST" class="form-horizontal"

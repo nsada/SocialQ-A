@@ -16,7 +16,6 @@
         	<h2 style="text-align: center;"> 试卷名：<s:property value="title"/></h2>
         	<p style="text-align: center;"> 试卷描述：<s:property value="description"/><p>
         	<p style="text-align: center;"> <s:property value="testername"/>的排名：<s:property value="rank"/><p>
-        	<p>checked=${checked}</p>
     	</div>
     	
     	
@@ -290,7 +289,15 @@
          	if(request.getAttribute("AandQs")!=null&&((List<Object>)request.getAttribute("AandQs")).size()!=0){%>
 		<div class="panel panel-info">
  			<div class="panel-heading">
-    			<h3 class="panel-title">问答题</h3>
+    			<h3 class="panel-title">问答题
+		    			<script type="text/javascript">
+		    					a = <s:property value = "checked"/>
+		    					if(a != 1 ){
+		    						document.write("（未批改）")
+		    						document.write("<a href='http://www.bootcss.com/' style='float:right'class='button button-3d button-highlight button-pill button-small'>前去批改</a>")
+		    					}
+		    				</script>
+		    	</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
@@ -311,7 +318,14 @@
 			              										 		<div class="panel-body">
 														        					<p>题目总分:<s:property value="score" /></p> 
 														        					<p>你的得分:
-														        					<s:property value="userscore" /></p> 
+														        						<script type="text/javascript">
+																	    					a = <s:property value = "checked"/>
+																	    					if(a != 1 )
+																	    						document.write("暂无")
+																	    					else
+																	    						document.write("<s:property value='userscore' />")
+																	    				</script>
+														        					</p> 
 														        					<p>你的答案:<s:property value="useranswer" /></p> 
 														        					<p>参考答案:<s:property value='ans' /></p> 
 														        					<p>解析:

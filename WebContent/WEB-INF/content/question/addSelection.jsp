@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 
 <rapid:override name="head">
-	<title>添加题目</title>
+	<title>添加单选题</title>
 </rapid:override>
 
 <rapid:override name="content">

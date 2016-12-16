@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <rapid:override name="head">  
-    <title>我的消息</title>
+    <title>我的所有消息</title>
 </rapid:override>  
 
 

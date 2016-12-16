@@ -9,6 +9,15 @@
 
 <rapid:override name="head">
 	<title>个人信息</title>
+	<script>
+        function ShareToWeibo(url){
+            a = '<%=session.getAttribute("openid")%>';
+            if(a == "null")
+                alert("您还没有绑定微博账号，请前往个人中心绑定。");
+            else
+                window.location.href = url;
+        }
+    </script>
 </rapid:override>
 
 
@@ -17,12 +26,13 @@
 		<h2>基本信息</h2>
 		<p>用户名: ${user.name}</p>
 		<p>邮箱：${user.mail}</p>
-		                        <div style="float: right">
-                            <p style="float: left;">绑定QQ账号:</p>                  
-                            <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=<%=globalVar.AppID %>&amp;redirect_uri=<%=globalVar.redirect_URI %>&amp;state=test&amp;scope=<%=globalVar.scope%>" style="float:left;"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+		                <div style="position: relative;left: 80%">
+                            <p >
+                            	绑定QQ账号:
+                            	<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=<%=globalVar.AppID %>&amp;redirect_uri=<%=globalVar.redirect_URI %>&amp;state=test&amp;scope=<%=globalVar.scope%>"> <img width="24" height="24 " src="<%=request.getContextPath()%>/images/tencentLogin.jpg"></a>
+                            </p>                  
+                            
                         </div>
-		<p>题库数量：${user.questionBaseNUM}</p>
-
         <div class="panel panel-info">
             <div class="panel-heading">发布过的所有测试</div>
                 <div class="panel-body">
@@ -37,10 +47,12 @@
                             href='<s:url action="FindExamInfor"><s:param name="ExamID" value ="id"/></s:url>'>
                                                     查看详情
                             </a>
-                            <a href="<%=request.getContextPath()%>/ShareToWeibo?ExamID=${id}" 
-                            class="button button-action button-rounded button-small">
+                            <button     
+                                            class="button button-action button-rounded button-small"
+                                            onclick = "ShareToWeibo('<%=request.getContextPath()%>/ShareToWeibo?ExamID=${id}')">
+                            
                                                     分享到微博
-                            </a>
+                            </button>
                         </s:iterator>
 
                     </div>

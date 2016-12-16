@@ -282,7 +282,14 @@
          	if(request.getAttribute("AandQs")!=null&&((List<Object>)request.getAttribute("AandQs")).size()!=0){%>
 		<div class="panel panel-info">
  			<div class="panel-heading">
-    			<h3 class="panel-title">问答题</h3>
+    			<h3 class="panel-title">
+    				问答题
+    				<script type="text/javascript">
+    					a = <s:property value = "checked"/>
+    					if(a != 1 )
+    						document.write("（未批改）")
+    				</script>
+    			</h3>
   			</div>
   			<div class="panel-body">
     			<ul class="list-group">
@@ -303,7 +310,15 @@
 			              										 		<div class="panel-body">
 														        					<p>题目总分:<s:property value="score" /></p> 
 														        					<p>你的得分:
-														        					<s:property value="userscore" /></p> 
+														        						<script type="text/javascript">
+																	    					a = <s:property value = "checked"/>
+																	    					if(a != 1 )
+																	    						document.write("暂无")
+																	    					else
+																	    						document.write("<s:property value='userscore' />")
+																	    				</script>
+														        						
+														        					</p> 
 														        					<p>你的答案:<s:property value="useranswer" /></p> 
 														        					<p>参考答案:<s:property value='ans' /></p> 
 														        					<p>解析:
@@ -329,12 +344,13 @@
 		
 		
 		
-		<a  	class='button button-block button-rounded button-action button-large'
+		<button  	class='button button-block button-rounded button-action button-large'
+				style = "float: right"
 				id = "checkRank"
-				href='<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'>
+				onclick = " window.location.href = '<s:url action="MyFriendRank"><s:param name="ExamID" value ="ExamID"/> </s:url>'" >
 				查看我的小伙伴的排名	
-		</a>
-
+		</button>
+		
 		
 		
 		      

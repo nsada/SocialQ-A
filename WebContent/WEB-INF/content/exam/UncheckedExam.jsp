@@ -7,24 +7,23 @@
 	<title>批改</title>
 </rapid:override>
 <rapid:override name="content">
+		<%if((int)request.getAttribute("checked")!=1){ %>
         <div class="panel panel-info">
   							<div class="panel-heading">输入你就能评分了哦</div>
-  							<p>checked=${checked }</p>
+  							
 							<div class="panel-body">
    								   <div class="list-group">
-   								  		当前题目的EXAMID <s:property value="ExamID" /> <br>		
-   								  			<s:property value="TesttakerID" />		           
+   								  		
+   								  			
    								   		<s:iterator value="UncheckedAandQs">
-           									<p  class="list-group-item list-group-item-success">
-                        						题目：<s:property value="Context" />
-                        						<br>
-                        						参考答案：<s:property value="ans"/>
-                        						<br>输入评分：
-                        						<input type= "text" class ="UncheckedAandQs"/>
-                        					  <s:property value="Takename" />	回答了您的 :<s:property value="useranswer" />
-        										<br> 解析：
-        										<s:property value="analysis" />	    
-               								</p>
+           									<li  class="list-group-item list-group-item-info">
+                        						题目：<s:property value="Context" />(总分：<s:property value ="score"/>分)<br>
+                        						他的答案：<s:property value = "useranswer"/><br>
+                        						参考答案：<s:property value="ans"/><br>
+                        						解析：<s:property value="analysis" /><br>
+                        						输入评分：<input type= "text" class ="UncheckedAandQs"/><br>
+        											    
+               								</li>
        		 							 </s:iterator>
        		 							 <script>
        		 							 	function SendAandQScores(){
@@ -64,12 +63,17 @@
        		 							 
        		 							 </script>
        		 
-	                   <a onclick="SendAandQScores()">
-                        批改试卷   
-                        </a>		 
+							                   <a class= "button button-glow button-border button-rounded button-action"
+							                   		onclick="SendAandQScores()"
+							                   		style="float: right;">
+						                        	提交 
+						                       </a>		 
 									
 									</div>
   							</div>
 		</div>
+		<%}else{%>
+		<h3 style = "text-align: center;">测试已批改</h3>
+		<%} %>
 </rapid:override>
 <%@ include file="../../../../base.jsp"%>

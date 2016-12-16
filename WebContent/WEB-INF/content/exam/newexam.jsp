@@ -6,9 +6,7 @@
 
 <rapid:override name="head">
 	<title>出题</title>
-</rapid:override>
 
-<rapid:override name="head">
 	<script type="text/javascript">
 		function insertQ(){
 			document.myform.action="Find"; 
@@ -115,17 +113,6 @@
 		
 						<div align="center"
 							style="width: 60%; position: relative; left: 20%;">
-							试卷可见性： 
-							<label class="checkbox-inline"> 
-
-								<input type="radio"name="joiner"  value="1" checked="">
-								试卷仅好友可见
-							</label> 
-							<label class="checkbox-inline"> 
-								<input type="radio"name="joiner"  value="2"> 试卷所有人可见
-
-							</label>
-							 <br> 
 							 排名可见性： 
 							 <label class="checkbox-inline"> 
 

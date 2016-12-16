@@ -12,7 +12,7 @@
 </rapid:override>
 
 
-<rapid:override name="contentText">
+<rapid:override name="content">
 
 	<div class="col-md-9 column">
 		<h1>${qBase.title}</h1>
@@ -122,4 +122,4 @@
 
 
 
-<%@include file="../PersonalCenter.jsp"%>
+<%@include file="../../../base.jsp"%>

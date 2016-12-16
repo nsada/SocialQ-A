@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<rapid:override name="head">
+    <title>排名</title> 
+</rapid:override>
 <rapid:override name="content">
 
         <div class="panel panel-info">

@@ -361,7 +361,7 @@
         </action>
         
        <action name="CheckUserExam" class="action.CheckExam"  method="UpdateScore">
-            <result name="success">/WEB-INF/content/exam/successful.jsp</result>
+            <result type="chain" name="success">WantedUserExamDetail</result>
             <result name="error">/WEB-INF/content/user/error.jsp</result>
         </action>
         
@@ -397,6 +397,10 @@
             <result name="error">/WEB-INF/content/weiboerror.jsp</result>       
         </action>    
         
+        <action name="showgroupQuestionBase" class="action.ShowQuestionBaseAction">
+            <result name='success'>/WEB-INF/content/questionBase/groupQuestionBase.jsp</result>
+            <result name="error">/WEB-INF/content/error.jsp</result>
+        </action>     
         
 
     </package>

@@ -3,11 +3,13 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<rapid:override name="head">
+    <title>好友排名</title> 
+</rapid:override>
 
 <rapid:override name="content">
-
+	<%if((int)request.getAttribute("num")!=0){ %>
         <div class="panel panel-info">
-            <p>num=${num }</p>
                             <div class="panel-heading">点击查看具体详情哦</div>
                             
                             <div class="panel-body">
@@ -30,5 +32,9 @@
                                     </ul>
                             </div>
         </div>
+        <%}
+			else{%>
+				<h4 style = "text-align: center;">对不起，您的小伙伴还没有答过这套测试</h4>
+			<%} %>
 </rapid:override>
 <%@ include file="../../../../base.jsp"%>

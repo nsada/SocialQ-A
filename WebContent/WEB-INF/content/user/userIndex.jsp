@@ -17,13 +17,22 @@
         <h2>基本信息</h2>
         <p>用户名: ${user.name}</p>
         <p>邮箱：${user.mail}</p>
-        <p>题库数量：${user.questionBaseNUM}</p>
-        <p>isFriend=${isFriend }</p>
+        <%if((int)request.getAttribute("isFriend") ==0){ %>
         <a href='<s:url action="addFriend"><s:param name="friendID" value ="user.id"/></s:url>'
-                                        class="button button-glow button-circle button-action button-tiny"
-                                        style="float: right;">
-                                            <span class = "glyphicon glyphicon-plus">申请好友</span>
+                                        class="button button-glow button-pill button-action button-tiny"
+                                        style="position: relative;left: 80%;"
+                                        >
+                                          申请好友
                                     </a>
+                                    <%}else{ %>
+                                    <button disabled = "disabled"
+                                        class="button button-glow button-pill button-action button-tiny"
+                                        style="position: relative;left: 80%;"
+                                        >
+                                          互为好友
+                                    </button>
+                                    <%} %>
+                                    
         <div class="panel panel-info">
             <div class="panel-heading">发布过的所有测试</div>
                 <div class="panel-body">
@@ -35,7 +44,7 @@
                                                     描述：<s:property value="description" />
                             </p>
                             <a  class="button button-primary button-rounded button-small" 
-                            href='<s:url action="FindExamInfor"><s:param name="ExamID" value ="id"/></s:url>'>
+                            href='<s:url action="ShowExam"><s:param name="ExamID" value ="id"/></s:url>'>
                                                     参与测试
                             </a>
                         </s:iterator>
@@ -54,7 +63,7 @@
                                                     描述：<s:property value="description" />
                             </p>
                             <a  class="button button-primary button-rounded button-small" 
-                            href='<s:url action="ShowExamDetail"><s:param name="ExamID" value ="id"/></s:url>'>
+                            href='<s:url action="ShowExam"><s:param name="ExamID" value ="id"/></s:url>'>
                                                     我也试试
                             </a>
                         </s:iterator>

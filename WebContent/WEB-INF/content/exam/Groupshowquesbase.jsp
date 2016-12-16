@@ -9,7 +9,7 @@
 
 
 <rapid:override name="head">
-	<title>插入题目</title>	
+	<title>工作组题库</title>	
 </rapid:override>
 <rapid:override name="content">
 	<div class="panel panel-primary">

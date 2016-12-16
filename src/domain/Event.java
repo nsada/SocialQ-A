@@ -68,7 +68,7 @@ public class Event {
 					url = "ShowExam?ExamID=" + examID;
 				} else {
 					type = 9;					
-					url = "ShowExamDetial?ExamID="+examID+"&TesttakerID="+userID;
+					url = "ShowExamDetail?ExamID="+examID+"&TesttakerID="+userID;
 				}
 				break;
 			case 1:

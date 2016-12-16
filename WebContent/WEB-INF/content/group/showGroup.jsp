@@ -80,7 +80,7 @@
   																	<div style="width: 35%;position: relative;left: 65%;">
   																			<p>
   																				操作：
-  																				<a href='<s:url action="showQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'class="button button-glow button-rounded button-highlight button-small">题库详情</a>
+  																				<a href='<s:url action="showgroupQuestionBase"><s:param name="qBaseID" value="#qBase.id"/></s:url>'class="button button-glow button-rounded button-highlight button-small">题库详情</a>
   																				<s:if test="#qBase.userID=1">
                             															<a href='<s:url action="delGroupQuestionBase"><s:param name="qBaseID" value="#qBase.id"/><s:param name="groupID" value="groupID"/></s:url>' class="button button-glow button-rounded button-caution button-small">删除</a>
                             													</s:if>

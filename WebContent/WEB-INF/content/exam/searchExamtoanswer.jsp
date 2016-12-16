@@ -11,36 +11,43 @@
     <title>搜索试卷</title>
 </rapid:override>
 
-<rapid:override name="content">
+<rapid:override name="contentWithoutWhiteBox">
 
-					<div class="col-sm-1"></div>
-					<div class="col-sm-7">
-                        <input type="text" class="form-control" name="searchstr" />
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8" style = "position: relative;top: 50px;">
+						 <div class="input-group">
+						      <input type="text" class="form-control" name="searchstr" />
+						      <span class="input-group-btn">
+						        		<button  class="btn btn-warning" onclick="SearchExamByName()">按题目搜索</button>
+						      </span>
+						      
+						 </div><!-- /input-group -->
+						 <br><br>
+                       	 <div class="panel panel-info">
+					            <div class="panel-heading">搜索结果</div>
+					                <div class="panel-body">
+					                    <div class="list-group">	 
+					                        <s:iterator value="exams">
+					                        		<li class="list-group-item">
+					                        				
+								                                           <h4>标题：<s:property value="title" /></h4>
+								                                           <p>描述：<s:property value="description" /> </p>
+												                            <a  	class="button button-primary button-rounded button-small" 
+												                            		style="position: relative;left:80%"
+												                            		href='<s:url action="ShowExam"><s:param name="ExamID" value ="id"/></s:url>'>
+												                                                    参与测试
+								                            				</a>
+													 </li>
+					                            
+					                        </s:iterator>
+					
+					                    </div>
+					                </div>
+					        </div>
             		</div>
-            		<div class="col-sm-4">
-            						<button  class="btn btn-default" onclick="SearchExamByName()">按题目搜索</button>
-<!--             						<button  class="btn btn-default" onclick = "SearchExamByNum()">按编号搜索</button>        -->
-            		</div>   
+            		<div class="col-sm-2"></div>
             		
-        <div class="panel panel-info">
-            <div class="panel-heading">搜索结果</div>
-                <div class="panel-body">
-                    <div class="list-group">
-
-                        <s:iterator value="exams">
-                            <p>
-                                                    标题：<s:property value="title" /> <br>
-                                                    描述：<s:property value="description" />
-                            </p>
-                            <a  class="button button-primary button-rounded button-small" 
-                            href='<s:url action="ShowExam"><s:param name="ExamID" value ="id"/></s:url>'>
-                                                    参与测试
-                            </a>
-                        </s:iterator>
-
-                    </div>
-                </div>
-        </div>
+        
 
 	<script>
 			function SearchExamByName(){
@@ -58,20 +65,20 @@
 				form.submit();
 				
 			}
-			function SearchExamByNum(){
-				form = document.createElement("form");
-				form.action = "ShowExam";
-				form.method = "post";
-				form.style.display = "none";
-				var input = document.getElementsByName("searchstr")[0];
-				form.appendChild(input);
-				input = document.createElement("input");
-				input.name = "searchtype";
-				input.value = 0;
-				form.appendChild(input);
-				form.submit();
+// 			function SearchExamByNum(){
+// 				form = document.createElement("form");
+// 				form.action = "ShowExam";
+// 				form.method = "post";
+// 				form.style.display = "none";
+// 				var input = document.getElementsByName("searchstr")[0];
+// 				form.appendChild(input);
+// 				input = document.createElement("input");
+// 				input.name = "searchtype";
+// 				input.value = 0;
+// 				form.appendChild(input);
+// 				form.submit();
 				
-			}
+// 			}
 	</script>
 
 </rapid:override>
