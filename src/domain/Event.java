@@ -24,6 +24,7 @@ public class Event {
 	public Event() {}
 
 	public int changeLogintoEvent(Log log, boolean isFriend, boolean isGroup) {
+		log.print();
 		int action = log.getAction();
 		userID = log.getUserID();
 		time = log.getTime();

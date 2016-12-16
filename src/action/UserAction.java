@@ -57,7 +57,7 @@ public class UserAction implements Action {
 		if (ch == '/') {
 			redirect_url = redirect_url + "index";
 		}
-		System.out.println("UserAction login redirect_url:" + redirect_url);
+		//System.out.println("UserAction login redirect_url:" + redirect_url);
 		UserService us = new UserService();
 		User new_user= new User();		
 		int existID = us.getUserIDfromName(user.getName());
@@ -67,7 +67,7 @@ public class UserAction implements Action {
 		}
 		try{
 			new_user = us.loginUser(user);
-			System.out.println("userID " + new_user.getId());
+			//System.out.println("userID " + new_user.getId());
 			if (new_user.getId() > 0) {
 				login_result = 0; 
 				ActionContext actCtx = ActionContext.getContext();
@@ -217,8 +217,10 @@ public class UserAction implements Action {
 			//for (int j = 0; j < logs.size(); j++) {
 			for (int j = logs.size()-1; j>=0; j--) {
 				Log log = logs.get(j);
+				if (log.getAction()==2) continue;
 				Event event = new Event();
 				event.changeLogintoEvent(log, false, false);
+				event.print();
 				events.add(event);
 			}
 		} catch (Exception e) {

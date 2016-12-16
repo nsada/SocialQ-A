@@ -14,7 +14,7 @@ public class Information {
 	public JSONArray getFriendsInformation(String str) {		
 		JSONArray array;
 		try {
-			System.out.println("JSON: "+str);
+			//System.out.println("JSON: "+str);
 			JSONObject jsonObj1 = new JSONObject(str);
 			Iterator<?> ite1 = jsonObj1.keys();			
 			while (ite1.hasNext()) {

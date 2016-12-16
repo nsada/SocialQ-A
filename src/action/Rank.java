@@ -153,6 +153,7 @@ public class Rank implements Action{
 				if (!us.isFriend(userID, peo.getId())) continue;
 				rank++; 	
 			 	TesttakerID = peo.getId();
+			 	peo.setRank(rank);
 			 	friends.add(peo);
 			}
 		} catch (Exception e) {

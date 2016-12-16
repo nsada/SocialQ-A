@@ -9,6 +9,7 @@ import domain.Multy;
 import domain.Selection;
 import domain.TextBlank;
 import service.LogService;
+import service.QuestionBaseService;
 import service.QuestionService;
 
 public class QuestionAction implements Action {
@@ -20,6 +21,7 @@ public class QuestionAction implements Action {
 	private int type;	
 	private int questionID;
 	private int userID;
+	private String qBaseName;
 	
 	@Override
 	public String execute() throws Exception {
@@ -48,7 +50,9 @@ public class QuestionAction implements Action {
 	public String addQuestion() {
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
-		userID = (int) sess.get("userid");
+		userID = (int) sess.get("userid");		
+		QuestionBaseService qbs = new QuestionBaseService();
+		qBaseName = qbs.getqBaseName(qBaseID);
 		questionID= -1;
 		switch (type) {
 		case 1: questionID = addSelection(); break;
@@ -161,6 +165,16 @@ public class QuestionAction implements Action {
 
 	public void setMulty(Multy multy) {
 		this.multy = multy;
+	}
+
+
+	public String getqBaseName() {
+		return qBaseName;
+	}
+
+
+	public void setqBaseName(String qBaseName) {
+		this.qBaseName = qBaseName;
 	}	
 
 	
