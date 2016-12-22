@@ -53,13 +53,12 @@ public class ExamAction implements Action {
 		int num=0;
 		while (true) {
 			this.setStr(tencent.share(content));
+			System.out.println("str: "+str);
 			int ret_index = str.indexOf("ret");
 			String sub = str.substring(ret_index+5);
 			num++;
 			//System.out.println(sub);
 			if (sub.charAt(0) != '0') {
-				//System.out.println("fail to get information of user's frends");
-				//return ERROR;
 			} else {
 				System.out.println("num: "+num);
 				return SUCCESS;

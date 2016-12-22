@@ -13,7 +13,7 @@
     												top: 200px;">
 
 		<ul class="row">
-            <h2 class="text-center">Hello! Here is the index of SocialQ-A~</h2>
+            <h2 class="text-center">Hello! Here is the index of FunnyQ-A~</h2>
             <br>
             <h2 class="text-center">If you have any question, please contact with us!</h2>
             <br>

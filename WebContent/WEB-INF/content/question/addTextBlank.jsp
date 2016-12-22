@@ -1,6 +1,12 @@
+
+<%@page import="tencentApi.globalVar"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
 
 <rapid:override name="head">
 	<title>添加填空题</title>
@@ -10,7 +16,7 @@
 	<%
         String idstr = request.getParameter("qBaseID");
         int qBaseID = Integer.parseInt(idstr);
-        out.println("添加题目到"+qBaseID+"号题库");
+        //out.println("添加题目到"+qBaseID+"号题库");
     %>
 	<div class="row clearfix">
 		<div class="col-md-12 column">

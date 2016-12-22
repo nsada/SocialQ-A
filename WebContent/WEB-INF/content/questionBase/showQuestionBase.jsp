@@ -117,13 +117,13 @@
                 </tr>
             </thead>
             <tbody>
-                <s:iterator value="aandQs" var="aandQ">
+                <s:iterator value="aandQs" var="AQ">
                     <tr>
-                        <td>${aandQ.context}</td>
+                        <td>${AQ.context}</td>
                         <td>
-                            <a href='<s:url action="showQuestion"><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
+                            <a href='<s:url action="showQuestion"><s:param name="questionID" value="#AQ.id"/><s:param name="type" value="3"/></s:url>'><input
                                 type="button" value="展开" /></a>
-                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#aandQ.id"/><s:param name="type" value="3"/></s:url>'><input
+                          <a href='<s:url action="delQbaseQuestion"><s:param name="qBaseID" value="qBase.id"/><s:param name="questionID" value="#AQ.id"/><s:param name="type" value="3"/></s:url>'><input
                                 type="button" value="删除" /></a>
                         </td>
                     </tr>

@@ -14,9 +14,8 @@
 	<%
         String idstr = request.getParameter("qBaseID");
         int qBaseID = Integer.parseInt(idstr);
-        out.println("添加题目到"+qBaseID+"号题库");
+        //out.println("添加题目到"+qBaseID+"号题库");
     %>
-    <h3>添加题目到"<s:property value = "qbaseName"/>"</h3>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<form action="addQuestionPro" method="POST" class="form-horizontal"

@@ -137,13 +137,11 @@ public class UserAction implements Action {
 	public String logout(){
 		ActionContext actCtx = ActionContext.getContext();
 		Map<String, Object> sess = actCtx.getSession();
-		int userID = (int)sess.get("userid");
-		
-		//ls.logout(userID);
-		sess.remove("username");
-		sess.remove("userid");
-		sess.remove("openid");
-		sess.remove("accesstoken");
+
+			sess.remove("username");
+			sess.remove("userid");
+			sess.remove("openid");
+			sess.remove("accesstoken");
 
 		return SUCCESS;
 	}

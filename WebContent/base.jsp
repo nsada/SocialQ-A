@@ -51,7 +51,7 @@
     		<div class="container-fluid">
   				  <div class="navbar-header">
        				
-       				 <a class=" navbar-brand" href="<%=request.getContextPath()%>" style="font-size: 40px" >SocialQ-A</a>
+       				 <a class=" navbar-brand" href="<%=request.getContextPath()%>" style="font-size: 40px" >FunnyQ-A</a>
    				 </div>
   		  	<div>
   		  	<%if ( !( username==null || username.equals("") ) ){%>
